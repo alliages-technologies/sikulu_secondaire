@@ -1,0 +1,10 @@
+#example1_paginate .page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a767;
+}
+
+#example1_paginate .page-link:hover,#example1_paginate .page-link, .content-wrapper a:not(.btn), footer a{
+    color:  #28a745;
+}
