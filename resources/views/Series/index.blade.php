@@ -1,21 +1,29 @@
 @extends('layouts.admin')
 @section('content')
-<h4 class="text-center mb-4 h4"> Liste des Séries </h4>
 <div class="container-fluid">
-    <table class="table table-bordered table-hover">
-        <thead class="thead-dark">
-            <th> Nom de la série </th>
-        </thead>
-        <tbody>
-        @foreach($series as $serie)
-            <tr>
-                <td> {{$serie->name}} </td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
-    {{ $series->links() }}
-    <a href="" data-toggle="modal" data-target="#panier" class="btn btn-dark float-right"> Ajouter </a>
+    <div class="card mt-5 card-dark">
+        <div class="card-header">
+            <h4 class="text-left"> Liste des Séries <i class="fa fa-info"></i> </h4>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="thead-dark">
+                        <th> Nom de la série </th>
+                    </thead>
+                    <tbody>
+                    @foreach($series as $serie)
+                        <tr>
+                            <td> {{$serie->name}} </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                {{ $series->links() }}
+                <a href="" data-toggle="modal" data-target="#panier" class="btn btn-dark float-right"> Ajouter </a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Modal -->

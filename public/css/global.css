@@ -150,3 +150,12 @@ td{
 .ls{
     color: #212529 !important;
 }
+
+.cb{
+    background-color: #4f5f65;
+    color: #e8e1e1;
+}
+.cardimg{
+    height: 230px;
+    width: 100%;
+}

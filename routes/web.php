@@ -35,6 +35,7 @@ Route::get('/inscriptions/create', 'InscriptionController@create');
 Route::post('/inscriptions/eleve', 'InscriptionController@store');
 Route::get('/inscriptions/inscrire', 'InscriptionController@inscrire');
 Route::post('/inscriptions/inscrit', 'InscriptionController@inscrit');
+Route::get('/inscriptions/show/{id}', 'InscriptionController@show');
 // Fin route
 
 // Route des série

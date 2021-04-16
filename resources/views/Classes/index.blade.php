@@ -1,29 +1,37 @@
 @extends('layouts.admin')
 @section('content')
-<h4 class="text-center mb-4 h4"> Liste des Classes </h4>
 <div class="container-fluid">
-    <table class="table table-bordered table-hover">
-        <thead class="thead-dark">
-            <th> Nom de la classe </th>
-            <th> Code </th>
-            <th> Série </th>
-            <th> Montant Inscription </th>
-            <th> Montant Frais </th>
-        </thead>
-        <tbody>
-        @foreach($classes as $classe)
-            <tr>
-                <td> {{$classe->name}} </td>
-                <td> {{$classe->code}} </td>
-                <td> {{$classe->serie_id?$classe->serie->name:""}} </td>
-                <td> {{number_format($classe->montant_inscri)}} XAF </td>
-                <td> {{number_format($classe->montant_frais)}} XAF </td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
-    {{ $classes->links() }}
-    <a href="" data-toggle="modal" data-target="#panier" class="btn btn-dark float-right"> Ajouter </a>
+    <div class="card card-dark mt-5">
+        <div class="card-header">
+            <h4 class="text-left"> Liste des Classes <i class="fa fa-door-open"></i> </h4>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="thead-dark">
+                        <th> Nom de la classe <i class="fa fa-door-closed"></i> </th>
+                        <th> Code <i class="fa fa-barcode"></i> </th>
+                        <th> Série <i class="fa fa-info"></i> </th>
+                        <th> Montant Inscription <i class="fa fa-money"></i> </th>
+                        <th> Montant Frais <i class="fa fa-money"></i> </th>
+                    </thead>
+                    <tbody>
+                    @foreach($classes as $classe)
+                        <tr>
+                            <td> {{$classe->name}} </td>
+                            <td> {{$classe->code}} </td>
+                            <td> {{$classe->serie_id?$classe->serie->name:""}} </td>
+                            <td> {{number_format($classe->montant_inscri)}} XAF </td>
+                            <td> {{number_format($classe->montant_frais)}} XAF </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                {{ $classes->links() }}
+                <a href="" data-toggle="modal" data-target="#panier" class="btn btn-dark float-right"> Ajouter <ifa class="fa fa-plus-square"></ifa> </a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Modal -->

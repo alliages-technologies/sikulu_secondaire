@@ -7,12 +7,12 @@
     </div>
     <div class="card-body">
         <div class="container-fluid">
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-striped table-hover">
                 <thead class="thead-dark">
-                    <th> Nom(s) </th>
-                    <th> Prénom(s) </th>
-                    <th> Date d'inscription </th>
-                    <th> Action </th>
+                    <th> Nom(s) <i class="fa fa-user"></i></th>
+                    <th> Prénom(s) <i class="fa fa-user"></i></th>
+                    <th> Date d'inscription <i class="fa fa-calendar-check"></i></th>
+                    <th> Action (s) <i class="fa fa-wrench"></i></th>
                 </thead>
                 <tbody>
                 @foreach($inscriptions as $inscription)
@@ -24,7 +24,7 @@
                         @else
                         <td> Date non pris en compte </td>
                         @endif
-                        <td> <a href="/inscriptions/show/{{$inscription->id}}" class="btn btn-info btn-sm"> Ouvrir </a> </td>
+                        <td> <a href="/inscriptions/show/{{$inscription->id}}" class="btn btn-info btn-sm"> Ouvrir <i class="fa fa-info"></i></a> </td>
                     </tr>
                 @endforeach
                 </tbody>

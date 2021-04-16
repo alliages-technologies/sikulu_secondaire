@@ -96,7 +96,8 @@ class InscriptionController extends Controller
      */
     public function show($id)
     {
-        //
+        $inscription = Inscription::find($id);
+        return view('Inscriptions/show')->with(compact('inscription'));
     }
 
     /**
