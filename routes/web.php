@@ -60,3 +60,18 @@ Route::get('/ecolages', 'EcolageController@index');
 Route::post('/ecolages/store', 'EcolageController@store');
 Route::get('/ecolages/show/{id}', 'EcolageController@show');
 // Fin route
+
+// Route des cours
+Route::get('/cours', 'CourController@index');
+Route::post('/cours/store', 'CourController@store');
+// Fin route
+
+// Route des matieres
+Route::get('/matieres', 'MatiereController@index');
+Route::post('/matieres/store', 'MatiereController@store');
+// Fin route
+
+// Route des tranches horaires
+Route::get('/tranche_horaires', 'TrancheHoraireController@index');
+Route::post('/tranche_horaires/store', 'TrancheHoraireController@store');
+// Fin route

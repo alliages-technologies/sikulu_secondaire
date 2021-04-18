@@ -208,23 +208,23 @@
                 </li>
 
                 <li class="nav-item ml-4">
-                    <a href="/" class="nav-link">
-                      <i class="fa fa-pray"></i>
-                      <p class="af">...</p>
+                    <a href="/matieres" class="nav-link">
+                      <i class="fa fa-book"></i>
+                      <p class="af">Matieres</p>
                     </a>
                 </li>
 
                 <li class="nav-item ml-4">
-                    <a href="/" class="nav-link">
-                      <i class="fa fa-hands-helping"></i>
-                      <p class="af">...</p>
+                    <a href="/cours" class="nav-link">
+                      <i class="fa fa-book"></i>
+                      <p class="af">Cours</p>
                     </a>
                 </li>
 
                 <li class="nav-item ml-4">
-                    <a href="/" class="nav-link">
-                      <i class="fa fa-hand-holding-usd"></i>
-                      <p class="af">...</p>
+                    <a href="/tranche_horaires" class="nav-link">
+                      <i class="fa fa-calendar"></i>
+                      <p class="af">Tranches Horaires</p>
                     </a>
                 </li>
 

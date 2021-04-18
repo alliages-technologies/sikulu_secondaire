@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
             <div class="container-fluid">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-striped hover">
                     <thead class="thead-dark">
                         <th>Etats <i class="fa fa-unlock-alt"></i> </th>
                         <th> Désignation du moi <i class="fa fa-feather-alt"></i></th>
@@ -60,7 +60,7 @@
 
                 <div class="row">
                     <div class="col-md-8">
-                        <input type="text" class="form-control" name="name" placeholder="Entrer le nom du moi...">
+                        <input type="text" class="form-control" name="name" placeholder="Entrer le nom du moi..." required>
                     </div>
                     <div class="col-md-4">
                         <button class="btn btn-success">Enrégistrer <i class="fa fa-save"></i> </button>

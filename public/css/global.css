@@ -158,4 +158,5 @@ td{
 .cardimg{
     height: 230px;
     width: 100%;
+    border: 1px solid;
 }
