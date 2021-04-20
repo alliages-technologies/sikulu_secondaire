@@ -20,6 +20,9 @@ class CreateInscriptionsTable extends Migration
             $table->bigInteger('classe_id');
             $table->double('montant_inscri')->default(0);
             $table->double('montant_frais')->default(0);
+            $table->bigInteger('anneeacad_id');
+            $table->bigInteger('moi_id');
+            $table->bigInteger('semaine_id');
             $table->timestamps();
         });
     }

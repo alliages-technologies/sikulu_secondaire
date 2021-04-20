@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 @section('content')
 <div class="container-fluid">
-    <div class="card mt-5 card-dark">
+    <div class="card mt-5">
         <div class="card-header">
             <h4 class="text-left"> Liste des Séries <i class="fa fa-info"></i> </h4>
         </div>
         <div class="card-body">
             <div class="container-fluid">
                 <table class="table table-bordered table-striped table-hover">
-                    <thead class="thead-dark">
+                    <thead class="">
                         <th> Nom de la série </th>
                     </thead>
                     <tbody>

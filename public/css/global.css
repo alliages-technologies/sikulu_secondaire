@@ -97,7 +97,6 @@ td{
 }
 
 .navbar{
-    background-color: #20272d !important;
     border-color: rgb(53, 53, 129) !important;
     color: #ffffff !important;
     margin-top: -21px !important;
@@ -106,9 +105,7 @@ td{
     width: 100%;
 }
 
-.nav-link{
-    color: #ffffff !important;
-}
+
 
 .sidebar{
         background-color: #212529;

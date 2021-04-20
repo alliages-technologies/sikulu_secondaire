@@ -1,13 +1,13 @@
 @extends('layouts.admin');
 @section('content')
-<div class="card card-dark mt-5">
+<div class="card mt-5">
     <div class="card-header">
         <h4 class="text-left mb-1"> Gestion des Cours <i class="fa fa-book"></i> </h4>
     </div>
     <div class="card-body ">
         <div class="container-fluid">
             <table class="table table-bordered table-striped table-hover">
-                <thead class="thead-dark">
+                <thead class="">
                     <th> Matière <i class="fa fa-edit"></i> </th>
                     <th> Classe <i class="fa fa-calendar"></i> </th>
                     <th> Coéfficient <i class="fa fa-edit"></i> </th>

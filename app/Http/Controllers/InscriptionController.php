@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Inscription;
 use App\Models\Eleve;
 use App\Models\Classe;
+use App\Models\AnneeAcad;
 use Illuminate\Support\Facades\Auth;
 
 class InscriptionController extends Controller
@@ -17,7 +18,10 @@ class InscriptionController extends Controller
      */
     public function index()
     {
-        $inscriptions = Inscription::orderBy('created_at','desc')->paginate(10);
+        $annee_acads = AnneeAcad::where('actif',1)->get();
+        foreach ($annee_acads as $annee_acad) {
+            $inscriptions = Inscription::where('anneeacad_id',$annee_acad->id)->orderBy('created_at','desc')->paginate(10);
+        }
         return view('Inscriptions/index')->with(compact('inscriptions'));
     }
 
@@ -28,7 +32,9 @@ class InscriptionController extends Controller
      */
     public function create()
     {
-        return view('Inscriptions/create');
+        $classes = Classe::all();
+        $annee_acad = AnneeAcad::where('actif',1)->get();
+        return view('Inscriptions/create')->with(compact('classes','annee_acad'));
     }
 
     /**
@@ -72,7 +78,25 @@ class InscriptionController extends Controller
         }
         //dd($eleve);
         $eleve->save();
-        return view('Inscriptions/inscrire')->with(compact('eleve','classes'));
+        $inscription = new Inscription();
+        $inscription->eleve_id = $eleve->id;
+        $inscription->user_id = Auth::user()->id;
+        $inscription->montant_inscri = $request->montant_inscri;
+        if(!$request->montant_frais)
+            {
+                $inscription->montant_frais = 0;
+            }
+            else {
+
+                $inscription->montant_frais = $request->montant_frais;
+            }
+        $inscription->classe_id = $request->classe_id;
+        $inscription->anneeacad_id = $request->anneeacad_id;
+        $inscription->moi_id = date('m');
+        $inscription->semaine_id = date('w');
+        //dd($inscription);
+        $inscription->save();
+        return redirect('/inscriptions');
     }
 
     public function inscrit(Request $request)

@@ -1,13 +1,13 @@
 @extends('layouts.admin');
 @section('content')
-<div class="card card-dark mt-5">
+<div class="card mt-5">
     <div class="card-header">
         <h4 class="text-left mb-1"> Gestion des Ecolages <i class="fa fa-calendar-week"></i> </h4>
     </div>
     <div class="card-body ">
         <div class="container-fluid">
             <table class="table table-bordered table-hover">
-                <thead class="thead-dark">
+                <thead class="">
                     <th> Eleve <i class="fa fa-user"></i> </th>
                     <th> Moi <i class="fa fa-calendar"></i> </th>
                     <th> Montant <i class="fa fa-money"></i> </th>
@@ -16,7 +16,7 @@
                 <tbody>
                 @foreach($ecolages as $ecolage)
                     <tr>
-                        <td> {{$ecolage->inscription_id?$ecolage->inscription->eleve->nom:""}} </td>
+                        <td> {{$ecolage->inscription_id?$ecolage->inscription->eleve->nom:""}} {{$inscription->classe_id?$inscription->classe->name:""}} {{$inscription->classe->serie->name}} </td>
                         <td> {{$ecolage->moi_id?$ecolage->moi->name:""}} </td>
                         <td> {{number_format($ecolage->montant)}} XAF </td>
                         <td> <a href="/ecolages/show/{{$ecolage->id}}" class="btn btn-info btn-sm">Détails <i class="fa fa-info"></i> </a></td>

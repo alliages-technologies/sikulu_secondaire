@@ -1,19 +1,20 @@
 @extends('layouts.admin')
 @section('content')
 <div class="container-fluid">
-    <div class="card card-dark mt-5">
+    <div class="card mt-5">
         <div class="card-header">
             <h4 class="text-left"> Liste des Classes <i class="fa fa-door-open"></i> </h4>
         </div>
         <div class="card-body">
             <div class="container-fluid">
                 <table class="table table-bordered table-striped table-hover">
-                    <thead class="thead-dark">
+                    <thead class="">
                         <th> Nom de la classe <i class="fa fa-door-closed"></i> </th>
                         <th> Code <i class="fa fa-barcode"></i> </th>
                         <th> Série <i class="fa fa-info"></i> </th>
                         <th> Montant Inscription <i class="fa fa-money"></i> </th>
                         <th> Montant Frais <i class="fa fa-money"></i> </th>
+                        <th> Actions </th>
                     </thead>
                     <tbody>
                     @foreach($classes as $classe)
@@ -23,6 +24,7 @@
                             <td> {{$classe->serie_id?$classe->serie->name:""}} </td>
                             <td> {{number_format($classe->montant_inscri)}} XAF </td>
                             <td> {{number_format($classe->montant_frais)}} XAF </td>
+                            <td> <a href="" class="btn btn-info btn-xs">Liste d'élevês</a> </td>
                         </tr>
                     @endforeach
                     </tbody>

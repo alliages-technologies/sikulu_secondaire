@@ -14,4 +14,8 @@ class Inscription extends Model
         return $this->belongsTo('App\Models\Classe','classe_id');
     }
 
+    public function annee_acad(){
+        return $this->belongsTo('App\Models\AnneeAcad','anneeacad_id');
+    }
+
 }

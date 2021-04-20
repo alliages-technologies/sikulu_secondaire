@@ -2,25 +2,27 @@
 @section('content')
 <div class="card mt-5">
     <div class="card-header">
-        <h4 class="text-left mb-1"> Gestion des Tranches Horaires <i class="fa fa-book"></i> </h4>
+        <h4 class="text-left mb-1"> Gestion des Années Scolaires <i class="fa fa-book"></i> </h4>
     </div>
     <div class="card-body ">
         <div class="container-fluid">
             <table class="table table-bordered table-striped table-hover">
                 <thead class="">
-                    <th> Heure Début <i class="fa fa-user"></i> </th>
-                    <th> Heure Fin <i class="fa fa-calendar"></i> </th>
+                    <th> Année 1  </th>
+                    <th> Année 2  </th>
+                    <th> Date de la Rentrée <i class="fa fa-calendar"></i> </th>
                 </thead>
                 <tbody>
-                @foreach($tranche_horaires as $tranche_horaire)
+                @foreach($annee_acads as $annee_acad)
                     <tr>
-                        <td> {{$tranche_horaire->heure_debut}} </td>
-                        <td> {{$tranche_horaire->heure_fin}} </td>
+                        <td> {{$annee_acad->annee1}} </td>
+                        <td> {{$annee_acad->annee2}} </td>
+                        <td> {{$annee_acad->dtrentree}} </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
-            {{ $tranche_horaires->links() }}
+            {{ $annee_acads->links() }}
             <a href="" data-toggle="modal" data-target="#panier" class="btn btn-dark float-right">Ajouter <i class="fa fa-plus-square"></i> </a>
         </div>
     </div>
@@ -32,7 +34,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLabel">Ajout une tranche horaire <i class="fa fa-edit"></i> </h4>
+        <h4 class="modal-title" id="exampleModalLabel">Parametrage de l'année scolaire <i class="fa fa-edit"></i> </h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -40,16 +42,21 @@
       <div class="modal-body">
         <div class="flex-container">
             <div class="form-group">
-        <form action="/tranche_horaires/store" method="post" class="mb-4">
+        <form action="/annee_acads/store" method="post" class="mb-4">
         @csrf
                 </div>
             </div>
                 <div class="row">
                     <div class="col-md-6 mb-2">
-                        <input type="text" class="form-control" name="heure_debut" placeholder="Heure début..." required>
+                        <input type="text" class="form-control" name="annee1" placeholder="Année n°1..." required>
                     </div>
                     <div class="col-md-6 mb-2">
-                        <input type="text" class="form-control" name="heure_fin" placeholder="Heure fin..." required>
+                        <input type="text" class="form-control" name="annee2" placeholder="Année n°1..." required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mt-2 mb-2">
+                        <input type="date" class="form-control" name="dtrentree" placeholder="Date rentrée..." required>
                     </div>
                 </div>
                 <div class="row">

@@ -1,30 +1,29 @@
 @extends('layouts.admin');
 @section('content')
-
-<div class="card card-dark mt-5">
+<div class="card mt-5">
     <div class="card-header">
         <h4 class="text-left mb-1"> Liste des inscriptions <i class="fa fa-users"></i> </h4>
     </div>
     <div class="card-body">
         <div class="container-fluid">
             <table class="table table-bordered table-striped table-hover">
-                <thead class="thead-dark">
-                    <th> Nom(s) <i class="fa fa-user"></i></th>
-                    <th> Prénom(s) <i class="fa fa-user"></i></th>
-                    <th> Date d'inscription <i class="fa fa-calendar-check"></i></th>
-                    <th> Action (s) <i class="fa fa-wrench"></i></th>
+                <thead class="">
+                    <th> Date d'inscription </th>
+                    <th> Nom(s) & Prénom(s) </th>
+                    <th> Classe </th>
+                    <th> Action (s) </th>
                 </thead>
                 <tbody>
                 @foreach($inscriptions as $inscription)
                     <tr>
-                        <td> {{$inscription->eleve_id?$inscription->eleve->nom:""}} </td>
-                        <td> {{$inscription->eleve_id?$inscription->eleve->prenom:""}} </td>
                         @if(setlocale(LC_TIME, "fr_FR","French") && $date = strftime("%A %d %B %G", strtotime($inscription->created_at)))
                         <td> {{$date}} </td>
                         @else
                         <td> Date non pris en compte </td>
                         @endif
-                        <td> <a href="/inscriptions/show/{{$inscription->id}}" class="btn btn-info btn-sm"> Ouvrir <i class="fa fa-info"></i></a> </td>
+                        <td> {{$inscription->eleve_id?$inscription->eleve->nom:""}} {{$inscription->eleve_id?$inscription->eleve->prenom:""}} </td>
+                        <td> {{$inscription->classe_id?$inscription->classe->name:""}} {{$inscription->classe->serie->name}} </td>
+                        <td> <a href="/inscriptions/show/{{$inscription->id}}" class="btn btn-info btn-sm"> Afficher </a> </td>
                     </tr>
                 @endforeach
                 </tbody>

@@ -80,15 +80,13 @@
         </div>
       </div>
     </form>
+
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-
-
+    <ul class="navbar-nav ml-auto" style="padding-right: 65px;">
 
       <!-- Profil Dropdown Menu -->
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown mr-2">
         <a class="nav-link" data-toggle="dropdown" href="#">
-
           <span class="badge  navbar-badge"> <img style="max-height: 20px; max-width: 20px;" src="<?= Auth::user()->imageUri?asset('img/'. Auth::user()->imageUri):asset('img/avatar.png') ?>" class="img-circle" alt="{{ auth()->user()->last_name }}"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -161,10 +159,19 @@
           </li>
 
           <li class="nav-item">
-            <a href="/" class="nav-link {{ $active==3?'active':'' }}">
+            <a href="/eleves" class="nav-link {{ $active==2?'active':'' }}">
+              <i class="nav-icon fas fa-user-friends"></i>
+              <p class="p">
+                ELEVES
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/annee_acads" class="nav-link {{ $active==3?'active':'' }}">
               <i class="nav-icon fas fa fa-lemon"></i>
               <p class="p">
-                ...
+                Année Scolaire
               </p>
             </a>
           </li>
@@ -231,7 +238,7 @@
                 <li class="nav-item ml-4">
                     <a href="/" class="nav-link">
                       <i class="fa fa-user"></i>
-                      <p class="af">.../p>
+                      <p class="af">...</p>
                     </a>
                 </li>
 

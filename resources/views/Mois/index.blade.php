@@ -1,14 +1,14 @@
 @extends('layouts.admin');
 @section('content')
 <div class="container-fluid">
-    <div class="card card-dark mt-5">
+    <div class="card mt-5">
         <div class="card-header">
             <h4 class="text-left"> Liste des Mois <i class="fa fa-calendar-week"></i> </h4>
         </div>
         <div class="card-body">
             <div class="container-fluid">
                 <table class="table table-bordered table-striped hover">
-                    <thead class="thead-dark">
+                    <thead class="">
                         <th>Etats <i class="fa fa-unlock-alt"></i> </th>
                         <th> Désignation du moi <i class="fa fa-feather-alt"></i></th>
                         <th> Action <i class="fa fa-charging-station"></i></th>

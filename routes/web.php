@@ -75,3 +75,12 @@ Route::post('/matieres/store', 'MatiereController@store');
 Route::get('/tranche_horaires', 'TrancheHoraireController@index');
 Route::post('/tranche_horaires/store', 'TrancheHoraireController@store');
 // Fin route
+
+// Route des années academiques
+Route::get('/annee_acads', 'AnneeAcadController@index');
+Route::post('/annee_acads/store', 'AnneeAcadController@store');
+// Fin route
+
+// Route des éleves
+Route::get('/eleves','EleveController@index');
+// Fin route
