@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 @section('content')
 <div class="container-fluid mt-5">
-    <div class="card card-dark">
+    <div class="card">
         <div class="card-header">
             <h4 class="text-left">Information sur {{$inscription->eleve->prenom}} <i class="fa fa-user-graduate"></i> </h4>
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card card-dark">
+                    <div class="card">
                         <div class="card-header">
                             <b> Information sur l'élêve <i class="fa fa-user"></i> </b>
                         </div>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card card-dark">
+                    <div class="card">
                         <div class="card-header">
                             <b>Information sur son niveau <i class="fa fa-info"></i></b>
                         </div>
@@ -64,7 +64,7 @@
             </div>
             <div class="row mt-2">
                 <div class="col-md-5">
-                    <div class="card card-dark">
+                    <div class="card">
                         <div class="card-header">
                             <b>Information sur les parents <i class="fa fa-male"></i><i class="fa fa-female"></i></b>
                         </div>
@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card card-dark">
+                    <div class="card">
                         <div class="card-header"> <b>Information sur Tuteur</b> <i class="fa fa-male"></i></div>
                         <div class="card-body">
                             <label for="">Nom et Prénom(s) :</label>
@@ -96,7 +96,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card card-dark">
+                    <div class="card">
                         <div class="card-header"> <b>Frais scolaires</b> <i class="fa fa-money"></i> </div>
                         <div class="card-body">
                             <label for="">Montant d'inscription :</label>

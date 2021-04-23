@@ -8,7 +8,7 @@ use App\Models\Eleve;
 use App\Models\Classe;
 use App\Models\AnneeAcad;
 use Illuminate\Support\Facades\Auth;
-
+use PDF;
 class InscriptionController extends Controller
 {
     /**
@@ -96,21 +96,20 @@ class InscriptionController extends Controller
         $inscription->semaine_id = date('w');
         //dd($inscription);
         $inscription->save();
-        return redirect('/inscriptions');
+        //$pdf = PDF::loadView('/Inscriptions/pdf',compact('eleve','inscription'));
+        //return $pdf->stream('inscription'.$inscription->id.'.pdf');
+        return view('/Inscriptions/pdf')->with(compact('eleve','inscription'));
     }
 
-    public function inscrit(Request $request)
-    {
-        $inscription = new Inscription();
-        $inscription->eleve_id = $request->eleve_id;
-        $inscription->user_id = Auth::user()->id;
-        $inscription->montant_inscri = $request->montant_inscri;
-        $inscription->montant_frais = $request->montant_frais;
-        $inscription->classe_id = $request->classe_id;
-        //dd($inscription);
-        $inscription->save();
-        return redirect('/inscriptions');
+    public function creationPdf($eleve, $inscription){
+        $eleve = Eleve::find($eleve);
+        $inscription = Inscription::find($inscription);
+        $pdf = PDF::loadView('/Inscriptions/pdf',compact('eleve','inscription'));
+        //set_time_limit(300);
+        return $pdf->download('pdf_file.pdf');
     }
+
+
 
     /**
      * Display the specified resource.

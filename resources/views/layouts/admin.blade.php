@@ -98,8 +98,8 @@
           </a>
 
           <div class="dropdown-divider"></div>
-          <a href="/logout" class="dropdown-item">
-            <i class="fas fa-switch-off mr-2"></i> Se Déconnecter
+          <a href="/deconnexion" class="dropdown-item">
+            <i class="fa fa-sign-out-alt mr-2"></i> Déconnexion
           </a>
 
         </div>
@@ -128,6 +128,59 @@
         </div>
         <div class="info">
           <a href="#" class="d-block"><?= Auth::user()->name ?></a>
+                <li class="nav-item dropdown">
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Brad Diesel
+                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">Call me whenever you can...</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  John Pierce
+                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">I got your message bro</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Nora Silvester
+                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">The subject goes here</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        </div>
+      </li>
         </div>
       </div>
 
@@ -148,6 +201,15 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a href="/users" class="nav-link {{ $active==1?'active':'' }}">
+              <i class="nav-icon fas fa-users"></i>
+              <p class="p">
+                GESTION DES UTILISATEURS
+
+              </p>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a href="/inscriptions" class="nav-link {{ $active==2?'active':'' }}">
@@ -171,7 +233,7 @@
             <a href="/annee_acads" class="nav-link {{ $active==3?'active':'' }}">
               <i class="nav-icon fas fa fa-lemon"></i>
               <p class="p">
-                Année Scolaire
+                ANNEE SCOLAIRE
               </p>
             </a>
           </li>
@@ -236,9 +298,9 @@
                 </li>
 
                 <li class="nav-item ml-4">
-                    <a href="/" class="nav-link">
+                    <a href="/roles" class="nav-link">
                       <i class="fa fa-user"></i>
-                      <p class="af">...</p>
+                      <p class="af">Rôles</p>
                     </a>
                 </li>
 

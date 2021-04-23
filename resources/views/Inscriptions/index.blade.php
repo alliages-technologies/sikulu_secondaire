@@ -29,7 +29,7 @@
                 </tbody>
             </table>
             {{ $inscriptions->links() }}
-            <a href="" data-toggle="modal" data-target="#panier" class="btn btn-dark btn-sm float-right finscrit"> <i class="fa fa-running finscrit"></i><i class="fa fa-sign-in-alt"></i> </a>
+            <a href="" data-toggle="modal" data-target="#panier" class="btn btn-dark float-right"> Réinscription <i class="fa fa-user-plus"></i></a>
             <a href="/inscriptions/create" class="btn btn-success float-right mr-2"> Inscription <i class="fa fa-user-plus"></i> </a>
         </div>
     </div>

@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
 use App\Models\Role;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('created_at','desc')->paginate(5);
-        $roles = Role::all();
-        return view('/Users/index',compact('users','roles'));
+        $roles = Role::orderBy('created_at','desc')->paginate(5);
+        return view('/Roles/index',compact('roles'));
     }
 
     /**
@@ -30,8 +26,6 @@ class UserController extends Controller
     public function create()
     {
         //
-        $roles = Role::all();
-        return view('Users/index')->with(compact('roles'));
     }
 
     /**
@@ -40,24 +34,12 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-
-     public function store(Request $request)
+    public function store(Request $request)
     {
-        //
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->role_id = $request->role_id;
-        $user->password = Hash::make($request->password);
-        //dd($user);
-        $user->save();
+        $role = new Role();
+        $role->name = $request->name;
+        $role->save();
         return redirect()->back();
-    }
-
-    public function logout(){
-        Auth::logout();
-        return redirect('/');
     }
 
     /**
