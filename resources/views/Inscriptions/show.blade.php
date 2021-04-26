@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
-<div class="container-fluid mt-5">
-    <div class="card">
+<div class="container-fluid">
+    <div class="card mt-5">
         <div class="card-header">
             <h4 class="text-left">Information sur {{$inscription->eleve->prenom}} <i class="fa fa-user-graduate"></i> </h4>
         </div>

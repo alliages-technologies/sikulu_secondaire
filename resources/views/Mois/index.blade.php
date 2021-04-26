@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
             <div class="container-fluid">
-                <table class="table table-bordered table-striped hover">
+                <table class="table table-bordered table-striped table-hover">
                     <thead class="">
                         <th>Etats <i class="fa fa-unlock-alt"></i> </th>
                         <th> Désignation du moi <i class="fa fa-feather-alt"></i></th>

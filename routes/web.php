@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,16 +15,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+return view('welcome');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
+Route::prefix('utils')
+->namespace('Utils')
+->name('utils.')
+->group(function(){
+Route::get('/classes', 'DiversController@getClasses');
+Route::get('/inscriptions/{id}', 'DiversController@getElevesByClasse');
+Route::get('/inscription/{id}', 'DiversController@getInscriptionById');
+});
 
 Route::get('/users/register', 'UserController@create')->middleware('auth');
 Route::post('/users/store', 'UserController@store')->middleware('auth');
+//Route::get('/utils/classes', 'DiversController@getClasses')->namespace('Utils');
 
 
 Route::get('/deconnexion','UserController@logout')->middleware('auth');
@@ -89,6 +99,7 @@ Route::get('/eleves','EleveController@index')->middleware('auth');
 // Route des utilisateurs
 Route::get('/users','UserController@index')->middleware('auth','admin');
 // Fin route
+
 
 // Route des rôles
 Route::get('/roles','RoleController@index')->middleware('auth','admin');

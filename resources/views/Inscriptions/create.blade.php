@@ -1,7 +1,7 @@
 @extends('layouts.admin');
 @section('content')
 <div class="container-fluid">
-    <div class="card card-sm mt-5">
+    <div class="card mt-5">
         <div class="card-header">
             <h3 class="text-left">Inscription d'un élêve <i class="fa fa-user-graduate"></i></h3>
         </div>
@@ -43,9 +43,9 @@
                                                 <label for="adresse">Adresse</label>
                                                 <input type="text" class="form-control" id="adresse" name="adresse" required>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="form-group col-md-6">
                                                 <label for="image">Image</label>
-                                                <input class="form-control" type="file" class="" id="image" name="image_uri" |size:5000>
+                                                <input class="form-control-file" type="file" class="" id="image" name="image_uri" |size:5000>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -101,7 +101,7 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                <label for="">Classe</label>
+                                                    <label for="">Classe</label>
                                                     <select name="classe_id" id="" class="form-control" required>
                                                         <option value="">Classe</option>
                                                         @foreach($classes as $classe)

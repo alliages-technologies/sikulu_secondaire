@@ -14,14 +14,14 @@
                     <th>Option <i class="fa fa-cog"></i> </th>
                 </thead>
                 <tbody>
-                @foreach($ecolages as $ecolage)
+                    @foreach($ecolages as $ecolage)
                     <tr>
-                        <td> {{$ecolage->inscription_id?$ecolage->inscription->eleve->nom:""}} {{$inscription->classe_id?$inscription->classe->name:""}} {{$inscription->classe->serie->name}} </td>
+                        <td> {{$ecolage->inscription_id?$ecolage->inscription->eleve->nom:""}} {{$ecolage->inscription->classe_id?$ecolage->inscription->classe->name:""}} {{$ecolage->inscription->classe->serie->name}} </td>
                         <td> {{$ecolage->moi_id?$ecolage->moi->name:""}} </td>
                         <td> {{number_format($ecolage->montant)}} XAF </td>
                         <td> <a href="/ecolages/show/{{$ecolage->id}}" class="btn btn-info btn-sm">Détails <i class="fa fa-info"></i> </a></td>
                     </tr>
-                @endforeach
+                    @endforeach
                 </tbody>
             </table>
             {{ $ecolages->links() }}
@@ -33,36 +33,41 @@
 
 <!-- Modal -->
 <div class="modal fade" id="panier" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLabel">Paiement des Frais Scolaire <i class="fa fa-money"></i> </h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="flex-container">
-            <div class="form-group">
-        <form action="/ecolages/store" method="post" class="mb-4">
-        @csrf
-                </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Paiement des Frais Scolaire <i class="fa fa-money"></i> </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
+                <div class="flex-container">
+                    <div class="form-group">
+                        <form action="/ecolages/store" method="post" class="mb-4">
+                            @csrf
+                    </div>
+                </div>
                 <div class="row">
-                    <div class="col-md-8 mb-2">
-                        <select name="inscription_id" id="" class="form-control" required>
-                            <option value="">Selection de l'Eleve</option>
-                            @foreach($inscriptions as $inscription)
-                            <option value="{{$inscription->id}}">
-                            {{ $inscription->eleve->nom }}
-                            {{ $inscription->classe_id?$inscription->classe->name:"" }}
+                    <div class="col-md-4 mb-2">
+                        <select name="classe_id" id="classe_id" class="form-control" required>
+                            <option value="">Classe</option>
+                            @foreach($classes as $classe)
+                            <option value="{{$classe->id}}">
+                                {{ $classe->name }} {{ $classe->serie->name }}
                             </option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-md-4 mb-2">
-                        <select name="moi_id" id="" class="form-control"  required>
-                            <option value="">Moi</option>
+                        <select name="inscription_id" id="inscription_id" class="form-control" required>
+                            <option value="">Eleve</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <select name="moi_id" id="" class="form-control" required>
+                            <option value="">Mois</option>
                             @foreach($mois as $moi)
                             <option value="{{$moi->id}}"> {{ $moi->name }} </option>
                             @endforeach
@@ -77,13 +82,37 @@
                         <button class="btn btn-success">Enrégistrer <i class="fa fa-save"></i> </button>
                     </div>
                 </div>
-        </form>
+                </form>
 
-      </div>
+            </div>
 
+        </div>
     </div>
-  </div>
 </div>
 </div>
+
+<script>
+    $('#classe_id').change(function() {
+        var id = $(this).val();
+        $.ajax({
+            url: '/utils/inscriptions/' + id,
+            type: 'get',
+            dataType: 'json',
+            success: function(data) {
+                console.log(Object.entries(data));
+                var donnees = Object.entries(data);
+                $('#inscription_id').html('');
+                $('#inscription_id').prepend('<option>Selectionner un élève</option>');
+                donnees.forEach(function([$k, $v]) {
+                    //console.log('Inscription id :'+$k);
+                    //console.log('eleve :' + $v);
+                    var option = '<option value = ' + $k + '>' + $v + '</option>'
+                    $('#inscription_id').append(option);
+                });
+
+            }
+        });
+    })
+</script>
 
 @endsection

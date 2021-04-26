@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Moi;
-use App\Models\Inscription;
 use App\Models\Ecolage;
+use App\Models\Classe;
 
 class EcolageController extends Controller
 {
@@ -18,8 +18,9 @@ class EcolageController extends Controller
     {
         $ecolages = Ecolage::orderBy('created_at','desc')->paginate(10);
         $mois = Moi::where('visible',1)->get();
-        $inscriptions = Inscription::all();
-        return view('/Ecolages/index')->with(compact('ecolages','inscriptions','mois'));
+        //$inscriptions = Inscription::all();
+        $classes = Classe::all();
+        return view('/Ecolages/index')->with(compact('ecolages','mois','classes'));
     }
 
     /**
