@@ -6,7 +6,7 @@
     </div>
     <div class="card-body ">
         <div class="container-fluid">
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover table-striped">
                 <thead class="">
                     <th> Classe </th>
                     <th> Cour </th>
