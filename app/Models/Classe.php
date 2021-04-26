@@ -9,4 +9,5 @@ class Classe extends Model
     public function serie(){
         return $this->belongsTo('App\Models\Serie','serie_id');
     }
+
 }

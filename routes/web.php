@@ -31,6 +31,7 @@ Route::get('/inscriptions/{id}', 'DiversController@getElevesByClasse');
 Route::get('/inscription/{id}', 'DiversController@getInscriptionById');
 });
 
+
 Route::get('/users/register', 'UserController@create')->middleware('auth');
 Route::post('/users/store', 'UserController@store')->middleware('auth');
 //Route::get('/utils/classes', 'DiversController@getClasses')->namespace('Utils');
@@ -108,8 +109,11 @@ Route::post('/roles/store','RoleController@store')->middleware('auth','admin');
 
 
 // Route de la gestion des emploies du temps
-/*
-emploie_temps(cour_id,tranche_id)
-
-*/
+Route::prefix('auth')
+    ->middleware('auth')
+    ->group(function () {
+    Route::get('/emploie-temps', 'EmploieTempController@index');
+    Route::get('/emploie-temps/{id}', 'EmploieTempController@getCourByClasse');
+    });
+Route::post('/emploie-temps/store', 'EmploieTempController@store');
 //

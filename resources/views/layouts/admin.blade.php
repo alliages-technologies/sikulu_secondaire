@@ -258,9 +258,9 @@
                                 </li>
 
                                 <li class="nav-item ml-4">
-                                    <a href="/" class="nav-link">
-                                        <i class="fa fa-pray"></i>
-                                        <p class="af">...</p>
+                                    <a href="/auth/emploie-temps" class="nav-link">
+                                        <i class="fa fa-calendar"></i>
+                                        <p class="af">Emploie du temps </p>
                                     </a>
                                 </li>
 
