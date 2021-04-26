@@ -105,3 +105,11 @@ Route::get('/users','UserController@index')->middleware('auth','admin');
 Route::get('/roles','RoleController@index')->middleware('auth','admin');
 Route::post('/roles/store','RoleController@store')->middleware('auth','admin');
 // Fin route
+
+
+// Route de la gestion des emploies du temps
+/*
+emploie_temps(cour_id,tranche_id)
+
+*/
+//
