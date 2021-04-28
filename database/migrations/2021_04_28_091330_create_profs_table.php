@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTrancheHorairesTable extends Migration
+class CreateProfsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateTrancheHorairesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tranche_horaires', function (Blueprint $table) {
+        Schema::create('profs', function (Blueprint $table) {
             $table->id();
-            $table->string('heure_debut',50);
-            $table->string('heure_fin',50);
-            $table->bigInteger('ordre');
+            $table->string('nom',100);
+            $table->string('prenom',150);
+            $table->string('adresse',150);
+            $table->string('telephone', 50);
+            $table->bigInteger('diplome_id');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateTrancheHorairesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tranche_horaires');
+        Schema::dropIfExists('profs');
     }
 }

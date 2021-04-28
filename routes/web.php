@@ -40,59 +40,6 @@ Route::post('/users/store', 'UserController@store')->middleware('auth');
 Route::get('/deconnexion','UserController@logout')->middleware('auth');
 
 
-// Route des inscriptions des éleves
-Route::get('/inscriptions', 'InscriptionController@index')->middleware('auth');
-Route::get('/inscriptions/create', 'InscriptionController@create')->middleware('auth');
-Route::post('/inscriptions/eleve', 'InscriptionController@store')->middleware('auth');
-Route::get('/inscriptions/inscrire', 'InscriptionController@inscrire')->middleware('auth');
-Route::post('/inscriptions/inscrit', 'InscriptionController@inscrit')->middleware('auth');
-Route::get('/inscriptions/show/{id}', 'InscriptionController@show')->middleware('auth');
-Route::get('/inscriptions/pdf/{eleve}/{inscripion}', 'InscriptionController@creationPdf')->middleware('auth');
-// Fin route
-
-// Route des série
-Route::get('/series', 'SerieController@index')->middleware('auth');
-Route::post('/series/store', 'SerieController@store')->middleware('auth');
-// Fin route
-
-// Route des classes
-Route::get('/classes', 'ClasseController@index')->middleware('auth');
-Route::post('/classes/store', 'ClasseController@store')->middleware('auth');
-// Fin route
-
-// Route des mois
-Route::get('/mois', 'MoiController@index')->middleware('auth');
-Route::post('/mois/store', 'MoiController@store')->middleware('auth');
-Route::get('/mois/on/{id}', 'MoiController@on')->middleware('auth');
-Route::get('/mois/off/{id}', 'MoiController@off')->middleware('auth');
-// Fin route
-
-// Route des écolages
-Route::get('/ecolages', 'EcolageController@index')->middleware('auth');
-Route::post('/ecolages/store', 'EcolageController@store')->middleware('auth');
-Route::get('/ecolages/show/{id}', 'EcolageController@show')->middleware('auth');
-// Fin route
-
-// Route des cours
-Route::get('/cours', 'CourController@index')->middleware('auth');
-Route::post('/cours/store', 'CourController@store')->middleware('auth');
-// Fin route
-
-// Route des matieres
-Route::get('/matieres', 'MatiereController@index')->middleware('auth');
-Route::post('/matieres/store', 'MatiereController@store')->middleware('auth');
-// Fin route
-
-// Route des tranches horaires
-Route::get('/tranche_horaires', 'TrancheHoraireController@index')->middleware('auth');
-Route::post('/tranche_horaires/store', 'TrancheHoraireController@store')->middleware('auth');
-// Fin route
-
-// Route des années academiques
-Route::get('/annee_acads', 'AnneeAcadController@index')->middleware('auth');
-Route::post('/annee_acads/store', 'AnneeAcadController@store')->middleware('auth');
-// Fin route
-
 // Route des éleves
 Route::get('/eleves','EleveController@index')->middleware('auth');
 // Fin route
@@ -102,18 +49,53 @@ Route::get('/users','UserController@index')->middleware('auth','admin');
 // Fin route
 
 
-// Route des rôles
-Route::get('/roles','RoleController@index')->middleware('auth','admin');
-Route::post('/roles/store','RoleController@store')->middleware('auth','admin');
-// Fin route
-
-
-// Route de la gestion des emploies du temps
-Route::prefix('auth')
-    ->middleware('auth')
+Route::prefix('admin')
+    ->namespace('Admin')
+    ->middleware('auth','admin')
+    ->name('admin.')
     ->group(function () {
-    Route::get('/emploie-temps', 'EmploieTempController@index');
+    // Route de la gestion des emploies du temps
+    Route::get('emploie-temps', 'EmploieTempController@index')->name('emploies.index');
     Route::get('/emploie-temps/{id}', 'EmploieTempController@getCourByClasse');
+    Route::post('/emploie-temps/store', 'EmploieTempController@store')->name('emploies.store');
+
+    // Route des inscriptions des éleves
+    Route::resource('/inscriptions', 'InscriptionController');
+    Route::get('/inscriptions/pdf/{eleve}/{inscripion}', 'InscriptionController@creationPdf')->name('inscriptions.creationPdf');
+
+    // Route des années academiques
+    Route::resource('/annee-acads', 'AnneeAcadController');
+
+    // Route des série
+    Route::resource('/series', 'SerieController');
+
+    // Route des classes
+    Route::resource('/classes', 'ClasseController');
+
+    // Route des mois
+    Route::resource('/mois', 'MoiController');
+    Route::get('/mois/on/{id}', 'MoiController@on');
+    Route::get('/mois/off/{id}', 'MoiController@off');
+
+    // Route des écolages
+    Route::resource('/ecolages', 'EcolageController');
+
+    // Route des matières
+    Route::resource('/matieres', 'MatiereController');
+
+    // Route des cours
+    Route::resource('/cours', 'CourController');
+
+    // Route des Tranches Horaires
+    Route::resource('/tranches', 'TrancheHoraireController');
+
+    // Route des rôles
+    Route::resource('/roles', 'RoleController');
+
+    // Route des diplômes
+    Route::resource('/diplomes', 'DiplomeController');
+
+    // Route des profs
+    Route::resource('/profs', 'ProfController');
+
     });
-Route::post('/emploie-temps/store', 'EmploieTempController@store');
-//

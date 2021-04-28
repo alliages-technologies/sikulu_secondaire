@@ -1,4 +1,3 @@
-
 @include('includes.head-tl3')
 
 <body style="font-size: .9rem" class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
@@ -165,7 +164,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="/inscriptions" class="nav-link {{ $active==2?'active':'' }}">
+                            <a href="{{route('admin.inscriptions.index')}}" class="nav-link {{ $active==2?'active':'' }}">
                                 <i class="nav-icon fas fa-user-friends"></i>
                                 <p class="p">
                                     INSCRIPTIONS
@@ -183,7 +182,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="/annee_acads" class="nav-link {{ $active==3?'active':'' }}">
+                            <a href="{{route('admin.annee-acads.index')}}" class="nav-link {{ $active==3?'active':'' }}">
                                 <i class="nav-icon fas fa fa-lemon"></i>
                                 <p class="p">
                                     ANNEE SCOLAIRE
@@ -203,80 +202,81 @@
                             <ul class="nav nav-treeview">
 
                                 <li class="nav-item ml-4">
-                                    <a href="/series" class="nav-link">
+                                    <a href="{{route('admin.series.index')}}" class="nav-link">
                                         <i class="fa fa-calendar"></i>
                                         <p class="af">Série</p>
                                     </a>
                                 </li>
                                 <li class="nav-item ml-4">
-                                    <a href="/classes" class="nav-link">
+                                    <a href="{{route('admin.classes.index')}}" class="nav-link">
                                         <i class="fa fa-calendar"></i>
                                         <p class="af">Classes</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item ml-4">
-                                    <a href="/mois" class="nav-link">
+                                    <a href="{{route('admin.mois.index')}}" class="nav-link">
                                         <i class="fa fa-calendar-week"></i>
                                         <p class="af">Mois</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item ml-4">
-                                    <a href="/ecolages" class="nav-link">
+                                    <a href="{{route('admin.ecolages.index')}}" class="nav-link">
                                         <i class="fa fa-person-booth"></i>
                                         <p class="af">Ecolages</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item ml-4">
-                                    <a href="/matieres" class="nav-link">
+                                    <a href="{{route('admin.matieres.index')}}" class="nav-link">
                                         <i class="fa fa-book"></i>
                                         <p class="af">Matieres</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item ml-4">
-                                    <a href="/cours" class="nav-link">
+                                    <a href="{{route('admin.cours.index')}}" class="nav-link">
                                         <i class="fa fa-book"></i>
                                         <p class="af">Cours</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item ml-4">
-                                    <a href="/tranche_horaires" class="nav-link">
+                                    <a href="{{route('admin.tranches.index')}}" class="nav-link">
                                         <i class="fa fa-calendar"></i>
                                         <p class="af">Tranches Horaires</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item ml-4">
-                                    <a href="/roles" class="nav-link">
+                                    <a href="{{route('admin.roles.index')}}" class="nav-link">
                                         <i class="fa fa-user"></i>
                                         <p class="af">Rôles</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item ml-4">
-                                    <a href="/auth/emploie-temps" class="nav-link">
+                                    <a href="{{route('admin.emploies.index')}}" class="nav-link">
                                         <i class="fa fa-calendar"></i>
                                         <p class="af">Emploie du temps </p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item ml-4">
-                                    <a href="/" class="nav-link">
-                                        <i class="fa fa-bank"></i>
-                                        <p class="af">...</p>
+                                    <a href="{{route('admin.diplomes.index')}}" class="nav-link">
+                                        <i class="fa fa-folder"></i>
+                                        <p class="af">Diplômes</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item ml-4">
-                                    <a href="/" class="nav-link">
-                                        <i class="fa fa-money"></i>
-                                        <p class="af">...</p>
+                                    <a href="{{route('admin.profs.index')}}" class="nav-link">
+                                        <i class="fa fa-users"></i>
+                                        <p class="af">Profs</p>
                                     </a>
                                 </li>
+
 
                                 <li class="nav-item ml-4">
                                     <a href="/" class="nav-link">

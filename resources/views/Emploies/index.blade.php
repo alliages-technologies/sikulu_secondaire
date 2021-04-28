@@ -42,7 +42,7 @@
             <div class="modal-body">
                 <div class="flex-container">
                     <div class="form-group">
-                        <form action="/emploie-temps/store" method="post" class="mb-4">
+                        <form action=" {{ route('admin.emploies.store')}} " method="post" class="mb-4">
                             @csrf
                     </div>
                 </div>
@@ -90,7 +90,7 @@
     $('#classe_id').change(function() {
         var id = $(this).val();
         $.ajax({
-            url: '/auth/emploie-temps/' + id,
+            url: '/admin/emploie-temps/' + id,
             type: 'get',
             dataType: 'json',
             success: function(data) {
