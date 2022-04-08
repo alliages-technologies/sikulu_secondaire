@@ -78,7 +78,7 @@ class InscriptionController extends Controller
                 $eleve->image_uri = $path;
             }
         }
-        dd($eleve);
+        //dd($eleve);
         $eleve->save();
         $inscription = new Inscription();
         $inscription->eleve_id = $eleve->id;
@@ -98,7 +98,7 @@ class InscriptionController extends Controller
         $inscription->save();
         //$pdf = PDF::loadView('/Inscriptions/pdf',compact('eleve','inscription'));
         //return $pdf->stream('inscription'.$inscription->id.'.pdf');
-        return view('/Inscriptions/pdf')->with(compact('eleve', 'inscription'));
+        return view('Admin.Inscriptions.pdf')->with(compact('eleve', 'inscription'));
     }
 
     public function creationPdf($eleve, $inscription)

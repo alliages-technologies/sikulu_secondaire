@@ -16,7 +16,7 @@ class MoiController extends Controller
     public function index()
     {
         $mois = Moi::orderBy('created_at', 'desc')->paginate(12);
-        return view('Admin/Mois/index')->with(compact('mois'));
+        return view('Admin.Mois.index')->with(compact('mois'));
     }
 
     /**
@@ -66,7 +66,7 @@ class MoiController extends Controller
         $moi->name = $request->name;
         //dd($moi);
         $moi->save();
-        return redirect('/mois');
+        return redirect()->back();
     }
 
 

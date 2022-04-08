@@ -56,7 +56,7 @@ class EmploieTempController extends Controller
         $emploie_temp = new EmploieTemp();
         $emploie_temp->cour_id = $request->cour_id;
         $emploie_temp->tranche_id = $request->tranche_id;
-        dd($emploie_temp);
+        //dd($emploie_temp);
         $emploie_temp->save();
         return redirect()->back();
     }

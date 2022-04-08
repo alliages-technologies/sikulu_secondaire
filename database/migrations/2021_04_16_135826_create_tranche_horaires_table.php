@@ -17,7 +17,7 @@ class CreateTrancheHorairesTable extends Migration
             $table->id();
             $table->string('heure_debut',50);
             $table->string('heure_fin',50);
-            $table->bigInteger('ordre');
+            $table->bigInteger('ordre')->default(0);
             $table->timestamps();
         });
     }
