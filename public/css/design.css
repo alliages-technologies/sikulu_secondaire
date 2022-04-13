@@ -1,0 +1,33 @@
+.body{
+    background-color: black;
+}
+nav{
+    background-color: darkblue;
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.container a{
+    padding-top: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: darkblue;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 0px black;
+}
+.container a:hover{
+    text-decoration: none;
+    color: white;
+    background-color: darkblue;
+    transition: 0.9s;
+}
+.container i{
+    font-size: 24px;
+}
+
