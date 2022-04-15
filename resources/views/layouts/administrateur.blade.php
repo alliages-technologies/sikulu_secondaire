@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('css/design.css')}}">
     <!--FONTS-->
-    <link rel="stylesheet" href="{{asset('css/fonts-awesome/fontawesome.css')}}">
+    <link rel="stylesheet" href="{{asset('fonts/font-awesome-4.7.0/css/font-awesome.css')}}">
     <!--JS-->
     <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
     <script src="{{asset('js/bootstrap.js')}}"></script>
