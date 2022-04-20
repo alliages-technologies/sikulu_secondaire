@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Diplome extends Model
+class TypeEnseignement extends Model
 {
     //
     protected $guarded = [];
+    protected $table = 'types_enseignements';
 }
