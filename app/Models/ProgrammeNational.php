@@ -17,4 +17,12 @@ class ProgrammeNational extends Model
         return $this->belongsTo('App\Models\AnneeAcad','annee_id');
     }
 
+    public function enseignement(){
+        return $this->belongsTo('App\Models\TypeEnseignement');
+    }
+
+    public function ligneprogrammenationals(){
+        return $this->hasMany('App\Models\ProgrammeNationalLigne','national_programme_id');
+    }
+
 }

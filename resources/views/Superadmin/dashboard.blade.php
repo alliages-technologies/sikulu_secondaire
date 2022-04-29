@@ -36,9 +36,9 @@
                 <i class="fa fa-users"></i>
                 <p>R.H</p>
             </a>
-            <a href="" class="col-md-3 m-2">
-                <i class="fa fa-calendar"></i>
-                <p>Répartiton</p>
+            <a href="{{ route('superadmin.programmenationals.index') }}" class="col-md-3 m-2">
+                <i class="fa fa-globe"></i>
+                <p>Programme National</p>
             </a>
             <a href="" class="col-md-3 m-2">
                 <i class="fa fa-user-plus"></i>

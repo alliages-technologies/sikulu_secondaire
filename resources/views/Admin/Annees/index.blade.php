@@ -23,7 +23,7 @@
                 </tbody>
             </table>
             {{ $annee_acads->links() }}
-            <a href="" data-toggle="modal" data-target="#panier" class="btn btn-dark float-right">Ajouter <i class="fa fa-plus-square"></i> </a>
+            <a href="" data-toggle="modal" data-target="#panier" class="btn btn-default float-right">Ajouter <i class="fa fa-plus-square"></i> </a>
         </div>
     </div>
 </div>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <button class="btn btn-success">Enrégistrer <i class="fa fa-save"></i> </button>
+                        <button class="btn btn-default">Enrégistrer <i class="fa fa-save"></i> </button>
                     </div>
                     <div class="col-md-8">
                     </div>

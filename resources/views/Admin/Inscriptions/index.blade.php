@@ -23,14 +23,14 @@
                         @endif
                         <td> {{$inscription->eleve_id?$inscription->eleve->nom:""}} {{$inscription->eleve_id?$inscription->eleve->prenom:""}} </td>
                         <td> {{$inscription->classe_id?$inscription->classe->name:""}} {{$inscription->classe->serie->name}} </td>
-                        <td> <a href="{{ route('admin.inscriptions.show', $inscription->id) }}" class="btn btn-info btn-sm"> Afficher </a> </td>
+                        <td> <a href="{{ route('admin.inscriptions.show', $inscription->id) }}" class="btn btn- btn-sm"> Afficher </a> </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
             {{ $inscriptions->links() }}
             <a href="" data-toggle="modal" data-target="#panier" class="btn btn-dark float-right"> Réinscription <i class="fa fa-user-plus"></i></a>
-            <a href="{{ route('admin.inscriptions.create') }}" class="btn btn-success float-right mr-2"> Inscription <i class="fa fa-user-plus"></i> </a>
+            <a href="{{ route('admin.inscriptions.create') }}" class="btn btn-default float-right mr-2"> Inscription <i class="fa fa-user-plus"></i> </a>
         </div>
     </div>
 </div>
@@ -64,7 +64,7 @@
                         <input type="number" class="form-control" name="fond" placeholder="Entrer le fond...">
                     </div>
                     <div class="col-md-4">
-                        <button class="btn btn-success">Réinscrire</button>
+                        <button class="btn btn-default">Réinscrire <i class="fa fa-save"></i></button>
                     </div>
                 </div>
         </form>

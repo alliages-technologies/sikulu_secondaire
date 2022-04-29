@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="card mt-5">
-        <div class="card-header">
+        <div class="card-header" style="background-color: darkblue; color:white">
             <h4 class="text-left"> Liste des Classes <i class="fa fa-door-open"></i> </h4>
         </div>
         <div class="card-body">
@@ -24,13 +24,13 @@
                             <td> {{$classe->serie_id?$classe->serie->name:""}} </td>
                             <td> {{number_format($classe->montant_inscri)}} XAF </td>
                             <td> {{number_format($classe->montant_frais)}} XAF </td>
-                            <td> <a href="" class="btn btn-info btn-xs">Liste d'élevês</a> </td>
+                            <td> <a href="" class="btn btn-default btn-xs">Liste d'élevês</a> </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
                 {{ $classes->links() }}
-                <a href="" data-toggle="modal" data-target="#panier" class="btn btn-dark float-right"> Ajouter <ifa class="fa fa-plus-square"></ifa> </a>
+                <a style="background-color: darkblue; color:white" href="" data-toggle="modal" data-target="#panier" class="btn btn-default float-right"> Ajouter <ifa class="fa fa-plus-square"></ifa> </a>
             </div>
         </div>
     </div>
@@ -83,7 +83,7 @@
                                     <input type="number" class="form-control" name="montant_frais" placeholder="Montant frais" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <button class="btn btn-success">Sauvegarder <i class="fa fa-save"></i> </button>
+                                    <button style="background-color: darkblue; color:white" class="btn btn-default">Sauvegarder <i class="fa fa-save"></i> </button>
                                 </div>
                             </div>
                         </form>

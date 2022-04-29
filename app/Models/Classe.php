@@ -16,4 +16,8 @@ class Classe extends Model
         return $this->belongsTo('App\Models\Niveau','niveau_id');
     }
 
+    public function getNameAttribute(){
+        return $this->niveau->name.' '.$this->serie->name;
+    }
+
 }

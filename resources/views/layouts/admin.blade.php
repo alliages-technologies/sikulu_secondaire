@@ -1,5 +1,22 @@
 @include('includes.head-tl3')
-
+<style>
+    .card-header{
+        background-color: darkblue;
+        color: white;
+    }
+    .btn-default{
+        background-color: darkblue;
+        color: white;
+    }
+    .btn-default:hover{
+        background-color: rgb(13, 13, 95);
+        color: white;
+    }
+    h4{
+        font-weight: lighter;
+        letter-spacing: 1px;
+    }
+</style>
 <body style="font-size: .9rem" class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
     <div class="wrapper">
 

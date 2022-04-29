@@ -1,7 +1,7 @@
 @extends('layouts.admin');
 @section('content')
 <div class="card mt-5">
-    <div class="card-header">
+    <div class="card-header" style="background-color: darkblue; color:white">
         <h4 class="text-left mb-1"> Gestion des Ecolages <i class="fa fa-calendar-week"></i> </h4>
     </div>
     <div class="card-body ">
@@ -19,13 +19,13 @@
                         <td> {{$ecolage->inscription_id?$ecolage->inscription->eleve->nom:""}} {{$ecolage->inscription->classe_id?$ecolage->inscription->classe->name:""}} {{$ecolage->inscription->classe->serie->name}} </td>
                         <td> {{$ecolage->moi_id?$ecolage->moi->name:""}} </td>
                         <td> {{number_format($ecolage->montant)}} XAF </td>
-                        <td> <a href="{{ route('admin.ecolages.show', $ecolage->id) }}" class="btn btn-info btn-sm">Détails <i class="fa fa-info"></i> </a></td>
+                        <td> <a href="{{ route('admin.ecolages.show', $ecolage->id) }}" class="btn btn-default btn-sm">Détails <i class="fa fa-info"></i> </a></td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
             {{ $ecolages->links() }}
-            <a href="" data-toggle="modal" data-target="#panier" class="btn btn-dark float-right">Effectuez un Paiement <i class="fa fa-money"></i> </a>
+            <a style="background-color: darkblue; color:white" href="" data-toggle="modal" data-target="#panier" class="btn btn-default float-right">Effectuez un Paiement <i class="fa fa-money"></i> </a>
         </div>
     </div>
 </div>
@@ -79,7 +79,7 @@
                         <input type="text" class="form-control" name="montant" placeholder="Entrer le montant..." required>
                     </div>
                     <div class="col-md-4">
-                        <button class="btn btn-success">Enrégistrer <i class="fa fa-save"></i> </button>
+                        <button style="background-color: darkblue; color:white" class="btn btn-default">Enrégistrer <i class="fa fa-save"></i> </button>
                     </div>
                 </div>
                 </form>

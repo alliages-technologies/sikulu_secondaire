@@ -23,6 +23,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
+
 Route::prefix('utils')
 ->namespace('Utils')
 ->name('utils.')
@@ -100,3 +101,15 @@ Route::prefix('admin')
     Route::resource('/profs', 'ProfController');
 
     });
+
+
+
+
+
+Route::prefix('superadmin')
+    ->namespace('Superadmin')
+    ->name('superadmin.')
+    ->group(function(){
+    Route::resource('/programmenationals','ProgrammenationalController');
+});
+

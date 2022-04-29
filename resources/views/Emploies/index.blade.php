@@ -1,7 +1,7 @@
 @extends('layouts.admin');
 @section('content')
 <div class="card mt-5">
-    <div class="card-header">
+    <div class="card-header" style="background-color: darkblue; color: white">
         <h4 class="text-left mb-1"> Gestion des Emploies du temps <i class="fa fa-calendar-week"></i> </h4>
     </div>
     <div class="card-body ">
@@ -23,7 +23,7 @@
                 </tbody>
             </table>
             {{ $emploie_temps->links() }}
-            <a href="" data-toggle="modal" data-target="#panier" class="btn btn-dark float-right">Nouveau <i class="fa fa-plus-square"></i></a>
+            <a style="background-color: darkblue;color:white" href="" data-toggle="modal" data-target="#panier" class="btn btn-default float-right">Nouveau <i class="fa fa-plus-square"></i></a>
         </div>
     </div>
 </div>
@@ -34,7 +34,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel"> Ajouter un emploie du Temps </h4>
+                <h4 style="background-color: " class="modal-title" id="exampleModalLabel"> Ajouter un emploie du Temps </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <button class="btn btn-success">Enrégistrer <i class="fa fa-save"></i> </button>
+                        <button class="btn btn-default" style="background-color: darkblue;color:white">Enrégistrer <i class="fa fa-save"></i> </button>
                     </div>
                 </div>
                 </form>

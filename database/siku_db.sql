@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost
--- Généré le : mer. 20 avr. 2022 à 16:21
--- Version du serveur :  10.4.14-MariaDB
--- Version de PHP : 7.2.34
+-- Hôte : 127.0.0.1
+-- Généré le : ven. 29 avr. 2022 à 15:05
+-- Version du serveur :  10.4.13-MariaDB
+-- Version de PHP : 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -56,6 +56,13 @@ CREATE TABLE `classes` (
   `niveau_id` int(11) NOT NULL DEFAULT 0,
   `enseignement_id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `classes`
+--
+
+INSERT INTO `classes` (`id`, `serie_id`, `niveau_id`, `enseignement_id`) VALUES
+(1, 1, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -339,20 +346,20 @@ INSERT INTO `mois` (`id`, `name`, `visible`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Niveaux`
+-- Structure de la table `niveaux`
 --
 
-CREATE TABLE `Niveaux` (
+CREATE TABLE `niveaux` (
   `id` int(11) NOT NULL,
   `name` varchar(10) NOT NULL,
   `abb` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `Niveaux`
+-- Déchargement des données de la table `niveaux`
 --
 
-INSERT INTO `Niveaux` (`id`, `name`, `abb`) VALUES
+INSERT INTO `niveaux` (`id`, `name`, `abb`) VALUES
 (1, 'SIXIEME', '6e'),
 (2, 'CINQUIEME', '5e'),
 (3, 'QUATRIEME', '4e'),
@@ -463,8 +470,17 @@ CREATE TABLE `programmes_national` (
   `classe_id` int(11) NOT NULL DEFAULT 0,
   `active` tinyint(1) NOT NULL DEFAULT 1,
   `enseignement_id` int(11) NOT NULL DEFAULT 0,
-  `annee_id` int(11) NOT NULL DEFAULT 0
+  `annee_id` int(11) NOT NULL DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `programmes_national`
+--
+
+INSERT INTO `programmes_national` (`id`, `classe_id`, `active`, `enseignement_id`, `annee_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1, 2022, '2022-04-28 21:56:09', '2022-04-28 21:56:09');
 
 -- --------------------------------------------------------
 
@@ -477,8 +493,19 @@ CREATE TABLE `programmes_national_lignes` (
   `matiere_id` int(11) NOT NULL DEFAULT 0,
   `national_programme_id` int(11) NOT NULL DEFAULT 0,
   `coefficient` int(11) NOT NULL DEFAULT 0,
-  `active` tinyint(1) NOT NULL DEFAULT 1
+  `active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `programmes_national_lignes`
+--
+
+INSERT INTO `programmes_national_lignes` (`id`, `matiere_id`, `national_programme_id`, `coefficient`, `active`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 4, 1, '2022-04-28 21:56:10', '2022-04-28 21:56:10'),
+(2, 1, 1, 2, 1, '2022-04-28 21:56:10', '2022-04-28 21:56:10'),
+(3, 3, 1, 4, 1, '2022-04-28 21:56:10', '2022-04-28 21:56:10');
 
 -- --------------------------------------------------------
 
@@ -768,9 +795,9 @@ ALTER TABLE `mois`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `Niveaux`
+-- Index pour la table `niveaux`
 --
-ALTER TABLE `Niveaux`
+ALTER TABLE `niveaux`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -884,7 +911,7 @@ ALTER TABLE `annee_acads`
 -- AUTO_INCREMENT pour la table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `cours`
@@ -953,9 +980,9 @@ ALTER TABLE `mois`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT pour la table `Niveaux`
+-- AUTO_INCREMENT pour la table `niveaux`
 --
-ALTER TABLE `Niveaux`
+ALTER TABLE `niveaux`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
@@ -986,13 +1013,13 @@ ALTER TABLE `programmes_ecoles_lignes`
 -- AUTO_INCREMENT pour la table `programmes_national`
 --
 ALTER TABLE `programmes_national`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `programmes_national_lignes`
 --
 ALTER TABLE `programmes_national_lignes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `roles`

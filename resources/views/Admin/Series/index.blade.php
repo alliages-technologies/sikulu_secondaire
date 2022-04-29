@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="card mt-5">
-        <div class="card-header">
+        <div class="card-header" style="background-color: darkblue; color:white">
             <h4 class="text-left"> Liste des Séries <i class="fa fa-info"></i> </h4>
         </div>
         <div class="card-body">
@@ -20,7 +20,7 @@
                     </tbody>
                 </table>
                 {{ $series->links() }}
-                <a href="" data-toggle="modal" data-target="#panier" class="btn btn-dark float-right"> Ajouter <i class="fa fa-plus-square"></i> </a>
+                <a style="background-color: darkblue; color:white" href="" data-toggle="modal" data-target="#panier" class="btn btn-default float-right"> Ajouter <i class="fa fa-plus-square"></i> </a>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
                         <input type="text" class="form-control" name="name" placeholder="Entrer le nom de la série..." required>
                     </div>
                     <div class="col-md-4">
-                        <button class="btn btn-success">Sauvegarder <i class="fa fa-save"></i> </button>
+                        <button style="background-color: darkblue; color:white" class="btn btn-default">Sauvegarder <i class="fa fa-save"></i> </button>
                     </div>
                 </div>
         </form>

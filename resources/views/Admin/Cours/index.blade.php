@@ -1,7 +1,7 @@
 @extends('layouts.admin');
 @section('content')
 <div class="card mt-5">
-    <div class="card-header">
+    <div class="card-header" style="background-color: darkblue; color:white">
         <h4 class="text-left mb-1"> Gestion des Cours <i class="fa fa-book"></i> </h4>
     </div>
     <div class="card-body ">
@@ -23,7 +23,7 @@
                 </tbody>
             </table>
             {{ $cours->links() }}
-            <a href="" data-toggle="modal" data-target="#panier" class="btn btn-dark float-right">Ajouter <i class="fa fa-plus-square"></i> </a>
+            <a style="background-color: darkblue; color:white" href="" data-toggle="modal" data-target="#panier" class="btn btn-default float-right">Ajouter <i class="fa fa-plus-square"></i> </a>
         </div>
     </div>
 </div>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <button class="btn btn-success">Enrégistrer <i class="fa fa-save"></i> </button>
+                        <button style="background-color: darkblue; color:white" class="btn btn-default">Enrégistrer <i class="fa fa-save"></i> </button>
                     </div>
                     <div class="col-md-8">
                     </div>
