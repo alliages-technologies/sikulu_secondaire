@@ -15,11 +15,11 @@ class ProgrammenationalController extends Controller
 
     public function index()
     {
-        $programmenationals = ProgrammeNational::orderBy('id', 'desc')->paginate(10);
+        $programmes_national = ProgrammeNational::orderBy('id', 'desc')->paginate(10);
         $classes = Classe::all();
         $enseignements = TypeEnseignement::all();
         $matieres = Matiere::all();
-        return view('Superadmin.Programmenational.index')->with(compact('programmenationals','classes','enseignements','matieres'));
+        return view('Superadmin.Programmenational.index')->with(compact('programmes_national', 'classes', 'enseignements', 'matieres'));
     }
 
 

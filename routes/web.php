@@ -103,13 +103,31 @@ Route::prefix('admin')
     });
 
 
-
-
-
 Route::prefix('superadmin')
     ->namespace('Superadmin')
     ->name('superadmin.')
     ->group(function(){
-    Route::resource('/programmenationals','ProgrammenationalController');
+        /*
+        Paramètres
+        */
+        Route::resource('/parametres', 'ParametreController');
+        // Enseignements
+        Route::get('/enseignements', 'ParametreController@enseignements')->name('enseignements.index');
+        Route::post('/enseignement/store', 'ParametreController@enseignementStore')->name('enseignements.store');
+        // Séries
+        Route::get('/series', 'ParametreController@series')->name('series.index');
+        Route::post('/serie/store', 'ParametreController@serieStore')->name('series.store');
+        // Niveaux
+        Route::get('/niveaux', 'ParametreController@niveaux')->name('niveaux.index');
+        Route::post('/niveau/store', 'ParametreController@niveauStore')->name('niveaux.store');
+        // Classes
+        Route::get('/classes', 'ParametreController@classes')->name('classes.index');
+        Route::post('/classe/store', 'ParametreController@classeStore')->name('classes.store');
+        // Matières
+        Route::get('/matieres', 'ParametreController@matieres')->name('matieres.index');
+        Route::post('/matiere/store', 'ParametreController@matiereStore')->name('matieres.store');
+
+        //Programme national
+        Route::resource('/programmes-national','ProgrammenationalController');
 });
 

@@ -10,6 +10,6 @@ class Serie extends Model
     protected $guarded = [];
 
     public function type(){
-        return $this->belongsTo('App\Models\TypeEnseignement','tenseignement_id');
+        return $this->belongsTo('App\Models\TypeEnseignement','enseignement_id');
     }
 }

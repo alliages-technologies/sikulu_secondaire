@@ -36,7 +36,7 @@
                 <i class="fa fa-users"></i>
                 <p>R.H</p>
             </a>
-            <a href="{{ route('superadmin.programmenationals.index') }}" class="col-md-3 m-2">
+            <a href="{{ route('superadmin.programmes-national.index') }}" class="col-md-3 m-2">
                 <i class="fa fa-globe"></i>
                 <p>Programme National</p>
             </a>
@@ -80,7 +80,7 @@
                 <i class="fa fa-list"></i>
                 <p>Réglement interieur</p>
             </a>
-            <a href="" class="col-md-3 m-2">
+            <a href="{{route('superadmin.parametres.index')}}" class="col-md-3 m-2">
                 <i class="fa fa-cog"></i>
                 <p>Paramètres</p>
             </a>

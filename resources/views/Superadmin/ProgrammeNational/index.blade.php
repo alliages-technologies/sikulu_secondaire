@@ -13,16 +13,16 @@
                     <th> <i class="fa fa-cog"></i> </th>
                 </thead>
                 <tbody>
-                    @foreach($programmenationals as $programmenational)
+                    @foreach($programmes_national as $programmenational)
                     <tr>
                         <td> {{$programmenational->classe->name}} </td>
                         <td> {{$programmenational->enseignement->name}} </td>
-                        <td> <a href="{{ route('superadmin.programmenationals.show',$programmenational->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i></a> </td>
+                        <td> <a href="{{ route('superadmin.programmes-national.show',$programmenational->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i></a> </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{ $programmenationals->links() }}
+            {{ $programmes_national->links() }}
             <a href="" data-toggle="modal" data-target="#panier" class="btn btn-default float-right">Nouveau <i class="fa fa-plus-square"></i> </a>
         </div>
     </div>
@@ -42,7 +42,7 @@
             <div class="modal-body">
                 <div class="flex-container">
                     <div class="form-group">
-                        <form action="{{route('superadmin.programmenationals.store')}}" method="post" class="mb-4">
+                        <form action="{{route('superadmin.programmes-national.store')}}" method="post" class="mb-4">
                             @csrf
                     </div>
                 </div>

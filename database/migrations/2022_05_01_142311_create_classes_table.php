@@ -15,12 +15,9 @@ class CreateClassesTable extends Migration
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
-            $table->string('name',200);
-            $table->string('code',50);
             $table->bigInteger('serie_id');
-            $table->boolean('examen')->default(0);
-            $table->double('montant_inscri');
-            $table->double('montant_frais')->default(0);
+            $table->bigInteger('niveau_id');
+            $table->bigInteger('enseignement_id');
             $table->timestamps();
         });
     }

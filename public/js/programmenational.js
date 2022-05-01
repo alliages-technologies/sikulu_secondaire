@@ -46,7 +46,7 @@ $("#btn-save").click(function (e) {
     });
     $.ajax({
         type: "post",
-        url: "/superadmin/programmenationals",
+        url: "/superadmin/programmes-national",
         data: {
             'lignes': lignes,
             'classe_id': $classe_id,

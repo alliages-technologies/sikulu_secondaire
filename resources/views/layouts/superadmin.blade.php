@@ -16,7 +16,9 @@
         Dashboard
     </title>
 </head>
+
 @include('includes.head-tl3')
+
 <style>
     .card-header{
         background-color: darkblue;
@@ -37,7 +39,7 @@
 </style>
 <body>
     <nav class="container-fluid">
-        <div class="">logo</div>
+        <div class="">SUPERADMIN</div>
     </nav>
 
     <div class="container-fluid">
