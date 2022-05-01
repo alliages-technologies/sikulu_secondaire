@@ -1,5 +1,8 @@
 @extends('layouts.superadmin')
+
+
 @section('content')
+
 <div class="card mt-5">
     <div class="card-header">
         <h4 class="text-left mb-1"> Programme-National </h4>
@@ -13,11 +16,11 @@
                     <th> <i class="fa fa-cog"></i> </th>
                 </thead>
                 <tbody>
-                    @foreach($programmes_national as $programmenational)
+                    @foreach($programmes_national as $programme)
                     <tr>
-                        <td> {{$programmenational->classe->name}} </td>
-                        <td> {{$programmenational->enseignement->name}} </td>
-                        <td> <a href="{{ route('superadmin.programmes-national.show',$programmenational->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i></a> </td>
+                        <td> {{$programme->classe->name}} </td>
+                        <td> {{$programme->enseignement->name}} </td>
+                        <td> <a href="{{ route('superadmin.programmes-national.show',$programme->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i></a> </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -98,12 +101,11 @@
                 </div>
                 <button class="btn btn-default mt-2 btn-save" id="btn-save">Enrégistrer <i class="fa fa-save"></i> </button>
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>
 </div>
 <script src="{{ asset('js/programmenational.js') }}"></script>
+
 @endsection
