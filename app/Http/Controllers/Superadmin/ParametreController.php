@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Superadmin;
 
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TypeEnseignement;
@@ -9,6 +10,8 @@ use App\Models\Serie;
 use App\Models\Niveau;
 use App\Models\Classe;
 use App\Models\Matiere;
+use App\Models\Ecole;
+use App\User;
 
 class ParametreController extends Controller
 {
@@ -100,6 +103,37 @@ class ParametreController extends Controller
        $matiere->abv=request()->abv;
        //$matiere->ecole_id=request()->ecole_id;
        $matiere->save();
+       return redirect()->back();
+   }
+
+    /*
+     ECOLES
+     */
+    public function ecoles(){
+        $ecoles=Ecole::all();
+        $enseignements=TypeEnseignement::all();
+        return view('Superadmin/Parametres/Ecoles/index')->with(compact('ecoles', 'enseignements'));
+   }
+
+   public function ecoleStore(){
+       $ecole=new Ecole();
+       $ecole->name=request()->name;
+       $ecole->address=request()->address;
+       $ecole->email=request()->email;
+       $ecole->phone=request()->phone;
+       $ecole->coordonnees=request()->coordonnees;
+       $ecole->enseignement_id=request()->enseignement_id;
+       $imagePath=request('image_uri')->store('images-ecoles', 'public');
+       $ecole->image_uri=$imagePath;
+       $ecole->save();
+       //Admin de l'école
+       $admin=new User();
+       $admin->name=request()->name;
+       $admin->email=request()->email;
+       $admin->password=Hash::make(request()->password);
+       $admin->role_id=2;
+       $admin->ecole_id=$ecole->id;
+       $admin->save();
        return redirect()->back();
    }
 }

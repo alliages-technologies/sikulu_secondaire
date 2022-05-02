@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 02 mai 2022 à 11:14
+-- Généré le : lun. 02 mai 2022 à 13:44
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -163,7 +163,14 @@ CREATE TABLE IF NOT EXISTS `ecoles` (
   `enseignement_id` int(11) NOT NULL DEFAULT '1',
   `coordonnees` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `ecoles`
+--
+
+INSERT INTO `ecoles` (`id`, `name`, `address`, `email`, `phone`, `active`, `token`, `created_at`, `updated_at`, `image_uri`, `is_private`, `pay_id`, `enseignement_id`, `coordonnees`) VALUES
+(2, 'Louis', 'Nkouikou', 'lagkaba@gmail.com', '052053989', 1, NULL, '2022-05-02 13:43:08', '2022-05-02 13:43:08', 'images-ecoles/oNBej4EnTi8ytPzHGfpTwmIZppNeylvvXNZGpCSB.png', 1, 1, 2, 'Coordonnées');
 
 -- --------------------------------------------------------
 
@@ -766,16 +773,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `role_id` bigint(20) NOT NULL DEFAULT '0',
+  `ecole_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role_id`) VALUES
-(1, 'Blandin-Ux', 'nsondecaleb@gmail.com', NULL, '$2y$10$Ye0/.z.YuHPjlbLJqzy0m.7lHL/XXsHz/MS2HmHHAKpxdzpdLzS.O', NULL, '2022-04-08 10:15:58', '2022-04-08 10:15:58', 1);
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role_id`, `ecole_id`) VALUES
+(1, 'Blandin-Ux', 'nsondecaleb@gmail.com', NULL, '$2y$10$Ye0/.z.YuHPjlbLJqzy0m.7lHL/XXsHz/MS2HmHHAKpxdzpdLzS.O', NULL, '2022-04-08 10:15:58', '2022-04-08 10:15:58', 1, 0),
+(5, 'Louis', 'lagkaba@gmail.com', NULL, '$2y$10$kl66dJguWYhpf6RqClloLO5W1oj2726OjaLV0dLAuSLN5VN4Ehyxa', NULL, '2022-05-02 12:43:08', '2022-05-02 12:43:08', 2, 2);
 
 -- --------------------------------------------------------
 
