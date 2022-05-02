@@ -8,4 +8,5 @@ class Ecole extends Model
 {
     //
     protected $guarded = [];
+
 }

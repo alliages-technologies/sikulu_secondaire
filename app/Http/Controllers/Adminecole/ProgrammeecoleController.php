@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Adminecole;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ProgrammeecoleControllrer extends Controller
+class ProgrammeecoleController extends Controller
 {
 
     public function index()

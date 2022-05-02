@@ -140,11 +140,12 @@ Route::prefix('adminecole')
     ->namespace('Adminecole')
     ->name('adminecole.')
     ->group(function(){
-        /*
-        Paramètres
-        */
+
         Route::resource('/parametres', 'ParametreController');
-        //Programme national
-        Route::resource('/programmes-ecole','');
+        //Programme ecole
+        Route::resource('/programmes-ecole','ProgrammeecoleController');
+
+        //Gestion salle
+        Route::resource('/salles','SalleController');
 });
 

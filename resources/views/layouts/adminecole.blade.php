@@ -39,7 +39,7 @@
 </style>
 <body>
     <nav class="container-fluid">
-        <div class="">ADMINISTRATEUR-ECOLE</div>
+        <div class="">{{ Auth::user()->name }} <i class="fa fa-user-circle"></i></div>
     </nav>
 
     <div class="container-fluid">

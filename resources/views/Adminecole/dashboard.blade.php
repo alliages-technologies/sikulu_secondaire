@@ -18,7 +18,7 @@
 </head>
 <body>
     <nav class="container-fluid">
-        <div class="">logo</div>
+        <div class=""> {{ Auth::user()->ecole->name }} <img src="{{ asset(Auth::user()->ecole->image_uri) }}" alt="" srcset=""> </div>
         <div class="">menu</div>
     </nav>
 
@@ -28,17 +28,17 @@
                 <i class="fa fa-bar-chart"></i>
                 <p>Statistiques</p>
             </a>
-            <a href="" class="col-md-3 m-2">
+            <a href="{{ route('adminecole.programmes-ecole.index') }}" class="col-md-3 m-2">
                 <i class="fa fa-building"></i>
-                <p>Etablissement</p>
+                <p>Programme Scolaire</p>
             </a>
             <a href="" class="col-md-3 m-2">
                 <i class="fa fa-users"></i>
-                <p>R.H</p>
+                <p>Enseignants</p>
             </a>
             <a href="" class="col-md-3 m-2">
-                <i class="fa fa-globe"></i>
-                <p>Programme National</p>
+                <i class="fa fa-user-plus"></i>
+                <p>Inscriptions</p>
             </a>
             <a href="" class="col-md-3 m-2">
                 <i class="fa fa-user-plus"></i>
@@ -48,7 +48,7 @@
                 <i class="fa fa-graduation-cap"></i>
                 <p>Scolarité</p>
             </a>
-            <a href="{{ route('admin.emploies.index') }}" class="col-md-3 m-2">
+            <a href="" class="col-md-3 m-2">
                 <i class="fa fa-calendar"></i>
                 <p>Emploi du temps</p>
             </a>
@@ -80,7 +80,7 @@
                 <i class="fa fa-list"></i>
                 <p>Réglement interieur</p>
             </a>
-            <a href="" class="col-md-3 m-2">
+            <a href="{{ route('adminecole.parametres.index') }}" class="col-md-3 m-2">
                 <i class="fa fa-cog"></i>
                 <p>Paramètres</p>
             </a>
