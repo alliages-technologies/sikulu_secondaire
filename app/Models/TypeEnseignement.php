@@ -9,4 +9,8 @@ class TypeEnseignement extends Model
     //
     protected $guarded = [];
     protected $table = 'types_enseignements';
+
+    public function ecoles(){
+        return $this->hasMany('App\Models\Ecole', 'enseignement_id');
+    }
 }

@@ -30,10 +30,6 @@
             <i class="fa fa-building"></i>
             <p>Ecoles</p>
         </a>
-        <a href="#" class="col-md-3 m-2">
-            <i class="fa fa-file-text"></i>
-            <p>Cours</p>
-        </a>
         <a href="/deconnexion" class="col-md-3 m-2">
             <i class="fa fa-power-off"></i>
             <p>Déconnexion</p>
