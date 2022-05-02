@@ -8,4 +8,8 @@ class Ecole extends Model
 {
     //
     protected $guarded = [];
+
+    public function type(){
+        return $this->belongsTo('App\Models\TypeEnseignement', 'enseignement_id');
+    }
 }

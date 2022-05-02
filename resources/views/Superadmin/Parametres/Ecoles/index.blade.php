@@ -17,9 +17,7 @@
                     <tr>
                         <th>NOM</th>
                         <th>ADRESSE</th>
-                        <th>EMAIL</th>
-                        <th>TELEPHONE</th>
-                        <th>COORDONNEES</th>
+                        <th>TYPE D'ENSEIGNEMENT</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,9 +25,7 @@
                     <tr>
                         <td>{{$ecole->name}}</td>
                         <td>{{$ecole->address}}</td>
-                        <td>{{$ecole->email}}</td>
-                        <td>{{$ecole->phone}}</td>
-                        <td>{{$ecole->coordonnees}}</td>
+                        <td>{{$ecole->type->name}}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -81,9 +77,9 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="">CONFIGURATION DE L'ADMIN DE L'ECOLE</label>
-                                <input type="text" name="name" placeholder="Nom" class="form-control mb-1" required>
-                                <input type="text" name="email" placeholder="Email" class="form-control mb-1" required>
-                                <input type="text" name="password" placeholder="Mot de passe" class="form-control" required>
+                                <input type="text" name="admin_name" placeholder="Nom" class="form-control mb-1" required>
+                                <input type="text" name="admin_email" placeholder="Email" class="form-control mb-1" required>
+                                <input type="text" name="admin_password" placeholder="Mot de passe" class="form-control" required>
                         </div>
                     </div>
                     <div class="modal-footer">

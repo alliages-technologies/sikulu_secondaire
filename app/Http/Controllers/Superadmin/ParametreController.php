@@ -126,11 +126,11 @@ class ParametreController extends Controller
        $imagePath=request('image_uri')->store('images-ecoles', 'public');
        $ecole->image_uri=$imagePath;
        $ecole->save();
-       //Admin de l'école
+       // Configuration de l'admin de l'école
        $admin=new User();
-       $admin->name=request()->name;
-       $admin->email=request()->email;
-       $admin->password=Hash::make(request()->password);
+       $admin->name=request()->admin_name;
+       $admin->email=request()->admin_email;
+       $admin->password=Hash::make(request()->admin_password);
        $admin->role_id=2;
        $admin->ecole_id=$ecole->id;
        $admin->save();
