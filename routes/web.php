@@ -126,6 +126,10 @@ Route::prefix('superadmin')
         // Matières
         Route::get('/matieres', 'ParametreController@matieres')->name('matieres.index');
         Route::post('/matiere/store', 'ParametreController@matiereStore')->name('matieres.store');
+        // Matières
+        Route::get('/ecoles', 'ParametreController@ecoles')->name('ecoles.index');
+        Route::post('/ecole/store', 'ParametreController@ecoleStore')->name('ecoles.store');
+
 
         //Programme national
         Route::resource('/programmes-national','ProgrammenationalController');
