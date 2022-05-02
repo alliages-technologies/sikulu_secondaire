@@ -131,3 +131,16 @@ Route::prefix('superadmin')
         Route::resource('/programmes-national','ProgrammenationalController');
 });
 
+
+Route::prefix('adminecole')
+    ->namespace('Adminecole')
+    ->name('adminecole.')
+    ->group(function(){
+        /*
+        Paramètres
+        */
+        Route::resource('/parametres', 'ParametreController');
+        //Programme national
+        Route::resource('/programmes-ecole','');
+});
+

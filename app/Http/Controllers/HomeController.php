@@ -30,7 +30,7 @@ class HomeController extends Controller
         }
 
         elseif(Auth::user()->role_id==2){
-            return view('Admin/dashboard');
+            return view('Adminecole/dashboard');
         }
 
         else{
