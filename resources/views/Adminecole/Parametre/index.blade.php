@@ -1,5 +1,8 @@
 @extends('layouts.adminecole')
+
+
 @section('content')
+
 <div class="container text-center mt-4">
     <h1>PARAMETRAGE</h1>
     <div class="row d-flex justify-content-center p-4">
