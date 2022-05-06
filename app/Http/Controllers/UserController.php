@@ -29,7 +29,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
         $roles = Role::all();
         return view('Users/index')->with(compact('roles'));
     }
@@ -44,7 +43,6 @@ class UserController extends Controller
 
      public function store(Request $request)
     {
-        //
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;

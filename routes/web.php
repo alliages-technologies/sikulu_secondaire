@@ -149,6 +149,5 @@ Route::prefix('adminecole')
         Route::resource('/salles', 'SalleController');
         // Profs
         Route::resource('/profs', 'ProfController');
-
 });
 
