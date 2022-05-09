@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Prof extends Model
 {
     protected $guarded = [];
-    protected $appends = ["dip"];
-    
+    protected $appends = ["dip","name"];
+
     public function diplome(){
         return $this->belongsTo('App\Models\Diplome','diplome_id');
     }

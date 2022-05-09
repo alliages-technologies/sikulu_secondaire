@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProgrammeNationalLigne extends Model
+class ProgrammeEcoleLigne extends Model
 {
     protected $guarded = [];
     protected $table = 'programmes_ecoles_lignes';
+    protected $appends = ['matieren'];
 
     public function programme_ecole(){
         return $this->belongsTo('App\Models\ProgrammeEcole','programme_national_id');
@@ -18,7 +19,10 @@ class ProgrammeNationalLigne extends Model
     }
 
     public function enseignant(){
-        return $this->belongsTo('App\User','enseignant_id');
+        return $this->belongsTo('App\Models\Prof','enseignant_id');
     }
 
+    public function getMatierenAttribute(){
+        return $this->matiere->name;
+    }
 }
