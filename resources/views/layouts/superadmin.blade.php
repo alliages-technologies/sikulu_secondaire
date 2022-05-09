@@ -13,7 +13,7 @@
     <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
     <script src="{{asset('js/bootstrap.js')}}"></script>
     <title>
-        Dashboard
+        @yield('title')
     </title>
 </head>
 
@@ -42,7 +42,7 @@
         <div class="">SUPERADMIN</div>
     </nav>
 
-    <div class="container-fluid">
+    <div class="menu">
         @yield('content')
     </div>
 </body>

@@ -136,4 +136,9 @@ class ParametreController extends Controller
        $admin->save();
        return redirect()->back();
    }
+
+   public function ecoleShow($id){
+       $ecole=Ecole::find($id);
+       return view('Superadmin/Parametres/Ecoles/show')->with(compact('ecole'));
+   }
 }

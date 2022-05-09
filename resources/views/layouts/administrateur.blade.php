@@ -13,7 +13,7 @@
     <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
     <script src="{{asset('js/bootstrap.js')}}"></script>
     <title>
-        Dashboard
+        @yield('title')
     </title>
 </head>
 <body>
@@ -22,7 +22,7 @@
         <div class="">menu</div>
     </nav>
 
-    <div class="container">
+    <div class="menu container">
         <div class="row d-flex justify-content-center p-4">
             <a href="" class="col-md-3 m-2">
                 <i class="fa fa-bar-chart"></i>

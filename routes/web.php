@@ -25,12 +25,12 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 
 Route::prefix('utils')
-->namespace('Utils')
-->name('utils.')
-->group(function(){
-Route::get('/classes', 'DiversController@getClasses');
-Route::get('/inscriptions/{id}', 'DiversController@getElevesByClasse');
-Route::get('/inscription/{id}', 'DiversController@getInscriptionById');
+    ->namespace('Utils')
+    ->name('utils.')
+    ->group(function(){
+    Route::get('/classes', 'DiversController@getClasses');
+    Route::get('/inscriptions/{id}', 'DiversController@getElevesByClasse');
+    Route::get('/inscription/{id}', 'DiversController@getInscriptionById');
 });
 
 
@@ -100,7 +100,7 @@ Route::prefix('admin')
     // Route des profs
     Route::resource('/profs', 'ProfController');
 
-    });
+});
 
 
 Route::prefix('superadmin')
@@ -129,9 +129,8 @@ Route::prefix('superadmin')
         // Matières
         Route::get('/ecoles', 'ParametreController@ecoles')->name('ecoles.index');
         Route::post('/ecole/store', 'ParametreController@ecoleStore')->name('ecoles.store');
-
-
-        //Programme national
+        Route::get('/ecole/{id}', 'ParametreController@ecoleShow')->name('ecoles.show');
+        // Programme national
         Route::resource('/programmes-national','ProgrammenationalController');
 });
 
@@ -140,15 +139,29 @@ Route::prefix('adminecole')
     ->namespace('Adminecole')
     ->name('adminecole.')
     ->group(function(){
-
+        /*
+        Parametres
+        */
         Route::resource('/parametres', 'ParametreController');
-        //Programme ecole
+        // Programmes ecole
         Route::resource('/programmes-ecole','ProgrammeecoleController');
+<<<<<<< HEAD
         Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getProgrammeNationalById');
         //Gestion salle
         Route::resource('/salles','SalleController');
         Route::get('/get-profs','ProgrammeecoleController@getProfs');
         Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
         Route::get('/save-prof','ProgrammeecoleController@saveProf');
+=======
+        // Gestion salles
+        Route::resource('/salles', 'SalleController');
+        // Profs
+        Route::resource('/profs', 'ProfController');
+        Route::get('/profs-verification-numero', 'ProfController@verificationNumero');
+        Route::post('/profs-terminer-un', 'ProfController@terminerUn');
+        Route::get('/profs-verification-info', 'ProfController@verificationInfo');
+        Route::post('/profs-terminer-deux', 'ProfController@terminerDeux');
+
+>>>>>>> e6364618543e76a8fb57d050bd4ad2bb254e8330
 });
 

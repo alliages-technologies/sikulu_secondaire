@@ -10,7 +10,7 @@ nav{
     justify-content: space-between;
     align-items: center;
 }
-.container a{
+.menu a{
     padding-top: 14px;
     display: flex;
     flex-direction: column;
@@ -21,13 +21,13 @@ nav{
     border-radius: 10px;
     box-shadow: 0px 0px 4px 0px black;
 }
-.container a:hover{
+.menu a:hover{
     text-decoration: none;
     color: white;
     background-color: darkblue;
     transition: 0.9s;
 }
-.container i{
+.menu i{
     font-size: 24px;
 }
 

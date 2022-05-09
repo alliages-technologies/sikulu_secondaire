@@ -23,7 +23,11 @@
                 <tbody>
                     @foreach ($ecoles as $ecole)
                     <tr>
-                        <td>{{$ecole->name}}</td>
+                        <td>
+                            <a href="{{route('superadmin.ecoles.show', $ecole->id)}}">
+                                {{$ecole->name}}
+                            </a>
+                        </td>
                         <td>{{$ecole->address}}</td>
                         <td>{{$ecole->type->name}}</td>
                     </tr>

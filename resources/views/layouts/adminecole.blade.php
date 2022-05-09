@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    @yield('head')
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +13,19 @@
     <!--JS-->
     <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
     <script src="{{asset('js/bootstrap.js')}}"></script>
+
+    <!--Colorlib-->
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="{{asset('colorlib-wizard-30/css/montserrat-font.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('colorlib-wizard-30/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css')}}">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="{{asset('colorlib-wizard-30/css/style.css')}}"/>
+    <!--Js-->
+    <script src="{{asset('colorlib-wizard-30/js/jquery-3.3.1.min.js')}}"></script>
+	<script src="{{asset('colorlib-wizard-30/js/jquery.steps.js')}}"></script>
+	<script src="{{asset('colorlib-wizard-30/js/main.js')}}"></script>
     <title>
-        Dashboard
+        @yield('title')
     </title>
 </head>
 
@@ -42,7 +54,7 @@
         <div class="">{{ Auth::user()->name }} <i class="fa fa-user-circle"></i></div>
     </nav>
 
-    <div class="container-fluid">
+    <div class="">
         @yield('content')
     </div>
 </body>
