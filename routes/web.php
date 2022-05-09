@@ -149,5 +149,10 @@ Route::prefix('adminecole')
         Route::resource('/salles', 'SalleController');
         // Profs
         Route::resource('/profs', 'ProfController');
+        Route::get('/profs-verification-numero', 'ProfController@verificationNumero');
+        Route::post('/profs-terminer-un', 'ProfController@terminerUn');
+        Route::get('/profs-verification-info', 'ProfController@verificationInfo');
+        Route::post('/profs-terminer-deux', 'ProfController@terminerDeux');
+
 });
 

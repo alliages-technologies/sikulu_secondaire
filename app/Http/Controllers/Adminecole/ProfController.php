@@ -7,39 +7,109 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Models\Prof;
+use App\Models\ProfEcole;
+use App\Models\Diplome;
+use Illuminate\Support\Facades\Hash;
+
 
 class ProfController extends Controller
 {
     public function index(){
-        $users=User::all();
-        $profs=Prof::all();
-        return view('Adminecole.Profs.index')->with(compact('profs', 'users'));
+        $profs=ProfEcole::where('ecole_id',auth()->user()->ecole_id)->get();
+        return view('Adminecole.Profs.index')->with(compact('profs'));
     }
 
     public function create(){
-        return view('Adminecole.Profs.create');
+        $diplomes = Diplome::all();
+        return view('Adminecole.Profs.create')->with(compact('diplomes'));
     }
 
+    /*
+        Etapes de vérifications
+    */
+
+    public function verificationNumero(){
+        $phone = request()->phone;
+        $user = User::where('phone', $phone)->first();
+        if ($user) {
+            return response()->json($user);
+        }
+        else{
+            return response()->json("suivant");
+        }
+    }
+
+    public function terminerUn(){
+        $prof = Prof::where('user_id', request()->prof_id)->first();
+        $profecole = ProfEcole::updateOrCreate(
+            ['prof_id' => $prof->id],
+            ['ecole_id' => auth()->user()->ecole_id],
+        );
+        return response()->json("ok!!!");
+    }
+
+    public function verificationInfo(){
+        $nom = request()->nom;
+        $prenom = request()->prenom;
+        $prof = Prof::where('nom', 'like', "%{$nom}%")->where('prenom', 'like', "%{$prenom}%")->first();
+        if ($prof) {
+            return response()->json($prof);
+        }
+        else {
+            return response()->json("suivant");
+        }
+    }
+
+    public function terminerDeux(){
+        $prof = Prof::updateOrCreate(
+            ['nom' => request()->nom],
+            ['prenom' => request()->prenom],
+            ['adresse' => request()->adresse],
+            ['diplome_id' => request()->diplome_id],
+        );
+
+        $profecole = ProfEcole::updateOrCreate(
+            ['prof_id' => request()->prof_id],
+            ['ecole_id' => auth()->user()->ecole_id],
+        );
+        return response()->json("ok!!!");
+    }
+
+    // Fin des vérifications
+
     public function store(){
+        $nom = request()->nom;
+        $prenom = request()->prenom;
+        $telephone = request()->phone;
+        $email = request()->email;
+        $password = Hash::make(request()->password);
+        $adresse = request()->adresse;
+        $diplome = request()->diplome;
+
         $user=New User();
-        $user->name=request()->name;
-        $user->email=request()->email;
-        $user->phone=request()->phone;
-        $user->password=request()->password;
+        $user->name= $nom.' '.$prenom;
+        $user->email= $email;
+        $user->phone= $telephone;
+        $user->password= $password;
         $user->role_id=6;
-        //$user->ecole_id=auth()->user()->ecole_id;
-        $request = User::where('name', request('name'))->orWhere('phone', request('phone'))->first();
-            if ($request !== null) {
-                return response('Données existantes');
-            } else {
-                $user->save();
-                $prof=new Prof();
-                $prof->user_id=$user->id;
-                $prof->nom=$user->name;
-                $prof->telephone=$user->phone;
-                $prof->save();
-            }
-        return redirect()->back();
+        $user->ecole_id = auth()->user()->ecole_id;
+        $user->save();
+
+        $prof = new Prof();
+        $prof->user_id = $user->id;
+        $prof->nom = $nom;
+        $prof->prenom = $prenom;
+        $prof->adresse = $adresse;
+        $prof->telephone = $telephone;
+        $prof->diplome_id = $diplome;
+        $prof->save();
+
+        $profecole = new ProfEcole();
+        $profecole->prof_id = $prof->id;
+        $profecole->ecole_id = auth()->user()->ecole_id;
+        $profecole->save();
+
+        return response()->json("ok");
     }
 
     public function show($id){

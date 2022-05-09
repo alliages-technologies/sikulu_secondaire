@@ -31,9 +31,9 @@ Admin Ecole | Gestion des professeurs
                 <tbody>
                     @foreach ($profs as $prof)
                     <tr>
-                        <td>{{$prof->nom}}</td>
-                        <td>{{$prof->prenom}}</td>
-                        <td>{{$prof->diplome? $prof->diplome->name:"_"}}</td>
+                        <td>{{$prof->prof->nom}}</td>
+                        <td>{{$prof->prof->prenom}}</td>
+                        <td>{{$prof->prof->diplome->name}}</td>
                         <td>
                             <a href="{{route('adminecole.profs.show', $prof->id)}}"><i class="fa fa-eye btn btn-sm btn-info"></i></a>
                             <a href="#"><i class="fa fa-edit btn btn-sm btn-warning"></i></a>

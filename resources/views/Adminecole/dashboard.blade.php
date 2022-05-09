@@ -7,7 +7,7 @@ Admin Ecole | Dashboard
 
 @section('content')
 
-<div class="container">
+<div class="container menu">
     <div class="row d-flex justify-content-center p-4">
         <a href="" class="col-md-3 m-2">
             <i class="fa fa-bar-chart"></i>
