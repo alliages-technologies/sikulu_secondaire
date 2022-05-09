@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 02 mai 2022 à 13:44
+-- Généré le : lun. 09 mai 2022 à 14:53
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -170,7 +170,8 @@ CREATE TABLE IF NOT EXISTS `ecoles` (
 --
 
 INSERT INTO `ecoles` (`id`, `name`, `address`, `email`, `phone`, `active`, `token`, `created_at`, `updated_at`, `image_uri`, `is_private`, `pay_id`, `enseignement_id`, `coordonnees`) VALUES
-(2, 'Louis', 'Nkouikou', 'lagkaba@gmail.com', '052053989', 1, NULL, '2022-05-02 13:43:08', '2022-05-02 13:43:08', 'images-ecoles/oNBej4EnTi8ytPzHGfpTwmIZppNeylvvXNZGpCSB.png', 1, 1, 2, 'Coordonnées');
+(1, 'Louis Alexon KABA III', 'Nkouikou', 'kaba@mail.com', '052053989', 1, NULL, '2022-05-02 14:25:41', '2022-05-02 14:25:41', 'images-ecoles/T7f053vWjBGeaCFVHIiwZ7hwGzl8zx6qNGzgm4wK.jpg', 1, 1, 2, 'Coordonnées'),
+(2, 'Lycée KABA', 'Siafoumou', 'lyceekaba@gmail.com', '065036045', 1, NULL, '2022-05-02 14:36:53', '2022-05-02 14:36:53', 'images-ecoles/CHgwY8NNirFWRNndxxHZQozsGw2oGFKCRWOi3Dcz.png', 1, 1, 1, 'Coordonnées');
 
 -- --------------------------------------------------------
 
@@ -326,7 +327,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `migrations`
@@ -351,7 +352,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (16, '2021_04_28_091330_create_profs_table', 1),
 (17, '2021_04_28_091350_create_diplomes_table', 1),
 (18, '2022_05_01_141551_create_matieres_table', 2),
-(19, '2022_05_01_142311_create_classes_table', 3);
+(19, '2022_05_01_142311_create_classes_table', 3),
+(20, '2022_04_28_091330_create_profs_table', 4);
 
 -- --------------------------------------------------------
 
@@ -437,6 +439,20 @@ CREATE TABLE IF NOT EXISTS `notes` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `parent_ecole`
+--
+
+DROP TABLE IF EXISTS `parent_ecole`;
+CREATE TABLE IF NOT EXISTS `parent_ecole` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `parent_id` bigint(20) NOT NULL,
+  `ecole_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `password_resets`
 --
 
@@ -457,22 +473,54 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 DROP TABLE IF EXISTS `profs`;
 CREATE TABLE IF NOT EXISTS `profs` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `prenom` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `adresse` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `telephone` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `diplome_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL DEFAULT '0',
+  `nom` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `prenom` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `adresse` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telephone` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `diplome_id` bigint(20) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `profs`
 --
 
-INSERT INTO `profs` (`id`, `nom`, `prenom`, `adresse`, `telephone`, `diplome_id`, `created_at`, `updated_at`) VALUES
-(1, 'Kaya Madiata', 'Godefroid', 'Mongokamba', '066544567', 1, '2022-04-08 11:02:47', '2022-04-08 11:02:47');
+INSERT INTO `profs` (`id`, `user_id`, `nom`, `prenom`, `adresse`, `telephone`, `diplome_id`, `created_at`, `updated_at`) VALUES
+(1, 14, 'Makosso', 'Camile', 'Mawata', '066335665', 3, '2022-05-09 12:51:13', '2022-05-09 12:51:13'),
+(2, 16, 'Tietiouvha', 'Gédeon', 'Mbota', '069874521', 2, '2022-05-09 12:53:55', '2022-05-09 12:53:55'),
+(3, 18, 'Tatu', 'Joêl', 'Matadi', '068752213', 1, '2022-05-09 12:57:16', '2022-05-09 12:57:16'),
+(4, 19, 'Taty', 'Lamberd', 'Tié-Tié', '066332145', 1, '2022-05-09 12:59:34', '2022-05-09 12:59:34'),
+(5, 20, 'Massala', 'Landry', 'Rex', '068887963', 2, '2022-05-09 13:02:20', '2022-05-09 13:02:20');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `prof_ecole`
+--
+
+DROP TABLE IF EXISTS `prof_ecole`;
+CREATE TABLE IF NOT EXISTS `prof_ecole` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `prof_id` bigint(20) NOT NULL DEFAULT '0',
+  `ecole_id` bigint(20) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `prof_ecole`
+--
+
+INSERT INTO `prof_ecole` (`id`, `prof_id`, `ecole_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '2022-05-09 12:51:13', '2022-05-09 12:51:13'),
+(2, 2, 1, '2022-05-09 12:53:55', '2022-05-09 12:53:55'),
+(3, 3, 1, '2022-05-09 12:57:16', '2022-05-09 12:57:16'),
+(4, 4, 2, '2022-05-09 12:59:34', '2022-05-09 13:26:14'),
+(5, 5, 1, '2022-05-09 13:02:20', '2022-05-09 13:02:20');
 
 -- --------------------------------------------------------
 
@@ -766,6 +814,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -776,15 +825,21 @@ CREATE TABLE IF NOT EXISTS `users` (
   `ecole_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role_id`, `ecole_id`) VALUES
-(1, 'Blandin-Ux', 'nsondecaleb@gmail.com', NULL, '$2y$10$Ye0/.z.YuHPjlbLJqzy0m.7lHL/XXsHz/MS2HmHHAKpxdzpdLzS.O', NULL, '2022-04-08 10:15:58', '2022-04-08 10:15:58', 1, 0),
-(5, 'Louis', 'lagkaba@gmail.com', NULL, '$2y$10$kl66dJguWYhpf6RqClloLO5W1oj2726OjaLV0dLAuSLN5VN4Ehyxa', NULL, '2022-05-02 12:43:08', '2022-05-02 12:43:08', 2, 2);
+INSERT INTO `users` (`id`, `name`, `phone`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role_id`, `ecole_id`) VALUES
+(1, 'Blandin-Ux', NULL, 'nsondecaleb@gmail.com', NULL, '$2y$10$Ye0/.z.YuHPjlbLJqzy0m.7lHL/XXsHz/MS2HmHHAKpxdzpdLzS.O', NULL, '2022-04-08 10:15:58', '2022-04-08 10:15:58', 1, 0),
+(6, 'KABA ISRA', NULL, 'isra@mail.com', NULL, '$2y$10$7BA8nbQS15nWlqLzi735LO2QAP0.grkixeLZSvww9Oa/JAXwMk9ue', NULL, '2022-05-02 13:25:42', '2022-05-02 13:25:42', 2, 1),
+(7, 'ELIKIA', NULL, 'elikia@mail.com', NULL, '$2y$10$3e9yYKT1rtHxDdHqUCwW.un48lY6ocxg7CJ9tO14thOzIc.Xnv9oO', NULL, '2022-05-02 13:36:53', '2022-05-02 13:36:53', 2, 2),
+(14, 'Makosso Camile', '066335665', 'makosso@gmail.com', NULL, '$2y$10$nz80qggLRryb6wmSj3Gcve6DyTWpaAK0bSyRgF9sDb8xt.FoT5oCm', NULL, '2022-05-09 12:51:13', '2022-05-09 12:51:13', 6, 1),
+(16, 'Tietiouvha Gédeon', '069874521', 'gede@gmail.com', NULL, '$2y$10$W.t0vhs0UnjfYU50o/a5l.TYwuQ4zt2E2nzTri2kaeo8W0ANm6AGi', NULL, '2022-05-09 12:53:55', '2022-05-09 12:53:55', 6, 1),
+(18, 'Tatu Joêl', '068752213', 'tatu@gmail.com', NULL, '$2y$10$CvdKCl3kk564..UAOiwRY.x2prMhM2wIi5491SfAqiUKiljVTzHz2', NULL, '2022-05-09 12:57:15', '2022-05-09 12:57:15', 6, 1),
+(19, 'Taty Lamberd', '066332145', 'taty@gmail.com', NULL, '$2y$10$BGxrJSlvpa4NlcpFNLVQ3O3Sd3tqPfsmLU6ODIfsX0iRQdg1gs7Ga', NULL, '2022-05-09 12:59:34', '2022-05-09 12:59:34', 6, 1),
+(20, 'Massala Landry', '068887963', 'test@gmail.com', NULL, '$2y$10$K0P2lM0u7Il0SxducFNPyeugm3nNu6TlkivZewPnb4bJR5J7blaqu', NULL, '2022-05-09 13:02:20', '2022-05-09 13:02:20', 6, 1);
 
 -- --------------------------------------------------------
 
