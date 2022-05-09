@@ -25,4 +25,8 @@ class ProgrammeNational extends Model
         return $this->hasMany('App\Models\ProgrammeNationalLigne','national_programme_id');
     }
 
+    public function getNameAttribute(){
+        return $this->classe->name. ' ' .$this->enseignement->name;
+    }
+
 }

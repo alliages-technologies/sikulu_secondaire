@@ -16,8 +16,14 @@ class Classe extends Model
         return $this->belongsTo('App\Models\Niveau','niveau_id');
     }
 
+    public function pns(){
+        return $this->hasMany('App\Models\ProgrammeNational','classe_id');
+    }
+
+
     public function getNameAttribute(){
         return $this->niveau->name.' '.$this->serie->name;
     }
+
 
 }

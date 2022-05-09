@@ -21,4 +21,8 @@ class ProgrammeEcole extends Model
         return $this->belongsTo('App\Models\Salle','salle_id');
     }
 
+    public function lpes(){
+        return $this->hasMany('App\Models\ProgrammeEcoleLigne','programme_ecole_id');
+    }
+
 }

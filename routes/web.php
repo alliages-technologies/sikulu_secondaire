@@ -144,8 +144,11 @@ Route::prefix('adminecole')
         Route::resource('/parametres', 'ParametreController');
         //Programme ecole
         Route::resource('/programmes-ecole','ProgrammeecoleController');
-
+        Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getProgrammeNationalById');
         //Gestion salle
         Route::resource('/salles','SalleController');
+        Route::get('/get-profs','ProgrammeecoleController@getProfs');
+        Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
+        Route::get('/save-prof','ProgrammeecoleController@saveProf');
 });
 

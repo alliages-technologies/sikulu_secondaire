@@ -13,6 +13,7 @@
                         <th> Nom de la salle <i class="fa fa-door-closed"></i> </th>
                         <th> Abreviation <i class="fa fa-barcode"></i> </th>
                         <th> Nbr de Place <i class="fa fa-info"></i> </th>
+                        <th> Classe <i class="fa fa-door-closed"></i> </th>
                     </thead>
                     <tbody>
                         @foreach($salles as $salle)
@@ -20,6 +21,7 @@
                             <td> {{$salle->name}} </td>
                             <td> {{$salle->abb}} </td>
                             <td> {{$salle->nombre_places}} </td>
+                            <td> {{$salle->classe->name}} </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -60,9 +62,15 @@
                                     <input type="number" class="form-control" placeholder="Nombre de places..." name="nombre_places" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <button style="background-color: darkblue; color:white" class="btn btn-default">Sauvegarder <i class="fa fa-save"></i> </button>
+                                    <select name="classe_id" id="" class="form-control">
+                                        <option value="">Choix de la classe</option>
+                                        @foreach ($classes as $classe)
+                                        <option value="{{ $classe->id }}">{{ $classe->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
+                            <button style="background-color: darkblue; color:white" class="btn btn-default mt-2">Sauvegarder <i class="fa fa-save"></i> </button>
                         </form>
 
                     </div>
