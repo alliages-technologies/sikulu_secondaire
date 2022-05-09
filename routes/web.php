@@ -145,14 +145,12 @@ Route::prefix('adminecole')
         Route::resource('/parametres', 'ParametreController');
         // Programmes ecole
         Route::resource('/programmes-ecole','ProgrammeecoleController');
-<<<<<<< HEAD
         Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getProgrammeNationalById');
         //Gestion salle
         Route::resource('/salles','SalleController');
         Route::get('/get-profs','ProgrammeecoleController@getProfs');
         Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
         Route::get('/save-prof','ProgrammeecoleController@saveProf');
-=======
         // Gestion salles
         Route::resource('/salles', 'SalleController');
         // Profs
@@ -162,6 +160,5 @@ Route::prefix('adminecole')
         Route::get('/profs-verification-info', 'ProfController@verificationInfo');
         Route::post('/profs-terminer-deux', 'ProfController@terminerDeux');
 
->>>>>>> e6364618543e76a8fb57d050bd4ad2bb254e8330
 });
 

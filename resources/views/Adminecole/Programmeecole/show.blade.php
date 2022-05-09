@@ -3,7 +3,7 @@
 <div class="card mt-5">
 
     <div class="card-header">
-        <h4 class="text-left mb-1"> Programme de la {{ $salle->name }} <b>/></b> Niveau <b>/></b> {{ $salle->classe->name }} </h4>
+        <h4 class="text-left mb-1"> Programme de la {{ $salle->name }} <strong>/></strong> Niveau <strong>/></strong> {{ $salle->classe->name }} </h4>
     </div>
     <input type="hidden" name="classe_id" value="{{ $salle->id}}">
     <div class="card-body">

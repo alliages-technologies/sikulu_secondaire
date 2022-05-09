@@ -1,6 +1,6 @@
 @extends('layouts.adminecole')
 @section('content')
-<div class="card mt-5">
+<div class="card mt-5 menu">
     <div class="card-header">
         <h4 class="text-left mb-1"> Programme /> Salles </h4>
     </div>
