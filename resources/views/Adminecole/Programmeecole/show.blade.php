@@ -62,8 +62,13 @@
 
                             </tbody>
                         </table>
-                        <label classe="mt-1" for="">Choix du prof</label>
-                        <select class="form-control profs"> <option> choix </option> </select>
+                        <label classe="mt-1" for="" name="prof_id">Choix du prof</label>
+                        <select class="form-control profs">
+                             <option> choix </option>
+                             @foreach ($pes as $pe )
+                             <option value="{{ $pe->prof_id }}"> {{ $pe->prof->name }} </option>
+                             @endforeach
+                         </select>
                     </div>
                 </div>
                 <button class="btn btn-default mt-2 btn-save" id="btn-save">Enrégistrer <i class="fa fa-save"></i> </button>

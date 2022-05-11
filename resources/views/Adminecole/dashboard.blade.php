@@ -21,7 +21,7 @@ Admin Ecole | Dashboard
             <i class="fa fa-users"></i>
             <p>Enseignants</p>
         </a>
-        <a href="" class="col-md-3 m-2">
+        <a href="{{ route('adminecole.inscriptions.index') }}" class="col-md-3 m-2">
             <i class="fa fa-user-plus"></i>
             <p>Inscriptions</p>
         </a>
