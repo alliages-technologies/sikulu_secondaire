@@ -10,7 +10,7 @@ class ParametreController extends Controller
 
     public function index()
     {
-        return view('Adminecole.Parametre.index');
+        return view('Adminecole.Parametres.index');
     }
 
     public function create()

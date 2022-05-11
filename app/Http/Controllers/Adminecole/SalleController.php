@@ -20,7 +20,7 @@ class SalleController extends Controller
     {
         $salles = Salle::where('ecole_id',Auth::user()->ecole_id)->orderBy('id','desc')->paginate(10);
         $classes = Classe::all();
-        return view('Adminecole.Salle.index')->with(compact('salles','classes'));
+        return view('Adminecole.Salles.index')->with(compact('salles','classes'));
     }
 
     public function create()

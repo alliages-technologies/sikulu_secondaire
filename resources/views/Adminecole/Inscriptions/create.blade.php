@@ -15,8 +15,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <fieldset>
-                                        <legend>Informations n°1</legend>
-                                        <div class="row">
+                                        <legend>Informations Personnelles</legend>
+                                        <div class="row mt-1">
                                             <div class="col-md-6">
                                                 <label for="nom">Nom</label>
                                                 <input type="text" class="form-control" id="nom" name="nom" required>
@@ -37,13 +37,9 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <label for="adresse">Adresse</label>
                                                 <input type="text" class="form-control" id="adresse" name="adresse" required>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="image">Image</label>
-                                                <input class="form-control-file" type="file" class="" id="image" name="image_uri" |size:5000>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -54,7 +50,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <fieldset>
-                                        <legend>Informations n°2</legend>
+                                        <legend>Informations Administrative</legend>
                                         <div class="row mt-1">
                                             <div class="col-md-6">
                                                 <label for="">Salle</label>
@@ -70,55 +66,50 @@
                                                 <input type="number" class="form-control" name="montant_inscri" placeholder="" required>
                                             </div>
                                         </div>
-                                        <div class="row mt-1">
-                                            <div class="col-md-6">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
                                                 <label for="">Montant des frais d'examen</label>
                                                 <input type="number" class="form-control" name="montant_frais" placeholder="">
                                             </div>
-                                            <div class="col-md-6">
-                                                <label for="npere">Nom du père</label>
-                                                <input type="text" class="form-control" id="npere" name="nom_pere" placeholder="" required>
-                                            </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="tpere">Tel du père</label>
-                                                <input type="text" class="form-control" id="tpere" name="tel_pere" required>
+                                            <div class="col-md-12">
+                                                <label for="image">Image</label>
+                                                <input class="form-control" type="file" class="" id="image" name="image_uri" |size:5000>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label for="nmere">Nom de la mère</label>
-                                                <input type="text" class="form-control" id="nmere" name="nom_mere" required>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
+                                        </fieldset>
+                                    </div>
                             </div>
                             <button class="btn btn-default btn-lg suivant"><i class="fa fa-hand-point-down"></i></button>
                         </div>
                     </div>
 
-                    <div class="row info-b">
+                    <div class="row info-parent">
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-body">
                                     <fieldset>
-                                        <legend>Informations n°3</legend>
+                                        <legend>Informations sur les Parents</legend>
                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="npere">Nom du père</label>
+                                                <input type="text" class="form-control" id="npere" name="nom_pere" placeholder="" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="tpere">Tel du père</label>
+                                                <input type="text" class="form-control" id="tpere" name="tel_pere" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="nmere">Nom de la mère</label>
+                                                <input type="text" class="form-control" id="nmere" name="nom_mere" required>
+                                            </div>
                                             <div class="col-md-6">
                                                 <label for="tmere">Tel de la mère</label>
                                                 <input type="number" class="form-control" id="tmere" name="tel_mere" required>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label for="ntuteur">Nom du Tuteur</label>
-                                                <input type="text" class="form-control" id="ntuteur" name="nom_tuteur" required>
-                                            </div>
-                                        </div>
-                                        <div class="row mt-1">
-                                            <div class="col-md-6">
-                                                <label for="ttuteur">Tel du Tuteur</label>
-                                                <input type="number" class="form-control" id="ttuteur" name="tel_tuteur" required>
-                                            </div>
-
                                         </div>
                                     </fieldset>
                                 </div>
@@ -126,23 +117,32 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body tuteur">
                                     <fieldset>
-                                        <legend>Informations n°4</legend>
+                                        <legend>Informations sur le Tuteur</legend>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label for="tmere">Mot de Passe</label>
-                                                <input type="password" class="form-control" id="tmere" name="password" required>
+                                                <label for="ntuteur">Nom du Tuteur</label>
+                                                <input type="text" class="form-control nom_tuteur" id="ntuteur" name="nom_tuteur" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="ttuteur">Tel du Tuteur</label>
+                                                <input type="number" class="form-control tel_tuteur" id="ttuteur" name="tel_tuteur" required>
+                                            </div>
+                                        </div>
+                                        <div class="row pass-email-tuteur">
+                                            <div class="col-md-6">
+                                                <label for="">Mot de Passe</label>
+                                                <input type="password" class="form-control" id="" name="password" >
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="ttuteur">Email Tuteur</label>
-                                                <input type="email" class="form-control" id="ttuteur" name="email" required>
+                                                <input type="email" class="form-control" id="ttuteur" name="email" >
                                             </div>
                                         </div>
-                                        <div class="row mt-1">
-                                            <div class="col-md-6">
-                                                <label for="ntuteur">Validez les informations</label>
-                                                <button class="btn btn-success">Enrégistrer <i class="fa fa-save"></i></button>
+                                        <div class="row mt-4 row-btn-verifier">
+                                            <div class="col-md-12">
+                                                <button class="btn btn-default btn-verifier">Verification du tuteur <i class="fa fa-eye"></i></button>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -150,6 +150,8 @@
                             </div>
                             <button class="btn btn-default btn-lg precedent"><i class="fa fa-hand-point-up"></i></button>
                         </div>
+                    </div>
+                    <button class="btn btn-success btn-save">Enrégistrer <i class="fa fa-save"></i></button>
                     </div>
                 </form>
             </div>

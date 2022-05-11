@@ -25,7 +25,7 @@ class ProgrammeecoleController extends Controller
         $salles = Salle::where('ecole_id', Auth::user()->ecole_id)->get();
         $programmes_national = ProgrammeNational::all();
         $enseignements = TypeEnseignement::all();
-        return view('Adminecole.Programmeecole.index')->with(compact('salles', 'enseignements','programmes_ecole','programmes_national'));
+        return view('Adminecole.Programmeecoles.index')->with(compact('salles', 'enseignements','programmes_ecole','programmes_national'));
     }
 
     public function getProgrammeNationalById($id){
@@ -70,7 +70,7 @@ class ProgrammeecoleController extends Controller
         $programme_ecole = $salle->programmeecoles->where('ecole_id', Auth::user()->ecole_id)->where('active',1)->where('annee_id',1)->first();
         $pes = ProfEcole::where('ecole_id',Auth::user()->ecole_id)->get();
         //dd($programme_ecole);
-        return view('Adminecole.Programmeecole.show')->with(compact('salle','programme_ecole','pes'));
+        return view('Adminecole.Programmeecoles.show')->with(compact('salle','programme_ecole','pes'));
     }
 
     public function getLignesProgrammeNationalById($id){

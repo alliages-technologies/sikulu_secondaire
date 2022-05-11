@@ -20,8 +20,8 @@ class InscriptionController extends Controller
     public function index()
     {
         $annee_acad = AnneeAcad::where('actif', 1)->first();
-        $inscriptions = Inscription::where('annee_id', $annee_acad->id)->orderBy('created_at', 'desc')->paginate(10);
-        return view('Adminecole.Inscription.index')->with(compact('inscriptions'));
+        $inscriptions = Inscription::where('annee_id', $annee_acad->id)->where('user_id',Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
+        return view('Adminecole.Inscriptions.index')->with(compact('inscriptions'));
     }
 
 
@@ -29,82 +29,155 @@ class InscriptionController extends Controller
     {
         $annee_acad = AnneeAcad::where('actif', 1)->first();
         $salles = Salle::where('ecole_id',Auth::user()->ecole_id)->get();
-        return view('Adminecole.Inscription.create')->with(compact('annee_acad','salles'));
+        return view('Adminecole.Inscriptions.create')->with(compact('annee_acad','salles'));
     }
 
+    public function verificationNumero(){
+        $name = request()->nom;
+        $phone = request()->phone;
+        $user = User::where('phone', $phone)->where('name','like',"%{$name}%")->first();
+        if ($user) {
+            return response()->json($user);
+        }
+        else{
+            return response()->json("il n'existe pas ");
+        }
+    }
 
     public function store(Request $request)
     {
         $salle = Salle::find($request->salle_id);
         //dd($salle);
-        $parent = new User();
-        $parent->name = $request->nom_tuteur;
-        $parent->phone = $request->tel_tuteur;
-        $parent->email = $request->email;
-        $parent->password = Hash::make($request->password);
-        $parent->role_id = 7;
-        $parent->ecole_id = Auth::user()->ecole_id;
-        //dd($parent);
-        $parent->save();
+        $name = request()->nom_tuteur;
+        $phone = request()->tel_tuteur;
+        $parent = User::where('phone', $phone)->where('name','like',"%{$name}%")->first();
 
-        $parent_ecole = new ParentEcole();
-        $parent_ecole->ecole_id = Auth::user()->ecole_id;
-        $parent_ecole->parent_id = $parent->id;
-        //dd($parent_ecole);
-        $parent_ecole->save();
+        // Cas oû le parent existe
+        if ($parent) {
+            $eleve = new Eleve();
+            $eleve->nom = $request->nom;
+            $eleve->prenom = $request->prenom;
+            $eleve->date_naiss = $request->date_naiss;
+            $eleve->lieu_naiss = $request->lieu_naiss;
+            $eleve->adresse = $request->adresse;
+            $eleve->nom_pere = $request->nom_pere;
+            $eleve->tel_pere = $request->tel_pere;
+            $eleve->nom_mere = $request->nom_mere;
+            $eleve->tel_mere = $request->tel_mere;
+            $eleve->nom_tuteur = $request->nom_tuteur;
+            $eleve->tel_tuteur = $request->tel_tuteur;
+            if ($request->image_uri) {
+                $fichier = $request->image_uri;
+                $ext_array = ['PNG', 'JPG', 'JPEG', 'GIF', 'jpg', 'png', 'jpeg', 'gif'];
+                $ext = $fichier->getClientOriginalExtension();
+                if (in_array($ext, $ext_array)) {
+                    if (!file_exists(public_path() . '/images')) {
+                        mkdir(public_path() . '/images');
+                    }
+                    if (!file_exists(public_path() . '/images/membres')) {
+                        mkdir(public_path() . '/images/membres');
+                    }
 
-        $eleve = new Eleve();
-        $eleve->nom = $request->nom;
-        $eleve->prenom = $request->prenom;
-        $eleve->date_naiss = $request->date_naiss;
-        $eleve->lieu_naiss = $request->lieu_naiss;
-        $eleve->adresse = $request->adresse;
-        $eleve->nom_pere = $request->nom_pere;
-        $eleve->tel_pere = $request->tel_pere;
-        $eleve->nom_mere = $request->nom_mere;
-        $eleve->tel_mere = $request->tel_mere;
-        $eleve->nom_tuteur = $request->nom_tuteur;
-        $eleve->tel_tuteur = $request->tel_tuteur;
-        if ($request->image_uri) {
-            $fichier = $request->image_uri;
-            $ext_array = ['PNG', 'JPG', 'JPEG', 'GIF', 'jpg', 'png', 'jpeg', 'gif'];
-            $ext = $fichier->getClientOriginalExtension();
-            if (in_array($ext, $ext_array)) {
-                if (!file_exists(public_path() . '/images')) {
-                    mkdir(public_path() . '/images');
+                    $name = date('dmYhis') . '.' . $ext;
+                    $path = 'images/membres/' . $name;
+                    $fichier->move(public_path('images/membres'), $name);
+                    $eleve->image_uri = $path;
                 }
-                if (!file_exists(public_path() . '/images/membres')) {
-                    mkdir(public_path() . '/images/membres');
-                }
-
-                $name = date('dmYhis') . '.' . $ext;
-                $path = 'images/membres/' . $name;
-                $fichier->move(public_path('images/membres'), $name);
-                $eleve->image_uri = $path;
             }
-        }
-        //dd($eleve);
-        $eleve->save();
+            //dd($eleve);
+            $eleve->save();
 
-        $inscription = new Inscription();
-        $inscription->eleve_id = $eleve->id;
-        $inscription->user_id = Auth::user()->id;
-        $inscription->montant_inscri = $request->montant_inscri;
-        if (!$request->montant_frais) {
-            $inscription->montant_frais = 0;
-        } else {
+            $inscription = new Inscription();
+            $inscription->eleve_id = $eleve->id;
+            $inscription->user_id = Auth::user()->id;
+            $inscription->montant_inscri = $request->montant_inscri;
+            if (!$request->montant_frais) {
+                $inscription->montant_frais = 0;
+            } else {
 
-            $inscription->montant_frais = $request->montant_frais;
+                $inscription->montant_frais = $request->montant_frais;
+            }
+            $inscription->classe_id = $salle->classe_id;
+            $inscription->annee_id = $request->annee_id;
+            $inscription->salle_id = $salle->id;
+            $inscription->moi_id = date('m');
+            $inscription->semaine_id = date('w');
+            $inscription->token = "Token".date('Ymd').date('Ymdhms');
+            //dd($inscription);
+            $inscription->save();
+
+
         }
-        $inscription->classe_id = $salle->classe_id;
-        $inscription->annee_id = $request->annee_id;
-        $inscription->salle_id = $salle->id;
-        $inscription->moi_id = date('m');
-        $inscription->semaine_id = date('w');
-        $inscription->parent_id = $parent->id;
-        $inscription->token = "Token".date('Ymd').date('Ymdhms');
-        //dd($inscription);
-        $inscription->save();
+
+        // Cas oû le parent n'existe pas
+        else{
+            $parent = new User();
+            $parent->name = $request->nom_tuteur;
+            $parent->phone = $request->tel_tuteur;
+            $parent->email = $request->email;
+            $parent->password = Hash::make($request->password);
+            $parent->role_id = 7;
+            $parent->ecole_id = Auth::user()->ecole_id;
+            //dd($parent);
+            $parent->save();
+            $parent_ecole = new ParentEcole();
+            $parent_ecole->ecole_id = Auth::user()->ecole_id;
+            $parent_ecole->parent_id = $parent->id;
+            //dd($parent_ecole);
+            $parent_ecole->save();
+
+            $eleve = new Eleve();
+            $eleve->nom = $request->nom;
+            $eleve->prenom = $request->prenom;
+            $eleve->date_naiss = $request->date_naiss;
+            $eleve->lieu_naiss = $request->lieu_naiss;
+            $eleve->adresse = $request->adresse;
+            $eleve->nom_pere = $request->nom_pere;
+            $eleve->tel_pere = $request->tel_pere;
+            $eleve->nom_mere = $request->nom_mere;
+            $eleve->tel_mere = $request->tel_mere;
+            $eleve->nom_tuteur = $request->nom_tuteur;
+            $eleve->tel_tuteur = $request->tel_tuteur;
+            if ($request->image_uri) {
+                $fichier = $request->image_uri;
+                $ext_array = ['PNG', 'JPG', 'JPEG', 'GIF', 'jpg', 'png', 'jpeg', 'gif'];
+                $ext = $fichier->getClientOriginalExtension();
+                if (in_array($ext, $ext_array)) {
+                    if (!file_exists(public_path() . '/images')) {
+                        mkdir(public_path() . '/images');
+                    }
+                    if (!file_exists(public_path() . '/images/membres')) {
+                        mkdir(public_path() . '/images/membres');
+                    }
+
+                    $name = date('dmYhis') . '.' . $ext;
+                    $path = 'images/membres/' . $name;
+                    $fichier->move(public_path('images/membres'), $name);
+                    $eleve->image_uri = $path;
+                }
+            }
+            //dd($eleve);
+            $eleve->save();
+
+            $inscription = new Inscription();
+            $inscription->eleve_id = $eleve->id;
+            $inscription->user_id = Auth::user()->id;
+            $inscription->montant_inscri = $request->montant_inscri;
+            if (!$request->montant_frais) {
+                $inscription->montant_frais = 0;
+            } else {
+
+                $inscription->montant_frais = $request->montant_frais;
+            }
+            $inscription->classe_id = $salle->classe_id;
+            $inscription->annee_id = $request->annee_id;
+            $inscription->salle_id = $salle->id;
+            $inscription->moi_id = date('m');
+            $inscription->semaine_id = date('w');
+            $inscription->token = "Token".date('Ymd').date('Ymdhms');
+            //dd($inscription);
+            $inscription->save();
+        }
 
         return redirect('/adminecole/inscriptions');
     }

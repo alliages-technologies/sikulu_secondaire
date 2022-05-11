@@ -160,6 +160,6 @@ Route::prefix('adminecole')
         Route::get('/profs-verification-info', 'ProfController@verificationInfo');
         Route::post('/profs-terminer-deux', 'ProfController@terminerDeux');
         Route::resource('/inscriptions', 'InscriptionController');
-
+        Route::get('/tuteur-verification-numero', 'InscriptionController@verificationNumero');
 });
 

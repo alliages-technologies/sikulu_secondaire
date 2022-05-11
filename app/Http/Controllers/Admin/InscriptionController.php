@@ -8,6 +8,7 @@ use App\Models\Inscription;
 use App\Models\Eleve;
 use App\Models\Classe;
 use App\Models\AnneeAcad;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use PDF;
 
@@ -39,12 +40,9 @@ class InscriptionController extends Controller
         return view('Admin/Inscriptions/create')->with(compact('classes', 'annee_acad'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
+
     public function store(Request $request)
     {
         $classes = Classe::all();
