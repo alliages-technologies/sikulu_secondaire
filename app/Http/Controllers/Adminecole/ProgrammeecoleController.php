@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Classe;
 use App\Models\Matiere;
 use App\Models\Prof;
+use App\Models\ProfEcole;
 use App\Models\ProgrammeEcole;
 use App\Models\ProgrammeEcoleLigne;
 use App\Models\ProgrammeNational;
@@ -67,9 +68,9 @@ class ProgrammeecoleController extends Controller
     {
         $salle = Salle::find($id);
         $programme_ecole = $salle->programmeecoles->where('ecole_id', Auth::user()->ecole_id)->where('active',1)->where('annee_id',1)->first();
-        $profs = Prof::all();
+        $pes = ProfEcole::where('ecole_id',Auth::user()->ecole_id)->get();
         //dd($programme_ecole);
-        return view('Adminecole.Programmeecole.show')->with(compact('salle','programme_ecole','profs'));
+        return view('Adminecole.Programmeecole.show')->with(compact('salle','programme_ecole','pes'));
     }
 
     public function getLignesProgrammeNationalById($id){

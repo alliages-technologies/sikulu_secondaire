@@ -159,6 +159,7 @@ Route::prefix('adminecole')
         Route::post('/profs-terminer-un', 'ProfController@terminerUn');
         Route::get('/profs-verification-info', 'ProfController@verificationInfo');
         Route::post('/profs-terminer-deux', 'ProfController@terminerDeux');
+        Route::resource('/inscriptions', 'InscriptionController');
 
 });
 

@@ -3,7 +3,7 @@
 <div class="card mt-5">
 
     <div class="card-header">
-        <h4 class="text-left mb-1"> Programme de la {{ $salle->name }} <b>/></b> Niveau <b>/></b> {{ $salle->classe->name }} </h4>
+        <h4 class="text-left mb-1"> Programme de la {{ $salle->name }} <strong>/></strong> Niveau <strong>/></strong> {{ $salle->classe->name }} </h4>
     </div>
     <input type="hidden" name="classe_id" value="{{ $salle->id}}">
     <div class="card-body">
@@ -62,8 +62,13 @@
 
                             </tbody>
                         </table>
-                        <label classe="mt-1" for="">Choix du prof</label>
-                        <select class="form-control profs"> <option> choix </option> </select>
+                        <label classe="mt-1" for="" name="prof_id">Choix du prof</label>
+                        <select class="form-control profs">
+                             <option> choix </option>
+                             @foreach ($pes as $pe )
+                             <option value="{{ $pe->prof_id }}"> {{ $pe->prof->name }} </option>
+                             @endforeach
+                         </select>
                     </div>
                 </div>
                 <button class="btn btn-default mt-2 btn-save" id="btn-save">Enrégistrer <i class="fa fa-save"></i> </button>

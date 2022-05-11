@@ -3,7 +3,7 @@
 
 @section('content')
 
-<div class="container text-center mt-4">
+<div class="container text-center mt-4 menu">
     <h1>PARAMETRAGE</h1>
     <div class="row d-flex justify-content-center p-4">
         <a href="{{ route('adminecole.salles.index') }}" class="col-md-3 m-2">
