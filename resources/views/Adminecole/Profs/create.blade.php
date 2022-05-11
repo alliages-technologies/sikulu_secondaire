@@ -28,7 +28,7 @@ Admin Ecole | Configuration Professeur
 					</div>
 					<div class="right col-md-6 d-flex justify-content-center">
 						<p class="p1">
-							
+
 						</p>
 					</div>
 				</div>
@@ -77,7 +77,7 @@ Admin Ecole | Configuration Professeur
 					</div>
 					<div class="right col-md-5 d-flex justify-content-center">
 						<p class="p2">
-							
+
 						</p>
 					</div>
 				</div>
@@ -90,7 +90,7 @@ Admin Ecole | Configuration Professeur
 			</div>
 			<div class="card-body">
 				<div class="row">
-					<div class="left col-md-5">
+					<div class="">
 						<div class="form-row">
 							<div class="col">
 								<label for="">Email</label>
@@ -102,16 +102,13 @@ Admin Ecole | Configuration Professeur
 							</div>
 						</div>
 						<div class="form-group">
-							
-							<label for="">Image</label>
-							<input type="file" id="" name="" placeholder="242 xx xxx xx xx" class="form-control col-md-10">
+
+							<!--label for="">Image</label>
+							<input type="file" id="" name="" class="form-control col-md-10"-->
 						</div>
 						<div class="form-group">
 							<button class="btn btn-sm btn-success terminer3">TERMINER</button>
 						</div>
-					</div>
-					<div class="right col-md-7">
-						<h5>Resultats</h5> <br>
 					</div>
 				</div>
 			</div>
