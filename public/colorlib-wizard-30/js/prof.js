@@ -37,7 +37,7 @@ $(".verifier1").click(function (e) {
                         },
                         dataType: "json",
                         success: function (response) {
-                            alert("Ce prof existe déjà");
+                            alert("PROF AJOUTE AVEC SUCCES");
                             window.location.replace("/adminecole/profs");
                         }
                     });
@@ -55,7 +55,6 @@ $(".verifier1").click(function (e) {
                     var nom = $(".nom").val();
                     var prenom = $(".prenom").val();
                     var adresse = $(".adresse").val();
-                    var email = $(".email").val();
                     var diplome = $(".diplome_id").val();
                     //console.log(adresse);
 
@@ -66,9 +65,7 @@ $(".verifier1").click(function (e) {
                             nom: nom,
                             prenom: prenom,
                             adresse: adresse,
-                            email: email,
                             diplome_id: diplome,
-                            phone: phone
                         },
                         dataType: "json",
                         success: function (response) {
@@ -79,7 +76,7 @@ $(".verifier1").click(function (e) {
                             var diplome = response.dip;
                             if (prof_id) {
                                 $(".p2").html("");
-                                var p = '<span style="color: black">nom : '+nom+' <br> prenom : '+prenom+' <br> diplome : '+diplome+' </span>';
+                                var p = '<span style="color: black">nom : '+nom+' <br> prenom : '+prenom+' <br> diplome : '+diplome+' <br> adresse : '+adresse+' </span>';
                                 $(".p2").append(p);
                                 $(".terminer2").show(1000);
 
@@ -129,7 +126,7 @@ $(".verifier1").click(function (e) {
                                             },
                                             dataType: "json",
                                             success: function (response) {
-                                                alert("Ajout d'un prof avec Succes !!!");
+                                                alert("CONFIGURATION REUSSIE AVEC SUCCES");
                                                 window.location.replace("/adminecole/profs");
                                             }
                                         });

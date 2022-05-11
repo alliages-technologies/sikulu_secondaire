@@ -35,17 +35,17 @@ class ProfController extends Controller
             return response()->json($user);
         }
         else{
-            return response()->json("suivant");
+            return response()->json("SUIVANT");
         }
     }
 
     public function terminerUn(){
         $prof = Prof::where('user_id', request()->prof_id)->first();
-        $profecole = ProfEcole::updateOrCreate(
-            ['prof_id' => $prof->id],
-            ['ecole_id' => auth()->user()->ecole_id],
-        );
-        return response()->json("ok!!!");
+        $profecole = ProfEcole::updateOrCreate([
+            'prof_id' => $prof->id,
+            'ecole_id' => auth()->user()->ecole_id
+        ]);
+        return response()->json("OK");
     }
 
     public function verificationInfo(){
@@ -56,23 +56,36 @@ class ProfController extends Controller
             return response()->json($prof);
         }
         else {
-            return response()->json("suivant");
+            return response()->json("SUIVANT");
         }
     }
 
     public function terminerDeux(){
-        $prof = Prof::updateOrCreate(
-            ['nom' => request()->nom],
-            ['prenom' => request()->prenom],
-            ['adresse' => request()->adresse],
-            ['diplome_id' => request()->diplome_id],
-        );
+        $prof = Prof::where('user_id', request()->prof_id)->first();
+        if ($prof !== null){
+            $prof->update([
+                'nom' => request()->nom,
+                'prenom' => request()->prenom,
+                'adresse' => request()->adresse,
+                'diplome_id' => request()->diplome
+            ]);
+            $profecole = ProfEcole::updateOrCreate([
+                'prof_id' => $prof->id,
+                'ecole_id' => auth()->user()->ecole_id
+            ]);
+        }
 
-        $profecole = ProfEcole::updateOrCreate(
-            ['prof_id' => request()->prof_id],
-            ['ecole_id' => auth()->user()->ecole_id],
-        );
-        return response()->json("ok!!!");
+
+        return response()->json("OK");
+
+        /*
+        $prof = Prof::updateOrCreate([
+            'nom' => request()->nom,
+            'prenom' => request()->prenom,
+            'adresse' => request()->adresse,
+            'diplome_id' => request()->diplome
+        ]);
+        */
     }
 
     // Fin des vérifications
@@ -92,7 +105,8 @@ class ProfController extends Controller
         $user->phone= $telephone;
         $user->password= $password;
         $user->role_id=6;
-        $user->ecole_id = auth()->user()->ecole_id;
+        //$user->ecole_id = auth()->user()->ecole_id;
+        $user->ecole_id = 0;
         $user->save();
 
         $prof = new Prof();
