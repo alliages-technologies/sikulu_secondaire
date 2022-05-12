@@ -25,7 +25,6 @@ $(".verifier1").click(function (e) {
                 var p = '<span style="color: black">nom : '+nom+'<br> telephone : '+telephone+' <br> email : '+email+' </span>';
                 $(".p1").append(p);
                 $(".terminer1").show(1000);
-
                 $(".terminer1").click(function (e) {
                     e.preventDefault();
                     $.ajax({

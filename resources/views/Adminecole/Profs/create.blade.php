@@ -115,5 +115,5 @@ Admin Ecole | Configuration Professeur
 		</div>
 	</form>
 </div>
-<script src="{{asset('colorlib-wizard-30/js/prof.js')}}"></script>
+<script src="{{asset('js/configProf.js')}}"></script>
 @endsection

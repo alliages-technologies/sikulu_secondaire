@@ -49,7 +49,7 @@ Admin Ecole | Dashboard
             <i class="fa fa-truck"></i>
             <p>Logistique</p>
         </a>
-        <a href="" class="col-md-3 m-2">
+        <a href="{{route('adminecole.finances.index')}}" class="col-md-3 m-2">
             <i class="fa fa-money"></i>
             <p>Finances</p>
         </a>
@@ -75,7 +75,6 @@ Admin Ecole | Dashboard
         </a>
     </div>
 </div>
-
 
 @endsection
 

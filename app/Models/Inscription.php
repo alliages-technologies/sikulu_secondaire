@@ -8,7 +8,7 @@ class Inscription extends Model
 {
 
     protected $guarded = [];
-    
+
     public function eleve(){
         return $this->belongsTo('App\Models\Eleve','eleve_id');
     }

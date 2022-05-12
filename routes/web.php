@@ -146,20 +146,29 @@ Route::prefix('adminecole')
         // Programmes ecole
         Route::resource('/programmes-ecole','ProgrammeecoleController');
         Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getProgrammeNationalById');
-        //Gestion salle
+        // Gestion des Salle
         Route::resource('/salles','SalleController');
         Route::get('/get-profs','ProgrammeecoleController@getProfs');
         Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
         Route::get('/save-prof','ProgrammeecoleController@saveProf');
-        // Gestion salles
-        Route::resource('/salles', 'SalleController');
-        // Profs
+        // Gestion des Profs
         Route::resource('/profs', 'ProfController');
         Route::get('/profs-verification-numero', 'ProfController@verificationNumero');
         Route::post('/profs-terminer-un', 'ProfController@terminerUn');
         Route::get('/profs-verification-info', 'ProfController@verificationInfo');
         Route::post('/profs-terminer-deux', 'ProfController@terminerDeux');
+        /*
+        Fin Parametres
+        */
+
+        // Gestion des Inscriptions
         Route::resource('/inscriptions', 'InscriptionController');
         Route::get('/tuteur-verification-numero', 'InscriptionController@verificationNumero');
+
+        /// Gestion des paiements
+        Route::get('/finances', 'FinanceController@index')->name('finances.index');
+        // Ecolages
+        Route::resource('/ecolages', 'EcolageController');
+        Route::get('/ecolages/salle-select', 'EcolageController@salleSelect');
 });
 
