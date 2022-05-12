@@ -1,19 +1,22 @@
 
-$("#valider").click(function (e) {
+$('#etape1').hide();
+// Selection de la salle de classe
+$("#rechercher").click(function (e) {
     e.preventDefault();
     var selectSalle = $("#selectSalle").val();
     $.ajax({
-        type: "GET",
-        url: "/adminecole/ecolages/salle-select",
+        type: "get",
+        url: "/adminecole/ecolages-salle-select",
         data: {
             selectSalle:selectSalle
         },
         dataType: "json",
-        success: function (response) {
-            var salle_id = response.id;
-            if(salle_id == selectSalle){
-                $("#resultat").apend('<p> </p>');
-
+        success: function (data) {
+            var inscrit_id = data.id;
+            $('#etape1').show(400);
+            $('#resultats').html("");
+            for (let index = 0; index < data.length; index++) {
+                $('#resultats').append(' <tr><td>'+data[index].eleve_id+'</td></tr> ');
             }
         }
     });

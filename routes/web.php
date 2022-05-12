@@ -169,6 +169,6 @@ Route::prefix('adminecole')
         Route::get('/finances', 'FinanceController@index')->name('finances.index');
         // Ecolages
         Route::resource('/ecolages', 'EcolageController');
-        Route::get('/ecolages/salle-select', 'EcolageController@salleSelect');
+        Route::get('/ecolages-salle-select', 'EcolageController@salleSelect');
 });
 

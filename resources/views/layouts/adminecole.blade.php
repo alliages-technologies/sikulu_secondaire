@@ -13,17 +13,7 @@
     <!--JS-->
     <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
     <script src="{{asset('js/bootstrap.js')}}"></script>
-
-    <!--Colorlib-->
-	<!-- Font-->
-	<link rel="stylesheet" type="text/css" href="{{asset('colorlib-wizard-30/css/montserrat-font.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('colorlib-wizard-30/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css')}}">
-	<!-- Main Style Css -->
-    <link rel="stylesheet" href="{{asset('colorlib-wizard-30/css/style.css')}}"/>
-    <!--Js-->
-    <script src="{{asset('colorlib-wizard-30/js/jquery-3.3.1.min.js')}}"></script>
-	<script src="{{asset('colorlib-wizard-30/js/jquery.steps.js')}}"></script>
-	<script src="{{asset('colorlib-wizard-30/js/main.js')}}"></script>
+    
     <title>
         @yield('title')
     </title>

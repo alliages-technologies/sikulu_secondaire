@@ -3,7 +3,7 @@ $(".etape2").hide();
 $(".etape3").hide();
 $(".suivant1").hide();
 $(".terminer1").hide();
-
+// Verification 1
 $(".verifier1").click(function (e) {
     e.preventDefault();
     var phone = $(".phone").val();
@@ -22,8 +22,9 @@ $(".verifier1").click(function (e) {
             var email = response.email;
             if (phone == telephone) {
                 $(".p1").html("");
-                var p = '<span style="color: black">nom : '+nom+'<br> telephone : '+telephone+' <br> email : '+email+' </span>';
+                var p = '<span style="color: black"> nom : '+nom+'<br> telephone : '+telephone+' <br> email : '+email+' </span>';
                 $(".p1").append(p);
+                // Terminer 1
                 $(".terminer1").show(1000);
                 $(".terminer1").click(function (e) {
                     e.preventDefault();
@@ -41,22 +42,20 @@ $(".verifier1").click(function (e) {
                         }
                     });
                 });
-            }
-            else{
+            }else{
                 $(".suivant1").show(1000);
                 $(".etape1").hide(1000);
                 $(".etape2").show(1000);
                 $(".suivant2").hide();
                 $(".terminer2").hide();
-
+                // Verification 2
                 $(".verifier2").click(function (e) {
                     e.preventDefault();
                     var nom = $(".nom").val();
                     var prenom = $(".prenom").val();
                     var adresse = $(".adresse").val();
                     var diplome = $(".diplome_id").val();
-                    //console.log(adresse);
-
+                    
                     $.ajax({
                         type: "get",
                         url: "/adminecole/profs-verification-info",
@@ -78,7 +77,7 @@ $(".verifier1").click(function (e) {
                                 var p = '<span style="color: black">nom : '+nom+' <br> prenom : '+prenom+' <br> diplome : '+diplome+' <br> adresse : '+adresse+' </span>';
                                 $(".p2").append(p);
                                 $(".terminer2").show(1000);
-
+                                // Terminer 2
                                 $(".terminer2").click(function (e) {
                                     e.preventDefault();
                                     $.ajax({
@@ -100,9 +99,7 @@ $(".verifier1").click(function (e) {
                                         }
                                     });
                                 });
-
-                            }
-                            else{
+                            }else{
                                 $(".suivant2").show(1000);
                                 $(".suivant2").click(function (e) {
                                     e.preventDefault();
@@ -134,9 +131,7 @@ $(".verifier1").click(function (e) {
                             }
                         }
                     });
-
                 });
-
             }
         }
     });
