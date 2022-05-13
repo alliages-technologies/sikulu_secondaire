@@ -19,7 +19,7 @@ class ProgrammenationalController extends Controller
         $classes = Classe::all();
         $enseignements = TypeEnseignement::all();
         $matieres = Matiere::all();
-        return view('Superadmin.Programmenational.index')->with(compact('programmes_national', 'classes', 'enseignements', 'matieres'));
+        return view('Superadmin.Programmenationals.index')->with(compact('programmes_national', 'classes', 'enseignements', 'matieres'));
     }
 
 
@@ -56,7 +56,7 @@ class ProgrammenationalController extends Controller
     public function show($id)
     {
         $programmenational = ProgrammeNational::find($id);
-        return view('Superadmin.ProgrammeNational.show')->with(compact('programmenational'));
+        return view('Superadmin.ProgrammeNationals.show')->with(compact('programmenational'));
     }
 
     /**

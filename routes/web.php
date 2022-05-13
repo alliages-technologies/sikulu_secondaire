@@ -161,5 +161,8 @@ Route::prefix('adminecole')
         Route::post('/profs-terminer-deux', 'ProfController@terminerDeux');
         Route::resource('/inscriptions', 'InscriptionController');
         Route::get('/tuteur-verification-numero', 'InscriptionController@verificationNumero');
+        Route::get('/reinscriptions', 'InscriptionController@reinscription')->name('reinscriptions');
+        Route::get('/get-inscription-by-id/{id}', 'InscriptionController@getInscriptionById');
+        Route::post('/reinscriptions-save', 'InscriptionController@save')->name('reinscriptions.save');
 });
 

@@ -16,7 +16,7 @@ use App\User;
 class ParametreController extends Controller
 {
     public function index(){
-        return view('Superadmin/Parametres/index');
+        return view('Superadmin.Parametres.index');
     }
 
     /*
@@ -24,7 +24,7 @@ class ParametreController extends Controller
     */
     public function enseignements(){
         $enseignements=TypeEnseignement::all();
-        return view('Superadmin/Parametres/Enseignements/index')->with(compact('enseignements'));
+        return view('Superadmin.Parametres.Enseignements.index')->with(compact('enseignements'));
     }
 
     public function enseignementStore(){
@@ -41,7 +41,7 @@ class ParametreController extends Controller
     public function series(){
         $enseignements=TypeEnseignement::all();
         $series=Serie::all();
-        return view('Superadmin/Parametres/Series/index')->with(compact('series', 'enseignements'));
+        return view('Superadmin.Parametres.Series.index')->with(compact('series', 'enseignements'));
     }
     public function serieStore(){
         $serie=new Serie();
@@ -57,7 +57,7 @@ class ParametreController extends Controller
     */
     public function niveaux(){
         $niveaux=Niveau::all();
-        return view('Superadmin/Parametres/Niveaux/index')->with(compact('niveaux'));
+        return view('Superadmin.Parametres.Niveaux.index')->with(compact('niveaux'));
     }
 
     public function niveauStore(){
@@ -77,7 +77,7 @@ class ParametreController extends Controller
          $series=Serie::all();
          $niveaux=Niveau::all();
          $classes=Classe::all();
-        return view('Superadmin/Parametres/Classes/index')->with(compact('classes', 'enseignements', 'series', 'niveaux'));
+        return view('Superadmin.Parametres.Classes.index')->with(compact('classes', 'enseignements', 'series', 'niveaux'));
     }
 
     public function classeStore(){
@@ -94,7 +94,7 @@ class ParametreController extends Controller
      */
     public function matieres(){
         $matieres=Matiere::all();
-        return view('Superadmin/Parametres/Matieres/index')->with(compact('matieres'));
+        return view('Superadmin.Parametres.Matieres.index')->with(compact('matieres'));
    }
 
    public function matiereStore(){
@@ -112,7 +112,7 @@ class ParametreController extends Controller
     public function ecoles(){
         $ecoles=Ecole::all();
         $enseignements=TypeEnseignement::all();
-        return view('Superadmin/Parametres/Ecoles/index')->with(compact('ecoles', 'enseignements'));
+        return view('Superadmin.Parametres.Ecoles.index')->with(compact('ecoles', 'enseignements'));
    }
 
    public function ecoleStore(){
@@ -139,6 +139,6 @@ class ParametreController extends Controller
 
    public function ecoleShow($id){
        $ecole=Ecole::find($id);
-       return view('Superadmin/Parametres/Ecoles/show')->with(compact('ecole'));
+       return view('Superadmin.Parametres.Ecoles.show')->with(compact('ecole'));
    }
 }
