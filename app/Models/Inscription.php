@@ -22,7 +22,7 @@ class Inscription extends Model
         return $this->belongsTo('App\Models\AnneeAcad','anneeacad_id');
     }
 
-    public function salle_id(){
+    public function salle(){
         return $this->belongsTo('App\Models\Salle','salle_id');
     }
 
@@ -33,6 +33,5 @@ class Inscription extends Model
     public function getNameAttribute(){
         return $this->eleve->nom.' '.$this->eleve->prenom;
     }
-
 
 }

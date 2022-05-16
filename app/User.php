@@ -45,4 +45,5 @@ class User extends Authenticatable
     public function ecole(){
         return $this->belongsTo('App\Models\Ecole','ecole_id');
     }
+
 }

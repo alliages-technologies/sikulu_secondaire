@@ -164,6 +164,10 @@ Route::prefix('adminecole')
         // Gestion des Inscriptions
         Route::resource('/inscriptions', 'InscriptionController');
         Route::get('/tuteur-verification-numero', 'InscriptionController@verificationNumero');
+        // Gestion des réinscriptions
+        Route::get('/reinscriptions', 'InscriptionController@reinscription')->name('reinscriptions');
+        Route::get('/get-inscription-by-id/{id}', 'InscriptionController@getInscriptionById');
+        Route::post('/reinscriptions-save', 'InscriptionController@save')->name('reinscriptions.save');
 
         /// Gestion des Paiements
         Route::get('/finances', 'FinanceController@index')->name('finances.index');
@@ -172,5 +176,6 @@ Route::prefix('adminecole')
         Route::get('/ecolages-salle-select', 'EcolageController@salleSelect');
         Route::get('/ecolages-eleve-infos-show/{id}', 'EcolageController@eleveShowById');
         Route::post('/ecolages-eleve-paiement-store', 'EcolageController@elevePaiementStore');
+
 });
 

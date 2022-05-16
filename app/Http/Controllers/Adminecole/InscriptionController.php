@@ -183,17 +183,48 @@ class InscriptionController extends Controller
     }
 
 
-    public function show($id)
-    {
-        //
+    public function reinscription(){
+        $salles = Salle::where('ecole_id',Auth::user()->ecole_id)->get();
+        $annee_acad = AnneeAcad::where('actif', 1)->first();
+        return view('Adminecole.Inscriptions.reinscription')->with(compact('salles','annee_acad'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function getInscriptionById($id){
+        $inscriptions = Inscription::where('salle_id',$id)->get();
+        return response()->json($inscriptions);
+    }
+
+    public function save(){
+        $inscription_id = request()->inscription_id;
+        $montant = request()->montant_inscri;
+        $inscription_recent = Inscription::find($inscription_id);
+        $salle = request()->salle_id;
+        $salle = Salle::find($salle);
+
+        $inscription = new Inscription();
+        $inscription->eleve_id = $inscription_recent->eleve_id;
+        $inscription->user_id = Auth::user()->id;
+        $inscription->montant_inscri = $montant;
+
+        $inscription->classe_id = $salle->classe_id;
+        $inscription->annee_id = request()->annee_id;
+        $inscription->salle_id = $salle->id;
+        $inscription->moi_id = date('m');
+        $inscription->semaine_id = date('w');
+        $inscription->token = "Token".date('Ymd').date('Ymdhms');
+        $inscription->parent_id = $inscription_recent->id;
+        //dd($inscription);
+        $inscription->save();
+        return response()->json("OK");
+    }
+
+    public function show($id)
+    {
+        $inscription = Inscription::find($id);
+        return view('Adminecole.Inscriptions.show')->with(compact('inscription'));
+    }
+
+
     public function edit($id)
     {
         //
