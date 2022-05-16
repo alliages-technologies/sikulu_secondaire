@@ -151,6 +151,8 @@ Route::prefix('adminecole')
         Route::get('/get-profs','ProgrammeecoleController@getProfs');
         Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
         Route::get('/save-prof','ProgrammeecoleController@saveProf');
+        Route::get('/menu/{id}','ProgrammeecoleController@menu')->name('menu');
+
         // Gestion salles
         Route::resource('/salles', 'SalleController');
         // Profs
@@ -164,5 +166,24 @@ Route::prefix('adminecole')
         Route::get('/reinscriptions', 'InscriptionController@reinscription')->name('reinscriptions');
         Route::get('/get-inscription-by-id/{id}', 'InscriptionController@getInscriptionById');
         Route::post('/reinscriptions-save', 'InscriptionController@save')->name('reinscriptions.save');
+        // Emploies du temps
+        Route::resource('/emploies', 'EmploieController');
+        Route::get('/emploies-temps/{id}', 'EmploieController@index')->name('index');
+        Route::resource('/tranches', 'TrancheController');
 });
 
+Route::prefix('profs')
+    ->namespace('Prof')
+    ->name('profs.')
+    ->group(function(){
+        Route::resource('/ecoles', 'EcoleController');
+});
+
+
+Route::prefix('parent')
+    ->namespace('Parent')
+    ->name('parents.')
+    ->group(function(){
+        Route::resource('/ecoles', 'EcoleController');
+        Route::resource('/inscriptions', 'EleveController');
+});

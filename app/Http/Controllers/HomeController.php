@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ParentEcole;
+use App\Models\Prof;
+use App\Models\ProfEcole;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +35,18 @@ class HomeController extends Controller
 
         elseif(Auth::user()->role_id==2){
             return view('Adminecole/dashboard');
+        }
+
+        elseif(Auth::user()->role_id==6){
+            $prof = Prof::where('user_id',Auth::user()->id)->first();
+            $ecoles = ProfEcole::where('prof_id',$prof->id)->get();
+            return view('Prof/dashboard')->with(compact('ecoles'));
+        }
+
+        elseif(Auth::user()->role_id==7){
+            $parent = User::where('id',Auth::user()->id)->first();
+            $ecoles = ParentEcole::where('parent_id',$parent->id)->get();
+            return view('Parent/dashboard')->with(compact('ecoles'));
         }
 
         else{

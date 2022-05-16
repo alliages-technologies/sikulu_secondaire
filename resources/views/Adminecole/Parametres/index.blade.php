@@ -6,7 +6,7 @@
 <div class="container text-center mt-4 menu">
     <h1>PARAMETRAGE</h1>
     <div class="row d-flex justify-content-center p-4">
-        <a href="{{ route('adminecole.salles.index') }}" class="col-md-3 m-2">
+        <a href="" class="col-md-3 m-2">
             <i class="fa fa-door-open"></i>
             <p>Salles</p>
         </a>
@@ -18,9 +18,9 @@
             <i class="fa fa-file-text"></i>
             <p>Niveaux</p>
         </a>
-        <a href="" class="col-md-3 m-2">
-            <i class="fa fa-file-text"></i>
-            <p>...</p>
+        <a href="{{ route('adminecole.tranches.index') }}" class="col-md-3 m-2">
+            <i class="fa fa-clock"></i>
+            <p>Tranche Horaire</p>
         </a>
         <a href="" class="col-md-3 m-2">
             <i class="fa fa-archive"></i>

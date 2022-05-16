@@ -12,6 +12,8 @@ use App\Models\Classe;
 use App\Models\Matiere;
 use App\Models\Ecole;
 use App\User;
+use Symfony\Component\CssSelector\Parser\Token;
+use TheSeer\Tokenizer\Token as TokenizerToken;
 
 class ParametreController extends Controller
 {
@@ -125,6 +127,7 @@ class ParametreController extends Controller
        $ecole->enseignement_id=request()->enseignement_id;
        $imagePath=request('image_uri')->store('images-ecoles', 'public');
        $ecole->image_uri=$imagePath;
+       $ecole->token = "TokeNecOlE".date('Ymd').date('Ymdhms');
        $ecole->save();
        // Configuration de l'admin de l'école
        $admin=new User();
