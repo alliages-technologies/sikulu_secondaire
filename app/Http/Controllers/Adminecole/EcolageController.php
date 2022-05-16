@@ -39,12 +39,21 @@ class EcolageController extends Controller
         $id=request()->inscription_id;
         $montant=request()->montant;
         $mois=request()->mois;
+
+        $ecolage = Ecolage::updateOrCreate([
+            'inscription_id' => $id,
+            'montant' => $montant,
+            'moi_id' => $mois
+        ]);
+
+        /*
         $ecolage = new Ecolage();
         $ecolage->inscription_id=$id;
         $ecolage->montant=$montant;
         $ecolage->moi_id=$mois;
         $ecolage->save();
-        return response()->json($ecolage);
+        */
+        return response()->json("PAIEMENT REUSSI");
     }
 
     public function show($id){

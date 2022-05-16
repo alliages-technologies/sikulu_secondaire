@@ -49,8 +49,8 @@ $("#selectSalle").change(function (e) {
                             $('#paiements').append(tr);
                         });
                         // Passer au paiement
-                        $('#btn-payer').show(400);
                         $('#etape1').hide(400);
+                        $('#btn-payer').show(400);
                         $('#btn-payer').click(function (e) {
                             e.preventDefault();
                             $('#etape3').show(400);
