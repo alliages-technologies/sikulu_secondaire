@@ -123,7 +123,7 @@ class ProfController extends Controller
         $profecole->ecole_id = auth()->user()->ecole_id;
         $profecole->save();
 
-        return response()->json("ok");
+        return response()->json("OK");
     }
 
     public function show($id){

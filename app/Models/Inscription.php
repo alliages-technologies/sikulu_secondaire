@@ -9,6 +9,7 @@ class Inscription extends Model
 
     protected $guarded = [];
     protected $appends = ["name"];
+
     public function eleve(){
         return $this->belongsTo('App\Models\Eleve','eleve_id');
     }
