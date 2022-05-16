@@ -165,10 +165,12 @@ Route::prefix('adminecole')
         Route::resource('/inscriptions', 'InscriptionController');
         Route::get('/tuteur-verification-numero', 'InscriptionController@verificationNumero');
 
-        /// Gestion des paiements
+        /// Gestion des Paiements
         Route::get('/finances', 'FinanceController@index')->name('finances.index');
         // Ecolages
         Route::resource('/ecolages', 'EcolageController');
         Route::get('/ecolages-salle-select', 'EcolageController@salleSelect');
+        Route::get('/ecolages-eleve-infos-show/{id}', 'EcolageController@eleveShowById');
+        Route::post('/ecolages-eleve-paiement-store', 'EcolageController@elevePaiementStore');
 });
 
