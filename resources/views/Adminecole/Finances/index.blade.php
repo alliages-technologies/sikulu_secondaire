@@ -13,9 +13,9 @@ Admin Ecole | Finances
             <i class="fa fa-"></i>
             <p>Ecolages</p>
         </a>
-        <a href="#" class="col-md-3 m-2">
+        <a href="{{route('adminecole.depenses.index')}}" class="col-md-3 m-2">
             <i class="fa fa-"></i>
-            <p>Profs</p>
+            <p>Dépenses</p>
         </a>
         <a href="/home" class="col-md-3 m-2">
             <i class="fa fa-arrow-left"></i>

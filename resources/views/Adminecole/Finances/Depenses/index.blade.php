@@ -1,0 +1,61 @@
+@extends('layouts.adminecole')
+
+
+@section('title')
+Admin Ecole | Depenses
+@endsection
+
+@section('content')
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2>
+                CONFIGURATION DES DEPENSES
+                <button style="float: right;" class="btn btn-sm btn-success" data-toggle="modal" data-target=".bd-example-modal-lg"> <i class="fa fa-plus"></i> </button>
+                <a href="{{route('adminecole.depenses.gestion')}}" style="float: right;" class="btn btn-sm btn-info mr-2">GESTION DES DEPENSES</a>
+            </h2>
+        </div>
+        <div class="card-body">
+            <table class="table table-sm table-bordered table-striped">
+                <thead>
+                    <th>CATEGORIES DE DEPENSES</th>
+                </thead>
+                <tbody>
+                    @foreach ($categories_depenses as $categorie)
+                    <tr>
+                        <td>{{$categorie->name}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            {{$categories_depenses->links()}}
+        </div>
+    </div>
+</div>
+
+<!-- Depenses modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <form action="{{route('adminecole.depenses.store')}}" method="post">
+            @csrf
+            <div class="card-header">
+                <h4>CONFIGURATION DE LA CATEGORIE</h4>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="">Nom de la catégorie</label>
+                    <input type="text" name="name" id="" class="form-control">
+                    <input type="hidden" name="ecole_id" id="" class="form-control">
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-sm btn-success">ENREGISTRER</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+@endsection
