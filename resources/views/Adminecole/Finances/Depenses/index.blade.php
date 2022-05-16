@@ -7,7 +7,7 @@ Admin Ecole | Depenses
 
 @section('content')
 
-<div class="container mt-4">
+<div class="container mt-4 col-md-8">
     <div class="card">
         <div class="card-header">
             <h2>
@@ -34,11 +34,11 @@ Admin Ecole | Depenses
     </div>
 </div>
 
-<!-- Depenses modal -->
+<!-- Modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <form action="{{route('adminecole.depenses.store')}}" method="post">
+        <form action="{{route('adminecole.depenses.categorie.store')}}" method="post">
             @csrf
             <div class="card-header">
                 <h4>CONFIGURATION DE LA CATEGORIE</h4>
@@ -46,7 +46,7 @@ Admin Ecole | Depenses
             <div class="card-body">
                 <div class="form-group">
                     <label for="">Nom de la catégorie</label>
-                    <input type="text" name="name" id="" class="form-control">
+                    <input type="text" name="name" id="" class="form-control" required>
                     <input type="hidden" name="ecole_id" id="" class="form-control">
                 </div>
             </div>

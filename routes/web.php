@@ -180,8 +180,13 @@ Route::prefix('adminecole')
         Route::post('/ecolages-eleve-paiement-store', 'EcolageController@elevePaiementStore');
         // Dépenses
         Route::get('/depenses-categories', 'FinanceController@depensesCategories')->name('depenses.index');
-        Route::post('/depenses-store', 'FinanceController@depenseCategorieStore')->name('depenses.store');
+        Route::post('/depenses-categorie-store', 'FinanceController@depenseCategorieStore')->name('depenses.categorie.store');
         Route::get('/depenses-gestion', 'FinanceController@depensesGestion')->name('depenses.gestion');
+        Route::post('/depenses-store', 'FinanceController@depenseStore')->name('depenses.store');
+        Route::get('/depenses-show/{token}', 'FinanceController@depenseShow')->name('depenses.show');
+        /*
+            Fin de la gestion des Finances
+        */
 
 });
 

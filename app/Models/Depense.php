@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Depense extends Model
 {
-    //
     protected $guarded = [];
+
+    public function categorie(){
+        return $this->belongsTo('App\Models\CategorieDepense', 'categorie_id');
+    }
 
 }
