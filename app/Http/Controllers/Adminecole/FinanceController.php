@@ -55,7 +55,7 @@ class FinanceController extends Controller
         $depense->mois = date('n');
         $depense->annee = date('Y');
         $depense->active = 1;
-        $depense->token = Arr::random(date('Ymdhis'));
+        $depense->token = "%".(date('Ymdhis'))."%";
         dd($depense);
         $depense->save();
         return redirect()->back();
