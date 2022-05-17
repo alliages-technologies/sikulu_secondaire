@@ -170,7 +170,7 @@ Route::prefix('adminecole')
         Route::post('/reinscriptions-save', 'InscriptionController@save')->name('reinscriptions.save');
 
         /*
-            Gestion des Finances
+         Gestion des Finances
         */
         Route::get('/finances', 'FinanceController@index')->name('finances.index');
         // Ecolages
@@ -178,6 +178,8 @@ Route::prefix('adminecole')
         Route::get('/ecolages-salle-select', 'EcolageController@salleSelect');
         Route::get('/ecolages-eleve-infos-show/{id}', 'EcolageController@eleveShowById');
         Route::post('/ecolages-eleve-paiement-store', 'EcolageController@elevePaiementStore');
+        Route::get('/ecolages-historique-paiements', 'EcolageController@historiquePaiements')->name('historique.paiements');
+        Route::get('/ecolages-historique-salle', 'EcolageController@historiqueSalle');
         // Dépenses
         Route::get('/depenses-categories', 'FinanceController@depensesCategories')->name('depenses.index');
         Route::post('/depenses-categorie-store', 'FinanceController@depenseCategorieStore')->name('depenses.categorie.store');
@@ -185,7 +187,7 @@ Route::prefix('adminecole')
         Route::post('/depenses-store', 'FinanceController@depenseStore')->name('depenses.store');
         Route::get('/depenses-show/{token}', 'FinanceController@depenseShow')->name('depenses.show');
         /*
-            Fin de la gestion des Finances
+        Fin de la gestion des Finances
         */
 
 });

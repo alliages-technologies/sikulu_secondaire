@@ -72,7 +72,6 @@ Admin Ecole | Paiement Ecolage
             </div>
             <div class="card-body d-flex justify-content-center">
                 <div class="form-row">
-                    <!--input type="hidden" name="inscription_id"-->
                     <div class="col">
                         <input type="number" name="montant" id="montant" placeholder="Montant" class="form-control">
                     </div>

@@ -12,4 +12,8 @@ class Depense extends Model
         return $this->belongsTo('App\Models\CategorieDepense', 'categorie_id');
     }
 
+    public function month(){
+        return $this->belongsTo('App\Models\Moi', 'mois');
+    }
+
 }

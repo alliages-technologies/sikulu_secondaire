@@ -25,7 +25,7 @@ class ProfController extends Controller
     }
 
     /*
-        Etapes de vérifications
+    Etapes de vérifications
     */
 
     public function verificationNumero(){
@@ -74,8 +74,7 @@ class ProfController extends Controller
                 'ecole_id' => auth()->user()->ecole_id
             ]);
         }
-
-
+        
         return response()->json("OK");
 
         /*
@@ -88,7 +87,9 @@ class ProfController extends Controller
         */
     }
 
-    // Fin des vérifications
+    /*
+    Fin des vérifications
+    */
 
     public function store(){
         $nom = request()->nom;

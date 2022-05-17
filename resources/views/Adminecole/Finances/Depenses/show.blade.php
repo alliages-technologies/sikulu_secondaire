@@ -14,12 +14,13 @@ Admin Ecole | Détais sur la Dépense
         </div>
         <div class="card-body">
             <h4>INFORMATION SUR LA DEPENSE</h4>
+            <hr>
             <p>
                 Catégorie: <strong>{{$depense->categorie->name}}</strong> <br>
-                Montant: <strong>{{$depense->montant}}</strong> <br>
+                Montant: <strong>{{$depense->montant}} XAF</strong> <br>
                 Description: <strong>{{$depense->description}}</strong> <br>
                 Semaine: <strong>{{$depense->semaine}}</strong> <br>
-                Mois: <strong>{{$depense->mois}}</strong> <br>
+                Mois: <strong>{{$depense->month->name}}</strong> <br>
                 Année: <strong>{{$depense->annee}}</strong>
             </p>
         </div>

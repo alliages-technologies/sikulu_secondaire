@@ -20,20 +20,21 @@ Admin Ecole | Gestion des dépenses
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>CATEGORIE</th>
                         <th>MONTANT</th>
+                        <th>CATEGORIE</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($depenses as $depense)
                     <tr>
                         <td><a href="{{route('adminecole.depenses.show', $depense->token)}}">{{$depense->name}}</a></td>
-                        <td>{{$depense->categorie_id? $depense->categorie->name:"-"}}</td>
                         <td>{{$depense->montant}} XAF</td>
+                        <td>{{$depense->categorie_id? $depense->categorie->name:"-"}}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+            {{$depenses->links()}}
         </div>
     </div>
 </div>

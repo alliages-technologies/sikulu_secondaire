@@ -16,7 +16,7 @@ class FinanceController extends Controller
     }
 
     /*
-        Gestion des dépenses
+    Gestion des dépenses
     */
 
     public function depensesCategories(){
@@ -37,7 +37,7 @@ class FinanceController extends Controller
     public function depensesGestion(){
         $auth=auth()->user()->ecole_id;
         $categories = CategorieDepense::where('ecole_id', $auth)->get();
-        $depenses = Depense::where('ecole_id', $auth)->get();
+        $depenses = Depense::where('ecole_id', $auth)->paginate(15);
         return view('Adminecole.Finances.Depenses.gestion')->with(compact('categories', 'depenses'));
     }
 
@@ -55,8 +55,8 @@ class FinanceController extends Controller
         $depense->mois = date('n');
         $depense->annee = date('Y');
         $depense->active = 1;
-        $depense->token = "%".(date('Ymdhis'))."%";
-        dd($depense);
+        $depense->token = "A".(date('ymdhis'))."x";
+        //dd($depense);
         $depense->save();
         return redirect()->back();
     }
@@ -68,6 +68,6 @@ class FinanceController extends Controller
     }
 
     /*
-        Fin de la gestion des dépenses
+    Fin de la gestion des dépenses
     */
 }

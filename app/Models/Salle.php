@@ -13,6 +13,10 @@ class Salle extends Model
         return $this->belongsTo('App\Models\Ecole','ecole_id');
     }
 
+    public function inscriptions(){
+        return $this->hasMany('App\Models\Inscription','salle_id');
+    }
+
     public function classe(){
         return $this->belongsTo('App\Models\Classe','classe_id');
     }
@@ -20,5 +24,5 @@ class Salle extends Model
     public function programmeecoles(){
         return $this->hasMany('App\Models\ProgrammeEcole','salle_id');
     }
-    
+
 }

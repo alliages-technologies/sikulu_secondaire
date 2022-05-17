@@ -19,9 +19,8 @@ class EcolageController extends Controller
     public function create(){
         $auth=auth()->user()->ecole_id;
         $salles=Salle::where('ecole_id', $auth)->get();
-        $inscriptions=Inscription::all();
         $mois=Moi::all();
-        return view('Adminecole.Finances.Ecolages.create')->with(compact('salles', 'inscriptions', 'mois'));
+        return view('Adminecole.Finances.Ecolages.create')->with(compact('salles', 'mois'));
     }
 
     public function salleSelect(){
@@ -40,20 +39,25 @@ class EcolageController extends Controller
         $montant=request()->montant;
         $mois=request()->mois;
 
-        $ecolage = Ecolage::updateOrCreate([
-            'inscription_id' => $id,
-            'montant' => $montant,
-            'moi_id' => $mois
-        ]);
-
-        /*
         $ecolage = new Ecolage();
         $ecolage->inscription_id=$id;
         $ecolage->montant=$montant;
         $ecolage->moi_id=$mois;
         $ecolage->save();
-        */
         return response()->json("PAIEMENT REUSSI");
+    }
+
+    public function historiquePaiements(){
+        $auth=auth()->user()->ecole_id;
+        $salles=Salle::where('ecole_id', $auth)->get();
+        $ecolages=Ecolage::all();
+        return view('Adminecole.Finances.Ecolages.historique')->with(compact('salles', 'ecolages'));
+    }
+
+    public function historiqueSalle(){
+        $salle=request()->salle;
+        $inscriptions=Inscription::where('salle_id', $salle)->get();
+        return response()->json($inscriptions);
     }
 
     public function show($id){
