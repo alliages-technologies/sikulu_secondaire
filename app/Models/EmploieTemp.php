@@ -13,4 +13,8 @@ class EmploieTemp extends Model
     public function tranche(){
         return $this->belongsTo('App\Models\TrancheHoraire','tranche_id');
     }
+
+    public function lets(){
+        return $this->hasMany('App\Models\LigneEmploiTemp','emploi_id');
+    }
 }

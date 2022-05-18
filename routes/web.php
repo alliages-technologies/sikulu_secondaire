@@ -151,7 +151,15 @@ Route::prefix('adminecole')
         Route::get('/get-profs','ProgrammeecoleController@getProfs');
         Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
         Route::get('/save-prof','ProgrammeecoleController@saveProf');
+<<<<<<< HEAD
+        Route::get('/menu/{id}','ProgrammeecoleController@menu')->name('menu');
+
+        // Gestion salles
+        Route::resource('/salles', 'SalleController');
+        // Profs
+=======
         // Gestion des Profs
+>>>>>>> 7c05fe402edf0f97216b33220bb1fdc414691400
         Route::resource('/profs', 'ProfController');
         Route::get('/profs-verification-numero', 'ProfController@verificationNumero');
         Route::post('/profs-terminer-un', 'ProfController@terminerUn');
@@ -168,6 +176,19 @@ Route::prefix('adminecole')
         Route::get('/reinscriptions', 'InscriptionController@reinscription')->name('reinscriptions');
         Route::get('/get-inscription-by-id/{id}', 'InscriptionController@getInscriptionById');
         Route::post('/reinscriptions-save', 'InscriptionController@save')->name('reinscriptions.save');
+<<<<<<< HEAD
+        // Emploies du temps
+        Route::resource('/emploies', 'EmploieController');
+        Route::get('/emploies-temps/{id}', 'EmploieController@index')->name('index');
+        Route::resource('/tranches', 'TrancheController');
+});
+
+Route::prefix('profs')
+    ->namespace('Prof')
+    ->name('profs.')
+    ->group(function(){
+        Route::resource('/ecoles', 'EcoleController');
+=======
 
         /*
          Gestion des Finances
@@ -189,5 +210,14 @@ Route::prefix('adminecole')
         Fin de la gestion des Finances
         */
 
+>>>>>>> 7c05fe402edf0f97216b33220bb1fdc414691400
 });
 
+
+Route::prefix('parent')
+    ->namespace('Parent')
+    ->name('parents.')
+    ->group(function(){
+        Route::resource('/ecoles', 'EcoleController');
+        Route::resource('/inscriptions', 'EleveController');
+});

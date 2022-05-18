@@ -8,7 +8,7 @@ class ProgrammeEcoleLigne extends Model
 {
     protected $guarded = [];
     protected $table = 'programmes_ecoles_lignes';
-    protected $appends = ['matieren'];
+    protected $appends = ['matieren','prof'];
 
     public function programme_ecole(){
         return $this->belongsTo('App\Models\ProgrammeEcole','programme_national_id');
@@ -24,5 +24,9 @@ class ProgrammeEcoleLigne extends Model
 
     public function getMatierenAttribute(){
         return $this->matiere->name;
+    }
+
+    public function getProfAttribute(){
+        return $this->enseignant->name;
     }
 }

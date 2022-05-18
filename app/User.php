@@ -46,4 +46,7 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Ecole','ecole_id');
     }
 
+    public function eleves(){
+        return $this->hasMany('App\Models\Eleve','tel_tuteur');
+    }
 }
