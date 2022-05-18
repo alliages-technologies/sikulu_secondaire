@@ -12,8 +12,9 @@ Admin Ecole | Depenses
         <div class="card-header">
             <h2>
                 CONFIGURATION DES DEPENSES
+                <a href="{{route('adminecole.finances.index')}}" style="float: right;" class="btn btn-sm btn-info ml-2"><i class="fa fa-arrow-left"></i> RETOUR</a>
+                <a href="{{route('adminecole.depenses.gestion')}}" style="float: right;" class="btn btn-sm btn-info ml-2">GESTION DES DEPENSES</a>
                 <button style="float: right;" class="btn btn-sm btn-success" data-toggle="modal" data-target=".bd-example-modal-lg"> <i class="fa fa-plus"></i> </button>
-                <a href="{{route('adminecole.depenses.gestion')}}" style="float: right;" class="btn btn-sm btn-info mr-2">GESTION DES DEPENSES</a>
             </h2>
         </div>
         <div class="card-body">

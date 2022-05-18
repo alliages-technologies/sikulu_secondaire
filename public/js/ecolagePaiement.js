@@ -74,7 +74,7 @@ $("#selectSalle").change(function (e) {
                         dataType: "json",
                         success: function (response) {
                             window.location.replace("/adminecole/ecolages");
-                            alert("PAIEMENT REUSSI AVEC SUCCES");
+                            alert("PAIEMENT EFFECTUE AVEC SUCCES");
                         }
                     });
                 });

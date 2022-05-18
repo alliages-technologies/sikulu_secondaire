@@ -10,7 +10,10 @@ Admin Ecole | Historique des paiements
 <div class="container mt-4 col-md-8">
     <div class="card">
         <div class="card-header">
-            <h2>HISTORIQUE DES PAIEMENTS</h2>
+            <h2>
+                HISTORIQUE DES PAIEMENTS
+                <a href="{{route('adminecole.ecolages.index')}}" style="float: right;" class="btn btn-sm btn-info"><i class="fa fa-arrow-left"></i> RETOUR</a>
+            </h2>
         </div>
         <div class="card-body">
             <table id="" class="table table-sm table-bordered table-striped">
