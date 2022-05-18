@@ -22,7 +22,7 @@ $(".verifier1").click(function (e) {
             var email = response.email;
             if (phone == telephone) {
                 $(".p1").html("");
-                var p = '<span style="color: black"> nom : '+nom+'<br> telephone : '+telephone+' <br> email : '+email+' </span>';
+                var p = '<span style="color: black"> <p><strong>Il y a déjà un utilisateur avec ce numéro de téléphone dans la base de données, merci de bien vouloir saisir un autre numéro</strong></p>  NOM: '+nom+'<br> TELEPHONE: <strong>'+telephone+'</strong><br> EMAIL: '+email+' </span>';
                 $(".p1").append(p);
                 // Terminer 1
                 $(".terminer1").show(1000);
@@ -55,7 +55,7 @@ $(".verifier1").click(function (e) {
                     var prenom = $(".prenom").val();
                     var adresse = $(".adresse").val();
                     var diplome = $(".diplome_id").val();
-                    
+
                     $.ajax({
                         type: "get",
                         url: "/adminecole/profs-verification-info",

@@ -49,15 +49,8 @@ class EcolageController extends Controller
 
     public function historiquePaiements(){
         $auth=auth()->user()->ecole_id;
-        $salles=Salle::where('ecole_id', $auth)->get();
-        $ecolages=Ecolage::all();
-        return view('Adminecole.Finances.Ecolages.historique')->with(compact('salles', 'ecolages'));
-    }
-
-    public function historiqueSalle(){
-        $salle=request()->salle;
-        $inscriptions=Inscription::where('salle_id', $salle)->get();
-        return response()->json($inscriptions);
+        $salles=Salle::where('ecole_id', $auth)->orderBy('created_at', 'asc')->paginate(15);
+        return view('Adminecole.Finances.Ecolages.historique')->with(compact('salles'));
     }
 
     public function show($id){

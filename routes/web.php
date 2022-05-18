@@ -179,7 +179,6 @@ Route::prefix('adminecole')
         Route::get('/ecolages-eleve-infos-show/{id}', 'EcolageController@eleveShowById');
         Route::post('/ecolages-eleve-paiement-store', 'EcolageController@elevePaiementStore');
         Route::get('/ecolages-historique-paiements', 'EcolageController@historiquePaiements')->name('historique.paiements');
-        Route::get('/ecolages-historique-salle', 'EcolageController@historiqueSalle');
         // Dépenses
         Route::get('/depenses-categories', 'FinanceController@depensesCategories')->name('depenses.index');
         Route::post('/depenses-categorie-store', 'FinanceController@depenseCategorieStore')->name('depenses.categorie.store');

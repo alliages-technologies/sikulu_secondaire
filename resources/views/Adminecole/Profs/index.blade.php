@@ -11,13 +11,15 @@ Admin Ecole | Gestion des professeurs
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h4>GESTION DES PROFESSEURS</h4>
-            <a href="{{route('adminecole.profs.create')}}" class="btn btn-sm btn-success col-1">
-                <i class="fa fa-plus"></i>
-            </a>
+            <h2>
+                GESTION DES PROFESSEURS
+                <a href="{{route('adminecole.profs.create')}}" style="float: right" class="btn btn-sm btn-success ml-2"><i class="fa fa-plus"></i></a>
+                <a href="/home" style="float: right" class="btn btn-sm btn-info"><i class="fa fa-arrow-left"></i> RETOUR</a>
+            </h2>
+
         </div>
         <div class="card-body">
-            <table class="table table-sm table-bordered">
+            <table class="table table-sm table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>NOM</th>
@@ -29,7 +31,7 @@ Admin Ecole | Gestion des professeurs
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($profs as $prof)
+                    @foreach ($profEcole as $prof)
                     <tr>
                         <td>{{$prof->prof->nom}}</td>
                         <td>{{$prof->prof->prenom}}</td>
@@ -42,6 +44,7 @@ Admin Ecole | Gestion des professeurs
                     @endforeach
                 </tbody>
             </table>
+            {{$profEcole->links()}}
         </div>
     </div>
 </div>

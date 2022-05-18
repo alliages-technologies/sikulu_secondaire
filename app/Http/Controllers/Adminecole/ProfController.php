@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Hash;
 class ProfController extends Controller
 {
     public function index(){
-        $profs=ProfEcole::where('ecole_id',auth()->user()->ecole_id)->get();
-        return view('Adminecole.Profs.index')->with(compact('profs'));
+        $profEcole=ProfEcole::where('ecole_id',auth()->user()->ecole_id)->orderBy('created_at', 'asc')->paginate(15);
+        return view('Adminecole.Profs.index')->with(compact('profEcole'));
     }
 
     public function create(){
@@ -74,7 +74,7 @@ class ProfController extends Controller
                 'ecole_id' => auth()->user()->ecole_id
             ]);
         }
-        
+
         return response()->json("OK");
 
         /*

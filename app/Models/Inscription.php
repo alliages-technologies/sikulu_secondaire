@@ -34,4 +34,8 @@ class Inscription extends Model
         return $this->eleve->nom.' '.$this->eleve->prenom;
     }
 
+    public function ecolages(){
+        return $this->hasMany('App\Models\Ecolage');
+    }
+
 }

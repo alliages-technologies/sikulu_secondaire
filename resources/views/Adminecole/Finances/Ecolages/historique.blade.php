@@ -7,43 +7,37 @@ Admin Ecole | Historique des paiements
 
 @section('content')
 
-<div class="container mt-4 col-md-6">
+<div class="container mt-4 col-md-8">
     <div class="card">
         <div class="card-header">
             <h2>HISTORIQUE DES PAIEMENTS</h2>
         </div>
         <div class="card-body">
-            <!--div class="form-row">
-                <div class="col-10">
-                    <select name="salle" id="salle" class="form-control">
-                        <option value="">SELECTIONNEZ LA SALLE</option>
-                        @foreach ($salles as $salle)
-                        <option value="{{$salle->id}}">{{$salle->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-2">
-                    <button id="afficher" class="btn btn-success">AFFICHER</button>
-                </div>
-            </div-->
-            <hr>
             <table id="" class="table table-sm table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>ELEVES</th>
+                        <th>MONTANT</th>
+                        <th>MOIS</th>
+                        <th>ELEVE</th>
+                        <th>DATE</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($salles as $salle)
                         @foreach ($salle->inscriptions as $inscription)
+                        @foreach ($inscription->ecolages as $ecolage)
                         <tr>
-                            <td>{{$inscription->eleve->name}}</td>
-
+                            <td>{{$ecolage->montant}}</td>
+                            <td>{{$ecolage->month}}</td>
+                            <td>{{$ecolage->inscription->eleve->name}}</td>
+                            <td>{{$ecolage->created_at->format('d/m/Y')}}</td>
                         </tr>
+                        @endforeach
                         @endforeach
                     @endforeach
                 </tbody>
             </table>
+            {{$salles->links()}}
         </div>
     </div>
 </div>
