@@ -5,15 +5,17 @@ namespace App\Http\Controllers\Adminecole;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CategorieDepense;
+use App\Models\CategorieEntree;
 use App\Models\Depense;
+use App\Models\Entree;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Arr;
 
 class FinanceController extends Controller
 {
     public function index(){
         return  view('Adminecole.Finances.index');
     }
+
 
     /*
     Gestion des dépenses
@@ -37,7 +39,7 @@ class FinanceController extends Controller
     public function depensesGestion(){
         $auth=auth()->user()->ecole_id;
         $categories = CategorieDepense::where('ecole_id', $auth)->get();
-        $depenses = Depense::where('ecole_id', $auth)->paginate(15);
+        $depenses = Depense::where('ecole_id', $auth)->orderBy('created_at', 'desc')->paginate(15);
         return view('Adminecole.Finances.Depenses.gestion')->with(compact('categories', 'depenses'));
     }
 
@@ -56,18 +58,62 @@ class FinanceController extends Controller
         $depense->annee = date('Y');
         $depense->active = 1;
         $depense->token = "A".(date('ymdhis'))."x";
-        //dd($depense);
         $depense->save();
         return redirect()->back();
     }
 
     public function depenseShow($token){
         $depense=Depense::where('token', $token)->first();
-        //dd($depense);
         return view('Adminecole.Finances.Depenses.show')->with(compact('depense'));
     }
 
+
     /*
-    Fin de la gestion des dépenses
+    Gestion des entrées
     */
+
+    public function entrees(){
+        $categories_entrees=CategorieEntree::all();
+        return view('Adminecole.Finances.Entrees.index')->with(compact('categories_entrees'));
+    }
+
+    public function entreeCategorieStore(){
+        $auth=auth()->user()->ecole_id;
+        $catEntree = new CategorieEntree();
+        $catEntree->name=request()->name;
+        $catEntree->ecole_id=$auth;
+        $catEntree->save();
+        return redirect()->back();
+    }
+
+    public function entreesGestion(){
+        $auth=auth()->user()->ecole_id;
+        $categories = CategorieEntree::where('ecole_id', $auth)->get();
+        $entrees = Entree::where('ecole_id', $auth)->orderBy('created_at', 'desc')->paginate(15);
+        return view('Adminecole.Finances.Entrees.gestion')->with(compact('categories', 'entrees'));
+    }
+
+    public function entreeStore(){
+        $auth_id=auth()->user()->id;
+        $auth=auth()->user()->ecole_id;
+        $entree = new Entree();
+        $entree->name = request()->name;
+        $entree->categorie_id = request()->categorie_id;
+        $entree->montant = request()->montant;
+        $entree->description = request()->description;
+        $entree->ecole_id = $auth;
+        $entree->user_id = $auth_id;
+        $entree->semaine = date('W');
+        $entree->mois = date('n');
+        $entree->annee = date('Y');
+        $entree->active = 1;
+        $entree->token = "A".(date('ymdhis'))."x";
+        $entree->save();
+        return redirect()->back();
+    }
+
+    public function entreeShow($token){
+        $entree=Entree::where('token', $token)->first();
+        return view('Adminecole.Finances.Entrees.show')->with(compact('entree'));
+    }
 }

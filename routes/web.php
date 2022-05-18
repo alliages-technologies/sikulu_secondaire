@@ -151,6 +151,11 @@ Route::prefix('adminecole')
         Route::get('/get-profs','ProgrammeecoleController@getProfs');
         Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
         Route::get('/save-prof','ProgrammeecoleController@saveProf');
+        Route::get('/menu/{id}','ProgrammeecoleController@menu')->name('menu');
+
+        // Gestion salles
+        Route::resource('/salles', 'SalleController');
+        // Profs
         // Gestion des Profs
         Route::resource('/profs', 'ProfController');
         Route::get('/profs-verification-numero', 'ProfController@verificationNumero');
@@ -168,6 +173,10 @@ Route::prefix('adminecole')
         Route::get('/reinscriptions', 'InscriptionController@reinscription')->name('reinscriptions');
         Route::get('/get-inscription-by-id/{id}', 'InscriptionController@getInscriptionById');
         Route::post('/reinscriptions-save', 'InscriptionController@save')->name('reinscriptions.save');
+        // Emploies du temps
+        Route::resource('/emploies', 'EmploieController');
+        Route::get('/emploies-temps/{id}', 'EmploieController@index')->name('index');
+        Route::resource('/tranches', 'TrancheController');
 
         /*
          Gestion des Finances
@@ -185,9 +194,23 @@ Route::prefix('adminecole')
         Route::get('/depenses-gestion', 'FinanceController@depensesGestion')->name('depenses.gestion');
         Route::post('/depenses-store', 'FinanceController@depenseStore')->name('depenses.store');
         Route::get('/depenses-show/{token}', 'FinanceController@depenseShow')->name('depenses.show');
+        // Autres Entrées
+        Route::get('/entrees', 'FinanceController@entrees')->name('entrees.index');
+        Route::post('/entrees-categorie-store', 'FinanceController@entreeCategorieStore')->name('entrees.categorie.store');
+        Route::get('/entrees-gestion', 'FinanceController@entreesGestion')->name('entrees.gestion');
+        Route::post('/entrees-store', 'FinanceController@entreeStore')->name('entrees.store');
+        Route::get('/entrees-show/{token}', 'FinanceController@entreeShow')->name('entrees.show');
         /*
         Fin de la gestion des Finances
         */
+});
+
+
+Route::prefix('profs')
+    ->namespace('Prof')
+    ->name('profs.')
+    ->group(function(){
+        Route::resource('/ecoles', 'EcoleController');
 });
 
 
