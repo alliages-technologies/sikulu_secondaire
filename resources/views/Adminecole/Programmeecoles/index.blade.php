@@ -1,11 +1,18 @@
 @extends('layouts.adminecole')
+
+
+@section('title')
+Admin Ecole | Programmes Scolaire
+@endsection
+
 @section('content')
-<div class="card mt-5 menu">
-    <div class="card-header">
-        <h4 class="text-left mb-1"> Programme /> Salles </h4>
-    </div>
-    <div class="card-body ">
-        <div class="container-fluid">
+
+<div class="container mt-5">
+    <div class="card menu">
+        <div class="card-header">
+            <h2>GESTION DES PROGRAMMES</h2>
+        </div>
+        <div class="card-body ">
             <div class="container text-center">
                 <div class="row d-flex justify-content-center p-1">
                     @foreach ($salles as $salle)
@@ -21,5 +28,4 @@
     </div>
 </div>
 
-</div>
 @endsection
