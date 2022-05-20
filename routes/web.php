@@ -155,7 +155,6 @@ Route::prefix('adminecole')
 
         // Gestion salles
         Route::resource('/salles', 'SalleController');
-        // Profs
         // Gestion des Profs
         Route::resource('/profs', 'ProfController');
         Route::get('/profs-verification-numero', 'ProfController@verificationNumero');

@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfController extends Controller
 {
+    
     public function index(){
-        $profEcole=ProfEcole::where('ecole_id',auth()->user()->ecole_id)->orderBy('created_at', 'asc')->paginate(15);
-        return view('Adminecole.Profs.index')->with(compact('profEcole'));
+        $prof_ecole=ProfEcole::where('ecole_id',auth()->user()->ecole_id)->orderBy('created_at', 'asc')->paginate(15);
+        return view('Adminecole.Profs.index')->with(compact('prof_ecole'));
     }
 
     public function create(){
@@ -61,30 +62,17 @@ class ProfController extends Controller
     }
 
     public function terminerDeux(){
-        $prof = Prof::where('user_id', request()->prof_id)->first();
-        if ($prof !== null){
-            $prof->update([
-                'nom' => request()->nom,
-                'prenom' => request()->prenom,
-                'adresse' => request()->adresse,
-                'diplome_id' => request()->diplome
-            ]);
-            $profecole = ProfEcole::updateOrCreate([
-                'prof_id' => $prof->id,
-                'ecole_id' => auth()->user()->ecole_id
-            ]);
-        }
+        $prof = Prof::where('id', request()->prof_id)->first();
+        $prof->adresse=request()->adresse;
+        $prof->diplome_id=request()->diplome;
+        $prof->update();
+
+        $profecole = ProfEcole::updateOrCreate([
+            'prof_id' => $prof->id,
+            'ecole_id' => auth()->user()->ecole_id
+        ]);
 
         return response()->json("OK");
-
-        /*
-        $prof = Prof::updateOrCreate([
-            'nom' => request()->nom,
-            'prenom' => request()->prenom,
-            'adresse' => request()->adresse,
-            'diplome_id' => request()->diplome
-        ]);
-        */
     }
 
     /*
@@ -131,4 +119,5 @@ class ProfController extends Controller
         $prof=Prof::find($id);
         return view('Adminecole.Profs.show')->with(compact('prof'));
     }
+
 }

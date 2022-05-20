@@ -3,11 +3,11 @@ $(".etape2").hide();
 $(".etape3").hide();
 $(".suivant1").hide();
 $(".terminer1").hide();
+$("#resultats-prof").hide();
 // Verification 1
 $(".verifier1").click(function (e) {
     e.preventDefault();
     var phone = $(".phone").val();
-
     $.ajax({
         type: "get",
         url: "/adminecole/profs-verification-numero",
@@ -15,17 +15,17 @@ $(".verifier1").click(function (e) {
             phone:phone
         },
         dataType: "json",
-        success: function (response) {
-            var prof_id = response.id;
-            var nom = response.name;
-            var telephone = response.phone;
-            var email = response.email;
+        success: function (user) {
+            var prof_id = user.id;
+            var nom = user.name;
+            var telephone = user.phone;
+            var email = user.email;
             if (phone == telephone) {
                 $(".p1").html("");
-                var p = '<span style="color: black"> <p><strong>Il y a déjà un utilisateur avec ce numéro de téléphone dans la base de données, merci de bien vouloir saisir un autre numéro</strong></p>  NOM: '+nom+'<br> TELEPHONE: <strong>'+telephone+'</strong><br> EMAIL: '+email+' </span>';
+                var p = '<span style="color: black"> <p><strong>Il y a déjà un utilisateur avec ce numéro de téléphone dans la base de données, merci de bien vouloir saisir un autre numéro ou de cliquer sur "TERMINER" si vous souhaitez le rajouter dans la liste des profs de votre établissement.</strong></p> <hr>  NOM: '+nom+'<br> TELEPHONE: <strong>'+telephone+'</strong><br> EMAIL: '+email+' </span>';
                 $(".p1").append(p);
                 // Terminer 1
-                $(".terminer1").show(1000);
+                $(".terminer1").show(400);
                 $(".terminer1").click(function (e) {
                     e.preventDefault();
                     $.ajax({
@@ -37,15 +37,15 @@ $(".verifier1").click(function (e) {
                         },
                         dataType: "json",
                         success: function (response) {
-                            alert("PROF AJOUTE AVEC SUCCES");
+                            alert("VOUS VENEZ D'AJOUTER CE PROF DANS VOTRE ETABLISSEMENT AVEC SUCCES");
                             window.location.replace("/adminecole/profs");
                         }
                     });
                 });
             }else{
-                $(".suivant1").show(1000);
-                $(".etape1").hide(1000);
-                $(".etape2").show(1000);
+                $(".suivant1").show(400);
+                $(".etape1").hide(400);
+                $(".etape2").show(400);
                 $(".suivant2").hide();
                 $(".terminer2").hide();
                 // Verification 2
@@ -55,7 +55,6 @@ $(".verifier1").click(function (e) {
                     var prenom = $(".prenom").val();
                     var adresse = $(".adresse").val();
                     var diplome = $(".diplome_id").val();
-
                     $.ajax({
                         type: "get",
                         url: "/adminecole/profs-verification-info",
@@ -66,17 +65,22 @@ $(".verifier1").click(function (e) {
                             diplome_id: diplome,
                         },
                         dataType: "json",
-                        success: function (response) {
-                            var prof_id = response.id;
-                            var nom = response.nom;
-                            var prenom = response.prenom;
-                            var adresse = response.adresse;
-                            var diplome = response.dip;
+                        success: function (prof) {
+                            var prof_id = prof.id;
+                            var nom = prof.nom;
+                            var prenom = prof.prenom;
+                            var adresse = prof.adresse;
+                            var diplome = prof.dip;
                             if (prof_id) {
                                 $(".p2").html("");
-                                var p = '<span style="color: black">nom : '+nom+' <br> prenom : '+prenom+' <br> diplome : '+diplome+' <br> adresse : '+adresse+' </span>';
+                                var p = '<span style="color: black"> <small>Cliquer sur "TERMINER" pour rajouter le prof dans votre établissement et sur "SUIVANT" s\'il ne s\'agit pas de la même personne</small> <hr> NOM: <strong>'+nom+'</strong><br> PRENOM: <strong>'+prenom+'</strong><br> ADRESSE: <strong>'+adresse+'</strong><br> DERNIER DIPLOME: <strong>'+diplome+'</strong><br> NE LE: <strong>date de naissance</strong><br> A: <strong>lieu de naissance</strong><br> NATIONALITE: <strong>Congolaise</strong><br> </span>';
                                 $(".p2").append(p);
-                                $(".terminer2").show(1000);
+                                $(".terminer2").show(400);
+                                $(".suivant2").show(400);
+                                $(".suivant2").click(function (e) {
+                                    $(".etape2").hide(400);
+                                    $(".etape3").show(400);
+                                })
                                 // Terminer 2
                                 $(".terminer2").click(function (e) {
                                     e.preventDefault();
@@ -85,26 +89,27 @@ $(".verifier1").click(function (e) {
                                         url: "/adminecole/profs-terminer-deux",
                                         data: {
                                             prof_id: prof_id,
-                                            nom: $(".nom").val(),
-                                            prenom: $(".prenom").val(),
+                                            //nom: $(".nom").val(),
+                                            //prenom: $(".prenom").val(),
                                             adresse: $(".adresse").val(),
                                             diplome: $(".diplome_id").val(),
-                                            phone: $(".phone").val(),
+                                            //phone: $(".phone").val(),
                                             "_token": $('input[name="_token"]').val()
                                         },
                                         dataType: "json",
                                         success: function (response) {
-                                            alert("Succes !!!");
-                                            window.location.reload();
+                                            //console.log(response);
+                                            alert("VOUS VENEZ D'AJOUTER CE PROF DANS VOTRE ETABLISSEMENT AVEC SUCCES");
+                                            window.location.replace("/adminecole/profs");
                                         }
                                     });
                                 });
                             }else{
-                                $(".suivant2").show(1000);
+                                $(".suivant2").show(400);
                                 $(".suivant2").click(function (e) {
                                     e.preventDefault();
-                                    $(".etape2").hide(1000);
-                                    $(".etape3").show(1000);
+                                    $(".etape2").hide(400);
+                                    $(".etape3").show(400);
                                     $(".terminer3").click(function (e) {
                                         e.preventDefault();
                                         $.ajax({
@@ -122,7 +127,7 @@ $(".verifier1").click(function (e) {
                                             },
                                             dataType: "json",
                                             success: function (response) {
-                                                alert("CONFIGURATION REUSSIE AVEC SUCCES");
+                                                alert("PROF AJOUTE AVEC SUCCES");
                                                 window.location.replace("/adminecole/profs");
                                             }
                                         });

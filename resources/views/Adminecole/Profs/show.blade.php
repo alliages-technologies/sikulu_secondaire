@@ -10,7 +10,10 @@ Profil Professeur | {{$prof->nom.' '.$prof->prenom}}
 <div class="container mt-4 col-md-6">
     <div class="card">
         <div class="card-header">
-            <h2>{{$prof->nom.' '.$prof->prenom}}</h2>
+            <h2>
+                {{$prof->nom.' '.$prof->prenom}}
+                <a href="#" style="float: right;"><i class="fa fa-edit btn btn-sm btn-info"></i></a>
+            </h2>
         </div>
         <div class="card-body">
             <h4>INFORMATIONS SUR LE PROFESSEUR</h4>
