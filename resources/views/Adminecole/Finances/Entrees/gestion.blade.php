@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Gestion des dépenses
+Admin Ecole | Gestion des entrées
 @endsection
 
 @section('content')
@@ -11,8 +11,8 @@ Admin Ecole | Gestion des dépenses
     <div class="card">
         <div class="card-header">
             <h2>
-                GESTION DES DEPENSES
-                <a href="{{route('adminecole.depenses.index')}}" style="float: right;" class="btn btn-sm btn-info ml-2"><i class="fa fa-arrow-left"></i> RETOUR</a>
+                GESTION DES ENTREES
+                <a href="{{route('adminecole.entrees.index')}}" style="float: right;" class="btn btn-sm btn-info ml-2"><i class="fa fa-arrow-left"></i> RETOUR</a>
                 <button style="float: right;" class="btn btn-sm btn-success" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-plus"></i></button>
             </h2>
         </div>
@@ -27,17 +27,17 @@ Admin Ecole | Gestion des dépenses
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($depenses as $depense)
+                    @foreach ($entrees as $entree)
                     <tr>
-                        <td>{{$depense->created_at->format('d/m/Y')}}</td>
-                        <td>{{$depense->montant}} XAF</td>
-                        <td><a href="{{route('adminecole.depenses.show', $depense->token)}}">{{$depense->name}}</a></td>
-                        <td>{{$depense->categorie_id? $depense->categorie->name:"-"}}</td>
+                        <td>{{$entree->created_at->format('d/m/Y')}}</td>
+                        <td>{{$entree->montant}} XAF</td>
+                        <td><a href="{{route('adminecole.entrees.show', $entree->token)}}">{{$entree->name}}</a></td>
+                        <td>{{$entree->categorie_id? $entree->categorie->name:"-"}}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{$depenses->links()}}
+            {{$entrees->links()}}
         </div>
     </div>
 </div>
@@ -46,10 +46,10 @@ Admin Ecole | Gestion des dépenses
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-          <form action="{{route('adminecole.depenses.store')}}" method="post">
+          <form action="{{route('adminecole.entrees.store')}}" method="post">
               @csrf
               <div class="card-header">
-                  <h4>INITIER UNE DEPENSE</h4>
+                  <h4>EFFECTUER UNE ENTREE</h4>
               </div>
               <div class="card-body">
                   <div class="form-row">

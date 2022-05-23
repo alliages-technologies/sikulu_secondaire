@@ -26,7 +26,7 @@ $("#selectSalle").change(function (e) {
             $('#resultats').html("");
             $('#resultats').prepend('<option>SELECTONNEZ L\'ELEVE CONCERNE</option>');
             inscriptionsData.forEach(function([$key ,$value]){
-                var option = '<option value= '+$value["id"]+'>' +$value["name"]+ '</option>';
+                var option = '<option value='+$value["id"]+'> '+$value["name"]+' </option>';
                 $('#resultats').append(option);
             });
             // Sélection de l'élève
@@ -45,7 +45,7 @@ $("#selectSalle").change(function (e) {
                         $('#paiements').html("");
                         $('#historique').show(400);
                         ecolagesData.forEach(function([$key, $value]){
-                            var tr = '<tr> <td>'+$value["montant"]+' XAF</td> <td>'+$value["month"]+'</td> <td>'+$value["created_at"]+'</td> </tr>';
+                            var tr = '<tr> <td>'+$value["montant"]+' XAF</td> <td>'+$value["month"]+'</td> </tr>';
                             $('#paiements').append(tr);
                         });
                         // Passer au paiement
@@ -73,8 +73,8 @@ $("#selectSalle").change(function (e) {
                         },
                         dataType: "json",
                         success: function (response) {
-                            alert("PAIEMENT REUSSI AVEC SUCCES");
                             window.location.replace("/adminecole/ecolages");
+                            alert("PAIEMENT EFFECTUE AVEC SUCCES");
                         }
                     });
                 });

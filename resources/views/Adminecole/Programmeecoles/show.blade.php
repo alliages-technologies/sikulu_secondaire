@@ -1,19 +1,25 @@
 @extends('layouts.adminecole')
-@section('content')
-<div class="card mt-5">
 
-    <div class="card-header">
-        <h4 class="text-left mb-1"> Programme de la {{ $salle->name }} <strong>/></strong> Niveau <strong>/></strong> {{ $salle->classe->name }} </h4>
-    </div>
-    <input type="hidden" name="classe_id" value="{{ $salle->id}}">
-    <div class="card-body">
-        <div class="container-fluid">
-            <table class="table table-bordered table-hover table-sm">
-                <thead class="">
+
+@section('title')
+Admin Ecole | Programme
+@endsection
+
+@section('content')
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2> Programme de la {{ $salle->name }} <strong>|</strong> Niveau <strong>|</strong> {{ $salle->classe->name }} </h2>
+            <input type="hidden" name="classe_id" value="{{ $salle->id}}">
+        </div>
+        <div class="card-body">
+            <table class="table table-sm table-bordered table-hover table-striped">
+                <thead>
                     <tr>
-                        <th> Matiere </th>
-                        <th> Coefficient </th>
-                        <th> Enseignant </th>
+                        <th> MATIERE </th>
+                        <th> COEFFICIENT </th>
+                        <th> ENSEIGNANT </th>
                         <th> <i class="fa fa-cog"></i> </th>
                     </tr>
                 </thead>
@@ -37,7 +43,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Ajouter un prof </h4>
+                <h3 class="modal-title" id="exampleModalLabel">MODIFICATION PROF</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -55,27 +61,29 @@
                         <table class="table table-bordered table-striped table-sm table-programme">
                             <thead>
                                 <tr>
-                                    <th>Matieres</th>
+                                    <th>MATIERE</th>
                                 </tr>
                             </thead>
                             <tbody>
 
                             </tbody>
                         </table>
-                        <label classe="mt-1" for="" name="prof_id">Choix du prof</label>
+                        <label classe="mt-1" for="" name="prof_id">CHOIX DU PROF</label>
                         <select class="form-control profs">
-                             <option> choix </option>
+                             <option>SELECTIONNEZ LE PROF</option>
                              @foreach ($pes as $pe )
                              <option value="{{ $pe->prof_id }}"> {{ $pe->prof->name }} </option>
                              @endforeach
                          </select>
                     </div>
                 </div>
-                <button class="btn btn-default mt-2 btn-save" id="btn-save">Enrégistrer <i class="fa fa-save"></i> </button>
+                <button class="btn btn-success mt-2 btn-save" id="btn-save"> <i class="fa fa-save"></i> </button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 <script src="{{ asset('js/programmeecole.js') }}"></script>
+
 @endsection

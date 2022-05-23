@@ -1,9 +1,16 @@
 @extends('layouts.adminecole')
+
+
+@section('title')
+Admin Ecole | Inscription
+@endsection
+
 @section('content')
-<div class="container-fluid">
+
+<div class="container">
     <div class="card mt-5">
         <div class="card-header">
-            <h3 class="text-left">Inscription d'un élêve <i class="fa fa-user-graduate"></i></h3>
+            <h2><i class="fa fa-user-graduate"></i> NOUVELLE INSCRIPTION</h2>
         </div>
         <div class="card-body">
             <div class="">
@@ -55,7 +62,7 @@
                                             <div class="col-md-6">
                                                 <label for="">Salle</label>
                                                 <select name="salle_id" id="" class="form-control">
-                                                    <option value="">choix</option>
+                                                    <option value="">CHOIX</option>
                                                     @foreach ($salles as $salle)
                                                     <option value="{{ $salle->id }}"> {{ $salle->abb }} / {{ $salle->classe->name }}</option>
                                                     @endforeach
@@ -142,7 +149,7 @@
                                         </div>
                                         <div class="row mt-4 row-btn-verifier">
                                             <div class="col-md-12">
-                                                <button class="btn btn-default btn-verifier">Verification du tuteur <i class="fa fa-eye"></i></button>
+                                                <button class="btn btn-default btn-verifier"><i class="fa fa-search"></i> Verification du tuteur</button>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -151,12 +158,14 @@
                             <button class="btn btn-default btn-lg precedent"><i class="fa fa-hand-point-up"></i></button>
                         </div>
                     </div>
-                    <button class="btn btn-success btn-save">Enrégistrer <i class="fa fa-save"></i></button>
+                    <button class="btn btn-success btn-save"><i class="fa fa-save"></i> ENREGISTRER</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 <script src="{{ asset('js/inscription.js') }}"></script>
+
 @endsection

@@ -1,6 +1,10 @@
 @extends('layouts.adminecole')
 
 
+@section('title')
+Admin Ecole | Paramétrage
+@endsection
+
 @section('content')
 
 <div class="container text-center mt-4 menu">
@@ -40,4 +44,5 @@
         </a>
     </div>
 </div>
+
 @endsection

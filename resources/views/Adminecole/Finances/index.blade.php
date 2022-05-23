@@ -10,12 +10,16 @@ Admin Ecole | Finances
 <div class="container menu">
     <div class="row d-flex justify-content-center p-4">
         <a href="{{route('adminecole.ecolages.index')}}" class="col-md-3 m-2">
-            <i class="fa fa-"></i>
+            <i class="fa fa-list-alt"></i>
             <p>Ecolages</p>
         </a>
         <a href="{{route('adminecole.depenses.index')}}" class="col-md-3 m-2">
-            <i class="fa fa-"></i>
+            <i class="fa fa-list-alt"></i>
             <p>Dépenses</p>
+        </a>
+        <a href="{{route('adminecole.entrees.index')}}" class="col-md-3 m-2">
+            <i class="fa fa-toggle-down"></i>
+            <p>Autres Entrées</p>
         </a>
         <a href="/home" class="col-md-3 m-2">
             <i class="fa fa-arrow-left"></i>

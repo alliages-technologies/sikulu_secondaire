@@ -183,10 +183,17 @@ Route::prefix('adminecole')
         Route::get('/finances', 'FinanceController@index')->name('finances.index')
         ;
 
+
+        /*
+         Gestion des Finances
+        */
+        Route::get('/finances', 'FinanceController@index')->name('finances.index');
+        // Ecolages
         Route::resource('/ecolages', 'EcolageController');
         Route::get('/ecolages-salle-select', 'EcolageController@salleSelect');
         Route::get('/ecolages-eleve-infos-show/{id}', 'EcolageController@eleveShowById');
         Route::post('/ecolages-eleve-paiement-store', 'EcolageController@elevePaiementStore');
+        Route::get('/ecolages-historique-paiements', 'EcolageController@historiquePaiements')->name('historique.paiements');
         // Dépenses
         Route::get('/depenses-categories', 'FinanceController@depensesCategories')->name('depenses.index');
         Route::post('/depenses-categorie-store', 'FinanceController@depenseCategorieStore')->name('depenses.categorie.store');
@@ -200,7 +207,17 @@ Route::prefix('adminecole')
         Route::get('/matieres/on/{id}', 'MatiereController@on')->name('matieres.on');
         Route::get('/matieres/off/{id}', 'MatiereController@off')->name('matieres.off');
         Route::resource('/cours', 'CourController');
-});
+        // Autres Entrées
+        Route::get('/entrees', 'FinanceController@entrees')->name('entrees.index');
+        Route::post('/entrees-categorie-store', 'FinanceController@entreeCategorieStore')->name('entrees.categorie.store');
+        Route::get('/entrees-gestion', 'FinanceController@entreesGestion')->name('entrees.gestion');
+        Route::post('/entrees-store', 'FinanceController@entreeStore')->name('entrees.store');
+        Route::get('/entrees-show/{token}', 'FinanceController@entreeShow')->name('entrees.show');
+        /*
+        Fin de la gestion des Finances
+        */
+    });
+
 
 Route::prefix('profs')
     ->namespace('Prof')

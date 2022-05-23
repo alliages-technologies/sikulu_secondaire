@@ -7,17 +7,17 @@ Admin Ecole | Gestion des professeurs
 
 @section('content')
 
-
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h4>GESTION DES PROFESSEURS</h4>
-            <a href="{{route('adminecole.profs.create')}}" class="btn btn-sm btn-success col-1">
-                <i class="fa fa-plus"></i>
-            </a>
+            <h2>
+                GESTION DES PROFESSEURS
+                <a href="/home" style="float: right" class="btn btn-sm btn-info ml-2"><i class="fa fa-arrow-left"></i> RETOUR</a>
+                <a href="{{route('adminecole.profs.create')}}" style="float: right" class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a>
+            </h2>
         </div>
         <div class="card-body">
-            <table class="table table-sm table-bordered">
+            <table class="table table-sm table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>NOM</th>
@@ -29,19 +29,19 @@ Admin Ecole | Gestion des professeurs
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($profs as $prof)
+                    @foreach ($prof_ecole as $profecole)
                     <tr>
-                        <td>{{$prof->prof->nom}}</td>
-                        <td>{{$prof->prof->prenom}}</td>
-                        <td>{{$prof->prof->diplome->name}}</td>
+                        <td>{{$profecole->prof->nom}}</td>
+                        <td>{{$profecole->prof->prenom}}</td>
+                        <td>{{$profecole->prof->diplome->name}}</td>
                         <td>
-                            <a href="{{route('adminecole.profs.show', $prof->id)}}"><i class="fa fa-eye btn btn-sm btn-info"></i></a>
-                            <a href="#"><i class="fa fa-edit btn btn-sm btn-warning"></i></a>
+                            <a href="{{route('adminecole.profs.show', $profecole->prof->id)}}"><i class="fa fa-eye"></i></a>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+            {{$prof_ecole->links()}}
         </div>
     </div>
 </div>

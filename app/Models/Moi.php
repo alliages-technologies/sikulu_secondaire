@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Moi extends Model
 {
-    //
+    protected $guarded = [];
+    
+    public function depenses(){
+        return $this->hasMany('App\Models\Depense', 'mois');
+    }
 }
