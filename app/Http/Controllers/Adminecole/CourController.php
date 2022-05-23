@@ -1,39 +1,45 @@
 <?php
 
-namespace App\Http\Controllers\Parent;
+namespace App\Http\Controllers\Adminecole;
 
 use App\Http\Controllers\Controller;
-use App\Models\Ecole;
 use Illuminate\Http\Request;
 
-class EcoleController extends Controller
+class CourController extends Controller
 {
 
     public function index()
     {
-
-    }
-
-
-    public function create()
-    {
         
     }
 
+    public function create()
+    {
+        //
+    }
 
     public function store(Request $request)
     {
         //
     }
 
-
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
-        $ecole = Ecole::find($id);
-        return view('Parent.Ecoles.show')->with(compact('ecole'));
+        //
     }
 
-
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
         //

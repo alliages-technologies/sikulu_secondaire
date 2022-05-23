@@ -11,6 +11,8 @@ use App\Models\Niveau;
 use App\Models\Classe;
 use App\Models\Matiere;
 use App\Models\Ecole;
+use App\Models\Trimestre;
+use App\Models\TrimestreEcole;
 use App\User;
 use Symfony\Component\CssSelector\Parser\Token;
 use TheSeer\Tokenizer\Token as TokenizerToken;
@@ -137,6 +139,15 @@ class ParametreController extends Controller
        $admin->role_id=2;
        $admin->ecole_id=$ecole->id;
        $admin->save();
+       // Parametrage des trimestres
+       $trimestres = Trimestre::all();
+       foreach ($trimestres as $trimestre){
+           $trimestre_ecole = new TrimestreEcole();
+           $trimestre_ecole->ecole_id = $ecole->id;
+           $trimestre_ecole->trimestre_id = $trimestre->id;
+           //dd($trimestre_ecole);
+           $trimestre_ecole->save();
+       }
        return redirect()->back();
    }
 

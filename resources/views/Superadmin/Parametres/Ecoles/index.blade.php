@@ -1,7 +1,15 @@
 @extends('layouts.superadmin')
-
-
 @section('content')
+
+<style>
+a{
+    color: black;
+}
+a:hover{
+    transition: 0.9s;
+    font-weight: bold;
+}
+</style>
 
 <div class="container mt-4">
     <div class="card">

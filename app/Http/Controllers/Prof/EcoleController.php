@@ -12,11 +12,13 @@ use Illuminate\Support\Facades\Auth;
 class EcoleController extends Controller
 {
 
-    public function index()
+    public function index($token)
     {
+        $ecole = Ecole::where('token',$token)->first();
+        dd($token);
         $prof = Prof::where('user_id',Auth::user()->id)->first();
         $ecoles = ProfEcole::where('prof_id',$prof->id)->get();
-        return view('Prof.Ecoles.index')->with(compact('ecoles'));
+        return view('Prof.Ecoles.show')->with(compact('ecole'));
     }
 
 
@@ -32,9 +34,12 @@ class EcoleController extends Controller
     }
 
 
-    public function show($id)
+    public function show($token)
     {
-        $ecole = Ecole::find($id);
+        $ecole = Ecole::where('token',$token)->first();
+        //dd($ecole);
+        $prof = Prof::where('user_id',Auth::user()->id)->first();
+        $ecoles = ProfEcole::where('prof_id',$prof->id)->get();
         return view('Prof.Ecoles.show')->with(compact('ecole'));
     }
 

@@ -59,6 +59,7 @@ class SalleController extends Controller
             $lpe->matiere_id = $lpn->matiere_id;
             $lpe->coefficient = $lpn->coefficient;
             $lpe->token = "Token".date('Ymd').date('Ymdhms');
+            $lpe->annee_id = $annee->id;
             $lpe->save();
         }
 

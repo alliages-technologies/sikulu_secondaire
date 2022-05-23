@@ -42,7 +42,7 @@
         <div class="">SUPERADMIN</div>
     </nav>
 
-    <div class="menu">
+    <div class="">
         @yield('content')
     </div>
 </body>

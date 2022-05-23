@@ -54,6 +54,10 @@ class EmploieController extends Controller
 
     }
 
+    public function menu(){
+        $salles = Salle::where('ecole_id',Auth::user()->ecole_id)->get();
+        return view('Adminecole.Emplois.menu')->with(compact('salles'));
+    }
 
     public function show($id)
     {

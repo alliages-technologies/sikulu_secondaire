@@ -1,4 +1,4 @@
-@extends('layouts.superadmin')
+@extends('layouts.adminecole')
 
 
 @section('content')
@@ -17,7 +17,7 @@
                     <tr>
                         <th>NOM</th>
                         <th>#</th>
-                        <th>ECOLE</th>
+                        <th>CONFIG</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,7 +25,13 @@
                     <tr>
                         <td>{{$matiere->name}}</td>
                         <td>{{$matiere->abv}}</td>
-                        <td>{{$matiere->ecole_id? $matiere->ecole->name:"-"}}</td>
+                        <td>
+                            @if ($matiere->active)
+                                <a href="{{ route('adminecole.matieres.off',$matiere->id) }}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></a>
+                            @else
+                            <a href="{{ route('adminecole.matieres.on',$matiere->id) }}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></a>
+                            @endif
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -44,7 +50,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{route('superadmin.matieres.store')}}" method="post">
+                <form action="{{route('adminecole.matieres.store')}}" method="post">
                     <div class="modal-body">
                         @csrf
                         <div class="form-group">

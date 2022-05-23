@@ -7,11 +7,11 @@
             <i class="fa fa-bar-chart"></i>
             <p>Statistiques</p>
         </a>
-        <a href="" class="col-md-3 m-2">
+        <a href="{{ route('profs.emploi_temps.index') }}" class="col-md-3 m-2">
             <i class="fa fa-calendar"></i>
             <p>Emploi du temps</p>
         </a>
-        <a href="" class="col-md-3 m-2">
+        <a href="{{ route('profs.notes.index') }}" class="col-md-3 m-2">
             <i class="fa fa-edit"></i>
             <p>Notes</p>
         </a>

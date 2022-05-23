@@ -17,4 +17,8 @@ class EmploieTemp extends Model
     public function lets(){
         return $this->hasMany('App\Models\LigneEmploiTemp','emploi_id');
     }
+
+    public function salle(){
+        return $this->belongsTo('App\Models\Salle','salle_id');
+    }
 }

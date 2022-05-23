@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class ProgrammeEcoleLigne extends Model
 {
@@ -12,6 +13,10 @@ class ProgrammeEcoleLigne extends Model
 
     public function programme_ecole(){
         return $this->belongsTo('App\Models\ProgrammeEcole','programme_national_id');
+    }
+
+    public function programmeecole(){
+        return $this->belongsTo('App\Models\ProgrammeEcole','programme_ecole_id');
     }
 
     public function matiere(){
@@ -27,6 +32,10 @@ class ProgrammeEcoleLigne extends Model
     }
 
     public function getProfAttribute(){
-        return $this->enseignant->name;
+        return $this->enseignant?$this->enseignant->name:"aucun";
+    }
+
+    public function notes(){
+        return $this->hasMany('App\Models\Note','ligne_ecole_programme_id');
     }
 }

@@ -33,7 +33,7 @@ Admin Ecole | Dashboard
             <i class="fa fa-graduation-cap"></i>
             <p>Scolarité</p>
         </a>
-        <a href="" class="col-md-3 m-2">
+        <a href="{{ route('adminecole.emploie.salle') }}" class="col-md-3 m-2">
             <i class="fa fa-calendar"></i>
             <p>Emploi du temps</p>
         </a>

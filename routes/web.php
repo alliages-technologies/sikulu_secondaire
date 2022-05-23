@@ -151,15 +151,12 @@ Route::prefix('adminecole')
         Route::get('/get-profs','ProgrammeecoleController@getProfs');
         Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
         Route::get('/save-prof','ProgrammeecoleController@saveProf');
-<<<<<<< HEAD
         Route::get('/menu/{id}','ProgrammeecoleController@menu')->name('menu');
 
         // Gestion salles
         Route::resource('/salles', 'SalleController');
         // Profs
-=======
         // Gestion des Profs
->>>>>>> 7c05fe402edf0f97216b33220bb1fdc414691400
         Route::resource('/profs', 'ProfController');
         Route::get('/profs-verification-numero', 'ProfController@verificationNumero');
         Route::post('/profs-terminer-un', 'ProfController@terminerUn');
@@ -176,25 +173,16 @@ Route::prefix('adminecole')
         Route::get('/reinscriptions', 'InscriptionController@reinscription')->name('reinscriptions');
         Route::get('/get-inscription-by-id/{id}', 'InscriptionController@getInscriptionById');
         Route::post('/reinscriptions-save', 'InscriptionController@save')->name('reinscriptions.save');
-<<<<<<< HEAD
         // Emploies du temps
         Route::resource('/emploies', 'EmploieController');
         Route::get('/emploies-temps/{id}', 'EmploieController@index')->name('index');
+        Route::get('/emploies-du-temps', 'EmploieController@menu')->name('emploie.salle');
+
         Route::resource('/tranches', 'TrancheController');
-});
 
-Route::prefix('profs')
-    ->namespace('Prof')
-    ->name('profs.')
-    ->group(function(){
-        Route::resource('/ecoles', 'EcoleController');
-=======
+        Route::get('/finances', 'FinanceController@index')->name('finances.index')
+        ;
 
-        /*
-            Gestion des Finances
-        */
-        Route::get('/finances', 'FinanceController@index')->name('finances.index');
-        // Ecolages
         Route::resource('/ecolages', 'EcolageController');
         Route::get('/ecolages-salle-select', 'EcolageController@salleSelect');
         Route::get('/ecolages-eleve-infos-show/{id}', 'EcolageController@eleveShowById');
@@ -205,13 +193,31 @@ Route::prefix('profs')
         Route::get('/depenses-gestion', 'FinanceController@depensesGestion')->name('depenses.gestion');
         Route::post('/depenses-store', 'FinanceController@depenseStore')->name('depenses.store');
         Route::get('/depenses-show/{token}', 'FinanceController@depenseShow')->name('depenses.show');
-        /*
-            Fin de la gestion des Finances
-        */
-
->>>>>>> 7c05fe402edf0f97216b33220bb1fdc414691400
+        Route::get('/trimestres', 'TrimestreController@index')->name('trimestre.index');
+        Route::get('/trimestres-on/{id}', 'TrimestreController@trimestreOn')->name('trimestre.on');
+        Route::get('/trimestres-off{id}', 'TrimestreController@trimestreOff')->name('trimestre.off');
+        Route::resource('/matieres', 'MatiereController');
+        Route::get('/matieres/on/{id}', 'MatiereController@on')->name('matieres.on');
+        Route::get('/matieres/off/{id}', 'MatiereController@off')->name('matieres.off');
+        Route::resource('/cours', 'CourController');
 });
 
+Route::prefix('profs')
+    ->namespace('Prof')
+    ->name('profs.')
+    ->group(function(){
+        Route::resource('/ecoles', 'EcoleController');
+        Route::get('/ecoles/{token}', 'EcoleController@show')->name('ecole.token');
+        Route::resource('/notes', 'NoteController');
+        Route::get('/notes-by-inscription/{token}/{ligne_programme_ecole}','NoteController@getInscriptionByToken')->name('note.show');
+        Route::resource('/emploi_temps', 'EmploiTempController');
+        Route::get('/emploi-by-salle/{token}/{ecole}','EmploiTempController@getEmploieBySalle');
+        Route::get('/show-emploi-by-salle/{token}/{id}','EmploiTempController@getShowEmploie');
+});
+
+// releve : inscription_id, trimestre_id, token, moi, semaine, annee
+
+// ligne_releves : releve_id programme_ligne_ecole_id, valeur, note_id,
 
 Route::prefix('parent')
     ->namespace('Parent')

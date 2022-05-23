@@ -20,5 +20,5 @@ class Salle extends Model
     public function programmeecoles(){
         return $this->hasMany('App\Models\ProgrammeEcole','salle_id');
     }
-    
+
 }
