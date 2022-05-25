@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function eleves(){
         return $this->hasMany('App\Models\Eleve','tel_tuteur');
     }
+
+    public function prof(){
+        return $this->hasOne('App\Models\Prof', 'user_id');
+    }
 }

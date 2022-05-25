@@ -13,6 +13,10 @@ class Prof extends Model
         return $this->belongsTo('App\Models\Diplome','diplome_id');
     }
 
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
     public function getNameAttribute(){
         return $this->nom.' '.$this->prenom;
     }

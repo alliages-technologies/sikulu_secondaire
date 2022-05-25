@@ -21,8 +21,11 @@ Profil Professeur | {{$prof->nom.' '.$prof->prenom}}
             <p>
                 Nom: <strong>{{$prof->nom}}</strong> <br>
                 Prénom: <strong>{{$prof->prenom}}</strong> <br>
+                Date & lieu de naissance: <strong>{{$prof->date_naiss}} à {{$prof->lieu_naiss}}</strong> <br>
+                <hr>
                 Adresse: <strong>{{$prof->adresse}}</strong> <br>
                 Téléphone: <strong>{{$prof->telephone}}</strong> <br>
+                Email: <strong>{{$prof->user->email}}</strong> <br>
                 <hr>
                 Dernier diplôme: <strong>{{$prof->diplome->name}}</strong>
             </p>

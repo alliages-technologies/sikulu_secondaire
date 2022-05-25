@@ -53,6 +53,8 @@ $(".verifier1").click(function (e) {
                     e.preventDefault();
                     var nom = $(".nom").val();
                     var prenom = $(".prenom").val();
+                    var date_naiss = $(".date_naiss").val();
+                    var lieu_naiss = $(".lieu_naiss").val();
                     var adresse = $(".adresse").val();
                     var diplome = $(".diplome_id").val();
                     $.ajax({
@@ -61,6 +63,8 @@ $(".verifier1").click(function (e) {
                         data: {
                             nom: nom,
                             prenom: prenom,
+                            date_naiss:date_naiss,
+                            lieu_naiss:lieu_naiss,
                             adresse: adresse,
                             diplome_id: diplome,
                         },
@@ -73,7 +77,7 @@ $(".verifier1").click(function (e) {
                             var diplome = prof.dip;
                             if (prof_id) {
                                 $(".p2").html("");
-                                var p = '<span style="color: black"> <small>Cliquer sur "TERMINER" pour rajouter le prof dans votre établissement et sur "SUIVANT" s\'il ne s\'agit pas de la même personne</small> <hr> NOM: <strong>'+nom+'</strong><br> PRENOM: <strong>'+prenom+'</strong><br> ADRESSE: <strong>'+adresse+'</strong><br> DERNIER DIPLOME: <strong>'+diplome+'</strong><br> NE LE: <strong>date de naissance</strong><br> A: <strong>lieu de naissance</strong><br> NATIONALITE: <strong>Congolaise</strong><br> </span>';
+                                var p = '<span class="card pb-4" style="color: black"> <small style="color: green; margin: 10px;"> <strong>Cliquer sur "TERMINER" pour rajouter le prof dans votre établissement et sur "SUIVANT" s\'il ne s\'agit pas de la même personne</strong> </small> <hr> NOM: <strong>'+nom+'</strong><br> PRENOM: <strong>'+prenom+'</strong><br> ADRESSE: <strong>'+adresse+'</strong><br> DERNIER DIPLOME: <strong>'+diplome+'</strong><br> NE LE: <strong>date de naissance</strong><br> A: <strong>lieu de naissance</strong><br> NATIONALITE: <strong>Congolaise</strong><br> </span>';
                                 $(".p2").append(p);
                                 $(".terminer2").show(400);
                                 $(".suivant2").show(400);
@@ -119,10 +123,13 @@ $(".verifier1").click(function (e) {
                                                 phone: $(".phone").val(),
                                                 nom: $(".nom").val(),
                                                 prenom: $(".prenom").val(),
+                                                date_naiss: $(".date_naiss").val(),
+                                                lieu_naiss: $(".lieu_naiss").val(),
                                                 adresse: $(".adresse").val(),
                                                 diplome: $(".diplome_id").val(),
                                                 password: $(".password").val(),
                                                 email: $(".email").val(),
+                                                image: $(".image").val(),
                                                 "_token": $('input[name="_token"]').val()
                                             },
                                             dataType: "json",

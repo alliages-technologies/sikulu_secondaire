@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfController extends Controller
 {
-    
+
     public function index(){
         $prof_ecole=ProfEcole::where('ecole_id',auth()->user()->ecole_id)->orderBy('created_at', 'asc')->paginate(15);
         return view('Adminecole.Profs.index')->with(compact('prof_ecole'));
@@ -82,6 +82,8 @@ class ProfController extends Controller
     public function store(){
         $nom = request()->nom;
         $prenom = request()->prenom;
+        $date_naiss = request()->date_naiss;
+        $lieu_naiss = request()->lieu_naiss;
         $telephone = request()->phone;
         $email = request()->email;
         $password = Hash::make(request()->password);
@@ -102,6 +104,8 @@ class ProfController extends Controller
         $prof->user_id = $user->id;
         $prof->nom = $nom;
         $prof->prenom = $prenom;
+        $prof->date_naiss = $date_naiss;
+        $prof->lieu_naiss = $lieu_naiss;
         $prof->adresse = $adresse;
         $prof->telephone = $telephone;
         $prof->diplome_id = $diplome;
