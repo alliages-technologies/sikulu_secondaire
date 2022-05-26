@@ -7,7 +7,7 @@ Admin Ecole | Historique des paiements
 
 @section('content')
 
-<div class="container mt-4 col-md-8">
+<div class="container mt-4">
     <div class="card">
         <div class="card-header">
             <h2>
@@ -16,35 +16,24 @@ Admin Ecole | Historique des paiements
             </h2>
         </div>
         <div class="card-body">
-            <table id="" class="table table-sm table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>MONTANT</th>
-                        <th>MOIS</th>
-                        <th>ELEVE</th>
-                        <th>DATE</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div class="container menu">
+                <div class="row d-flex justify-content-center p-4">
                     @foreach ($salles as $salle)
-                        @foreach ($salle->inscriptions as $inscription)
-                        @foreach ($inscription->ecolages as $ecolage)
-                        <tr>
-                            <td>{{$ecolage->montant}}</td>
-                            <td>{{$ecolage->month}}</td>
-                            <td>{{$ecolage->inscription->eleve->name}}</td>
-                            <td>{{$ecolage->created_at->format('d/m/Y')}}</td>
-                        </tr>
-                        @endforeach
-                        @endforeach
+                        <a href="{{route('adminecole.historique.salle', $salle->token)}}" class="col-md-3 m-2">
+                            <i class="fa fa-home"></i>
+                            <p>{{$salle->name}} | {{$salle->classe->name}}</p>
+                        </a>
                     @endforeach
-                </tbody>
-            </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
             {{$salles->links()}}
         </div>
     </div>
 </div>
 
-<script src="{{asset('xxx/js/historiquePaiements.js')}}"></script>
+
+<script src="{{asset('js/historiquePaiements.js')}}"></script>
 
 @endsection

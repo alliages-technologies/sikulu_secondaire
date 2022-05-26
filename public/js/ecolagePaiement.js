@@ -44,7 +44,7 @@ $("#selectSalle").change(function (e) {
                         var ecolagesData = Object.entries(ecolages);
                         $('#paiements').html("");
                         $('#historique').show(400);
-                        ecolagesData.forEach(function([$key, $value]){
+                        ecolagesData.forEach(function ([$key, $value]){
                             var tr = '<tr> <td>'+$value["montant"]+' XAF</td> <td>'+$value["month"]+'</td> </tr>';
                             $('#paiements').append(tr);
                         });
@@ -56,28 +56,29 @@ $("#selectSalle").change(function (e) {
                             $('#etape3').show(400);
                             $('#etape1').hide(400);
                             $('#etape2').hide(400);
+                            // Confirmermation du paiement
+                            $("#confirmer").click(function (e) {
+                                e.preventDefault();
+                                $.ajax({
+                                    type: "post",
+                                    url: "/adminecole/ecolages-eleve-paiement-store",
+                                    data: {
+                                        inscription_id:inscription_id,
+                                        montant: $('#montant').val(),
+                                        mois: $('#mois').val(),
+                                        "_token": $('input[name="_token"]').val()
+                                    },
+                                    dataType: "json",
+                                    success: function (response) {
+                                        alert("PAIEMENT EFFECTUE AVEC SUCCES");
+                                        window.location.replace("/adminecole/ecolages");
+                                    }
+                                });
+                            });
                         });
                     }
                 });
-                // Confirmermation du paiement
-                $("#confirmer").click(function (e) {
-                    e.preventDefault();
-                    $.ajax({
-                        type: "post",
-                        url: "/adminecole/ecolages-eleve-paiement-store",
-                        data: {
-                            inscription_id:inscription_id,
-                            montant: $('#montant').val(),
-                            mois: $('#mois').val(),
-                            "_token": $('input[name="_token"]').val()
-                        },
-                        dataType: "json",
-                        success: function (response) {
-                            window.location.replace("/adminecole/ecolages");
-                            alert("PAIEMENT EFFECTUE AVEC SUCCES");
-                        }
-                    });
-                });
+
             });
         }
     });

@@ -55,11 +55,11 @@ Admin Ecole | Gestion des dépenses
                   <div class="form-row">
                       <div class="col">
                         <label for="">Nom</label>
-                        <input type="text" name="name" id="" class="form-control">
+                        <input type="text" name="name" id="" class="form-control" required>
                       </div>
                       <div class="col">
                         <label for="">Catégorie</label>
-                        <select name="categorie_id" id="" class="form-control">
+                        <select name="categorie_id" id="" class="form-control" required>
                             <option value="">SELECTION DE LA CATEGORIE</option>
                             @foreach ($categories as $categorie)
                             <option value="{{$categorie->id}}">{{$categorie->name}}</option>
@@ -68,12 +68,12 @@ Admin Ecole | Gestion des dépenses
                       </div>
                       <div class="col">
                         <label for="">Montant</label>
-                        <input type="number" name="montant" id="" class="form-control">
+                        <input type="number" name="montant" id="" class="form-control" required>
                       </div>
                   </div>
                   <div class="form-group mt-2">
                       <label for="">Description</label>
-                      <textarea name="description" id="" cols="4" rows="4" placeholder="Description de la dépense à initier" class="form-control"></textarea>
+                      <textarea name="description" id="" cols="4" rows="4" placeholder="Description de la dépense à initier" class="form-control" required></textarea>
                   </div>
               </div>
               <div class="card-footer">

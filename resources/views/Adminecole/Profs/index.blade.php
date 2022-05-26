@@ -35,7 +35,7 @@ Admin Ecole | Gestion des professeurs
                         <td>{{$profecole->prof->prenom}}</td>
                         <td>{{$profecole->prof->diplome->name}}</td>
                         <td>
-                            <a href="{{route('adminecole.profs.show', $profecole->prof->id)}}"><i class="fa fa-eye"></i></a>
+                            <a href="{{route('adminecole.profs.show', $profecole->prof->token)}}"><i class="fa fa-eye"></i></a>
                         </td>
                     </tr>
                     @endforeach

@@ -17,8 +17,8 @@ Admin Ecole | Paiement Ecolage
             </div>
             <div id="" class="card-body d-flex justify-content-center">
                 <div class="form-group">
-                    <label for=""><h4>LA SALLE</h4></label>
-                    <select name="selectSalle" id="selectSalle" class="form-control">
+                    <label for=""><h4>SELECTION DE LA SALLE</h4></label>
+                    <select name="selectSalle" id="selectSalle" class="form-control" required>
                         <option value="">SELECTIONNEZ LA SALLE DE CLASSE</option>
                         @foreach ($salles as $salle)
                         <option value="{{$salle->id}}">{{$salle->name}}</option>
@@ -27,7 +27,7 @@ Admin Ecole | Paiement Ecolage
                 </div>
             </div>
         </div>
-        <!--Affichage de élèves de la salle sélectionnée-->
+        <!--Affichage des élèves de la salle sélectionnée-->
         <div id="etape2" class="card">
             <div class="card-header">
                 <h3>INFORMATIONS SUR L'ELEVE</h3>
@@ -35,7 +35,7 @@ Admin Ecole | Paiement Ecolage
                 <div id="" class="card-body d-flex justify-content-center">
                 <div class="form-group">
                     <label for=""><h4>ELEVES DE LA SALLE SELECTIONNEE</h4></label>
-                    <select name="resultats" id="resultats" class="form-control">
+                    <select name="resultats" id="resultats" class="form-control" required>
                     </select>
                 </div>
                 </div>
@@ -54,7 +54,6 @@ Admin Ecole | Paiement Ecolage
                                <tr>
                                    <th>MONTANT</th>
                                    <th>MOIS</th>
-                                   <th>PAYER LE</th>
                                </tr>
                            </thead>
                             <tbody id="paiements">
@@ -73,10 +72,10 @@ Admin Ecole | Paiement Ecolage
             <div class="card-body d-flex justify-content-center">
                 <div class="form-row">
                     <div class="col">
-                        <input type="number" name="montant" id="montant" placeholder="Montant" class="form-control">
+                        <input type="number" name="montant" id="montant" placeholder="Montant" class="form-control" required>
                     </div>
                     <div class="col">
-                        <select name="moi_id" id="mois" class="form-control">
+                        <select name="moi_id" id="mois" class="form-control" required>
                             <option value="">SELECTIONNEZ LE MOIS</option>
                             @foreach ($mois as $month)
                             <option value="{{$month->id}}">{{$month->name}}</option>
@@ -91,6 +90,7 @@ Admin Ecole | Paiement Ecolage
         </div>
     </form>
 </div>
+
 
 <script src="{{asset('js/ecolagePaiement.js')}}"></script>
 

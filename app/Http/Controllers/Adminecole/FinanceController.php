@@ -57,7 +57,7 @@ class FinanceController extends Controller
         $depense->mois = date('n');
         $depense->annee = date('Y');
         $depense->active = 1;
-        $depense->token = "A".(date('ymdhis'))."x";
+        $depense->token = "A".(date('ymdhisW')).(date('ymdhisW'))."x";
         $depense->save();
         return redirect()->back();
     }
@@ -107,7 +107,7 @@ class FinanceController extends Controller
         $entree->mois = date('n');
         $entree->annee = date('Y');
         $entree->active = 1;
-        $entree->token = "A".(date('ymdhis'))."x";
+        $entree->token = "A".date('ymdhisW').date('ymdhisW')."x";
         $entree->save();
         return redirect()->back();
     }

@@ -119,8 +119,8 @@ class ProfController extends Controller
         return response()->json("OK");
     }
 
-    public function show($id){
-        $prof=Prof::find($id);
+    public function show($token){
+        $prof=Prof::where('token', $token)->first();
         return view('Adminecole.Profs.show')->with(compact('prof'));
     }
 

@@ -39,19 +39,47 @@ class EcolageController extends Controller
         $montant=request()->montant;
         $mois=request()->mois;
 
-        $ecolage = new Ecolage();
-        $ecolage->inscription_id=$id;
-        $ecolage->montant=$montant;
-        $ecolage->moi_id=$mois;
-        $ecolage->save();
+        $ecolage = Ecolage::where('inscription_id', $id)->where('moi_id', $mois)->first();
+        if($ecolage == null){
+            $ecolage = new Ecolage();
+            $ecolage->inscription_id=$id;
+            $ecolage->montant=$montant;
+            $ecolage->moi_id=$mois;
+            $ecolage->save();
+        }else{
+            $ecolage->inscription_id=$id;
+            $ecolage->montant=$montant;
+            $ecolage->moi_id=$mois;
+            $ecolage->update();
+        }
+
         return response()->json("PAIEMENT REUSSI");
     }
 
+    /*
+    Historiques des paiements
+    */
+
     public function historiquePaiements(){
         $auth=auth()->user()->ecole_id;
-        $salles=Salle::where('ecole_id', $auth)->orderBy('created_at', 'asc')->paginate(15);
+        $salles = Salle::where('ecole_id', $auth)->paginate(12);
         return view('Adminecole.Finances.Ecolages.historique')->with(compact('salles'));
     }
+
+    public function historiqueSalle($token){
+        $salle = Salle::where('token', $token)->first();
+        $inscriptions = Inscription::where('salle_id', $salle->id)->paginate(15);
+        return view('Adminecole.Finances.Ecolages.historiquesalle')->with(compact('salle', 'inscriptions'));
+    }
+
+    public function historiquePaiementsEleve($token){
+        $inscription = Inscription::where('token', $token)->first();
+        return view('Adminecole.Finances.Ecolages.historiqueeleve')->with(compact('inscription'));
+    }
+
+    /*
+    Fin des historiques des paiements
+    */
 
     public function show($id){
         //
