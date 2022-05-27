@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 27 mai 2022 à 13:32
+-- Généré le : ven. 27 mai 2022 à 14:12
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -327,8 +327,9 @@ INSERT INTO `eleves` (`id`, `nom`, `prenom`, `date_naiss`, `lieu_naiss`, `adress
 DROP TABLE IF EXISTS `emploie_temps`;
 CREATE TABLE IF NOT EXISTS `emploie_temps` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `cour_id` bigint(20) NOT NULL,
-  `tranche_id` bigint(20) NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salle_id` bigint(20) NOT NULL DEFAULT '0',
+  `token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -338,9 +339,9 @@ CREATE TABLE IF NOT EXISTS `emploie_temps` (
 -- Déchargement des données de la table `emploie_temps`
 --
 
-INSERT INTO `emploie_temps` (`id`, `cour_id`, `tranche_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '2022-04-08 11:00:35', '2022-04-08 11:00:35'),
-(2, 2, 2, '2022-04-08 11:00:49', '2022-04-08 11:00:49');
+INSERT INTO `emploie_temps` (`id`, `name`, `salle_id`, `token`, `created_at`, `updated_at`) VALUES
+(1, '1', 0, NULL, '2022-04-08 11:00:35', '2022-04-08 11:00:35'),
+(2, '2', 0, NULL, '2022-04-08 11:00:49', '2022-04-08 11:00:49');
 
 -- --------------------------------------------------------
 
@@ -440,6 +441,41 @@ INSERT INTO `inscriptions` (`id`, `eleve_id`, `user_id`, `classe_id`, `montant_i
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `ligne_emploi_temps`
+--
+
+DROP TABLE IF EXISTS `ligne_emploi_temps`;
+CREATE TABLE IF NOT EXISTS `ligne_emploi_temps` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ligne_programme_ecole_id` int(11) NOT NULL DEFAULT '0',
+  `tranche_id` int(11) NOT NULL DEFAULT '0',
+  `emploi_id` int(11) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ligne_releve_notes`
+--
+
+DROP TABLE IF EXISTS `ligne_releve_notes`;
+CREATE TABLE IF NOT EXISTS `ligne_releve_notes` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `releve_id` int(11) NOT NULL DEFAULT '0',
+  `programme_ligne_ecole_id` int(11) NOT NULL DEFAULT '0',
+  `note_id` int(11) NOT NULL DEFAULT '0',
+  `valeur` double(8,2) NOT NULL DEFAULT '0.00',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `matieres`
 --
 
@@ -448,6 +484,8 @@ CREATE TABLE IF NOT EXISTS `matieres` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `abv` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ecole_id` bigint(20) NOT NULL DEFAULT '0',
+  `active` tinyint(4) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -457,18 +495,18 @@ CREATE TABLE IF NOT EXISTS `matieres` (
 -- Déchargement des données de la table `matieres`
 --
 
-INSERT INTO `matieres` (`id`, `name`, `abv`, `created_at`, `updated_at`) VALUES
-(1, 'Mathématiques', 'MATH', '2022-05-01 12:31:43', '2022-05-01 12:31:43'),
-(2, 'Physique Chimie', 'P.C', '2022-05-01 12:32:04', '2022-05-01 12:32:04'),
-(3, 'Philosophie', 'FIE', '2022-05-01 12:32:29', '2022-05-01 12:32:29'),
-(4, 'Anglais', 'ANG', '2022-05-01 12:32:43', '2022-05-01 12:32:43'),
-(5, 'Français', 'FRA', '2022-05-01 12:32:56', '2022-05-01 12:32:56'),
-(6, 'Histoire Géographie', 'H.G', '2022-05-01 12:33:15', '2022-05-01 12:33:15'),
-(7, 'Education Physique et Sportive', 'E.P.S', '2022-05-01 12:33:47', '2022-05-01 12:33:47'),
-(8, 'Sciences de la vie et de la terre', 'S.V.T', '2022-05-01 12:34:10', '2022-05-01 12:34:10'),
-(9, 'Automatisme', 'AUTO', '2022-05-01 16:35:15', '2022-05-01 16:35:15'),
-(10, 'Informatique', 'INF', '2022-05-01 16:35:32', '2022-05-01 16:35:32'),
-(11, 'Mathématiques Informatique', 'MATH INFO', '2022-05-01 16:35:58', '2022-05-01 16:35:58');
+INSERT INTO `matieres` (`id`, `name`, `abv`, `ecole_id`, `active`, `created_at`, `updated_at`) VALUES
+(1, 'Mathématiques', 'MATH', 0, 1, '2022-05-01 12:31:43', '2022-05-01 12:31:43'),
+(2, 'Physique Chimie', 'P.C', 0, 1, '2022-05-01 12:32:04', '2022-05-01 12:32:04'),
+(3, 'Philosophie', 'FIE', 0, 1, '2022-05-01 12:32:29', '2022-05-01 12:32:29'),
+(4, 'Anglais', 'ANG', 0, 1, '2022-05-01 12:32:43', '2022-05-01 12:32:43'),
+(5, 'Français', 'FRA', 0, 1, '2022-05-01 12:32:56', '2022-05-01 12:32:56'),
+(6, 'Histoire Géographie', 'H.G', 0, 1, '2022-05-01 12:33:15', '2022-05-01 12:33:15'),
+(7, 'Education Physique et Sportive', 'E.P.S', 0, 1, '2022-05-01 12:33:47', '2022-05-01 12:33:47'),
+(8, 'Sciences de la vie et de la terre', 'S.V.T', 0, 1, '2022-05-01 12:34:10', '2022-05-01 12:34:10'),
+(9, 'Automatisme', 'AUTO', 0, 1, '2022-05-01 16:35:15', '2022-05-01 16:35:15'),
+(10, 'Informatique', 'INF', 0, 1, '2022-05-01 16:35:32', '2022-05-01 16:35:32'),
+(11, 'Mathématiques Informatique', 'MATH INFO', 0, 1, '2022-05-01 16:35:58', '2022-05-01 16:35:58');
 
 -- --------------------------------------------------------
 
@@ -482,7 +520,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `migrations`
@@ -508,7 +546,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (17, '2021_04_28_091350_create_diplomes_table', 1),
 (18, '2022_05_01_141551_create_matieres_table', 2),
 (19, '2022_05_01_142311_create_classes_table', 3),
-(20, '2022_04_28_091330_create_profs_table', 4);
+(20, '2022_04_28_091330_create_profs_table', 4),
+(21, '2022_05_10_134931_create_parent_ecoles_table', 5),
+(22, '2022_05_16_100809_create_ligne_emploi_temps_table', 5),
+(23, '2022_05_18_092216_create_trimestre_ecoles_table', 5),
+(24, '2022_05_20_113622_create_releve_notes_table', 5),
+(25, '2022_05_20_114108_create_ligne_releve_notes_table', 5);
 
 -- --------------------------------------------------------
 
@@ -620,6 +663,20 @@ INSERT INTO `parent_ecole` (`id`, `parent_id`, `ecole_id`, `created_at`, `update
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `parent_ecoles`
+--
+
+DROP TABLE IF EXISTS `parent_ecoles`;
+CREATE TABLE IF NOT EXISTS `parent_ecoles` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `password_resets`
 --
 
@@ -684,7 +741,7 @@ CREATE TABLE IF NOT EXISTS `prof_ecole` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `prof_ecole`
@@ -701,7 +758,9 @@ INSERT INTO `prof_ecole` (`id`, `prof_id`, `ecole_id`, `created_at`, `updated_at
 (9, 6, 1, '2022-05-25 10:41:57', '2022-05-25 10:41:57'),
 (10, 7, 1, '2022-05-25 10:46:21', '2022-05-25 10:46:21'),
 (11, 8, 1, '2022-05-27 11:59:42', '2022-05-27 11:59:42'),
-(12, 9, 1, '2022-05-27 12:29:24', '2022-05-27 12:29:24');
+(12, 9, 1, '2022-05-27 12:29:24', '2022-05-27 12:29:24'),
+(13, 8, 2, '2022-05-27 12:40:16', '2022-05-27 12:40:16'),
+(14, 9, 2, '2022-05-27 12:42:39', '2022-05-27 12:42:39');
 
 -- --------------------------------------------------------
 
@@ -865,6 +924,26 @@ INSERT INTO `programmes_national_lignes` (`id`, `matiere_id`, `national_programm
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `releve_notes`
+--
+
+DROP TABLE IF EXISTS `releve_notes`;
+CREATE TABLE IF NOT EXISTS `releve_notes` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `inscription_id` int(11) NOT NULL DEFAULT '0',
+  `trimestre_id` int(11) NOT NULL DEFAULT '0',
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `moi_id` int(11) NOT NULL DEFAULT '0',
+  `semaine_id` int(11) NOT NULL DEFAULT '0',
+  `annee_id` int(11) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `roles`
 --
 
@@ -990,6 +1069,7 @@ CREATE TABLE IF NOT EXISTS `tranche_horaires` (
   `heure_debut` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `heure_fin` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ordre` bigint(20) NOT NULL DEFAULT '0',
+  `ecole_id` bigint(20) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -999,9 +1079,9 @@ CREATE TABLE IF NOT EXISTS `tranche_horaires` (
 -- Déchargement des données de la table `tranche_horaires`
 --
 
-INSERT INTO `tranche_horaires` (`id`, `heure_debut`, `heure_fin`, `ordre`, `created_at`, `updated_at`) VALUES
-(1, '7H-00', '9H-00', 0, '2022-04-08 10:57:50', '2022-04-08 10:57:50'),
-(2, '9H-00', '11H-00', 0, '2022-04-08 10:59:02', '2022-04-08 10:59:02');
+INSERT INTO `tranche_horaires` (`id`, `heure_debut`, `heure_fin`, `ordre`, `ecole_id`, `created_at`, `updated_at`) VALUES
+(1, '7H-00', '9H-00', 0, 0, '2022-04-08 10:57:50', '2022-04-08 10:57:50'),
+(2, '9H-00', '11H-00', 0, 0, '2022-04-08 10:59:02', '2022-04-08 10:59:02');
 
 -- --------------------------------------------------------
 
@@ -1025,6 +1105,23 @@ INSERT INTO `trimestres` (`id`, `name`, `abb`) VALUES
 (1, 'PREMIER TRIMESTRE', '1e T'),
 (2, 'DEUXIEME TRIMESTRE', '2e T'),
 (3, 'TROISIEME TRIMESTRE', '3e T');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `trimestre_ecoles`
+--
+
+DROP TABLE IF EXISTS `trimestre_ecoles`;
+CREATE TABLE IF NOT EXISTS `trimestre_ecoles` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `trimestre_id` int(11) NOT NULL DEFAULT '0',
+  `ecole_id` int(11) NOT NULL DEFAULT '0',
+  `active` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
