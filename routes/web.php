@@ -111,6 +111,10 @@ Route::prefix('superadmin')
         Paramètres
         */
         Route::resource('/parametres', 'ParametreController');
+        // Ecoles
+        Route::get('/ecoles', 'ParametreController@ecoles')->name('ecoles.index');
+        Route::post('/ecole-store', 'ParametreController@ecoleStore')->name('ecoles.store');
+        Route::get('/ecole-show/{token}', 'ParametreController@ecoleShow')->name('ecoles.show');
         // Enseignements
         Route::get('/enseignements', 'ParametreController@enseignements')->name('enseignements.index');
         Route::post('/enseignement/store', 'ParametreController@enseignementStore')->name('enseignements.store');
@@ -126,10 +130,6 @@ Route::prefix('superadmin')
         // Matières
         Route::get('/matieres', 'ParametreController@matieres')->name('matieres.index');
         Route::post('/matiere/store', 'ParametreController@matiereStore')->name('matieres.store');
-        // Matières
-        Route::get('/ecoles', 'ParametreController@ecoles')->name('ecoles.index');
-        Route::post('/ecole/store', 'ParametreController@ecoleStore')->name('ecoles.store');
-        Route::get('/ecole/{id}', 'ParametreController@ecoleShow')->name('ecoles.show');
         // Programme national
         Route::resource('/programmes-national','ProgrammenationalController');
 });
@@ -202,6 +202,7 @@ Route::prefix('adminecole')
         Route::get('/depenses-gestion', 'FinanceController@depensesGestion')->name('depenses.gestion');
         Route::post('/depenses-store', 'FinanceController@depenseStore')->name('depenses.store');
         Route::get('/depenses-show/{token}', 'FinanceController@depenseShow')->name('depenses.show');
+
         Route::get('/trimestres', 'TrimestreController@index')->name('trimestre.index');
         Route::get('/trimestres-on/{id}', 'TrimestreController@trimestreOn')->name('trimestre.on');
         Route::get('/trimestres-off{id}', 'TrimestreController@trimestreOff')->name('trimestre.off');

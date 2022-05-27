@@ -13,7 +13,7 @@
     <!--JS-->
     <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
     <script src="{{asset('js/bootstrap.js')}}"></script>
-    
+
     <title>
         @yield('title')
     </title>
@@ -41,7 +41,9 @@
 </style>
 <body>
     <nav class="container-fluid">
-        <div class="">{{ Auth::user()->name }} <i class="fa fa-user-circle"></i></div>
+        <div class="">
+            <i class="fa fa-user-circle"></i> <a href="/home" style="color: white;">{{ Auth::user()->name }}</a> | {{Auth::user()->ecole->name}}
+        </div>
     </nav>
 
     <div class="">

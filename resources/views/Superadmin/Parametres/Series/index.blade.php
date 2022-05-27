@@ -1,21 +1,24 @@
 @extends('layouts.superadmin')
 
 
+@section('title')
+Superadmin | Séries
+@endsection
+
 @section('content')
 
-<div class="container mt-4">
+<div class="container mt-4 col-md-8">
     <div class="card">
         <div class="card-header">
-            <h4>SERIES</h4>
-            <button type="button" class="btn btn-sm btn-success col-1" data-toggle="modal" data-target="#exampleModal">
-                <i class="fa fa-plus"></i>
-            </button>
+            <h2>
+                CONFIGURATION DES SERIES
+                <button style="float: right;" class="btn btn-sm btn-success" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i></button>
+            </h2>
         </div>
         <div class="card-body">
             <table class="table table-sm table-bordered">
                 <thead>
                     <tr>
-                        <th>NOM</th>
                         <th>#</th>
                         <th>ENGEIGNEMENT</th>
                     </tr>
@@ -24,7 +27,6 @@
                     @foreach ($series as $serie)
                     <tr>
                         <td>{{$serie->name}}</td>
-                        <td>{{$serie->abb}}</td>
                         <td>{{$serie->enseignement_id?$serie->type->name:"-"}}</td>
                     </tr>
                     @endforeach
@@ -39,7 +41,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">CONFIGURATION DE LA SERIE</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">CONFIGURATION D'UNE NOUVELLE SERIE</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -48,7 +50,7 @@
                     <div class="modal-body">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Nom</label>
+                            <label for="name">Désignation</label>
                             <input type="text" name="name" class="form-control">
                         </div>
                         <!--div class="form-group">
@@ -65,8 +67,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ANNULER</button>
+                        <button type="submit" class="btn btn-success">ENREGISTRER</button>
                     </div>
                 </form>
             </div>

@@ -39,7 +39,9 @@
 </style>
 <body>
     <nav class="container-fluid">
-        <div class="">SUPERADMIN</div>
+        <div class="">
+            <i class="fa fa-user-circle"></i> <a href="/home" style="color: white;">{{ Auth::user()->name }}</a> | SUPERADMIN
+        </div>
     </nav>
 
     <div class="">

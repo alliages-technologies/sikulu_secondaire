@@ -151,8 +151,8 @@ class ParametreController extends Controller
        return redirect()->back();
    }
 
-   public function ecoleShow($id){
-       $ecole=Ecole::find($id);
+   public function ecoleShow($token){
+       $ecole=Ecole::where('token', $token)->first();
        return view('Superadmin.Parametres.Ecoles.show')->with(compact('ecole'));
    }
 }

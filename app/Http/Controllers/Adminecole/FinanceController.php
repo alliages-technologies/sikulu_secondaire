@@ -73,7 +73,8 @@ class FinanceController extends Controller
     */
 
     public function entrees(){
-        $categories_entrees=CategorieEntree::all();
+        $auth=auth()->user()->ecole_id;
+        $categories_entrees=CategorieEntree::where('ecole_id', $auth)->paginate(15);
         return view('Adminecole.Finances.Entrees.index')->with(compact('categories_entrees'));
     }
 
