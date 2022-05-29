@@ -7,22 +7,12 @@ Superadmin | Configuration Ecoles
 
 @section('content')
 
-<style>
-a{
-    color: black;
-}
-a:hover{
-    transition: 0.9s;
-    font-weight: bold;
-}
-</style>
-
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
             <h2>
                 CONFIGURATION DES ECOLES
-                <button style="float: right;" class="btn btn-sm btn-success" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i></button>
+                <button style="float: right;" class="btn btn-sm btn-default" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i></button>
             </h2>
         </div>
         <div class="card-body">
@@ -30,16 +20,16 @@ a:hover{
                 <thead>
                     <tr>
                         <th>ECOLE</th>
-                        <th>ADRESSE</th>
                         <th>TYPE D'ENSEIGNEMENT</th>
+                        <th>ADRESSE</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($ecoles as $ecole)
                     <tr>
-                        <td><a href="{{route('superadmin.ecoles.show', $ecole->token)}}"> {{$ecole->name}} </a></td>
-                        <td>{{$ecole->address}}</td>
+                        <td><a href="{{route('superadmin.ecoles.show', $ecole->token)}}"> <strong>{{$ecole->name}}</strong> </a></td>
                         <td>{{$ecole->type->name}}</td>
+                        <td>{{$ecole->address}}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -53,7 +43,7 @@ a:hover{
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header card-header">
                 <h5 class="modal-title" id="exampleModalLabel">CONFIGURATION D'UNE NOUVELLE ECOLE</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -63,7 +53,7 @@ a:hover{
                 <div class="modal-body">
                     @csrf
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Nom" class="form-control" required>
+                        <input type="text" name="name" placeholder="Nom de l'établissement" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <input type="text" name="address" placeholder="Adresse" class="form-control" required>

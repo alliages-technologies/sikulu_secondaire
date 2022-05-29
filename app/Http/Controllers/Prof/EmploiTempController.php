@@ -18,12 +18,12 @@ class EmploiTempController extends Controller
 {
     public function index(){
         $annee_acad = AnneeAcad::where('actif', 1)->first();
-        $prof = Prof::where('user_id',Auth::user()->id)->first();
+        $prof = Prof::where('user_id', Auth::user()->id)->first();
         $ligne_programme_ecoles = ProgrammeEcoleLigne::where('enseignant_id',$prof->id)->where('annee_id',$annee_acad->id)->get();
         return view('Prof.Emplois.index')->with(compact('ligne_programme_ecoles'));
     }
 
-    public function getEmploieBySalle($token,$ligne_programme_ecole){
+    public function getEmploieBySalle($token, $ligne_programme_ecole){
         $salle = Salle::where('token',$token)->first();
         $emplois = EmploieTemp::where('salle_id',$salle->id)->get();
         return view('Prof.Emplois.emploi')->with(compact('emplois','salle'));

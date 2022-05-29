@@ -9,7 +9,10 @@ Admin Ecole | Réinscription
 <div class="container-fluid mt-5 col-md-10">
     <div class="card">
         <div class="card-header">
-            <h2><i class="fa fa-user-graduate"></i> REINSCRIPTION</h2>
+            <h2>
+                REINSCRIPTION
+                <a href="/home" style="float: right" class="btn btn-sm btn-info"><i class="fa fa-arrow-left"></i> RETOUR</a>
+            </h2>
         </div>
         <form action="{{ route('adminecole.reinscriptions.save')}}" method="post" enctype="multipart/form-data">
             <div class="card-body">
@@ -56,7 +59,7 @@ Admin Ecole | Réinscription
                 </div>
             </div>
             <div class="card-footer">
-                <button class="btn btn-success btn-save">ENREGISTER <i class="fa fa-save"></i></button>
+                <button class="btn btn-sm btn-success btn-save">ENREGISTER</button>
             </div>
         </form>
     </div>

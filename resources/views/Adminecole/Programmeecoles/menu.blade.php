@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Programmes Salles
+Admin Ecole | Programmes {{ $salle->name }}
 @endsection
 
 @section('content')

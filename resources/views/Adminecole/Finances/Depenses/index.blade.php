@@ -7,7 +7,7 @@ Admin Ecole | Depenses
 
 @section('content')
 
-<div class="container mt-4 col-md-6">
+<div class="container col-md-6 mt-4">
     <div class="card">
         <div class="card-header">
             <h2>

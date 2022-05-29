@@ -21,11 +21,12 @@ class ProgrammeecoleController extends Controller
 
     public function index()
     {
-        $programmes_ecole = ProgrammeEcole::where('ecole_id', Auth::user()->ecole_id)->orderBy('id', 'desc')->paginate(10);
+        $programmes_ecole = ProgrammeEcole::where('ecole_id', Auth::user()->ecole_id)->orderBy('id', 'desc')->paginate(15);
         $salles = Salle::where('ecole_id', Auth::user()->ecole_id)->get();
         $programmes_national = ProgrammeNational::all();
         $enseignements = TypeEnseignement::all();
-        return view('Adminecole.Programmeecoles.index')->with(compact('salles', 'enseignements','programmes_ecole','programmes_national'));
+        //dd($salles);
+        return view('Adminecole.Programmeecoles.index')->with(compact('salles', 'enseignements', 'programmes_ecole', 'programmes_national'));
     }
 
     public function getProgrammeNationalById($id){

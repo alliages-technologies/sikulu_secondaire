@@ -18,7 +18,7 @@ Admin Ecole | Finances
             <p>Dépenses</p>
         </a>
         <a href="{{route('adminecole.entrees.index')}}" class="col-md-3 m-2">
-            <i class="fa fa-toggle-down"></i>
+            <i class="fa fa-download"></i>
             <p>Autres Entrées</p>
         </a>
         <a href="/home" class="col-md-3 m-2">

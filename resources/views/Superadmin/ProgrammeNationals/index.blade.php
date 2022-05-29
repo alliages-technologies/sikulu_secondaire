@@ -1,32 +1,38 @@
 @extends('layouts.superadmin')
 
 
+@section('title')
+Superadmin | Programmes Nationals
+@endsection
+
 @section('content')
 
-<div class="card mt-5">
-    <div class="card-header">
-        <h4 class="text-left mb-1"> Programme-National </h4>
-    </div>
-    <div class="card-body ">
-        <div class="container-fluid">
-            <table class="table table-bordered table-hover table-sm">
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2>
+                GESTION DES PROGRAMMES NATIONALS
+                <a href="" data-toggle="modal" data-target="#panier" class="btn btn-sm btn-default float-right"> <i class="fa fa-plus-square"></i> </a>
+            </h2>
+        </div>
+        <div class="card-body ">
+            <table class="table table-sm table-bordered table-hover">
                 <thead class="">
-                    <th> Classe </th>
-                    <th> Enseignement </th>
+                    <th> CLASSE </th>
+                    <th> TYPE D'ENSEIGNEMENT </th>
                     <th> <i class="fa fa-cog"></i> </th>
                 </thead>
                 <tbody>
-                    @foreach($programmes_national as $programme)
+                @foreach($programmes_national as $programme)
                     <tr>
                         <td> {{$programme->classe->name}} </td>
                         <td> {{$programme->enseignement->name}} </td>
-                        <td> <a href="{{ route('superadmin.programmes-national.show',$programme->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i></a> </td>
+                        <td> <a href="{{ route('superadmin.programmes-national.show',$programme->id) }}" class="btn btn-sm"><i class="fa fa-eye"></i></a> </td>
                     </tr>
-                    @endforeach
+                @endforeach
                 </tbody>
             </table>
             {{ $programmes_national->links() }}
-            <a href="" data-toggle="modal" data-target="#panier" class="btn btn-default float-right">Nouveau <i class="fa fa-plus-square"></i> </a>
         </div>
     </div>
 </div>
@@ -36,76 +42,74 @@
 <div class="modal fade" id="panier" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Nouveau Programme </h4>
+            <div class="modal-header card-header">
+                <h4 class="modal-title" id="exampleModalLabel">NOUVEAU PROGRAMME</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="flex-container">
-                    <div class="form-group">
-                        <form action="{{route('superadmin.programmes-national.store')}}" method="post" class="mb-4">
-                            @csrf
+                <form action="{{route('superadmin.programmes-national.store')}}" method="post" class="mb-4">
+                    @csrf
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <select name="classe_id" id="" class="form-control classe_id">
+                                <option value="">Choix de la classe</option>
+                                @foreach ($classes as $classe)
+                                <option data-classe_id="{{ $classe->id }}" value="{{ $classe->id }}">{{ $classe->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select name="enseignement_id" id="" class="form-control enseignement_id">
+                                <option value="">Choix de l'enseignement</option>
+                                @foreach ($enseignements as $enseignement)
+                                <option data-enseignement_id="{{ $enseignement->id }}" value="{{ $enseignement->id }}">{{ $enseignement->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <select name="classe_id" id="" class="form-control classe_id">
-                            <option value="">Choix de la classe</option>
-                            @foreach ($classes as $classe)
-                            <option data-classe_id="{{ $classe->id }}" value="{{ $classe->id }}">{{ $classe->name }}</option>
-                            @endforeach
-                        </select>
+                    <div class="form-row mt-2">
+                        <div class="col">
+                            <select name="matiere_id" id="" class="form-control matiere_id">
+                                <option value="">Choix de la matiere</option>
+                                @foreach ($matieres as $matiere)
+                                <option value="{{ $matiere->id }}" data-matiere_id="{{ $matiere->id }}" data-matiere="{{ $matiere->name }}">{{ $matiere->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control coefficient" name="coefficient" placeholder="Coefficient">
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <select name="enseignement_id" id="" class="form-control enseignement_id">
-                            <option value="">Choix de l'enseignement</option>
-                            @foreach ($enseignements as $enseignement)
-                            <option data-enseignement_id="{{ $enseignement->id }}" value="{{ $enseignement->id }}">{{ $enseignement->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-8">
-                        <select name="matiere_id" id="" class="form-control matiere_id">
-                            <option value="">Choix de la matiere</option>
-                            @foreach ($matieres as $matiere)
-                            <option value="{{ $matiere->id }}" data-matiere_id="{{ $matiere->id }}" data-matiere="{{ $matiere->name }}">{{ $matiere->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="number" class="form-control coefficient" name="coefficient" placeholder="Coefficient">
-                    </div>
-                    <div class="col-md-2">
+                    <div class="form-group mt-2">
                         <button class="btn btn-default btn-add"><i class="fa fa-plus-square"></i></button>
                     </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-12">
-                        <table class="table table-bordered table-striped table-sm table-programme">
-                            <thead>
-                                <tr>
-                                    <th>Matiere</th>
-                                    <th>Coéfficient</th>
-                                    <th><i class="fa fa-cog"></i></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <table class="table table-bordered table-striped table-sm table-programme">
+                                <thead>
+                                    <tr>
+                                        <th>MATIERE</th>
+                                        <th>COEFFICIENT</th>
+                                        <th><i class="fa fa-cog"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!---->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <button class="btn btn-default mt-2 btn-save" id="btn-save">Enrégistrer <i class="fa fa-save"></i> </button>
+                    <button class="btn btn-default mt-2 btn-save" id="btn-save">ENREGISTRER</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-</div>
+
+
 <script src="{{ asset('js/programmenational.js') }}"></script>
+
 
 @endsection

@@ -10,7 +10,7 @@ Admin Ecole | Programme
 <div class="container mt-5">
     <div class="card">
         <div class="card-header">
-            <h2> Programme de la {{ $salle->name }} <strong>|</strong> Niveau <strong>|</strong> {{ $salle->classe->name }} </h2>
+            <h2> Programme de la {{ $salle->name }} <strong>|</strong> {{ $salle->classe->name }} </h2>
             <input type="hidden" name="classe_id" value="{{ $salle->id}}">
         </div>
         <div class="card-body">

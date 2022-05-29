@@ -13,7 +13,7 @@ class MatiereController extends Controller
 
     public function index()
     {
-        $matieres = Matiere::Orwhere('ecole_id',Auth::user()->ecole_id)->Orwhere('ecole_id',0)->get();
+        $matieres = Matiere::Orwhere('ecole_id', Auth::user()->ecole_id)->Orwhere('ecole_id', 0)->get();
         return view('Adminecole.Parametres.Matieres.index')->with(compact('matieres'));
     }
 
@@ -62,12 +62,6 @@ class MatiereController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

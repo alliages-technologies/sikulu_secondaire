@@ -1,4 +1,6 @@
 @extends('layouts.prof')
+
+
 @section('content')
 <h4 class="text-center mt-4" style="letter-spacing: 2px">Notes /> {{ $salle->name }}</h4>
 <input type="hidden" name="salle_id" value="{{ $salle->id }}">

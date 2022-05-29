@@ -1,4 +1,10 @@
 @extends('layouts.adminecole')
+
+
+@section('title')
+Admin Ecole | Horaires Salle
+@endsection
+
 @section('content')
 
 <style>
@@ -10,33 +16,37 @@
     }
 </style>
 
-<input type="hidden" name="salle_id" class="salle_id" value="{{ $salle }}">
-<div class="card mt-5">
-    <div class="card-header">
-        <h4 class="text-left mb-1"> Emploi du Temps </h4>
-    </div>
-    <div class="card-body ">
-        <div class="container-fluid">
-            <table class="table table-bordered table-hover table-sm">
-                <thead class="">
-                    <th> Date </th>
-                    <th> Désignation </th>
-                    <th> <i class="fa fa-cog"></i> </th>
-                </thead>
-                <tbody>
-                    @foreach($emploie_temps as $emploie_temp)
-                    <tr>
-                        <td> {{$emploie_temp->created_at->format('Y-m-d')}}</td>
-                        <td> {{ $emploie_temp->name }} </td>
-                        <td> <a href="{{ route('adminecole.emploies.show',$emploie_temp->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i></a> </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
-            <a href="" data-toggle="modal" data-target="#panier" class="btn btn-default float-right">Nouveau <i class="fa fa-plus-square"></i> </a>
+<div class="container mt-4">
+    <input type="hidden" name="salle_id" class="salle_id" value="{{ $salle }}">
+    <div class="card">
+        <div class="card-header">
+            <h2>
+                GESTION DES HORAIRES DE LA SALLE
+                <a href="" data-toggle="modal" data-target="#panier" class="btn btn-sm btn-default float-right"> <i class="fa fa-plus-square"></i> </a>
+            </h2>
+        </div>
+        <div class="card-body ">
+            <div class="container-fluid">
+                <table class="table table-bordered table-hover table-sm">
+                    <thead class="">
+                        <th> DATE </th>
+                        <th> DESIGNATION </th>
+                        <th> <i class="fa fa-cog"></i> </th>
+                    </thead>
+                    <tbody>
+                        @foreach($emploie_temps as $emploie_temp)
+                        <tr>
+                            <td> {{$emploie_temp->created_at->format('d/m/Y')}}</td>
+                            <td> {{ $emploie_temp->name }} </td>
+                            <td> <a href="{{ route('adminecole.emploies.show', $emploie_temp->id) }}"><i class="fa fa-eye"></i></a> </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
 </div>
 
 
@@ -44,21 +54,18 @@
 <div class="modal fade" id="panier" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Nouveau Programme </h4>
+            <div class="modal-header card-header">
+                <h4 class="modal-title" id="exampleModalLabel">NOUVEAU PROGRAMME</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="flex-container">
-                    <div class="form-group">
-                        <form action="{{route('adminecole.emploies.store')}}" method="post" class="mb-4">
-                            @csrf
-                    </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-5">
+                <form action="{{route('adminecole.emploies.store')}}" method="post" class="mb-4">
+                    @csrf
+                <div class="form-row mt-2">
+                    <div class="col">
+                        <label for="">Horaire</label>
                         <select name="tranche_id" id="" class="form-control tranche_id">
                             <option value="">Choix de la tranche horaire</option>
                             @foreach ($tranches as $tranche)
@@ -66,36 +73,37 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col">
+                        <label for="">Matière</label>
                         <select name="programme_ecole_ligne_id" id="" class="form-control programme_ecole_ligne_id">
                             <option value="">Choix de la matière</option>
-                        @foreach ($programme_ligne_ecoles as $lpe)
+                            @foreach ($programme_ligne_ecoles as $lpe)
                             <option data-matiere="{{ $lpe->matieren }}" data-prof="{{ $lpe->prof }}" value="{{ $lpe->id }}">{{ $lpe->matiere->name }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-default btn-add"><i class="fa fa-plus-square"></i></button>
-                    </div>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-12">
+                <div class="form-group mt-2">
+                    <button class="btn btn-default btn-add"><i class="fa fa-plus-square"></i></button>
+                </div>
+                <div class="mt-4">
+                    <div class="">
                         <table class="table table-bordered table-striped table-sm table-emploi-temp">
                             <thead>
                                 <tr>
-                                    <th>Tranche Horaire</th>
-                                    <th>Matière</th>
-                                    <th>Prof</th>
+                                    <th>Horaires</th>
+                                    <th>Matières</th>
+                                    <th>Profs</th>
                                     <th><i class="fa fa-cog"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
-
+                                <!---->
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <button class="btn btn-default mt-2 btn-save" id="btn-save">Enrégistrer <i class="fa fa-save"></i> </button>
+                <button class="btn btn-default mt-2 btn-save" id="btn-save">ENREGISTRER</button>
                 </form>
             </div>
         </div>

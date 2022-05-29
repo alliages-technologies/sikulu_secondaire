@@ -41,8 +41,9 @@
 </style>
 <body>
     <nav class="container-fluid">
-        <div class="">
-            <i class="fa fa-user-circle"></i> <a href="/home" style="color: white;">{{ Auth::user()->name }}</a> | {{Auth::user()->ecole->name}}
+        <div>
+            <span class="float-left"><i class="fa fa-user-circle"></i> <a href="/home" style="color: white;">{{ Auth::user()->name }}</a> | {{Auth::user()->ecole->name}}</span>
+            <span class="float-right"><strong>ADMIN ECOLE</strong></span>
         </div>
     </nav>
 

@@ -22,7 +22,7 @@ Admin Ecole | Gestion des dépenses
                     <tr>
                         <th>DATE</th>
                         <th>MONTANT</th>
-                        <th>#</th>
+                        <th>DESIGNATION</th>
                         <th>CATEGORIE</th>
                     </tr>
                 </thead>
