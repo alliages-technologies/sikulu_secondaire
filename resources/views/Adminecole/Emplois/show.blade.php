@@ -13,16 +13,14 @@
                         <th> Tranche Horaire</th>
                         <th> Matière </th>
                         <th> Enseignant </th>
-                        <th> <i class="fa fa-cog"></i> </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($emploi_temp->lets as $let)
                     <tr>
-                        <td> {{ $let->tranche->name }} </td>>
-                        <td> {{ $let->ligneprogrammeecole->matiere->name }} </td>>
-                        <td> {{ $let->ligneprogrammeecole->prof}} </td>>
-                        <td> <button data-let="{{ $let->id }}" data-toggle="modal" data-target="#panier" class="btn btn-default btn-xs btn-edit"><i class="fa fa-edit"></i></button> </td>
+                        <td> {{ $let->tranche->name }} </td>
+                        <td> {{ $let->ligneprogrammeecole->matiere->name }} </td>
+                        <td> {{ $let->ligneprogrammeecole->prof}} </td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -11,7 +11,7 @@ Admin Ecole | Programme
     <div class="card">
         <div class="card-header">
             <h2> Programme de la {{ $salle->name }} <strong>|</strong> Niveau <strong>|</strong> {{ $salle->classe->name }} </h2>
-            <input type="hidden" name="classe_id" value="{{ $salle->id}}">
+            <input type="hidden" name="classe_id" value="{{ $salle->token}}">
         </div>
         <div class="card-body">
             <table class="table table-sm table-bordered table-hover table-striped">

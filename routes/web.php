@@ -158,6 +158,7 @@ Route::prefix('adminecole')
         // Profs
         // Gestion des Profs
         Route::resource('/profs', 'ProfController');
+        Route::get('/profs-show/{token}', 'ProfController@show')->name('show');
         Route::get('/profs-verification-numero', 'ProfController@verificationNumero');
         Route::post('/profs-terminer-un', 'ProfController@terminerUn');
         Route::get('/profs-verification-info', 'ProfController@verificationInfo');
@@ -218,6 +219,20 @@ Route::prefix('adminecole')
         Route::get('/entrees-show/{token}', 'FinanceController@entreeShow')->name('entrees.show');
         /*
         Fin de la gestion des Finances
+        */
+
+        /*
+        Debut de la gestion des relevés de notes
+        */
+        Route::get('/scolarite-menu', 'ScolariteController@menu')->name('scolarite.menu');
+        Route::get('/scolarite-menu/{id}/{ecole}', 'ScolariteController@index');
+        Route::get('/scolarite-releve/{id}/{ecole}/{programme_ecole}', 'ScolariteController@releveNote');
+        Route::get('/scolarite-inscriptions/{salle}/{ecole}/', 'ScolariteController@inscription');
+        Route::get('/scolarite-inscription-show/{inscription}/{ecole}/', 'ScolariteController@inscriptionShow');
+        Route::post('/scolarite/releve-save', 'ScolariteController@save');
+        Route::post('/scolarite/generation-auto-releve', 'ScolariteController@generationAutoReleve')->name('generation.auto');
+        /*
+        Fin de la gestion des relevés de notes
         */
     });
 

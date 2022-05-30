@@ -12,6 +12,7 @@ use App\Models\Salle;
 use App\Models\TrimestreEcole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class NoteController extends Controller
 {
@@ -39,16 +40,22 @@ class NoteController extends Controller
 
     public function store(Request $request)
     {
+        $annee = AnneeAcad::where('actif', 1)->first();
         $lignes = $request->lignes;
         $ligne_ecole_programme_id = $request->ligne_ecole_programme_id;
         $token = $request->_token;
+        $trimestre_id = $request->trimestre_id;
         for ($i=0; $i < count($lignes); $i++) {
             $note = new Note();
             $note->inscription_id = $lignes[$i]["inscription_id"];
             $note->valeur = $lignes[$i]["note"];
             $note->ligne_ecole_programme_id = $ligne_ecole_programme_id;
-            $note->token = $token;
+            $note->token = Hash::make(date('Y-m-d his'));
             $note->created_by = Auth::user()->id;
+            $note->trimestre_id = $trimestre_id;
+            $note->annee_id = $annee->id;
+            $ligne_ecole_programme = ProgrammeEcoleLigne::find($ligne_ecole_programme_id);
+            $note->ecole_id = $ligne_ecole_programme->programmeecole->ecole_id;
             //dd($note);
             $note->save();
         }

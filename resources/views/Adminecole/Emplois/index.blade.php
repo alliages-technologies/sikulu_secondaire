@@ -10,7 +10,7 @@
     }
 </style>
 
-<input type="hidden" name="salle_id" class="salle_id" value="{{ $salle }}">
+<input type="hidden" name="salle_id" class="salle_id" value="{{ $salle->id }}">
 <div class="card mt-5">
     <div class="card-header">
         <h4 class="text-left mb-1"> Emploi du Temps </h4>
@@ -28,7 +28,7 @@
                     <tr>
                         <td> {{$emploie_temp->created_at->format('Y-m-d')}}</td>
                         <td> {{ $emploie_temp->name }} </td>
-                        <td> <a href="{{ route('adminecole.emploies.show',$emploie_temp->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i></a> </td>
+                        <td> <a href="{{ route('adminecole.emploies.show',$emploie_temp->token) }}" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i></a> </td>
                     </tr>
                     @endforeach
                 </tbody>

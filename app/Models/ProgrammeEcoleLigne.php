@@ -38,4 +38,5 @@ class ProgrammeEcoleLigne extends Model
     public function notes(){
         return $this->hasMany('App\Models\Note','ligne_ecole_programme_id');
     }
+    
 }

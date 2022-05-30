@@ -14,7 +14,7 @@ $(".trimestre_id").change(function (e) {
                 }).get()];
             }).get();
             var lignes = [];
-            
+
             for (let i = 0; i < data.length; i++) {
                 var notes = data[i][2];
                 //console.log(notes); //JSON.stringify(data)
@@ -24,12 +24,12 @@ $(".trimestre_id").change(function (e) {
                 var ligne_inscription = $(this).data('ligne_inscription');
                 var note = data[index][2];
                 //console.log(ligne_inscription);
-                //console.log(notes); 
+                //console.log(notes);
                 var elt = {
                     inscription_id: ligne_inscription,
                     note: note
                 }
-                lignes.push(elt);             
+                lignes.push(elt);
             });
 
             $.ajax({
@@ -38,6 +38,7 @@ $(".trimestre_id").change(function (e) {
                 data: {
                     lignes: lignes,
                     ligne_ecole_programme_id: $(".ligne_ecole_programme_id").val(),
+                    trimestre_id: $('.trimestre_id').val(),
                     '_token': $('input[name="_token"]').val()
                 },
                 dataType: "json",

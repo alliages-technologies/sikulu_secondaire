@@ -29,7 +29,7 @@ Admin Ecole | Dashboard
             <i class="fa fa-user-plus"></i>
             <p>Réinscriptions</p>
         </a>
-        <a href="" class="col-md-3 m-2">
+        <a href="{{ route('adminecole.scolarite.menu') }}" class="col-md-3 m-2">
             <i class="fa fa-graduation-cap"></i>
             <p>Scolarité</p>
         </a>

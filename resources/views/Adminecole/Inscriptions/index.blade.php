@@ -33,7 +33,7 @@ Admin Ecole | Inscriptions
                         @endif
                         <td> {{$inscription->eleve_id?$inscription->eleve->nom:""}} {{$inscription->eleve_id?$inscription->eleve->prenom:""}} </td>
                         <td> {{$inscription->classe_id?$inscription->classe->name:""}} </td>
-                        <td> <a href="{{ route('adminecole.inscriptions.show', $inscription->id) }}" class="btn btn-sm"> <i class="fa fa-eye"></i> </a> </td>
+                        <td> <a href="{{ route('adminecole.inscriptions.show', $inscription->token) }}" class="btn btn-sm"> <i class="fa fa-eye"></i> </a> </td>
                     </tr>
                 @endforeach
                 </tbody>
