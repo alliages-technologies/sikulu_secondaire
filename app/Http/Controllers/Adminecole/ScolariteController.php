@@ -11,6 +11,7 @@ use App\Models\ReleveNote;
 use App\Models\ReleveTraite;
 use App\Models\Salle;
 use App\Models\TrimestreEcole;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -39,50 +40,18 @@ class ScolariteController extends Controller
         return view('Adminecole.Scolarites.inscription')->with(compact('inscriptions','salle'));
     }
 
-    public function inscriptionShow($inscription,$ecole){
+    public function inscriptionShow($inscription,$ecole,$salle){
+        $salle = Salle::where('id',$salle)->where('ecole_id',Auth::user()->ecole_id)->first();
+        $inscriptions = Inscription::where('classe_id',$salle->classe_id)->get();
         $inscription = Inscription::find($inscription);
-        //dd($inscription->salle_id);
-        return view('Adminecole.Scolarites.inscription_show')->with(compact('inscription'));
+        return view('Adminecole.Scolarites.inscription_show')->with(compact('inscription','inscriptions'));
     }
 
-    public function save(){
-        /*
-        $lignes = request()->lignes;
-        $trimestre_id = request()->trimestre_id;
-        $inscription_id = request()->inscription_id;
-        //dd($inscription_id);
-
-        $annee = AnneeAcad::where('actif', 1)->first();
-
-        $releve_note = new ReleveNote();
-        $releve_note->inscription_id = $inscription_id;
-        $releve_note->trimestre_id = $trimestre_id;
-        $releve_note->token = Hash::make(date('His'));
-        $releve_note->annee_id = $annee->id;
-        $releve_note->moi_id = date('m');
-        $releve_note->semaine_id = date('W');
-        $releve_note->save();
-
-        $releve_traite = new ReleveTraite();
-        $releve_traite->inscription_id = $inscription_id;
-        $releve_traite->trimestre_id = $trimestre_id;
-        $releve_traite->token = Hash::make(date('His'));
-        $releve_traite->annee_id = $annee->id;
-        $releve_traite->releve_id = $releve_note->id;
-        $releve_traite->save();
-
-        for ($i=0; $i < count($lignes) ; $i++) {
-            $ligne_releve_note = new LigneReleveNote();
-            $ligne_releve_note->programme_ligne_ecole_id = $lignes[$i]['ligne_ecole_programme_id'];
-            $ligne_releve_note->releve_id = $releve_note->id;
-            $ligne_releve_note->note_id = $lignes[$i]['note_id'];
-            $ligne_releve_note->valeur = $lignes[$i]['note'];
-            $ligne_releve_note->save();
-        }
-
-        return response()->json("OK");
-         */
-        
+    public function save($inscription){
+        $inscription = Inscription::find($inscription);
+        PDF::setOptions(['isRemoteEnabled' => TRUE, 'enable_javascript' => TRUE]);
+        $pdf=PDF::loadView('Adminecole.Scolarites.pdf', compact('inscription'))->setOptions(['defaultFont' => 'sans-serif']);
+        return $pdf->stream();
     }
 
     public function generationAutoReleve(){

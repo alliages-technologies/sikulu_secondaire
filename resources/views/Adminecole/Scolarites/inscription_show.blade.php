@@ -6,7 +6,6 @@
     border: 1px solid #ffffff;
 }
 </style>
-
 <div class="container-fluid">
     <div class="card mt-5">
         <div class="card-header" style="background-color: darkblue; color:white">
@@ -50,10 +49,15 @@
                             <td> </td>
                             <td style="font-size: larger;" class="moyenne"> {{ $inscription->moyenne }} </td>
                         </tr>
+                        <tr>
+                            <td style="font-size: larger;">Rang :</td>
+                            <td> {{ $inscription->rang }} Sur {{ $inscriptions->count() }} </td>
+                            <td> </td>
+                            <td style="font-size: larger;" >  </td>
+                        </tr>
                     </tbody>
                 </table>
-
-                <button style="background-color: darkblue; color:white"  class="btn btn-default float-right btn-save"> GENERATION DU RELEVE <i class="fa fa-print"></i> </a>
+                <a href="{{ route('adminecole.releve.pdf',$inscription->id) }}" style="background-color: darkblue; color:white"  class="btn btn-default float-right"> GENERATION DU RELEVE <i class="fa fa-print"></i> </a>
             </div>
         </div>
     </div>

@@ -19,7 +19,7 @@
                         <tr>
                             <td> {{$inscription->name}} </td>
                             <td> {{$inscription->classe->name}} </td>
-                            <td> <a href="/adminecole/scolarite-inscription-show/{{ $inscription->id }}/{{ $salle->ecole->token }}" class="btn btn-warning btn-xs"><i class="fa fa-eye"></i></a> </td>
+                            <td> <a href="/adminecole/scolarite-inscription-show/{{ $inscription->id }}/{{ $salle->ecole->token }}/{{ $salle->id }}" class="btn btn-warning btn-xs"><i class="fa fa-eye"></i></a> </td>
                         </tr>
                         @endforeach
                     </tbody>

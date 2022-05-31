@@ -227,9 +227,9 @@ Route::prefix('adminecole')
         Route::get('/scolarite-menu', 'ScolariteController@menu')->name('scolarite.menu');
         Route::get('/scolarite-menu/{id}/{ecole}', 'ScolariteController@index');
         Route::get('/scolarite-releve/{id}/{ecole}/{programme_ecole}', 'ScolariteController@releveNote');
-        Route::get('/scolarite-inscriptions/{salle}/{ecole}/', 'ScolariteController@inscription');
-        Route::get('/scolarite-inscription-show/{inscription}/{ecole}/', 'ScolariteController@inscriptionShow');
-        Route::post('/scolarite/releve-save', 'ScolariteController@save');
+        Route::get('/scolarite-inscriptions/{salle}/{ecole}', 'ScolariteController@inscription');
+        Route::get('/scolarite-inscription-show/{inscription}/{ecole}/{salle}', 'ScolariteController@inscriptionShow');
+        Route::get('/scolarite/releve-save/{inscription}', 'ScolariteController@save')->name("releve.pdf");
         Route::post('/scolarite/generation-auto-releve', 'ScolariteController@generationAutoReleve')->name('generation.auto');
         /*
         Fin de la gestion des relevés de notes

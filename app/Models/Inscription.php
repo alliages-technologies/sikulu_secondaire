@@ -69,4 +69,8 @@ class Inscription extends Model
         }
     }
 
+    public function getRangAttribute(){
+        return 0;
+    }
+
 }
