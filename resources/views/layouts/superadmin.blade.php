@@ -32,10 +32,6 @@
         background-color: rgb(13, 13, 95);
         color: white;
     }
-    h4{
-        font-weight: lighter;
-        letter-spacing: 1px;
-    }
 </style>
 <body>
     <nav class="container-fluid">

@@ -109,6 +109,7 @@ class ProfController extends Controller
         $prof->adresse = $adresse;
         $prof->telephone = $telephone;
         $prof->diplome_id = $diplome;
+        $prof->token = "A".date('ymdhisW')."x".date('Wsihdmy');
         $prof->save();
 
         $profecole = new ProfEcole();
