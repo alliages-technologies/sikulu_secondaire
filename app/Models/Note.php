@@ -20,4 +20,12 @@ class Note extends Model
         return $this->belongsTo('App\Models\ProgrammeEcoleLigne','programme_ecole_ligne_id');
     }
 
+    public function pel(){
+        return $this->belongsTo('App\Models\ProgrammeEcoleLigne','ligne_ecole_programme_id');
+    }
+
+    public function getTotalmatiereAttribute(){
+        return $this->valeur * $this->pel->coefficient;
+    }
+
 }

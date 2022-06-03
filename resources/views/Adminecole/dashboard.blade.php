@@ -29,7 +29,7 @@ Admin Ecole | Dashboard
             <i class="fa fa-user-plus"></i>
             <p>Réinscriptions</p>
         </a>
-        <a href="" class="col-md-3 m-2">
+        <a href="{{ route('adminecole.scolarite.menu') }}" class="col-md-3 m-2">
             <i class="fa fa-graduation-cap"></i>
             <p>Scolarité</p>
         </a>
@@ -48,10 +48,6 @@ Admin Ecole | Dashboard
         <a href="" class="col-md-3 m-2">
             <i class="fa fa-truck"></i>
             <p>Logistique</p>
-        </a>
-        <a href="{{route('adminecole.finances.index')}}" class="col-md-3 m-2">
-            <i class="fa fa-money"></i>
-            <p>Finances</p>
         </a>
         <a href="" class="col-md-3 m-2">
             <i class="fa fa-book"></i>

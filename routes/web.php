@@ -154,6 +154,7 @@ Route::prefix('adminecole')
         Route::get('/menu/{id}','ProgrammeecoleController@menu')->name('menu');
         // Gestion des Profs
         Route::resource('/profs', 'ProfController');
+        Route::get('/profs-show/{token}', 'ProfController@show')->name('show');
         Route::get('/profs-verification-numero', 'ProfController@verificationNumero');
         Route::post('/profs-terminer-un', 'ProfController@terminerUn');
         Route::get('/profs-verification-info', 'ProfController@verificationInfo');
@@ -188,6 +189,20 @@ Route::prefix('adminecole')
         Route::get('/matieres/on/{id}', 'MatiereController@on')->name('matieres.on');
         Route::get('/matieres/off/{id}', 'MatiereController@off')->name('matieres.off');
         Route::resource('/cours', 'CourController');
+
+                /*
+        Debut de la gestion des relevés de notes
+        */
+        Route::get('/scolarite-menu', 'ScolariteController@menu')->name('scolarite.menu');
+        Route::get('/scolarite-menu/{id}/{ecole}', 'ScolariteController@index');
+        Route::get('/scolarite-releve/{id}/{ecole}/{programme_ecole}', 'ScolariteController@releveNote');
+        Route::get('/scolarite-inscriptions/{salle}/{ecole}', 'ScolariteController@inscription');
+        Route::get('/scolarite-inscription-show/{inscription}/{ecole}/{salle}', 'ScolariteController@inscriptionShow');
+        Route::get('/scolarite/releve-save/{inscription}', 'ScolariteController@save')->name("releve.pdf");
+        Route::post('/scolarite/generation-auto-releve', 'ScolariteController@generationAutoReleve')->name('generation.auto');
+        /*
+        Fin de la gestion des relevés de notes
+        */
     });
 
 
@@ -215,7 +230,8 @@ Route::prefix('responsablefinances')
         Route::get('/entrees-gestion', 'FinanceController@entreesGestion')->name('entrees.gestion');
         Route::post('/entrees-store', 'FinanceController@entreeStore')->name('entrees.store');
         Route::get('/entrees-show/{token}', 'FinanceController@entreeShow')->name('entrees.show');
-});
+    });
+
 
 
 

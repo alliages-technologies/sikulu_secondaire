@@ -15,7 +15,7 @@ Admin Ecole | Programmes {{ $salle->name }}
         <div class="card-body ">
             <div class="container text-center">
                 <div class="row d-flex justify-content-center p-1">
-                    <a href="{{ route('adminecole.programmes-ecole.show',$salle->id) }}" class="col-md-3 m-2">
+                    <a href="{{ route('adminecole.programmes-ecole.show',$salle->token) }}" class="col-md-3 m-2">
                         <i class="fa fa-folder"></i>
                         <p>Programme</p>
                     </a>

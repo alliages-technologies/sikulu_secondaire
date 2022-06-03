@@ -38,4 +38,39 @@ class Inscription extends Model
         return $this->hasMany('App\Models\Ecolage');
     }
 
+    public function notes(){
+        return $this->hasMany('App\Models\Note');
+    }
+
+    public function getTotalcoefficientAttribute(){
+        $notes = $this->notes;
+        $total = $notes->reduce(function ($carry, $item) {
+            return $carry + $item->pel->coefficient;
+        });
+        return $total;
+    }
+
+    public function getTotauxAttribute(){
+        $notes = $this->notes;
+        $total = $notes->reduce(function ($carry, $item) {
+            return $carry + $item->totalmatiere;
+        });
+        return $total;
+    }
+
+    public function getMoyenneAttribute(){
+        if ($this->totalcoefficient == null) {
+            $moyenne = round(($this->totaux)/1, 2);
+            return $moyenne;
+        }
+        else{
+            $moyenne = round(($this->totaux)/$this->totalcoefficient, 2);
+            return $moyenne;
+        }
+    }
+
+    public function getRangAttribute(){
+        return 0;
+    }
+
 }

@@ -29,7 +29,7 @@
             <select name="" id="" class="form-control trimestre_id">
                 <option value="">Selectionner le trimestre</option>
                 @foreach ($trimestre_ecoles as $trimestre_ecole)
-                <option value="{{ $trimestre_ecole->id }}">{{ $trimestre_ecole->trimestre->name }} ({{ $trimestre_ecole->trimestre->abb }})</option>
+                <option value="{{ $trimestre_ecole->trimestre->id }}">{{ $trimestre_ecole->trimestre->name }} ({{ $trimestre_ecole->trimestre->abb }})</option>
                 @endforeach
             </select>
         </div>

@@ -33,8 +33,12 @@ Admin Ecole | Inscriptions
                         <td> Date non pris en compte </td>
                         @endif
                         <td> {{$inscription->classe_id?$inscription->classe->name:""}} </td>
+<<<<<<< HEAD
                         <td> {{$inscription->eleve_id?$inscription->eleve->nom:""}} {{$inscription->eleve_id?$inscription->eleve->prenom:""}} </td>
                         <td> <a href="{{ route('adminecole.inscriptions.show', $inscription->id) }}" class="btn btn-sm"> <i class="fa fa-eye"></i> </a> </td>
+=======
+                        <td> <a href="{{ route('adminecole.inscriptions.show', $inscription->token) }}" class="btn btn-sm"> <i class="fa fa-eye"></i> </a> </td>
+>>>>>>> dfdc58834e23de13978ce6b4101534a53903c34f
                     </tr>
                 @endforeach
                 </tbody>

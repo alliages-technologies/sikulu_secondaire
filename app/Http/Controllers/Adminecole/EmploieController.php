@@ -15,9 +15,12 @@ use Illuminate\Support\Facades\Auth;
 class EmploieController extends Controller
 {
 
-    public function index($id)
+    public function index($token)
     {
-        $salle = $id;
+        $salle = Salle::where('token', $token)->first();
+        $id = $salle->id;
+
+        //dd($id);
         $emploie_temps = EmploieTemp::where('salle_id',$id)->get();
         $tranches = TrancheHoraire::where('ecole_id',Auth::user()->ecole_id)->get();
 
@@ -59,9 +62,9 @@ class EmploieController extends Controller
         return view('Adminecole.Emplois.menu')->with(compact('salles'));
     }
 
-    public function show($id)
+    public function show($token)
     {
-        $emploi_temp = EmploieTemp::find($id);
+        $emploi_temp = EmploieTemp::where('token', $token)->first();
         return view("Adminecole.Emplois.show")->with(compact('emploi_temp'));
     }
 

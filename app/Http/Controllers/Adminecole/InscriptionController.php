@@ -218,9 +218,9 @@ class InscriptionController extends Controller
         return response()->json("OK");
     }
 
-    public function show($id)
+    public function show($token)
     {
-        $inscription = Inscription::find($id);
+        $inscription = Inscription::where('token', $token)->first();
         return view('Adminecole.Inscriptions.show')->with(compact('inscription'));
     }
 

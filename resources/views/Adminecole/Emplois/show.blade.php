@@ -16,19 +16,24 @@ Admin Ecole | Emploi du temps
             <table class="table table-sm table-bordered table-hover">
                 <thead class="">
                     <tr>
+<<<<<<< HEAD
                         <th> TRANCHE HORAIRE</th>
                         <th> MATIERE </th>
                         <th> ENSEIGNANT </th>
                         <th> <i class="fa fa-cog"></i> </th>
+=======
+                        <th> Tranche Horaire</th>
+                        <th> Matière </th>
+                        <th> Enseignant </th>
+>>>>>>> dfdc58834e23de13978ce6b4101534a53903c34f
                     </tr>
                 </thead>
                 <tbody>
                 @foreach ($emploi_temp->lets as $let)
                     <tr>
-                        <td> {{ $let->tranche->name }} </td>>
-                        <td> {{ $let->ligneprogrammeecole->matiere->name }} </td>>
-                        <td> {{ $let->ligneprogrammeecole->prof}} </td>>
-                        <td> <button data-let="{{ $let->id }}" data-toggle="modal" data-target="#panier" class="btn btn-default btn-xs btn-edit"><i class="fa fa-edit"></i></button> </td>
+                        <td> {{ $let->tranche->name }} </td>
+                        <td> {{ $let->ligneprogrammeecole->matiere->name }} </td>
+                        <td> {{ $let->ligneprogrammeecole->prof}} </td>
                     </tr>
                 @endforeach
                 </tbody>

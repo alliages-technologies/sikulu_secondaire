@@ -10,8 +10,13 @@ Admin Ecole | Programme
 <div class="container mt-5">
     <div class="card">
         <div class="card-header">
+<<<<<<< HEAD
             <h2> Programme de la {{ $salle->name }} <strong>|</strong> {{ $salle->classe->name }} </h2>
             <input type="hidden" name="classe_id" value="{{ $salle->id}}">
+=======
+            <h2> Programme de la {{ $salle->name }} <strong>|</strong> Niveau <strong>|</strong> {{ $salle->classe->name }} </h2>
+            <input type="hidden" name="classe_id" value="{{ $salle->token}}">
+>>>>>>> dfdc58834e23de13978ce6b4101534a53903c34f
         </div>
         <div class="card-body">
             <table class="table table-sm table-bordered table-hover table-striped">
