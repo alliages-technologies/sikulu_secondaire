@@ -14,6 +14,7 @@ use App\Models\TrimestreEcole;
 use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ScolariteController extends Controller
@@ -69,7 +70,7 @@ class ScolariteController extends Controller
         else {
             $releve_traite = new ReleveTraite();
             $releve_traite->trimestre_id = request()->trimestre_id;
-            $releve_traite->token = Hash::make(date('His'));
+            $releve_traite->token =  sha1(date('His'));
             $releve_traite->annee_id = $annee_acad->id;
             $releve_traite->save();
 
@@ -77,11 +78,11 @@ class ScolariteController extends Controller
                 $releve_note = new ReleveNote();
                 $releve_note->inscription_id = $inscription->id;
                 $releve_note->trimestre_id = request()->trimestre_id;
-            $releve_note->token = Hash::make(date('His'));
-            $releve_note->annee_id = $annee_acad->id;
-            $releve_note->moi_id = date('m');
-            $releve_note->semaine_id = date('W');
-            $releve_note->save();
+                $releve_note->token = sha1(date('His'));
+                $releve_note->annee_id = $annee_acad->id;
+                $releve_note->moi_id = date('m');
+                $releve_note->semaine_id = date('W');
+                $releve_note->save();
 
             $inscription = Inscription::find($releve_note->inscription_id);
             foreach ($inscription->notes as $note){
@@ -90,9 +91,20 @@ class ScolariteController extends Controller
                 $ligne_releve_note->releve_id = $releve_note->id;
                 $ligne_releve_note->note_id = $note->id;
                 $ligne_releve_note->valeur = $note->valeur;
+                $ligne_releve_note->coefficient = $note->lep->coefficient;
                 $ligne_releve_note->save();
+
+                $valeur = LigneReleveNote::where('id',$ligne_releve_note->id)->sum("valeur");
+                $moyenne_generale = DB::table('ligne_releve_notes')
+                ->select(DB::raw('round(sum(ligne_releve_notes.valeur * ligne_releve_notes.coefficient)/sum(ligne_releve_notes.coefficient),2) as moyenne'))
+                ->where('id', '=', $ligne_releve_note->id)
+                ->value("moyenne");
+                $releve_note = ReleveNote::find($ligne_releve_note->releve_id);
+                $releve_note->moyenne = $moyenne_generale;
+                $releve_note->save();
             }
         }
+        //$ligne_releve_notes = LigneReleveNote::where('annee_id',$annee_acad->id)->where('trimestre_id',request()->trimestre_id);
 
         }
 

@@ -178,7 +178,7 @@ Route::prefix('adminecole')
         Route::resource('/emploies', 'EmploieController');
         Route::get('/emploies-temps/{id}', 'EmploieController@index')->name('index');
         Route::get('/emploies-du-temps', 'EmploieController@menu')->name('emploie.salle');
-
+        
         Route::resource('/tranches', 'TrancheController');
 
 
@@ -190,7 +190,7 @@ Route::prefix('adminecole')
         Route::get('/matieres/off/{id}', 'MatiereController@off')->name('matieres.off');
         Route::resource('/cours', 'CourController');
 
-                /*
+        /*
         Debut de la gestion des relevés de notes
         */
         Route::get('/scolarite-menu', 'ScolariteController@menu')->name('scolarite.menu');
@@ -204,6 +204,8 @@ Route::prefix('adminecole')
         Fin de la gestion des relevés de notes
         */
     });
+
+
 
 
 Route::prefix('responsablefinances')
@@ -231,6 +233,16 @@ Route::prefix('responsablefinances')
         Route::post('/entrees-store', 'FinanceController@entreeStore')->name('entrees.store');
         Route::get('/entrees-show/{token}', 'FinanceController@entreeShow')->name('entrees.show');
     });
+
+
+
+
+Route::prefix('responsablescolarite')
+->namespace('Responsablescolarite')
+->name('responsablescolarite.')
+->group(function(){
+    //
+});
 
 
 

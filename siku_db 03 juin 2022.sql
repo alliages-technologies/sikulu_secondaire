@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 27 mai 2022 à 14:12
--- Version du serveur :  5.7.31
--- Version de PHP : 7.3.21
+-- Généré le : ven. 03 juin 2022 à 15:00
+-- Version du serveur : 5.7.36
+-- Version de PHP : 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `annee_acads`;
 CREATE TABLE IF NOT EXISTS `annee_acads` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `annee1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `annee2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `dtrentree` date NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `annee_acads` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `annee_acads`
@@ -49,72 +49,19 @@ INSERT INTO `annee_acads` (`id`, `annee1`, `annee2`, `dtrentree`, `actif`, `crea
 -- --------------------------------------------------------
 
 --
--- Structure de la table `categories_depenses`
---
-
-DROP TABLE IF EXISTS `categories_depenses`;
-CREATE TABLE IF NOT EXISTS `categories_depenses` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `ecole_id` int(11) NOT NULL DEFAULT '0',
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `categories_depenses`
---
-
-INSERT INTO `categories_depenses` (`id`, `name`, `ecole_id`, `created_at`, `updated_at`) VALUES
-(1, 'Loyer', 1, '2022-05-16 12:56:53', '2022-05-16 12:56:53'),
-(2, 'Eau', 1, '2022-05-16 15:05:15', '2022-05-16 15:05:15'),
-(3, 'Electricité', 1, '2022-05-16 15:06:34', '2022-05-16 15:06:34'),
-(4, 'Salaire Prof', 1, '2022-05-16 17:11:12', '2022-05-16 17:11:12');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `categories_entrees`
---
-
-DROP TABLE IF EXISTS `categories_entrees`;
-CREATE TABLE IF NOT EXISTS `categories_entrees` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `ecole_id` int(11) NOT NULL DEFAULT '0',
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `categories_entrees`
---
-
-INSERT INTO `categories_entrees` (`id`, `name`, `ecole_id`, `created_at`, `updated_at`) VALUES
-(1, 'Formation QHSE', 1, '2022-05-18 13:12:55', '2022-05-18 13:12:55'),
-(2, 'Formation Graphisme', 1, '2022-05-18 13:18:09', '2022-05-18 13:18:09'),
-(3, 'Formation en HTML5 & CSS3', 1, '2022-05-18 13:24:13', '2022-05-18 13:24:13'),
-(4, 'Organisation', 1, '2022-05-18 14:04:50', '2022-05-18 14:04:50'),
-(5, 'Don', 1, '2022-05-26 09:40:59', '2022-05-26 09:40:59');
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `classes`
 --
 
 DROP TABLE IF EXISTS `classes`;
 CREATE TABLE IF NOT EXISTS `classes` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `serie_id` bigint(20) NOT NULL,
   `niveau_id` bigint(20) NOT NULL,
   `enseignement_id` bigint(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `classes`
@@ -124,7 +71,8 @@ INSERT INTO `classes` (`id`, `serie_id`, `niveau_id`, `enseignement_id`, `create
 (1, 4, 5, 2, '2022-05-01 12:30:12', '2022-05-01 12:30:12'),
 (2, 1, 5, 1, '2022-05-01 12:30:26', '2022-05-01 12:30:26'),
 (3, 6, 1, 1, '2022-05-01 13:04:07', '2022-05-01 13:04:07'),
-(4, 7, 1, 2, '2022-05-01 13:04:27', '2022-05-01 13:04:27');
+(4, 7, 1, 2, '2022-05-01 13:04:27', '2022-05-01 13:04:27'),
+(5, 1, 6, 1, '2022-05-11 18:23:46', '2022-05-11 18:23:46');
 
 -- --------------------------------------------------------
 
@@ -134,14 +82,14 @@ INSERT INTO `classes` (`id`, `serie_id`, `niveau_id`, `enseignement_id`, `create
 
 DROP TABLE IF EXISTS `cours`;
 CREATE TABLE IF NOT EXISTS `cours` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `classe_id` bigint(20) NOT NULL,
   `matiere_id` bigint(20) NOT NULL,
   `coefficient` bigint(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `cours`
@@ -154,53 +102,17 @@ INSERT INTO `cours` (`id`, `classe_id`, `matiere_id`, `coefficient`, `created_at
 -- --------------------------------------------------------
 
 --
--- Structure de la table `depenses`
---
-
-DROP TABLE IF EXISTS `depenses`;
-CREATE TABLE IF NOT EXISTS `depenses` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) DEFAULT NULL,
-  `ecole_id` int(11) NOT NULL DEFAULT '0',
-  `categorie_id` int(11) NOT NULL DEFAULT '0',
-  `token` varchar(200) DEFAULT NULL,
-  `montant` double NOT NULL DEFAULT '0',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  `mois` int(11) DEFAULT '0',
-  `annee` int(11) NOT NULL DEFAULT '0',
-  `semaine` int(11) NOT NULL DEFAULT '0',
-  `description` text,
-  `active` tinyint(1) NOT NULL DEFAULT '0',
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `depenses`
---
-
-INSERT INTO `depenses` (`id`, `name`, `ecole_id`, `categorie_id`, `token`, `montant`, `user_id`, `mois`, `annee`, `semaine`, `description`, `active`, `created_at`, `updated_at`) VALUES
-(1, 'Depense 1', 1, 1, 'token20220516050252', 250000, 6, 5, 2022, 20, 'Loyer du moi de mai', 1, '2022-05-16 17:02:52', '2022-05-16 17:02:52'),
-(2, 'Depense 2', 1, 2, 'token20220516050341', 12500, 6, 5, 2022, 20, 'Facture d\'eau pour le mois de Juillet', 1, '2022-05-16 17:03:41', '2022-05-16 17:03:41'),
-(3, 'Salaire Mai', 1, 4, 'token220516051223', 1350000, 6, 5, 2022, 20, 'Salaire des profs du moi de mai', 1, '2022-05-16 17:12:23', '2022-05-16 17:12:23'),
-(4, 'azerty', 1, 1, 'A220518013821x', 50000, 6, 5, 2022, 20, 'azerty', 1, '2022-05-18 13:38:21', '2022-05-18 13:38:21'),
-(5, 'Formation', 1, 3, 'A220518014123x', 150000, 6, 5, 2022, 20, 'azerty', 1, '2022-05-18 13:41:23', '2022-05-18 13:41:23');
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `diplomes`
 --
 
 DROP TABLE IF EXISTS `diplomes`;
 CREATE TABLE IF NOT EXISTS `diplomes` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `diplomes`
@@ -220,27 +132,14 @@ INSERT INTO `diplomes` (`id`, `name`, `created_at`, `updated_at`) VALUES
 
 DROP TABLE IF EXISTS `ecolages`;
 CREATE TABLE IF NOT EXISTS `ecolages` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `inscription_id` bigint(20) NOT NULL,
   `moi_id` bigint(20) NOT NULL,
   `montant` double NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `ecolages`
---
-
-INSERT INTO `ecolages` (`id`, `inscription_id`, `moi_id`, `montant`, `created_at`, `updated_at`) VALUES
-(1, 11, 1, 55000, '2022-05-26 10:20:46', '2022-05-26 10:20:46'),
-(2, 11, 2, 55000, '2022-05-26 10:23:13', '2022-05-26 10:23:13'),
-(3, 11, 3, 55000, '2022-05-26 10:23:53', '2022-05-26 10:23:53'),
-(4, 3, 1, 25000, '2022-05-26 10:29:28', '2022-05-26 10:29:28'),
-(5, 5, 1, 25000, '2022-05-26 15:19:24', '2022-05-26 15:19:24'),
-(6, 4, 1, 36000, '2022-05-26 20:12:23', '2022-05-26 20:12:23'),
-(7, 7, 1, 15000, '2022-05-26 20:40:42', '2022-05-26 20:40:42');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -250,7 +149,7 @@ INSERT INTO `ecolages` (`id`, `inscription_id`, `moi_id`, `montant`, `created_at
 
 DROP TABLE IF EXISTS `ecoles`;
 CREATE TABLE IF NOT EXISTS `ecoles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
@@ -265,15 +164,16 @@ CREATE TABLE IF NOT EXISTS `ecoles` (
   `enseignement_id` int(11) NOT NULL DEFAULT '1',
   `coordonnees` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `ecoles`
 --
 
 INSERT INTO `ecoles` (`id`, `name`, `address`, `email`, `phone`, `active`, `token`, `created_at`, `updated_at`, `image_uri`, `is_private`, `pay_id`, `enseignement_id`, `coordonnees`) VALUES
-(1, 'Louis Alexon KABA III', 'Nkouikou', 'kaba@mail.com', '052053989', 1, 'sdfqghhdfhfh', '2022-05-02 14:25:41', '2022-05-02 14:25:41', 'images-ecoles/T7f053vWjBGeaCFVHIiwZ7hwGzl8zx6qNGzgm4wK.jpg', 1, 1, 2, 'Coordonnées'),
-(2, 'Lycée KABA', 'Siafoumou', 'lyceekaba@gmail.com', '065036045', 1, 'sdqgfdhtr', '2022-05-02 14:36:53', '2022-05-02 14:36:53', 'images-ecoles/CHgwY8NNirFWRNndxxHZQozsGw2oGFKCRWOi3Dcz.png', 1, 1, 1, 'Coordonnées');
+(1, 'Louis Alexon KABA III', 'Nkouikou', 'kaba@mail.com', '052053989', 1, 'T7f053vWjBGeaCFVHIiwZ7hwGzl8zx6qNGzgm4wKAZEZA', '2022-05-02 14:25:41', '2022-05-02 14:25:41', 'images-ecoles/T7f053vWjBGeaCFVHIiwZ7hwGzl8zx6qNGzgm4wK.jpg', 1, 1, 2, 'Coordonnées'),
+(2, 'Lycée KABA', 'Siafoumou', 'lyceekaba@gmail.com', '065036045', 1, '1ZDS053vWjBGeaCFVHIiwZ7hwGzl8zx6qNGzgm4wK', '2022-05-02 14:36:53', '2022-05-02 14:36:53', 'images-ecoles/CHgwY8NNirFWRNndxxHZQozsGw2oGFKCRWOi3Dcz.png', 1, 1, 1, 'Coordonnées'),
+(3, 'Lycée Victor Augagneur (L.V.A)', 'Base Industrielle', 'lva@gmail.com', '066778866', 1, 'TokeNecOlE2022051820220518100553', '2022-05-18 10:55:54', '2022-05-18 10:55:54', 'images-ecoles/anGdiTP82Lwv9FLT7KcvTjvEfppeAuUMjgwJ3HwS.jpg', 1, 1, 1, 'LVA120');
 
 -- --------------------------------------------------------
 
@@ -283,7 +183,7 @@ INSERT INTO `ecoles` (`id`, `name`, `address`, `email`, `phone`, `active`, `toke
 
 DROP TABLE IF EXISTS `eleves`;
 CREATE TABLE IF NOT EXISTS `eleves` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `nom` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `prenom` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date_naiss` date DEFAULT NULL,
@@ -299,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `eleves` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `eleves`
@@ -309,14 +209,14 @@ INSERT INTO `eleves` (`id`, `nom`, `prenom`, `date_naiss`, `lieu_naiss`, `adress
 (1, 'Bounlanger', 'François', '2001-02-12', 'Pointe-Noire', 'Mawata', 'Bounlanger Bertrant', '066543214', 'Martinez Pauline', '066879344', 'Bounlanger Bertrant', '066543214', 'images/membres/08042022123316.jpg', '2022-04-08 10:33:16', '2022-04-08 10:33:16'),
 (2, 'Mavoungou', 'Otran', '2000-02-01', 'Pointe-Noire', 'Tié-Tié', 'Mavoungou Jean', '044567328', 'Malalou Téthé', '055678431', 'Mavoungou Jean', '044567328', 'images/membres/08042022123815.png', '2022-04-08 10:38:15', '2022-04-08 10:38:15'),
 (4, 'Malanda', 'Evans Marvel', '1989-04-30', 'Pointe-Noire', 'Mbota', 'Malanda Patrick', '066237876', 'Ilimbou Sacrée', '066543212', 'Malanda Patrick', '066237876', 'images/membres/10052022081603.jpg', '2022-05-10 18:16:03', '2022-05-10 18:16:03'),
-(5, 'Malanda', 'Daniel', '2000-03-19', 'Pointe-Noire', 'Mbota', 'Malanda Patrick', '066789876', 'Kibinda Anne', '066874321', 'Malanda Patrick', '066237876', 'images/membres/11052022125104.png', '2022-05-11 10:51:04', '2022-05-11 10:51:04'),
+(5, 'Malanda', 'Daniel', '1999-03-19', 'Pointe-Noire', 'Mbota', 'Malanda Patrick', '066789876', 'Kibinda Anne', '066874321', 'Malanda Patrick', '066237876', 'images/membres/11052022125104.png', '2022-05-11 10:51:04', '2022-05-11 10:51:04'),
 (6, 'Malanda', 'Marcelle', '2004-02-02', 'Pointe-Noire', 'Mbota', 'Malanda Patrick', '066237876', 'Kibinda Anne', '066765411', 'Malanda Patrick', '066237876', 'images/membres/11052022125925.jpg', '2022-05-11 10:59:25', '2022-05-11 10:59:25'),
 (7, 'Malanda', 'Sylao', '2003-02-03', 'Pointe-Noire', 'Mbota', 'Malanda Patrick', '066237876', 'Kibinda Anne', '055567654', 'Malanda Patrick', '066237876', 'images/membres/11052022010626.jpg', '2022-05-11 11:06:26', '2022-05-11 11:06:26'),
 (8, 'Dibouiloui', 'Narcis François', '2006-03-12', 'Brazzaville', 'Siafoumou', 'Dibouiloui Landry', '066458897', 'Makosso Valette', '044567876', 'Dibouiloui Landry', '066458897', 'images/membres/11052022011210.png', '2022-05-11 11:12:10', '2022-05-11 11:12:10'),
 (9, 'Dibouiloui', 'Jule André', '2007-05-20', 'Pointe-Noire', 'Mawata', 'Dibouiloui Landry', '066458897', 'Makosso Valette', '0765678765', 'Dibouiloui Landry', '066458897', 'images/membres/11052022011627.jpg', '2022-05-11 11:16:27', '2022-05-11 11:16:27'),
 (10, 'Dibouiloui', 'Marco', '2008-04-29', 'Pointe-Noire', 'Mawata', 'Dibouiloui Landry', '066458897', 'Makosso Valette', '0765678765', 'Dibouiloui Landry', '066458897', 'images/membres/11052022012451.jpg', '2022-05-11 11:24:51', '2022-05-11 11:24:51'),
 (11, 'Malanda', 'Tony', '2008-12-12', 'Brazzaville', 'Mbota', 'Malanda Patrick', '066237876', 'Kibinda Ane', '044445654', 'Malanda Patrick', '066237876', 'images/membres/11052022012947.png', '2022-05-11 11:29:47', '2022-05-11 11:29:47'),
-(12, 'KABA', 'Galouo', '2000-12-04', 'Brazzaville', 'Nkouikou', 'KABA KABA', '064485524', 'KABA DIELLE', '064485524', 'KABA DIELLE', '060110101', 'images/membres/12052022030704.png', '2022-05-12 14:07:04', '2022-05-12 14:07:04');
+(12, 'Dibouiloui', 'Veinard', '2009-03-01', 'Pointe Noire', 'Mawata', 'Dibouiloui Landry', '066458897', 'Makosso Valette', '066787766', 'Dibouiloui Landry', '066458897', 'images/membres/11052022013923.png', '2022-05-11 11:39:23', '2022-05-11 11:39:23');
 
 -- --------------------------------------------------------
 
@@ -326,57 +226,21 @@ INSERT INTO `eleves` (`id`, `nom`, `prenom`, `date_naiss`, `lieu_naiss`, `adress
 
 DROP TABLE IF EXISTS `emploie_temps`;
 CREATE TABLE IF NOT EXISTS `emploie_temps` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `salle_id` bigint(20) NOT NULL DEFAULT '0',
-  `token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salle_id` int(20) NOT NULL DEFAULT '0',
+  `token` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `emploie_temps`
 --
 
 INSERT INTO `emploie_temps` (`id`, `name`, `salle_id`, `token`, `created_at`, `updated_at`) VALUES
-(1, '1', 0, NULL, '2022-04-08 11:00:35', '2022-04-08 11:00:35'),
-(2, '2', 0, NULL, '2022-04-08 11:00:49', '2022-04-08 11:00:49');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `entrees`
---
-
-DROP TABLE IF EXISTS `entrees`;
-CREATE TABLE IF NOT EXISTS `entrees` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) DEFAULT NULL,
-  `ecole_id` int(11) NOT NULL DEFAULT '0',
-  `categorie_id` int(11) NOT NULL DEFAULT '0',
-  `token` varchar(200) DEFAULT NULL,
-  `montant` double NOT NULL DEFAULT '0',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  `mois` int(11) DEFAULT '0',
-  `annee` int(11) NOT NULL DEFAULT '0',
-  `semaine` int(11) NOT NULL DEFAULT '0',
-  `description` text,
-  `active` tinyint(1) NOT NULL DEFAULT '0',
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `entrees`
---
-
-INSERT INTO `entrees` (`id`, `name`, `ecole_id`, `categorie_id`, `token`, `montant`, `user_id`, `mois`, `annee`, `semaine`, `description`, `active`, `created_at`, `updated_at`) VALUES
-(1, 'Formation', 1, 3, 'A220518014357x', 150000, 6, 5, 2022, 20, 'Description', 1, '2022-05-18 13:43:57', '2022-05-18 13:43:57'),
-(2, 'Formation Professionnelle', 1, 2, 'A220518015934x', 250000, 6, 5, 2022, 20, 'azerty azerty azerty azerty', 1, '2022-05-18 13:59:34', '2022-05-18 13:59:34'),
-(3, 'Don', 1, 5, 'A220526094212x', 250000, 6, 5, 2022, 21, 'Don de l\'honorable KABA III GALOUO Louis Alexon', 1, '2022-05-26 09:42:12', '2022-05-26 09:42:12'),
-(4, 'Formation', 1, 1, 'A220526094658220526094658x', 150000, 6, 5, 2022, 21, 'Fonds pour financer la formation en QHSE', 1, '2022-05-26 09:46:58', '2022-05-26 09:46:58');
+(1, 'EMP-TEMP20220516150549424942', 1, 'Token2022051020220510080503oiuydtjrr', '2022-05-16 13:49:42', '2022-05-16 13:49:42');
 
 -- --------------------------------------------------------
 
@@ -386,7 +250,7 @@ INSERT INTO `entrees` (`id`, `name`, `ecole_id`, `categorie_id`, `token`, `monta
 
 DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -403,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
 
 DROP TABLE IF EXISTS `inscriptions`;
 CREATE TABLE IF NOT EXISTS `inscriptions` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `eleve_id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `classe_id` bigint(20) NOT NULL,
@@ -419,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `inscriptions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `inscriptions`
@@ -436,7 +300,8 @@ INSERT INTO `inscriptions` (`id`, `eleve_id`, `user_id`, `classe_id`, `montant_i
 (8, 9, 7, 3, 10000, 0, 1, 5, 0, 0, 'Token2022051120220511010527', 5, 3, '2022-05-11 11:16:27', '2022-05-11 11:16:27'),
 (9, 10, 7, 3, 10000, 0, 1, 4, 0, 0, 'Token2022051120220511010551', 5, 3, '2022-05-11 11:24:51', '2022-05-11 11:24:51'),
 (10, 11, 6, 1, 10000, 0, 1, 2, 0, 0, 'Token2022051120220511010547', 5, 3, '2022-05-11 11:29:47', '2022-05-11 11:29:47'),
-(11, 12, 6, 2, 25000, 10000, 1, 1, 0, 0, 'Token2022051220220512030504', 5, 4, '2022-05-12 14:07:04', '2022-05-12 14:07:04');
+(11, 12, 6, 2, 10000, 0, 1, 1, 0, 0, 'Token2022051120220511010523', 5, 3, '2022-05-11 11:39:23', '2022-05-11 11:39:23'),
+(12, 5, 6, 5, 10000, 0, 1, 6, 4, 0, 'Token2022051320220513080557', 5, 5, '2022-05-13 06:34:57', '2022-05-13 06:34:57');
 
 -- --------------------------------------------------------
 
@@ -446,14 +311,25 @@ INSERT INTO `inscriptions` (`id`, `eleve_id`, `user_id`, `classe_id`, `montant_i
 
 DROP TABLE IF EXISTS `ligne_emploi_temps`;
 CREATE TABLE IF NOT EXISTS `ligne_emploi_temps` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `ligne_programme_ecole_id` int(11) NOT NULL DEFAULT '0',
   `tranche_id` int(11) NOT NULL DEFAULT '0',
   `emploi_id` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `ligne_emploi_temps`
+--
+
+INSERT INTO `ligne_emploi_temps` (`id`, `ligne_programme_ecole_id`, `tranche_id`, `emploi_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, 1, '2022-05-16 13:49:42', '2022-05-16 13:49:42'),
+(2, 1, 4, 1, '2022-05-16 13:49:42', '2022-05-16 13:49:42'),
+(3, 4, 5, 1, '2022-05-16 13:49:42', '2022-05-16 13:49:42'),
+(4, 4, 6, 1, '2022-05-16 13:49:42', '2022-05-16 13:49:42'),
+(5, 2, 7, 1, '2022-05-16 13:49:42', '2022-05-16 13:49:42');
 
 -- --------------------------------------------------------
 
@@ -468,10 +344,11 @@ CREATE TABLE IF NOT EXISTS `ligne_releve_notes` (
   `programme_ligne_ecole_id` int(11) NOT NULL DEFAULT '0',
   `note_id` int(11) NOT NULL DEFAULT '0',
   `valeur` double(8,2) NOT NULL DEFAULT '0.00',
+  `coefficient` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -481,23 +358,23 @@ CREATE TABLE IF NOT EXISTS `ligne_releve_notes` (
 
 DROP TABLE IF EXISTS `matieres`;
 CREATE TABLE IF NOT EXISTS `matieres` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `abv` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ecole_id` bigint(20) NOT NULL DEFAULT '0',
-  `active` tinyint(4) NOT NULL DEFAULT '1',
+  `ecole_id` int(11) NOT NULL DEFAULT '0',
+  `active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `matieres`
 --
 
 INSERT INTO `matieres` (`id`, `name`, `abv`, `ecole_id`, `active`, `created_at`, `updated_at`) VALUES
-(1, 'Mathématiques', 'MATH', 0, 1, '2022-05-01 12:31:43', '2022-05-01 12:31:43'),
-(2, 'Physique Chimie', 'P.C', 0, 1, '2022-05-01 12:32:04', '2022-05-01 12:32:04'),
+(1, 'Mathématiques', 'MATH', 0, 1, '2022-05-01 12:31:43', '2022-05-23 09:40:32'),
+(2, 'Physique Chimie', 'P.C', 0, 1, '2022-05-01 12:32:04', '2022-05-23 09:09:34'),
 (3, 'Philosophie', 'FIE', 0, 1, '2022-05-01 12:32:29', '2022-05-01 12:32:29'),
 (4, 'Anglais', 'ANG', 0, 1, '2022-05-01 12:32:43', '2022-05-01 12:32:43'),
 (5, 'Français', 'FRA', 0, 1, '2022-05-01 12:32:56', '2022-05-01 12:32:56'),
@@ -506,7 +383,10 @@ INSERT INTO `matieres` (`id`, `name`, `abv`, `ecole_id`, `active`, `created_at`,
 (8, 'Sciences de la vie et de la terre', 'S.V.T', 0, 1, '2022-05-01 12:34:10', '2022-05-01 12:34:10'),
 (9, 'Automatisme', 'AUTO', 0, 1, '2022-05-01 16:35:15', '2022-05-01 16:35:15'),
 (10, 'Informatique', 'INF', 0, 1, '2022-05-01 16:35:32', '2022-05-01 16:35:32'),
-(11, 'Mathématiques Informatique', 'MATH INFO', 0, 1, '2022-05-01 16:35:58', '2022-05-01 16:35:58');
+(11, 'Mathématiques Informatique', 'MATH INFO', 0, 1, '2022-05-01 16:35:58', '2022-05-01 16:35:58'),
+(12, 'Chinois', 'CHI', 0, 1, '2022-05-23 09:19:10', '2022-05-23 09:19:10'),
+(13, 'Espagnole', 'ESP', 1, 1, '2022-05-23 09:22:28', '2022-05-23 09:22:28'),
+(14, 'Italien', 'ITA', 1, 1, '2022-05-23 09:28:18', '2022-05-23 09:28:18');
 
 -- --------------------------------------------------------
 
@@ -516,11 +396,11 @@ INSERT INTO `matieres` (`id`, `name`, `abv`, `ecole_id`, `active`, `created_at`,
 
 DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `migrations`
@@ -549,9 +429,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (20, '2022_04_28_091330_create_profs_table', 4),
 (21, '2022_05_10_134931_create_parent_ecoles_table', 5),
 (22, '2022_05_16_100809_create_ligne_emploi_temps_table', 5),
-(23, '2022_05_18_092216_create_trimestre_ecoles_table', 5),
-(24, '2022_05_20_113622_create_releve_notes_table', 5),
-(25, '2022_05_20_114108_create_ligne_releve_notes_table', 5);
+(23, '2022_05_18_092216_create_trimestre_ecoles_table', 6),
+(24, '2022_05_20_113622_create_releve_notes_table', 7),
+(25, '2022_05_20_114108_create_ligne_releve_notes_table', 7);
 
 -- --------------------------------------------------------
 
@@ -561,13 +441,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 DROP TABLE IF EXISTS `mois`;
 CREATE TABLE IF NOT EXISTS `mois` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `visible` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `mois`
@@ -595,11 +475,11 @@ INSERT INTO `mois` (`id`, `name`, `visible`, `created_at`, `updated_at`) VALUES
 
 DROP TABLE IF EXISTS `niveaux`;
 CREATE TABLE IF NOT EXISTS `niveaux` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(10) NOT NULL,
   `abb` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `niveaux`
@@ -622,17 +502,40 @@ INSERT INTO `niveaux` (`id`, `name`, `abb`) VALUES
 
 DROP TABLE IF EXISTS `notes`;
 CREATE TABLE IF NOT EXISTS `notes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `inscription_id` int(11) NOT NULL DEFAULT '0',
   `valeur` double NOT NULL DEFAULT '0',
   `ligne_ecole_programme_id` int(11) NOT NULL DEFAULT '0',
+  `trimestre_id` int(11) NOT NULL DEFAULT '0',
+  `annee_id` int(11) NOT NULL DEFAULT '0',
+  `ecole_id` int(11) NOT NULL DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `token` varchar(100) DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `created_by` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `notes`
+--
+
+INSERT INTO `notes` (`id`, `inscription_id`, `valeur`, `ligne_ecole_programme_id`, `trimestre_id`, `annee_id`, `ecole_id`, `created_at`, `updated_at`, `token`, `active`, `created_by`) VALUES
+(1, 4, 15, 2, 1, 1, 1, '2022-06-03 14:17:06', '2022-06-03 14:17:06', '$2y$10$3nahSYGy.E0KuIPZJjSueuQdAYig4WQwHI0JItv9MqJ.8NWS/Ltja', 1, 16),
+(2, 11, 16, 2, 1, 1, 1, '2022-06-03 14:17:06', '2022-06-03 14:17:06', '$2y$10$pZJeVHCWjDtAT58fKV7P5uJEdB2gHgeYSSx0NIBusEXGs/RNqO1k.', 1, 16),
+(3, 4, 17, 7, 1, 1, 1, '2022-06-03 14:17:36', '2022-06-03 14:17:36', '$2y$10$Qf0DYDXTGOSq5L5WTl1uru8PBPRR46wsGsYQFMSaNw674MS9pTSem', 1, 16),
+(4, 11, 15, 7, 1, 1, 1, '2022-06-03 14:17:36', '2022-06-03 14:17:36', '$2y$10$8wGQuHIE594vFv5/X3jmzO5cc3tonl2ZXg6fbd/Itq5XHxjCbmG8S', 1, 16),
+(5, 4, 14, 5, 1, 1, 1, '2022-06-03 14:18:57', '2022-06-03 14:18:57', '$2y$10$3aDfQNxtLpIpmealapUQ4eKggf9Tr/vomxZY.3FRGU4PAKP7gl.Y2', 1, 14),
+(6, 11, 16, 5, 1, 1, 1, '2022-06-03 14:18:57', '2022-06-03 14:18:57', '$2y$10$qHpkDxUJLZqn0nxOqgbATOcpXzQneWwiHlwRi/nk.PRFZZe/Uvpai', 1, 14),
+(7, 4, 17, 3, 1, 1, 1, '2022-06-03 14:20:32', '2022-06-03 14:20:32', '$2y$10$J8ETT/zeKgtWQGLcXPa4Je55i6V4yQxtNyMhhyKQHymfCTQGusFM6', 1, 18),
+(8, 11, 18, 3, 1, 1, 1, '2022-06-03 14:20:32', '2022-06-03 14:20:32', '$2y$10$OPuExC8FSrDs/PJfQSlOUe8cHZ4hfro2zN6BDOynkjrWu7VWJK/GK', 1, 18),
+(9, 4, 15, 8, 1, 1, 1, '2022-06-03 14:20:48', '2022-06-03 14:20:48', '$2y$10$ZPPC9uwJUuh2cOhHiQ5sfe6eU1LgHeKVfn9hWVW0WURaLQBnAHKKK', 1, 18),
+(10, 11, 13, 8, 1, 1, 1, '2022-06-03 14:20:48', '2022-06-03 14:20:48', '$2y$10$4NbmKt1MOVhfy6y.icTa5ukzMVwEgmLpdgHshkF8jmp72exFv2j0e', 1, 18),
+(11, 4, 10, 1, 1, 1, 1, '2022-06-03 14:23:11', '2022-06-03 14:23:11', '$2y$10$wGM7zDYn1IO5HRM1Px9KKeavoULz3zS2ACKitZL7RydXJy3Ofoiza', 1, 20),
+(12, 11, 15, 1, 1, 1, 1, '2022-06-03 14:23:11', '2022-06-03 14:23:11', '$2y$10$0OLGQG1r/JX6JY6risW8AOslenX5onJB2PXo6AGiB2.3JVLwn8kv2', 1, 20),
+(13, 4, 18, 4, 1, 1, 1, '2022-06-03 14:23:30', '2022-06-03 14:23:30', '$2y$10$80MCJeFF/hnBTMQN0Lsek.5Ym2pDws.TOE5Y8hu/mOSRJG1CPtWrO', 1, 20),
+(14, 11, 19, 4, 1, 1, 1, '2022-06-03 14:23:30', '2022-06-03 14:23:30', '$2y$10$qI3G9FwxPGvUgUef6ySd9.mRGxtzLS2IygDKF8h5iZiLuwTaV/Cr2', 1, 20);
 
 -- --------------------------------------------------------
 
@@ -642,37 +545,21 @@ CREATE TABLE IF NOT EXISTS `notes` (
 
 DROP TABLE IF EXISTS `parent_ecole`;
 CREATE TABLE IF NOT EXISTS `parent_ecole` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `parent_id` bigint(20) NOT NULL,
   `ecole_id` bigint(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `parent_ecole`
 --
 
 INSERT INTO `parent_ecole` (`id`, `parent_id`, `ecole_id`, `created_at`, `updated_at`) VALUES
-(1, 22, 1, '2022-05-10 18:16:03', '2022-05-10 18:16:03'),
-(3, 23, 2, '2022-05-11 11:06:26', '2022-05-11 11:16:27'),
-(4, 23, 2, '2022-05-11 11:12:10', '2022-05-11 11:12:10'),
-(5, 24, 1, '2022-05-12 14:07:04', '2022-05-12 14:07:04');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `parent_ecoles`
---
-
-DROP TABLE IF EXISTS `parent_ecoles`;
-CREATE TABLE IF NOT EXISTS `parent_ecoles` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(1, 22, 1, '2022-05-10 18:16:03', '2022-05-11 11:39:23'),
+(3, 23, 2, '2022-05-11 11:06:26', '2022-05-11 11:16:27');
 
 -- --------------------------------------------------------
 
@@ -682,10 +569,9 @@ CREATE TABLE IF NOT EXISTS `parent_ecoles` (
 
 DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE IF NOT EXISTS `password_resets` (
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  KEY `password_resets_email_index` (`email`)
+  `email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -696,36 +582,29 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 
 DROP TABLE IF EXISTS `profs`;
 CREATE TABLE IF NOT EXISTS `profs` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) NOT NULL DEFAULT '0',
   `nom` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `prenom` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date_naiss` date DEFAULT NULL,
-  `lieu_naiss` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `adresse` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `telephone` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `diplome_id` bigint(20) NOT NULL DEFAULT '0',
-  `image` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `token` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `profs`
 --
 
-INSERT INTO `profs` (`id`, `user_id`, `nom`, `prenom`, `date_naiss`, `lieu_naiss`, `adresse`, `telephone`, `diplome_id`, `image`, `token`, `created_at`, `updated_at`) VALUES
-(1, 32, 'KABA DIELLE', 'Louisell', NULL, NULL, 'Mawata', '064485524', 2, NULL, 'fdcvujyhjhnik', '2022-05-19 11:45:04', '2022-05-19 16:36:48'),
-(2, 33, 'KABA GALOUO', 'Louis Alexon', NULL, NULL, 'Los Angeles', '064792878', 1, NULL, 'dhdhgdhgd', '2022-05-19 19:57:52', '2022-05-19 19:57:52'),
-(3, 34, 'TATY', 'Lambert', NULL, NULL, 'Tié-Tié', '0606060606', 1, NULL, 'hugwyxhjyug', '2022-05-19 20:00:18', '2022-05-19 20:00:18'),
-(4, 35, 'ESSOMBA', 'Clément', NULL, NULL, 'Raffinerie', '0101010101', 1, NULL, 'uytrtestyyjujh', '2022-05-19 20:01:27', '2022-05-19 20:01:27'),
-(5, 36, 'KABA DIELLE', 'Louisell', NULL, NULL, 'Nkouikou', '06060606', 1, NULL, 'jdsxcyuuh', '2022-05-25 10:28:50', '2022-05-25 10:28:50'),
-(6, 37, 'MBENZA', 'Guy', NULL, NULL, '2 Rue buenoaires', '04040404', 1, NULL, 'ûiytufkuukjyg', '2022-05-25 10:41:57', '2022-05-25 10:41:57'),
-(7, 38, 'LOUSSOUKOU', 'Amour', '1992-05-01', 'Brazzaville', '125 Av de la révolution gd marché', '0404040404', 1, NULL, 'iuyfdcvh', '2022-05-25 10:46:21', '2022-05-25 10:46:21'),
-(8, 39, 'BIDIMBOU', 'Kader', '1995-04-01', 'Dolisie', '2458 Av des princes plateaux, brazzaville', '069505050', 1, NULL, 'dhgshgsdfs', '2022-05-27 11:59:40', '2022-05-27 11:59:40'),
-(9, 40, 'CALLEJON', 'José Maria', '1992-04-25', 'Buenosaires', '1120 12th street new york', '066606060', 1, NULL, 'A22052701292221x21222901270522', '2022-05-27 12:29:22', '2022-05-27 12:29:22');
+INSERT INTO `profs` (`id`, `user_id`, `nom`, `prenom`, `adresse`, `telephone`, `diplome_id`, `token`, `created_at`, `updated_at`) VALUES
+(1, 14, 'Makosso', 'Camile', 'Mawata', '066335665', 3, NULL, '2022-05-09 12:51:13', '2022-05-09 12:51:13'),
+(2, 16, 'Tietiouvha', 'Gédeon', 'Mbota', '069874521', 2, NULL, '2022-05-09 12:53:55', '2022-05-09 12:53:55'),
+(3, 18, 'Tatu', 'Joêl', 'Matadi', '068752213', 1, NULL, '2022-05-09 12:57:16', '2022-05-09 12:57:16'),
+(4, 19, 'Taty', 'Lamberd', 'Tié-Tié', '066332145', 1, NULL, '2022-05-09 12:59:34', '2022-05-09 12:59:34'),
+(5, 20, 'Massala', 'Landry', 'Rex', '068887963', 2, NULL, '2022-05-09 13:02:20', '2022-05-09 13:02:20');
 
 -- --------------------------------------------------------
 
@@ -735,32 +614,23 @@ INSERT INTO `profs` (`id`, `user_id`, `nom`, `prenom`, `date_naiss`, `lieu_naiss
 
 DROP TABLE IF EXISTS `prof_ecole`;
 CREATE TABLE IF NOT EXISTS `prof_ecole` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `prof_id` bigint(20) NOT NULL DEFAULT '0',
   `ecole_id` bigint(20) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `prof_ecole`
 --
 
 INSERT INTO `prof_ecole` (`id`, `prof_id`, `ecole_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '2022-05-19 11:45:04', '2022-05-19 11:45:04'),
-(3, 1, 2, '2022-05-19 16:16:48', '2022-05-19 16:16:48'),
-(4, 2, 2, '2022-05-19 19:57:52', '2022-05-19 19:57:52'),
-(5, 3, 2, '2022-05-19 20:00:18', '2022-05-19 20:00:18'),
-(6, 4, 2, '2022-05-19 20:01:27', '2022-05-19 20:01:27'),
-(7, 2, 1, '2022-05-22 21:39:49', '2022-05-22 21:39:49'),
-(8, 5, 1, '2022-05-25 10:28:50', '2022-05-25 10:28:50'),
-(9, 6, 1, '2022-05-25 10:41:57', '2022-05-25 10:41:57'),
-(10, 7, 1, '2022-05-25 10:46:21', '2022-05-25 10:46:21'),
-(11, 8, 1, '2022-05-27 11:59:42', '2022-05-27 11:59:42'),
-(12, 9, 1, '2022-05-27 12:29:24', '2022-05-27 12:29:24'),
-(13, 8, 2, '2022-05-27 12:40:16', '2022-05-27 12:40:16'),
-(14, 9, 2, '2022-05-27 12:42:39', '2022-05-27 12:42:39');
+(1, 1, 1, '2022-05-09 12:51:13', '2022-05-09 12:51:13'),
+(2, 2, 1, '2022-05-09 12:53:55', '2022-05-09 12:53:55'),
+(3, 3, 1, '2022-05-09 12:57:16', '2022-05-09 12:57:16'),
+(4, 4, 2, '2022-05-09 12:59:34', '2022-05-09 13:26:14'),
+(5, 5, 1, '2022-05-09 13:02:20', '2022-05-09 13:02:20');
 
 -- --------------------------------------------------------
 
@@ -770,7 +640,7 @@ INSERT INTO `prof_ecole` (`id`, `prof_id`, `ecole_id`, `created_at`, `updated_at
 
 DROP TABLE IF EXISTS `programmes_ecoles`;
 CREATE TABLE IF NOT EXISTS `programmes_ecoles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `annee_id` int(11) NOT NULL DEFAULT '0',
   `programme_national_id` int(11) NOT NULL DEFAULT '0',
   `salle_id` int(11) NOT NULL DEFAULT '0',
@@ -778,9 +648,8 @@ CREATE TABLE IF NOT EXISTS `programmes_ecoles` (
   `token` varchar(100) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+  `active` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `programmes_ecoles`
@@ -791,7 +660,9 @@ INSERT INTO `programmes_ecoles` (`id`, `annee_id`, `programme_national_id`, `sal
 (2, 1, 1, 2, 1, 'Token2022050920220509020511', '2022-05-09 14:16:11', '2022-05-09 14:16:11', 1),
 (3, 1, 3, 3, 1, 'Token2022050920220509020517', '2022-05-09 14:53:17', '2022-05-09 14:53:17', 1),
 (4, 1, 3, 4, 2, 'Token2022051120220511010501', '2022-05-11 13:04:01', '2022-05-11 13:04:01', 1),
-(5, 1, 3, 5, 2, 'Token2022051120220511010534', '2022-05-11 13:04:34', '2022-05-11 13:04:34', 1);
+(5, 1, 3, 5, 2, 'Token2022051120220511010534', '2022-05-11 13:04:34', '2022-05-11 13:04:34', 1),
+(6, 1, 4, 6, 1, 'Token2022051120220511080540', '2022-05-11 20:28:40', '2022-05-11 20:28:40', 1),
+(7, 1, 4, 7, 1, 'Token2022051920220519070527', '2022-05-19 19:55:27', '2022-05-19 19:55:27', 1);
 
 -- --------------------------------------------------------
 
@@ -801,56 +672,68 @@ INSERT INTO `programmes_ecoles` (`id`, `annee_id`, `programme_national_id`, `sal
 
 DROP TABLE IF EXISTS `programmes_ecoles_lignes`;
 CREATE TABLE IF NOT EXISTS `programmes_ecoles_lignes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `programme_ecole_id` int(11) NOT NULL DEFAULT '0',
   `programme_national_ligne_id` int(11) NOT NULL DEFAULT '0',
   `enseignant_id` int(11) NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `token` varchar(100) DEFAULT NULL,
+  `annee_id` int(11) NOT NULL DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `matiere_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Pour les ecoles qui ont créé des matieres propres a elles ',
-  `coefficient` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4;
+  `coefficient` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `programmes_ecoles_lignes`
 --
 
-INSERT INTO `programmes_ecoles_lignes` (`id`, `programme_ecole_id`, `programme_national_ligne_id`, `enseignant_id`, `active`, `token`, `created_at`, `updated_at`, `matiere_id`, `coefficient`) VALUES
-(1, 1, 2, 2, 1, 'Token2022050920220509020551', '2022-05-09 14:11:51', '2022-05-19 08:23:36', 2, 2),
-(2, 1, 2, 2, 1, 'Token2022050920220509020551', '2022-05-09 14:11:51', '2022-05-09 15:24:29', 3, 3),
-(3, 1, 2, 3, 1, 'Token2022050920220509020551', '2022-05-09 14:11:51', '2022-05-09 15:24:37', 1, 2),
-(4, 1, 2, 5, 1, 'Token2022050920220509020551', '2022-05-09 14:11:51', '2022-05-09 15:24:54', 5, 3),
-(5, 1, 2, 1, 1, 'Token2022050920220509020551', '2022-05-09 14:11:51', '2022-05-09 15:25:04', 7, 2),
-(6, 1, 2, 1, 1, 'Token2022050920220509020551', '2022-05-09 14:11:51', '2022-05-09 15:34:06', 8, 2),
-(7, 1, 2, 2, 1, 'Token2022050920220509020551', '2022-05-09 14:11:51', '2022-05-09 15:34:21', 6, 2),
-(8, 1, 2, 3, 1, 'Token2022050920220509020552', '2022-05-09 14:11:52', '2022-05-09 15:34:31', 4, 3),
-(9, 2, 1, 1, 1, 'Token2022050920220509020512', '2022-05-09 14:16:12', '2022-05-09 14:17:02', 2, 4),
-(10, 2, 1, 0, 1, 'Token2022050920220509020512', '2022-05-09 14:16:12', '2022-05-09 14:16:12', 1, 2),
-(11, 2, 1, 0, 1, 'Token2022050920220509020512', '2022-05-09 14:16:12', '2022-05-09 14:16:12', 3, 4),
-(12, 3, 3, 3, 1, 'Token2022050920220509020517', '2022-05-09 14:53:17', '2022-05-09 14:53:38', 1, 2),
-(13, 3, 3, 1, 1, 'Token2022050920220509020517', '2022-05-09 14:53:17', '2022-05-09 14:54:40', 2, 2),
-(14, 3, 3, 2, 1, 'Token2022050920220509020517', '2022-05-09 14:53:17', '2022-05-09 15:19:27', 4, 2),
-(15, 3, 3, 3, 1, 'Token2022050920220509020518', '2022-05-09 14:53:18', '2022-05-09 15:21:37', 5, 2),
-(16, 3, 3, 2, 1, 'Token2022050920220509020518', '2022-05-09 14:53:18', '2022-05-09 15:25:51', 6, 2),
-(17, 3, 3, 1, 1, 'Token2022050920220509020518', '2022-05-09 14:53:18', '2022-05-09 15:25:59', 7, 2),
-(18, 3, 3, 0, 1, 'Token2022050920220509020518', '2022-05-09 14:53:18', '2022-05-09 14:53:18', 8, 2),
-(19, 4, 3, 0, 1, 'Token2022051120220511010502', '2022-05-11 13:04:02', '2022-05-11 13:04:02', 1, 2),
-(20, 4, 3, 0, 1, 'Token2022051120220511010502', '2022-05-11 13:04:02', '2022-05-11 13:04:02', 2, 2),
-(21, 4, 3, 0, 1, 'Token2022051120220511010502', '2022-05-11 13:04:02', '2022-05-11 13:04:02', 4, 2),
-(22, 4, 3, 0, 1, 'Token2022051120220511010502', '2022-05-11 13:04:02', '2022-05-11 13:04:02', 5, 2),
-(23, 4, 3, 0, 1, 'Token2022051120220511010502', '2022-05-11 13:04:02', '2022-05-11 13:04:02', 6, 2),
-(24, 4, 3, 0, 1, 'Token2022051120220511010502', '2022-05-11 13:04:02', '2022-05-11 13:04:02', 7, 2),
-(25, 4, 3, 0, 1, 'Token2022051120220511010502', '2022-05-11 13:04:02', '2022-05-11 13:04:02', 8, 2),
-(26, 5, 3, 0, 1, 'Token2022051120220511010534', '2022-05-11 13:04:34', '2022-05-11 13:04:34', 1, 2),
-(27, 5, 3, 0, 1, 'Token2022051120220511010534', '2022-05-11 13:04:34', '2022-05-11 13:04:34', 2, 2),
-(28, 5, 3, 0, 1, 'Token2022051120220511010534', '2022-05-11 13:04:34', '2022-05-11 13:04:34', 4, 2),
-(29, 5, 3, 0, 1, 'Token2022051120220511010534', '2022-05-11 13:04:34', '2022-05-11 13:04:34', 5, 2),
-(30, 5, 3, 0, 1, 'Token2022051120220511010534', '2022-05-11 13:04:34', '2022-05-11 13:04:34', 6, 2),
-(31, 5, 3, 0, 1, 'Token2022051120220511010534', '2022-05-11 13:04:34', '2022-05-11 13:04:34', 7, 2),
-(32, 5, 3, 0, 1, 'Token2022051120220511010534', '2022-05-11 13:04:34', '2022-05-11 13:04:34', 8, 2);
+INSERT INTO `programmes_ecoles_lignes` (`id`, `programme_ecole_id`, `programme_national_ligne_id`, `enseignant_id`, `active`, `token`, `annee_id`, `created_at`, `updated_at`, `matiere_id`, `coefficient`) VALUES
+(1, 1, 2, 5, 1, 'Token2022050920220509020551', 1, '2022-05-09 14:11:51', '2022-05-16 09:16:58', 2, 2),
+(2, 1, 2, 2, 1, 'Token2022050920220509020551', 1, '2022-05-09 14:11:51', '2022-05-09 15:24:29', 3, 3),
+(3, 1, 2, 3, 1, 'Token2022050920220509020551', 1, '2022-05-09 14:11:51', '2022-05-09 15:24:37', 1, 2),
+(4, 1, 2, 5, 1, 'Token2022050920220509020551', 1, '2022-05-09 14:11:51', '2022-05-09 15:24:54', 5, 3),
+(5, 1, 2, 1, 1, 'Token2022050920220509020551', 1, '2022-05-09 14:11:51', '2022-05-09 15:25:04', 7, 2),
+(6, 1, 2, 5, 1, 'Token2022050920220509020551', 1, '2022-05-09 14:11:51', '2022-05-16 09:16:59', 8, 2),
+(7, 1, 2, 2, 1, 'Token2022050920220509020551', 1, '2022-05-09 14:11:51', '2022-05-09 15:34:21', 6, 2),
+(8, 1, 2, 3, 1, 'Token2022050920220509020552', 1, '2022-05-09 14:11:52', '2022-05-09 15:34:31', 4, 3),
+(9, 2, 1, 1, 1, 'Token2022050920220509020512', 1, '2022-05-09 14:16:12', '2022-05-09 14:17:02', 2, 4),
+(10, 2, 1, 0, 1, 'Token2022050920220509020512', 1, '2022-05-09 14:16:12', '2022-05-09 14:16:12', 1, 2),
+(11, 2, 1, 0, 1, 'Token2022050920220509020512', 1, '2022-05-09 14:16:12', '2022-05-09 14:16:12', 3, 4),
+(12, 3, 3, 3, 1, 'Token2022050920220509020517', 1, '2022-05-09 14:53:17', '2022-05-09 14:53:38', 1, 2),
+(13, 3, 3, 1, 1, 'Token2022050920220509020517', 1, '2022-05-09 14:53:17', '2022-05-09 14:54:40', 2, 2),
+(14, 3, 3, 2, 1, 'Token2022050920220509020517', 1, '2022-05-09 14:53:17', '2022-05-09 15:19:27', 4, 2),
+(15, 3, 3, 3, 1, 'Token2022050920220509020518', 1, '2022-05-09 14:53:18', '2022-05-09 15:21:37', 5, 2),
+(16, 3, 3, 2, 1, 'Token2022050920220509020518', 1, '2022-05-09 14:53:18', '2022-05-09 15:25:51', 6, 2),
+(17, 3, 3, 1, 1, 'Token2022050920220509020518', 1, '2022-05-09 14:53:18', '2022-05-09 15:25:59', 7, 2),
+(18, 3, 3, 0, 1, 'Token2022050920220509020518', 1, '2022-05-09 14:53:18', '2022-05-09 14:53:18', 8, 2),
+(19, 4, 3, 0, 1, 'Token2022051120220511010502', 1, '2022-05-11 13:04:02', '2022-05-11 13:04:02', 1, 2),
+(20, 4, 3, 0, 1, 'Token2022051120220511010502', 1, '2022-05-11 13:04:02', '2022-05-11 13:04:02', 2, 2),
+(21, 4, 3, 0, 1, 'Token2022051120220511010502', 1, '2022-05-11 13:04:02', '2022-05-11 13:04:02', 4, 2),
+(22, 4, 3, 0, 1, 'Token2022051120220511010502', 1, '2022-05-11 13:04:02', '2022-05-11 13:04:02', 5, 2),
+(23, 4, 3, 0, 1, 'Token2022051120220511010502', 1, '2022-05-11 13:04:02', '2022-05-11 13:04:02', 6, 2),
+(24, 4, 3, 0, 1, 'Token2022051120220511010502', 1, '2022-05-11 13:04:02', '2022-05-11 13:04:02', 7, 2),
+(25, 4, 3, 0, 1, 'Token2022051120220511010502', 1, '2022-05-11 13:04:02', '2022-05-11 13:04:02', 8, 2),
+(26, 5, 3, 0, 1, 'Token2022051120220511010534', 1, '2022-05-11 13:04:34', '2022-05-11 13:04:34', 1, 2),
+(27, 5, 3, 0, 1, 'Token2022051120220511010534', 1, '2022-05-11 13:04:34', '2022-05-11 13:04:34', 2, 2),
+(28, 5, 3, 0, 1, 'Token2022051120220511010534', 1, '2022-05-11 13:04:34', '2022-05-11 13:04:34', 4, 2),
+(29, 5, 3, 0, 1, 'Token2022051120220511010534', 1, '2022-05-11 13:04:34', '2022-05-11 13:04:34', 5, 2),
+(30, 5, 3, 0, 1, 'Token2022051120220511010534', 1, '2022-05-11 13:04:34', '2022-05-11 13:04:34', 6, 2),
+(31, 5, 3, 0, 1, 'Token2022051120220511010534', 1, '2022-05-11 13:04:34', '2022-05-11 13:04:34', 7, 2),
+(32, 5, 3, 0, 1, 'Token2022051120220511010534', 1, '2022-05-11 13:04:34', '2022-05-11 13:04:34', 8, 2),
+(33, 6, 4, 0, 1, 'Token2022051120220511080540', 1, '2022-05-11 20:28:40', '2022-05-11 20:28:40', 1, 2),
+(34, 6, 4, 0, 1, 'Token2022051120220511080540', 1, '2022-05-11 20:28:40', '2022-05-11 20:28:40', 3, 4),
+(35, 6, 4, 0, 1, 'Token2022051120220511080540', 1, '2022-05-11 20:28:40', '2022-05-11 20:28:40', 4, 4),
+(36, 6, 4, 0, 1, 'Token2022051120220511080540', 1, '2022-05-11 20:28:40', '2022-05-11 20:28:40', 5, 4),
+(37, 6, 4, 0, 1, 'Token2022051120220511080540', 1, '2022-05-11 20:28:40', '2022-05-11 20:28:40', 6, 4),
+(38, 6, 4, 0, 1, 'Token2022051120220511080540', 1, '2022-05-11 20:28:40', '2022-05-11 20:28:40', 7, 2),
+(39, 7, 4, 0, 1, 'Token2022051920220519070528', 1, '2022-05-19 19:55:28', '2022-05-19 19:55:28', 1, 2),
+(40, 7, 4, 0, 1, 'Token2022051920220519070528', 1, '2022-05-19 19:55:28', '2022-05-19 19:55:28', 3, 4),
+(41, 7, 4, 0, 1, 'Token2022051920220519070528', 1, '2022-05-19 19:55:28', '2022-05-19 19:55:28', 4, 4),
+(42, 7, 4, 0, 1, 'Token2022051920220519070528', 1, '2022-05-19 19:55:28', '2022-05-19 19:55:28', 5, 4),
+(43, 7, 4, 0, 1, 'Token2022051920220519070528', 1, '2022-05-19 19:55:28', '2022-05-19 19:55:28', 6, 4),
+(44, 7, 4, 0, 1, 'Token2022051920220519070528', 1, '2022-05-19 19:55:28', '2022-05-19 19:55:28', 7, 2);
 
 -- --------------------------------------------------------
 
@@ -860,15 +743,14 @@ INSERT INTO `programmes_ecoles_lignes` (`id`, `programme_ecole_id`, `programme_n
 
 DROP TABLE IF EXISTS `programmes_national`;
 CREATE TABLE IF NOT EXISTS `programmes_national` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `classe_id` int(11) NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `enseignement_id` int(11) NOT NULL DEFAULT '0',
   `annee_id` int(11) NOT NULL DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `programmes_national`
@@ -877,7 +759,8 @@ CREATE TABLE IF NOT EXISTS `programmes_national` (
 INSERT INTO `programmes_national` (`id`, `classe_id`, `active`, `enseignement_id`, `annee_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 1, 2022, '2022-04-28 21:56:09', '2022-04-28 21:56:09'),
 (2, 2, 1, 1, 2022, '2022-05-01 13:39:54', '2022-05-01 13:39:54'),
-(3, 3, 1, 1, 2022, '2022-05-01 14:19:27', '2022-05-01 14:19:27');
+(3, 3, 1, 1, 2022, '2022-05-01 14:19:27', '2022-05-01 14:19:27'),
+(4, 5, 1, 1, 2022, '2022-05-11 20:25:55', '2022-05-11 20:25:55');
 
 -- --------------------------------------------------------
 
@@ -887,15 +770,14 @@ INSERT INTO `programmes_national` (`id`, `classe_id`, `active`, `enseignement_id
 
 DROP TABLE IF EXISTS `programmes_national_lignes`;
 CREATE TABLE IF NOT EXISTS `programmes_national_lignes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `matiere_id` int(11) NOT NULL DEFAULT '0',
   `national_programme_id` int(11) NOT NULL DEFAULT '0',
   `coefficient` int(11) NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `programmes_national_lignes`
@@ -919,7 +801,13 @@ INSERT INTO `programmes_national_lignes` (`id`, `matiere_id`, `national_programm
 (15, 5, 3, 2, 1, '2022-05-01 14:19:27', '2022-05-01 14:19:27'),
 (16, 6, 3, 2, 1, '2022-05-01 14:19:27', '2022-05-01 14:19:27'),
 (17, 7, 3, 2, 1, '2022-05-01 14:19:27', '2022-05-01 14:19:27'),
-(18, 8, 3, 2, 1, '2022-05-01 14:19:27', '2022-05-01 14:19:27');
+(18, 8, 3, 2, 1, '2022-05-01 14:19:27', '2022-05-01 14:19:27'),
+(19, 1, 4, 2, 1, '2022-05-11 20:25:57', '2022-05-11 20:25:57'),
+(20, 3, 4, 4, 1, '2022-05-11 20:25:57', '2022-05-11 20:25:57'),
+(21, 4, 4, 4, 1, '2022-05-11 20:25:57', '2022-05-11 20:25:57'),
+(22, 5, 4, 4, 1, '2022-05-11 20:25:57', '2022-05-11 20:25:57'),
+(23, 6, 4, 4, 1, '2022-05-11 20:25:57', '2022-05-11 20:25:57'),
+(24, 7, 4, 2, 1, '2022-05-11 20:25:57', '2022-05-11 20:25:57');
 
 -- --------------------------------------------------------
 
@@ -936,10 +824,37 @@ CREATE TABLE IF NOT EXISTS `releve_notes` (
   `moi_id` int(11) NOT NULL DEFAULT '0',
   `semaine_id` int(11) NOT NULL DEFAULT '0',
   `annee_id` int(11) NOT NULL DEFAULT '0',
+  `moyenne` float NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `releve_notes`
+--
+
+INSERT INTO `releve_notes` (`id`, `inscription_id`, `trimestre_id`, `token`, `moi_id`, `semaine_id`, `annee_id`, `moyenne`, `created_at`, `updated_at`) VALUES
+(1, 3, 1, 'b662c7a3ae33f48dbcca3d564c493ca8e85b355b', 6, 22, 1, 0, '2022-06-03 13:58:55', '2022-06-03 13:58:55'),
+(2, 4, 1, 'b662c7a3ae33f48dbcca3d564c493ca8e85b355b', 6, 22, 1, 0, '2022-06-03 13:58:55', '2022-06-03 13:58:55');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `releve_traites`
+--
+
+DROP TABLE IF EXISTS `releve_traites`;
+CREATE TABLE IF NOT EXISTS `releve_traites` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `annee_id` int(11) NOT NULL DEFAULT '0',
+  `trimestre_id` int(11) NOT NULL DEFAULT '0',
+  `active` int(11) NOT NULL DEFAULT '1',
+  `token` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -949,12 +864,11 @@ CREATE TABLE IF NOT EXISTS `releve_notes` (
 
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `roles`
@@ -977,7 +891,7 @@ INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 
 DROP TABLE IF EXISTS `salles`;
 CREATE TABLE IF NOT EXISTS `salles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `abb` varchar(10) DEFAULT NULL,
   `ecole_id` int(11) NOT NULL DEFAULT '0',
@@ -988,9 +902,8 @@ CREATE TABLE IF NOT EXISTS `salles` (
   `updated_at` datetime DEFAULT NULL,
   `image_uri` varchar(100) DEFAULT NULL,
   `nombre_places` int(11) NOT NULL DEFAULT '0',
-  `classe_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+  `classe_id` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `salles`
@@ -1002,7 +915,8 @@ INSERT INTO `salles` (`id`, `name`, `abb`, `ecole_id`, `site_id`, `active`, `tok
 (3, 'Salle 3', 'S3', 1, 0, 1, 'Token2022050920220509020517', '2022-05-09 14:53:17', '2022-05-09 14:53:17', NULL, 120, 3),
 (4, 'Salle 1', 'S1', 2, 0, 1, 'Token2022051120220511010501', '2022-05-11 13:04:01', '2022-05-11 13:04:01', NULL, 130, 3),
 (5, 'Salle 2', 'S2', 2, 0, 1, 'Token2022051120220511010534', '2022-05-11 13:04:34', '2022-05-11 13:04:34', NULL, 130, 3),
-(6, 'Salle 4', 'S4', 1, 0, 1, 'Token2022052620220526100549', '2022-05-26 10:02:49', '2022-05-26 10:02:49', NULL, 25, 4);
+(6, 'Salle 4', 'S4', 1, 0, 1, 'Token2022051120220511080540', '2022-05-11 20:28:40', '2022-05-11 20:28:40', NULL, 90, 5),
+(7, 'Salle 5', 'S5', 1, 0, 1, 'Token2022051920220519070527', '2022-05-19 19:55:27', '2022-05-19 19:55:27', NULL, 120, 5);
 
 -- --------------------------------------------------------
 
@@ -1012,14 +926,13 @@ INSERT INTO `salles` (`id`, `name`, `abb`, `ecole_id`, `site_id`, `active`, `tok
 
 DROP TABLE IF EXISTS `series`;
 CREATE TABLE IF NOT EXISTS `series` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `abb` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `enseignement_id` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `series`
@@ -1042,7 +955,7 @@ INSERT INTO `series` (`id`, `name`, `abb`, `enseignement_id`, `created_at`, `upd
 
 DROP TABLE IF EXISTS `sites`;
 CREATE TABLE IF NOT EXISTS `sites` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `ecole_id` int(11) NOT NULL DEFAULT '0',
   `address` varchar(100) DEFAULT NULL,
@@ -1053,8 +966,7 @@ CREATE TABLE IF NOT EXISTS `sites` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `image_uri` varchar(100) DEFAULT NULL,
-  `coordonees` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `coordonees` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1065,15 +977,14 @@ CREATE TABLE IF NOT EXISTS `sites` (
 
 DROP TABLE IF EXISTS `tranche_horaires`;
 CREATE TABLE IF NOT EXISTS `tranche_horaires` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `heure_debut` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `heure_fin` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ordre` bigint(20) NOT NULL DEFAULT '0',
-  `ecole_id` bigint(20) NOT NULL DEFAULT '0',
+  `ecole_id` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `tranche_horaires`
@@ -1081,7 +992,12 @@ CREATE TABLE IF NOT EXISTS `tranche_horaires` (
 
 INSERT INTO `tranche_horaires` (`id`, `heure_debut`, `heure_fin`, `ordre`, `ecole_id`, `created_at`, `updated_at`) VALUES
 (1, '7H-00', '9H-00', 0, 0, '2022-04-08 10:57:50', '2022-04-08 10:57:50'),
-(2, '9H-00', '11H-00', 0, 0, '2022-04-08 10:59:02', '2022-04-08 10:59:02');
+(2, '9H-00', '11H-00', 0, 0, '2022-04-08 10:59:02', '2022-04-08 10:59:02'),
+(3, '7H30', '8H30', 0, 1, '2022-05-16 08:19:43', '2022-05-16 08:19:43'),
+(4, '8H30', '9H30', 0, 1, '2022-05-16 08:20:05', '2022-05-16 08:20:05'),
+(5, '9H30', '10H30', 0, 1, '2022-05-16 08:20:28', '2022-05-16 08:20:28'),
+(6, '10H30', '11H30', 0, 1, '2022-05-16 08:20:44', '2022-05-16 08:20:44'),
+(7, '11H30', '12H30', 0, 1, '2022-05-16 08:21:24', '2022-05-16 08:21:24');
 
 -- --------------------------------------------------------
 
@@ -1091,11 +1007,10 @@ INSERT INTO `tranche_horaires` (`id`, `heure_debut`, `heure_fin`, `ordre`, `ecol
 
 DROP TABLE IF EXISTS `trimestres`;
 CREATE TABLE IF NOT EXISTS `trimestres` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
-  `abb` varchar(6) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+  `abb` varchar(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `trimestres`
@@ -1114,14 +1029,25 @@ INSERT INTO `trimestres` (`id`, `name`, `abb`) VALUES
 
 DROP TABLE IF EXISTS `trimestre_ecoles`;
 CREATE TABLE IF NOT EXISTS `trimestre_ecoles` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `trimestre_id` int(11) NOT NULL DEFAULT '0',
   `ecole_id` int(11) NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `trimestre_ecoles`
+--
+
+INSERT INTO `trimestre_ecoles` (`id`, `trimestre_id`, `ecole_id`, `active`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, 0, '2022-05-18 08:55:55', '2022-05-18 08:55:55'),
+(2, 2, 3, 0, '2022-05-18 08:55:55', '2022-05-18 08:55:55'),
+(3, 3, 3, 0, '2022-05-18 08:55:55', '2022-05-18 08:55:55'),
+(4, 1, 1, 1, '2022-05-18 08:55:55', '2022-06-03 12:29:50'),
+(5, 2, 1, 0, '2022-05-18 08:55:55', '2022-06-03 12:29:50'),
+(6, 3, 1, 0, '2022-05-18 08:55:55', '2022-05-18 12:58:47');
 
 -- --------------------------------------------------------
 
@@ -1131,10 +1057,9 @@ CREATE TABLE IF NOT EXISTS `trimestre_ecoles` (
 
 DROP TABLE IF EXISTS `types_enseignements`;
 CREATE TABLE IF NOT EXISTS `types_enseignements` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  `id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `types_enseignements`
@@ -1152,20 +1077,18 @@ INSERT INTO `types_enseignements` (`id`, `name`) VALUES
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `role_id` bigint(20) NOT NULL DEFAULT '0',
-  `ecole_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `ecole_id` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `users`
@@ -1175,15 +1098,16 @@ INSERT INTO `users` (`id`, `name`, `phone`, `email`, `email_verified_at`, `passw
 (1, 'Blandin-Ux', NULL, 'nsondecaleb@gmail.com', NULL, '$2y$10$Ye0/.z.YuHPjlbLJqzy0m.7lHL/XXsHz/MS2HmHHAKpxdzpdLzS.O', NULL, '2022-04-08 10:15:58', '2022-04-08 10:15:58', 1, 0),
 (6, 'KABA ISRA', NULL, 'isra@mail.com', NULL, '$2y$10$7BA8nbQS15nWlqLzi735LO2QAP0.grkixeLZSvww9Oa/JAXwMk9ue', NULL, '2022-05-02 13:25:42', '2022-05-02 13:25:42', 2, 1),
 (7, 'ELIKIA', NULL, 'elikia@mail.com', NULL, '$2y$10$3e9yYKT1rtHxDdHqUCwW.un48lY6ocxg7CJ9tO14thOzIc.Xnv9oO', NULL, '2022-05-02 13:36:53', '2022-05-02 13:36:53', 2, 2),
-(32, 'KABA DIELLE Louisell', '064485524', 'kdielle@mail.com', NULL, '$2y$10$KJcdgHVKOF6.kGZA4VG/He1QF05aKGMs1rVLu.Up4nzVUAyveW3Ce', NULL, '2022-05-19 11:45:03', '2022-05-19 11:45:03', 6, 0),
-(33, 'KABA GALOUO Louis Alexon', '064792878', 'lagkaba@gmail.com', NULL, '$2y$10$Q/sw5l8Rq0cHkYBmmna9COwqxUfKiVdUh3..Tg8bTl9AC3IwTlgqS', NULL, '2022-05-19 19:57:52', '2022-05-19 19:57:52', 6, 0),
-(34, 'TATY Lambert', '0606060606', 'taty@gmail.com', NULL, '$2y$10$wJzZs6c75xjhjUjda3ACE.QwaTf0geqNUDx7xJ5FjT52PzogilYPi', NULL, '2022-05-19 20:00:18', '2022-05-19 20:00:18', 6, 0),
-(35, 'ESSOMBA Clément', '0101010101', 'clement@mail.com', NULL, '$2y$10$jR/40PcMreqRPrG2LYs7devmDfOt.DDkhtTseOi5GRbAA4FQU6Bne', NULL, '2022-05-19 20:01:27', '2022-05-19 20:01:27', 6, 0),
-(36, 'KABA DIELLE Louisell', '06060606', 'kdielle2@mail.com', NULL, '$2y$10$lR2A6w.Brm.N3lS2Bu4FgeCoWgSBf04ugkb5G.YLVl.7MBTwSHIDa', NULL, '2022-05-25 10:28:49', '2022-05-25 10:28:49', 6, 0),
-(37, 'MBENZA Guy', '04040404', 'guymbanza@mail.com', NULL, '$2y$10$AxRDhwyp/Oqu8tvocZ1yletLwYwCdb7/ZlgVaO/cx7v5ue6ECar2S', NULL, '2022-05-25 10:41:57', '2022-05-25 10:41:57', 6, 0),
-(38, 'LOUSSOUKOU Amour', '0404040404', 'lamour@mail.com', NULL, '$2y$10$hTBAylQ2r5bjCKt5TdngXuCKX5hghdTwdiuGKdVaG4SruBqfuokRy', NULL, '2022-05-25 10:46:21', '2022-05-25 10:46:21', 6, 0),
-(39, 'BIDIMBOU Kader', '069505050', 'kaderb@mail.com', NULL, '$2y$10$HLCMyGoX0Df.qEKVIYJmUOi53w0CDKOaGbURcdX5TvSxgREvUC6lC', NULL, '2022-05-27 11:59:35', '2022-05-27 11:59:35', 6, 0),
-(40, 'CALLEJON José Maria', '066606060', 'josemaria@mail.com', NULL, '$2y$10$zdfX7gBSWCHiyJf0BCQZwu14oBHZmYw/fb.ywQOejHFUTFOySKTF.', NULL, '2022-05-27 12:29:21', '2022-05-27 12:29:21', 6, 0);
+(14, 'Makosso Camile', '066335665', 'makosso@gmail.com', NULL, '$2y$10$nz80qggLRryb6wmSj3Gcve6DyTWpaAK0bSyRgF9sDb8xt.FoT5oCm', NULL, '2022-05-09 12:51:13', '2022-05-09 12:51:13', 6, 1),
+(16, 'Tietiouvha Gédeon', '069874521', 'gede@gmail.com', NULL, '$2y$10$W.t0vhs0UnjfYU50o/a5l.TYwuQ4zt2E2nzTri2kaeo8W0ANm6AGi', NULL, '2022-05-09 12:53:55', '2022-05-09 12:53:55', 6, 1),
+(18, 'Tatu Joêl', '068752213', 'tatu@gmail.com', NULL, '$2y$10$CvdKCl3kk564..UAOiwRY.x2prMhM2wIi5491SfAqiUKiljVTzHz2', NULL, '2022-05-09 12:57:15', '2022-05-09 12:57:15', 6, 1),
+(19, 'Taty Lamberd', '066332145', 'taty@gmail.com', NULL, '$2y$10$BGxrJSlvpa4NlcpFNLVQ3O3Sd3tqPfsmLU6ODIfsX0iRQdg1gs7Ga', NULL, '2022-05-09 12:59:34', '2022-05-09 12:59:34', 6, 1),
+(20, 'Massala Landry', '068887963', 'test@gmail.com', NULL, '$2y$10$K0P2lM0u7Il0SxducFNPyeugm3nNu6TlkivZewPnb4bJR5J7blaqu', NULL, '2022-05-09 13:02:20', '2022-05-09 13:02:20', 6, 1),
+(22, 'Malanda Patrick', '066237876', 'malanda@gmail.com', NULL, '$2y$10$ldPJ12pdrIpPvhzLIwtdFeqgF1Wme0NJmcE.V/wdqtIgE/tR9SCMW', NULL, '2022-05-10 18:16:03', '2022-05-10 18:16:03', 7, 1),
+(23, 'Dibouiloui Landry', '066458897', 'dibland@gmail.com', NULL, '$2y$10$rnP5KnqgvUe4C1LAjk6YreoGr/5/s7I0Tt71ZDGJKJdaiw10gPmAO', NULL, '2022-05-11 11:12:10', '2022-05-11 11:12:10', 7, 2),
+(24, 'Duc Mabanza', NULL, 'duc@gmail.com', NULL, '$2y$10$Xiz4yekNtFldpQXeaRGzu.4fTP83NQOV2FvwFtXQqsKjUv52oc6Vu', NULL, '2022-05-18 08:55:55', '2022-05-18 08:55:55', 2, 3),
+(25, 'Maboko Justice', '064332212', 'just@gmail.com', NULL, '$2y$10$PjtBtIUsP8b0pXlZIVdpK.rg5vN/wi7iVvDB6rB4V2Pktcg00c9E6', NULL, '2022-05-27 09:52:13', '2022-05-27 09:52:13', 6, 0),
+(30, 'Maboko Bienvenue', '066342212', 'bienvenue@gmail.com', NULL, '$2y$10$hQWxOQGcojOsCTkAGgD.f.aA0tMnc9XJvH6NnUPeHTvb70aW9N/5C', NULL, '2022-05-27 09:56:55', '2022-05-27 09:56:55', 6, 0);
 
 -- --------------------------------------------------------
 
@@ -1193,7 +1117,7 @@ INSERT INTO `users` (`id`, `name`, `phone`, `email`, `email_verified_at`, `passw
 
 DROP TABLE IF EXISTS `__classes`;
 CREATE TABLE IF NOT EXISTS `__classes` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `serie_id` bigint(20) NOT NULL,
@@ -1201,9 +1125,8 @@ CREATE TABLE IF NOT EXISTS `__classes` (
   `montant_inscri` double NOT NULL,
   `montant_frais` double NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `__classes`
