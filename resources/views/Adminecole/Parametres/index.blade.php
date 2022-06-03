@@ -13,6 +13,10 @@ Admin Ecole | Paramétrage
             <h1>PARAMETRES</h1>
         </div>
         <div class="card-body row d-flex justify-content-center p-4">
+            <a href="{{ route('adminecole.utilisateurs.index') }}" class="col-md-3 m-2">
+                <i class="fa fa-users"></i>
+                <p>Utilisateurs</p>
+            </a>
             <a href="{{ route('adminecole.salles.index') }}" class="col-md-3 m-2">
                 <i class="fa fa-door-open"></i>
                 <p>Salles</p>

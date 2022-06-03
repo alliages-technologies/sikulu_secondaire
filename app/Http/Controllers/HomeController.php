@@ -37,6 +37,14 @@ class HomeController extends Controller
             return view('Adminecole/dashboard');
         }
 
+        elseif(Auth::user()->role_id==4){
+            return view('ResponsableFinances/dashboard');
+        }
+
+        elseif(Auth::user()->role_id==5){
+            return view('ResponsableScolarite/dashboard');
+        }
+
         elseif(Auth::user()->role_id==6){
             $prof = Prof::where('user_id',Auth::user()->id)->first();
             $ecoles = ProfEcole::where('prof_id',$prof->id)->get();

@@ -15,7 +15,7 @@ $("#selectSalle").change(function (e) {
     var selectSalle = $(this).val();
     $.ajax({
         type: "get",
-        url: "/adminecole/ecolages-salle-select",
+        url: "/responsablefinances/ecolages-salle-select",
         data: {
             selectSalle:selectSalle
         },
@@ -35,7 +35,7 @@ $("#selectSalle").change(function (e) {
                 var inscription_id = $(this).val();
                 $.ajax({
                     type: "get",
-                    url: "/adminecole/ecolages-eleve-infos-show/"+inscription_id,
+                    url: "/responsablefinances/ecolages-eleve-infos-show/"+inscription_id,
                     data: {
                         inscription_id:inscription_id
                     },
@@ -61,7 +61,7 @@ $("#selectSalle").change(function (e) {
                                 e.preventDefault();
                                 $.ajax({
                                     type: "post",
-                                    url: "/adminecole/ecolages-eleve-paiement-store",
+                                    url: "/responsablefinances/ecolages-eleve-paiement-store",
                                     data: {
                                         inscription_id:inscription_id,
                                         montant: $('#montant').val(),
@@ -71,7 +71,7 @@ $("#selectSalle").change(function (e) {
                                     dataType: "json",
                                     success: function (response) {
                                         alert("PAIEMENT EFFECTUE AVEC SUCCES");
-                                        window.location.replace("/adminecole/ecolages");
+                                        window.location.replace("/responsablefinances/ecolages");
                                     }
                                 });
                             });

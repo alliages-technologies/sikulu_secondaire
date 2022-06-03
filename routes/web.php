@@ -152,16 +152,16 @@ Route::prefix('adminecole')
         Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
         Route::get('/save-prof','ProgrammeecoleController@saveProf');
         Route::get('/menu/{id}','ProgrammeecoleController@menu')->name('menu');
-
-        // Gestion salles
-        Route::resource('/salles', 'SalleController');
-        // Profs
         // Gestion des Profs
         Route::resource('/profs', 'ProfController');
         Route::get('/profs-verification-numero', 'ProfController@verificationNumero');
         Route::post('/profs-terminer-un', 'ProfController@terminerUn');
         Route::get('/profs-verification-info', 'ProfController@verificationInfo');
         Route::post('/profs-terminer-deux', 'ProfController@terminerDeux');
+        // Configuration des utilisateurs
+        Route::get('/utilisateurs', 'UtilisateurController@index')->name('utilisateurs.index');
+        Route::post('/utilisateurs-resposable-finances-store', 'UtilisateurController@responsableFinancesStore')->name('responsable.finances.store');
+        Route::post('/utilisateurs-resposable-scolarite-store', 'UtilisateurController@responsableScolariteStore')->name('responsable.scolarite.store');
         /*
         Fin Parametres
         */
@@ -180,14 +180,21 @@ Route::prefix('adminecole')
 
         Route::resource('/tranches', 'TrancheController');
 
-        Route::get('/finances', 'FinanceController@index')->name('finances.index')
-        ;
+
+        Route::get('/trimestres', 'TrimestreController@index')->name('trimestre.index');
+        Route::get('/trimestres-on/{id}', 'TrimestreController@trimestreOn')->name('trimestre.on');
+        Route::get('/trimestres-off{id}', 'TrimestreController@trimestreOff')->name('trimestre.off');
+        Route::resource('/matieres', 'MatiereController');
+        Route::get('/matieres/on/{id}', 'MatiereController@on')->name('matieres.on');
+        Route::get('/matieres/off/{id}', 'MatiereController@off')->name('matieres.off');
+        Route::resource('/cours', 'CourController');
+    });
 
 
-        /*
-         Gestion des Finances
-        */
-        Route::get('/finances', 'FinanceController@index')->name('finances.index');
+Route::prefix('responsablefinances')
+    ->namespace('Responsablefinances')
+    ->name('responsablefinances.')
+    ->group(function(){
         // Ecolages
         Route::resource('/ecolages', 'EcolageController');
         Route::get('/ecolages-salle-select', 'EcolageController@salleSelect');
@@ -202,24 +209,14 @@ Route::prefix('adminecole')
         Route::get('/depenses-gestion', 'FinanceController@depensesGestion')->name('depenses.gestion');
         Route::post('/depenses-store', 'FinanceController@depenseStore')->name('depenses.store');
         Route::get('/depenses-show/{token}', 'FinanceController@depenseShow')->name('depenses.show');
-
-        Route::get('/trimestres', 'TrimestreController@index')->name('trimestre.index');
-        Route::get('/trimestres-on/{id}', 'TrimestreController@trimestreOn')->name('trimestre.on');
-        Route::get('/trimestres-off{id}', 'TrimestreController@trimestreOff')->name('trimestre.off');
-        Route::resource('/matieres', 'MatiereController');
-        Route::get('/matieres/on/{id}', 'MatiereController@on')->name('matieres.on');
-        Route::get('/matieres/off/{id}', 'MatiereController@off')->name('matieres.off');
-        Route::resource('/cours', 'CourController');
         // Autres Entrées
         Route::get('/entrees', 'FinanceController@entrees')->name('entrees.index');
         Route::post('/entrees-categorie-store', 'FinanceController@entreeCategorieStore')->name('entrees.categorie.store');
         Route::get('/entrees-gestion', 'FinanceController@entreesGestion')->name('entrees.gestion');
         Route::post('/entrees-store', 'FinanceController@entreeStore')->name('entrees.store');
         Route::get('/entrees-show/{token}', 'FinanceController@entreeShow')->name('entrees.show');
-        /*
-        Fin de la gestion des Finances
-        */
-    });
+});
+
 
 
 Route::prefix('profs')

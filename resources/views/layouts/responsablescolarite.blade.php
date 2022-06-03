@@ -38,7 +38,7 @@
 <body>
     <nav class="container-fluid">
         <div class="">
-            <i class="fa fa-user-circle"></i> {{ Auth::user()->name }} | Professeur
+            <i class="fa fa-user-circle"></i> {{ Auth::user()->name }} | Responsable Scolarité
         </div>
     </nav>
 
