@@ -15,13 +15,18 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-//return view('welcome');
- return redirect('/login');
+    return redirect('/login');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/deconnexion','UserController@logout')->middleware('auth');
+Route::get('/users/register', 'UserController@create')->middleware('auth');
+Route::post('/users/store', 'UserController@store')->middleware('auth');
+//Route::get('/utils/classes', 'DiversController@getClasses')->namespace('Utils');
+
+
 
 
 Route::prefix('utils')
@@ -34,21 +39,15 @@ Route::prefix('utils')
 });
 
 
-Route::get('/users/register', 'UserController@create')->middleware('auth');
-Route::post('/users/store', 'UserController@store')->middleware('auth');
-//Route::get('/utils/classes', 'DiversController@getClasses')->namespace('Utils');
-
-
-Route::get('/deconnexion','UserController@logout')->middleware('auth');
 
 
 // Route des éleves
 Route::get('/eleves','EleveController@index')->middleware('auth');
-// Fin route
-
 // Route des utilisateurs
 Route::get('/users','UserController@index')->middleware('auth','admin');
 // Fin route
+
+
 
 
 Route::prefix('admin')
@@ -103,136 +102,133 @@ Route::prefix('admin')
 });
 
 
+
+
 Route::prefix('superadmin')
-    ->namespace('Superadmin')
-    ->name('superadmin.')
-    ->group(function(){
-        /*
-        Paramètres
-        */
-        Route::resource('/parametres', 'ParametreController');
-        // Ecoles
-        Route::get('/ecoles', 'ParametreController@ecoles')->name('ecoles.index');
-        Route::post('/ecole-store', 'ParametreController@ecoleStore')->name('ecoles.store');
-        Route::get('/ecole-show/{token}', 'ParametreController@ecoleShow')->name('ecoles.show');
-        // Enseignements
-        Route::get('/enseignements', 'ParametreController@enseignements')->name('enseignements.index');
-        Route::post('/enseignement/store', 'ParametreController@enseignementStore')->name('enseignements.store');
-        // Séries
-        Route::get('/series', 'ParametreController@series')->name('series.index');
-        Route::post('/serie/store', 'ParametreController@serieStore')->name('series.store');
-        // Niveaux
-        Route::get('/niveaux', 'ParametreController@niveaux')->name('niveaux.index');
-        Route::post('/niveau/store', 'ParametreController@niveauStore')->name('niveaux.store');
-        // Classes
-        Route::get('/classes', 'ParametreController@classes')->name('classes.index');
-        Route::post('/classe/store', 'ParametreController@classeStore')->name('classes.store');
-        // Matières
-        Route::get('/matieres', 'ParametreController@matieres')->name('matieres.index');
-        Route::post('/matiere/store', 'ParametreController@matiereStore')->name('matieres.store');
-        // Programme national
-        Route::resource('/programmes-national','ProgrammenationalController');
+->namespace('Superadmin')
+->name('superadmin.')
+->group(function(){
+    /*
+    Paramètres
+    */
+    Route::resource('/parametres', 'ParametreController');
+    // Ecoles
+    Route::get('/ecoles', 'ParametreController@ecoles')->name('ecoles.index');
+    Route::post('/ecole-store', 'ParametreController@ecoleStore')->name('ecoles.store');
+    Route::get('/ecole-show/{token}', 'ParametreController@ecoleShow')->name('ecoles.show');
+    // Enseignements
+    Route::get('/enseignements', 'ParametreController@enseignements')->name('enseignements.index');
+    Route::post('/enseignement/store', 'ParametreController@enseignementStore')->name('enseignements.store');
+    // Séries
+    Route::get('/series', 'ParametreController@series')->name('series.index');
+    Route::post('/serie/store', 'ParametreController@serieStore')->name('series.store');
+    // Niveaux
+    Route::get('/niveaux', 'ParametreController@niveaux')->name('niveaux.index');
+    Route::post('/niveau/store', 'ParametreController@niveauStore')->name('niveaux.store');
+    // Classes
+    Route::get('/classes', 'ParametreController@classes')->name('classes.index');
+    Route::post('/classe/store', 'ParametreController@classeStore')->name('classes.store');
+    // Matières
+    Route::get('/matieres', 'ParametreController@matieres')->name('matieres.index');
+    Route::post('/matiere/store', 'ParametreController@matiereStore')->name('matieres.store');
+    // Programme national
+    Route::resource('/programmes-national','ProgrammenationalController');
 });
 
 
+
+
 Route::prefix('adminecole')
-    ->namespace('Adminecole')
-    ->name('adminecole.')
-    ->group(function(){
-        /*
-        Parametres
-        */
-        Route::resource('/parametres', 'ParametreController');
-        // Programmes ecole
-        Route::resource('/programmes-ecole','ProgrammeecoleController');
-        Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getProgrammeNationalById');
-        // Gestion des Salle
-        Route::resource('/salles','SalleController');
-        Route::get('/get-profs','ProgrammeecoleController@getProfs');
-        Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
-        Route::get('/save-prof','ProgrammeecoleController@saveProf');
-        Route::get('/menu/{id}','ProgrammeecoleController@menu')->name('menu');
-        // Gestion des Profs
-        Route::resource('/profs', 'ProfController');
-        Route::get('/profs-show/{token}', 'ProfController@show')->name('show');
-        Route::get('/profs-verification-numero', 'ProfController@verificationNumero');
-        Route::post('/profs-terminer-un', 'ProfController@terminerUn');
-        Route::get('/profs-verification-info', 'ProfController@verificationInfo');
-        Route::post('/profs-terminer-deux', 'ProfController@terminerDeux');
-        // Configuration des utilisateurs
-        Route::get('/utilisateurs', 'UtilisateurController@index')->name('utilisateurs.index');
-        Route::post('/utilisateurs-resposable-finances-store', 'UtilisateurController@responsableFinancesStore')->name('responsable.finances.store');
-        Route::post('/utilisateurs-resposable-scolarite-store', 'UtilisateurController@responsableScolariteStore')->name('responsable.scolarite.store');
-        /*
-        Fin Parametres
-        */
+->namespace('Adminecole')
+->name('adminecole.')
+->group(function(){
+    /*
+    Parametres
+    */
+    Route::resource('/parametres', 'ParametreController');
+    // Programmes ecole
+    Route::resource('/programmes-ecole','ProgrammeecoleController');
+    Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getProgrammeNationalById');
+    // Gestion des Salle
+    Route::resource('/salles','SalleController');
+    Route::get('/get-profs','ProgrammeecoleController@getProfs');
+    Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
+    Route::get('/save-prof','ProgrammeecoleController@saveProf');
+    Route::get('/menu/{id}','ProgrammeecoleController@menu')->name('menu');
+    // Configuration des utilisateurs
+    Route::get('/utilisateurs', 'UtilisateurController@index')->name('utilisateurs.index');
+    Route::post('/utilisateurs-resposable-finances-store', 'UtilisateurController@responsableFinancesStore')->name('responsable.finances.store');
+    Route::post('/utilisateurs-resposable-scolarite-store', 'UtilisateurController@responsableScolariteStore')->name('responsable.scolarite.store');
+    /*
+    Fin Parametres
+    */
 
-        // Gestion des Inscriptions
-        Route::resource('/inscriptions', 'InscriptionController');
-        Route::get('/tuteur-verification-numero', 'InscriptionController@verificationNumero');
-        // Gestion des réinscriptions
-        Route::get('/reinscriptions', 'InscriptionController@reinscription')->name('reinscriptions');
-        Route::get('/get-inscription-by-id/{id}', 'InscriptionController@getInscriptionById');
-        Route::post('/reinscriptions-save', 'InscriptionController@save')->name('reinscriptions.save');
-        // Emploies du temps
-        Route::resource('/emploies', 'EmploieController');
-        Route::get('/emploies-temps/{id}', 'EmploieController@index')->name('index');
-        Route::get('/emploies-du-temps', 'EmploieController@menu')->name('emploie.salle');
-        
-        Route::resource('/tranches', 'TrancheController');
+    // Gestion des Inscriptions
+    Route::resource('/inscriptions', 'InscriptionController');
+    Route::get('/tuteur-verification-numero', 'InscriptionController@verificationNumero');
+    // Gestion des réinscriptions
+    Route::get('/reinscriptions', 'InscriptionController@reinscription')->name('reinscriptions');
+    Route::get('/get-inscription-by-id/{id}', 'InscriptionController@getInscriptionById');
+    Route::post('/reinscriptions-save', 'InscriptionController@save')->name('reinscriptions.save');
+    // Emploies du temps
+    Route::resource('/emploies', 'EmploieController');
+    Route::get('/emploies-temps/{id}', 'EmploieController@index')->name('index');
+    Route::get('/emploies-du-temps', 'EmploieController@menu')->name('emploie.salle');
+
+    Route::resource('/tranches', 'TrancheController');
 
 
-        Route::get('/trimestres', 'TrimestreController@index')->name('trimestre.index');
-        Route::get('/trimestres-on/{id}', 'TrimestreController@trimestreOn')->name('trimestre.on');
-        Route::get('/trimestres-off{id}', 'TrimestreController@trimestreOff')->name('trimestre.off');
-        Route::resource('/matieres', 'MatiereController');
-        Route::get('/matieres/on/{id}', 'MatiereController@on')->name('matieres.on');
-        Route::get('/matieres/off/{id}', 'MatiereController@off')->name('matieres.off');
-        Route::resource('/cours', 'CourController');
+    Route::get('/trimestres', 'TrimestreController@index')->name('trimestre.index');
+    Route::get('/trimestres-on/{id}', 'TrimestreController@trimestreOn')->name('trimestre.on');
+    Route::get('/trimestres-off{id}', 'TrimestreController@trimestreOff')->name('trimestre.off');
+    Route::resource('/matieres', 'MatiereController');
+    Route::get('/matieres/on/{id}', 'MatiereController@on')->name('matieres.on');
+    Route::get('/matieres/off/{id}', 'MatiereController@off')->name('matieres.off');
+    Route::resource('/cours', 'CourController');
 
-        /*
-        Debut de la gestion des relevés de notes
-        */
-        Route::get('/scolarite-menu', 'ScolariteController@menu')->name('scolarite.menu');
-        Route::get('/scolarite-menu/{id}/{ecole}', 'ScolariteController@index');
-        Route::get('/scolarite-releve/{id}/{ecole}/{programme_ecole}', 'ScolariteController@releveNote');
-        Route::get('/scolarite-inscriptions/{salle}/{ecole}', 'ScolariteController@inscription');
-        Route::get('/scolarite-inscription-show/{inscription}/{ecole}/{salle}', 'ScolariteController@inscriptionShow');
-        Route::get('/scolarite/releve-save/{inscription}', 'ScolariteController@save')->name("releve.pdf");
-        Route::post('/scolarite/generation-auto-releve', 'ScolariteController@generationAutoReleve')->name('generation.auto');
-        /*
-        Fin de la gestion des relevés de notes
-        */
-    });
+    /*
+    Debut de la gestion des relevés de notes
+    */
+    Route::get('/scolarite-menu', 'ScolariteController@menu')->name('scolarite.menu');
+    Route::get('/scolarite-menu/{id}/{ecole}', 'ScolariteController@index');
+    Route::get('/scolarite-releve/{id}/{ecole}/{programme_ecole}', 'ScolariteController@releveNote');
+    Route::get('/scolarite-inscriptions/{salle}/{ecole}', 'ScolariteController@inscription');
+    Route::get('/scolarite-inscription-show/{inscription}/{ecole}/{salle}', 'ScolariteController@inscriptionShow');
+    Route::get('/scolarite/releve-save/{inscription}', 'ScolariteController@save')->name("releve.pdf");
+    Route::post('/scolarite/generation-auto-releve', 'ScolariteController@generationAutoReleve')->name('generation.auto');
+    /*
+    Fin de la gestion des relevés de notes
+    */
+});
 
 
 
 
 Route::prefix('responsablefinances')
-    ->namespace('Responsablefinances')
-    ->name('responsablefinances.')
-    ->group(function(){
-        // Ecolages
-        Route::resource('/ecolages', 'EcolageController');
-        Route::get('/ecolages-salle-select', 'EcolageController@salleSelect');
-        Route::get('/ecolages-eleve-infos-show/{id}', 'EcolageController@eleveShowById');
-        Route::post('/ecolages-eleve-paiement-store', 'EcolageController@elevePaiementStore');
-        Route::get('/ecolages-historique-paiements', 'EcolageController@historiquePaiements')->name('historique.paiements');
-        Route::get('/ecolages-historique-salle-show/{token}', 'EcolageController@historiqueSalle')->name('historique.salle');
-        Route::get('/ecolages-historique-paiements-eleve/{token}', 'EcolageController@historiquePaiementsEleve')->name('historique.piements.eleve');
-        // Dépenses
-        Route::get('/depenses-categories', 'FinanceController@depensesCategories')->name('depenses.index');
-        Route::post('/depenses-categorie-store', 'FinanceController@depenseCategorieStore')->name('depenses.categorie.store');
-        Route::get('/depenses-gestion', 'FinanceController@depensesGestion')->name('depenses.gestion');
-        Route::post('/depenses-store', 'FinanceController@depenseStore')->name('depenses.store');
-        Route::get('/depenses-show/{token}', 'FinanceController@depenseShow')->name('depenses.show');
-        // Autres Entrées
-        Route::get('/entrees', 'FinanceController@entrees')->name('entrees.index');
-        Route::post('/entrees-categorie-store', 'FinanceController@entreeCategorieStore')->name('entrees.categorie.store');
-        Route::get('/entrees-gestion', 'FinanceController@entreesGestion')->name('entrees.gestion');
-        Route::post('/entrees-store', 'FinanceController@entreeStore')->name('entrees.store');
-        Route::get('/entrees-show/{token}', 'FinanceController@entreeShow')->name('entrees.show');
-    });
+->namespace('Responsablefinances')
+->name('responsablefinances.')
+->group(function(){
+    // Ecolages
+    Route::resource('/ecolages', 'EcolageController');
+    Route::get('/ecolages-salle-select', 'EcolageController@salleSelect');
+    Route::get('/ecolages-eleve-infos-show/{id}', 'EcolageController@eleveShowById');
+    Route::post('/ecolages-eleve-paiement-store', 'EcolageController@elevePaiementStore');
+    Route::get('/ecolages-historique-paiements', 'EcolageController@historiquePaiements')->name('historique.paiements');
+    Route::get('/ecolages-historique-salle-show/{token}', 'EcolageController@historiqueSalle')->name('historique.salle');
+    Route::get('/ecolages-historique-paiements-eleve/{token}', 'EcolageController@historiquePaiementsEleve')->name('historique.piements.eleve');
+    // Dépenses
+    Route::get('/depenses-categories', 'FinanceController@depensesCategories')->name('depenses.index');
+    Route::post('/depenses-categorie-store', 'FinanceController@depenseCategorieStore')->name('depenses.categorie.store');
+    Route::get('/depenses-gestion', 'FinanceController@depensesGestion')->name('depenses.gestion');
+    Route::post('/depenses-store', 'FinanceController@depenseStore')->name('depenses.store');
+    Route::get('/depenses-show/{token}', 'FinanceController@depenseShow')->name('depenses.show');
+    // Autres Entrées
+    Route::get('/entrees', 'FinanceController@entrees')->name('entrees.index');
+    Route::post('/entrees-categorie-store', 'FinanceController@entreeCategorieStore')->name('entrees.categorie.store');
+    Route::get('/entrees-gestion', 'FinanceController@entreesGestion')->name('entrees.gestion');
+    Route::post('/entrees-store', 'FinanceController@entreeStore')->name('entrees.store');
+    Route::get('/entrees-show/{token}', 'FinanceController@entreeShow')->name('entrees.show');
+});
 
 
 
@@ -241,7 +237,13 @@ Route::prefix('responsablescolarite')
 ->namespace('Responsablescolarite')
 ->name('responsablescolarite.')
 ->group(function(){
-    //
+    // Gestion des Profs
+    Route::resource('/profs', 'ProfController');
+    Route::get('/profs-show/{token}', 'ProfController@show')->name('show');
+    Route::get('/profs-verification-numero', 'ProfController@verificationNumero');
+    Route::post('/profs-terminer-un', 'ProfController@terminerUn');
+    Route::get('/profs-verification-info', 'ProfController@verificationInfo');
+    Route::post('/profs-terminer-deux', 'ProfController@terminerDeux');
 });
 
 
