@@ -18,11 +18,11 @@ Responsable Scolarité | Acceuil
                     <i class="fa fa-users"></i>
                     <p>Enseignants</p>
                 </a>
-                <a href="" class="col-md-3 m-2">
+                <a href="{{ route('responsablescolarite.inscriptions.index') }}" class="col-md-3 m-2">
                     <i class="fa fa-user-plus"></i>
                     <p>Inscriptions</p>
                 </a>
-                <a href="" class="col-md-3 m-2">
+                <a href="{{ route('responsablescolarite.reinscriptions') }}" class="col-md-3 m-2">
                     <i class="fa fa-user-circle"></i>
                     <p>Réinscriptions</p>
                 </a>

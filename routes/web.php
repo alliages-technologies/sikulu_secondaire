@@ -162,14 +162,7 @@ Route::prefix('adminecole')
     /*
     Fin Parametres
     */
-
-    // Gestion des Inscriptions
-    Route::resource('/inscriptions', 'InscriptionController');
-    Route::get('/tuteur-verification-numero', 'InscriptionController@verificationNumero');
-    // Gestion des réinscriptions
-    Route::get('/reinscriptions', 'InscriptionController@reinscription')->name('reinscriptions');
-    Route::get('/get-inscription-by-id/{id}', 'InscriptionController@getInscriptionById');
-    Route::post('/reinscriptions-save', 'InscriptionController@save')->name('reinscriptions.save');
+    
     // Emploies du temps
     Route::resource('/emploies', 'EmploieController');
     Route::get('/emploies-temps/{id}', 'EmploieController@index')->name('index');
@@ -244,6 +237,13 @@ Route::prefix('responsablescolarite')
     Route::post('/profs-terminer-un', 'ProfController@terminerUn');
     Route::get('/profs-verification-info', 'ProfController@verificationInfo');
     Route::post('/profs-terminer-deux', 'ProfController@terminerDeux');
+    // Gestion des Inscriptions
+    Route::resource('/inscriptions', 'InscriptionController');
+    Route::get('/tuteur-verification-numero', 'InscriptionController@verificationNumero');
+    // Gestion des réinscriptions
+    Route::get('/reinscriptions', 'InscriptionController@reinscription')->name('reinscriptions');
+    Route::get('/get-inscription-by-id/{id}', 'InscriptionController@getInscriptionById');
+    Route::post('/reinscriptions-save', 'InscriptionController@save')->name('reinscriptions.save');
 });
 
 
