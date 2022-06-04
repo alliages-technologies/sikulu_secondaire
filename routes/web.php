@@ -149,7 +149,7 @@ Route::prefix('adminecole')
     // Programmes ecole
     Route::resource('/programmes-ecole','ProgrammeecoleController');
     Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getProgrammeNationalById');
-    // Gestion des Salle
+    // Gestion des Salles
     Route::resource('/salles','SalleController');
     Route::get('/get-profs','ProgrammeecoleController@getProfs');
     Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
@@ -162,12 +162,12 @@ Route::prefix('adminecole')
     /*
     Fin Parametres
     */
-    
+
     // Emploies du temps
     Route::resource('/emploies', 'EmploieController');
     Route::get('/emploies-temps/{id}', 'EmploieController@index')->name('index');
     Route::get('/emploies-du-temps', 'EmploieController@menu')->name('emploie.salle');
-
+    // Tranches horaires
     Route::resource('/tranches', 'TrancheController');
 
 
