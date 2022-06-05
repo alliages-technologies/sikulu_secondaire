@@ -1,8 +1,8 @@
-@extends('layouts.adminecole')
+@extends('layouts.responsablescolarite')
 
 
 @section('title')
-Admin Ecole | Emploi du temps
+Responsable Scolarité | Emploi du temps
 @endsection
 
 @section('content')
@@ -16,16 +16,10 @@ Admin Ecole | Emploi du temps
             <table class="table table-sm table-bordered table-hover">
                 <thead class="">
                     <tr>
-<<<<<<< HEAD
                         <th> TRANCHE HORAIRE</th>
                         <th> MATIERE </th>
                         <th> ENSEIGNANT </th>
                         <th> <i class="fa fa-cog"></i> </th>
-=======
-                        <th> Tranche Horaire</th>
-                        <th> Matière </th>
-                        <th> Enseignant </th>
->>>>>>> dfdc58834e23de13978ce6b4101534a53903c34f
                     </tr>
                 </thead>
                 <tbody>

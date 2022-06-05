@@ -17,21 +17,9 @@ Admin Ecole | Acceuil
             <i class="fa fa-building"></i>
             <p>Programme Scolaire</p>
         </a>
-        <a href="{{ route('adminecole.inscriptions.index') }}" class="col-md-3 m-2">
-            <i class="fa fa-user-plus"></i>
-            <p>Inscriptions</p>
-        </a>
-        <a href="{{ route('adminecole.reinscriptions') }}" class="col-md-3 m-2">
-            <i class="fa fa-user-plus"></i>
-            <p>Réinscriptions</p>
-        </a>
         <a href="{{ route('adminecole.scolarite.menu') }}" class="col-md-3 m-2">
             <i class="fa fa-graduation-cap"></i>
             <p>Scolarité</p>
-        </a>
-        <a href="{{ route('adminecole.emploie.salle') }}" class="col-md-3 m-2">
-            <i class="fa fa-calendar"></i>
-            <p>Emploi du temps</p>
         </a>
         <a href="" class="col-md-3 m-2">
             <i class="fa fa-file"></i>

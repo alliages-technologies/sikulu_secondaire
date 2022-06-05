@@ -163,14 +163,9 @@ Route::prefix('adminecole')
     Fin Parametres
     */
 
-    // Emploies du temps
-    Route::resource('/emploies', 'EmploieController');
-    Route::get('/emploies-temps/{id}', 'EmploieController@index')->name('index');
-    Route::get('/emploies-du-temps', 'EmploieController@menu')->name('emploie.salle');
     // Tranches horaires
     Route::resource('/tranches', 'TrancheController');
-
-
+    //
     Route::get('/trimestres', 'TrimestreController@index')->name('trimestre.index');
     Route::get('/trimestres-on/{id}', 'TrimestreController@trimestreOn')->name('trimestre.on');
     Route::get('/trimestres-off{id}', 'TrimestreController@trimestreOff')->name('trimestre.off');
@@ -244,6 +239,10 @@ Route::prefix('responsablescolarite')
     Route::get('/reinscriptions', 'InscriptionController@reinscription')->name('reinscriptions');
     Route::get('/get-inscription-by-id/{id}', 'InscriptionController@getInscriptionById');
     Route::post('/reinscriptions-save', 'InscriptionController@save')->name('reinscriptions.save');
+    // Emploies du temps
+    Route::resource('/emploistemps', 'EmploiController');
+    Route::get('/emplois-du-temps/{token}', 'EmploiController@index')->name('emploistemps.index');
+    Route::get('/emplois-du-temps-salles-menu', 'EmploiController@menu')->name('emploistemps.salles.menu');
 });
 
 
