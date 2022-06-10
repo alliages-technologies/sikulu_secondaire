@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Dashboard
+Admin Ecole | Acceuil
 @endsection
 
 @section('content')
@@ -16,10 +16,6 @@ Admin Ecole | Dashboard
         <a href="{{ route('adminecole.programmes-ecole.index') }}" class="col-md-3 m-2">
             <i class="fa fa-building"></i>
             <p>Programme Scolaire</p>
-        </a>
-        <a href="{{route('adminecole.profs.index')}}" class="col-md-3 m-2">
-            <i class="fa fa-users"></i>
-            <p>Enseignants</p>
         </a>
         <a href="{{ route('adminecole.inscriptions.index') }}" class="col-md-3 m-2">
             <i class="fa fa-user-plus"></i>

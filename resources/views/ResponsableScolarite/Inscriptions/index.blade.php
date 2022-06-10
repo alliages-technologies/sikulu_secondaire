@@ -1,4 +1,4 @@
-@extends('layouts.adminecole')
+@extends('layouts.responsablescolarite')
 
 
 @section('title')
@@ -13,7 +13,7 @@ Admin Ecole | Inscriptions
             <h2>
                 LISTE DES INSCRIPTIONS
                 <a href="/home" style="float: right" class="btn btn-sm btn-default ml-2">RETOUR</a>
-                <a href="{{ route('adminecole.inscriptions.create') }}" class="btn btn-sm btn-default float-right"><i class="fa fa-user-plus"></i> </a>
+                <a href="{{ route('responsablescolarite.inscriptions.create') }}" class="btn btn-sm btn-default float-right"><i class="fa fa-user-plus"></i> </a>
             </h2>
         </div>
         <div class="card-body">
@@ -34,7 +34,7 @@ Admin Ecole | Inscriptions
                         @endif
                         <td> {{$inscription->classe_id?$inscription->classe->name:""}} </td>
                         <td> {{$inscription->eleve_id?$inscription->eleve->nom:""}} {{$inscription->eleve_id?$inscription->eleve->prenom:""}} </td>
-                        <td> <a href="{{ route('adminecole.inscriptions.show', $inscription->token) }}" class="btn btn-sm"> <i class="fa fa-eye"></i> </a> </td>
+                        <td> <a href="{{ route('responsablescolarite.inscriptions.show', $inscription->token) }}" class="btn btn-sm"> <i class="fa fa-eye"></i> </a> </td>
                     </tr>
                 @endforeach
                 </tbody>

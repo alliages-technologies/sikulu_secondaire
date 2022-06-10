@@ -1,4 +1,4 @@
-@extends('layouts.adminecole')
+@extends('layouts.responsablescolarite')
 
 @section('title')
 Admin Ecole | Eleve

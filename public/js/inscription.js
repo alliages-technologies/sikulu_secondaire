@@ -25,7 +25,7 @@ $(".btn-verifier").click(function (e) {
     if (nom && phone) {
         $.ajax({
             type: "get",
-            url: "/adminecole/tuteur-verification-numero",
+            url: "/responsablescolarite/tuteur-verification-numero",
             data: {
                 nom: nom,
                 phone: phone

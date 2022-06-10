@@ -13,7 +13,7 @@
     <!--JS-->
     <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
     <script src="{{asset('js/bootstrap.js')}}"></script>
-    
+
     <title>
         @yield('title')
     </title>
@@ -31,16 +31,15 @@
         color: white;
     }
     .btn-default:hover{
-        background-color: rgb(13, 13, 95);
+        background-color: rgb(10, 10, 90);
         color: white;
     }
 </style>
 <body>
     <nav class="container-fluid">
-        <div class="">
-            <i class="fa fa-user-circle"></i> {{ Auth::user()->name }} | Responsable Scolarité
-        </div>
-    </nav>
+        <span class="float-left"><i class="fa fa-user-circle"></i> <a style="color: white" href="/home">{{ Auth::user()->name }}</a> | Responsable Scolarité </span>
+            <span class="float-right"> {{ Auth::user()->ecole->name }}</span>
+        </nav>
 
     <div class="">
         @yield('content')

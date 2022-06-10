@@ -10,7 +10,7 @@ $(".verifier1").click(function (e) {
     var phone = $(".phone").val();
     $.ajax({
         type: "get",
-        url: "/adminecole/profs-verification-numero",
+        url: "/responsablescolarite/profs-verification-numero",
         data: {
             phone:phone
         },
@@ -30,7 +30,7 @@ $(".verifier1").click(function (e) {
                     e.preventDefault();
                     $.ajax({
                         type: "post",
-                        url: "/adminecole/profs-terminer-un",
+                        url: "/responsablescolarite/profs-terminer-un",
                         data: {
                             prof_id: prof_id,
                             "_token": $('input[name="_token"]').val()
@@ -38,7 +38,7 @@ $(".verifier1").click(function (e) {
                         dataType: "json",
                         success: function (response) {
                             alert("VOUS VENEZ D'AJOUTER CE PROF DANS VOTRE ETABLISSEMENT AVEC SUCCES");
-                            window.location.replace("/adminecole/profs");
+                            window.location.replace("/responsablescolarite/profs");
                         }
                     });
                 });
@@ -59,7 +59,7 @@ $(".verifier1").click(function (e) {
                     var diplome = $(".diplome_id").val();
                     $.ajax({
                         type: "get",
-                        url: "/adminecole/profs-verification-info",
+                        url: "/responsablescolarite/profs-verification-info",
                         data: {
                             nom: nom,
                             prenom: prenom,
@@ -90,7 +90,7 @@ $(".verifier1").click(function (e) {
                                     e.preventDefault();
                                     $.ajax({
                                         type: "post",
-                                        url: "/adminecole/profs-terminer-deux",
+                                        url: "/responsablescolarite/profs-terminer-deux",
                                         data: {
                                             prof_id: prof_id,
                                             //nom: $(".nom").val(),
@@ -104,7 +104,7 @@ $(".verifier1").click(function (e) {
                                         success: function (response) {
                                             //console.log(response);
                                             alert("VOUS VENEZ D'AJOUTER CE PROF DANS VOTRE ETABLISSEMENT AVEC SUCCES");
-                                            window.location.replace("/adminecole/profs");
+                                            window.location.replace("/responsablescolarite/profs");
                                         }
                                     });
                                 });
@@ -118,7 +118,7 @@ $(".verifier1").click(function (e) {
                                         e.preventDefault();
                                         $.ajax({
                                             type: "post",
-                                            url: "/adminecole/profs",
+                                            url: "/responsablescolarite/profs",
                                             data: {
                                                 phone: $(".phone").val(),
                                                 nom: $(".nom").val(),
@@ -135,7 +135,7 @@ $(".verifier1").click(function (e) {
                                             dataType: "json",
                                             success: function (response) {
                                                 alert("PROF AJOUTE AVEC SUCCES");
-                                                window.location.replace("/adminecole/profs");
+                                                window.location.replace("/responsablescolarite/profs");
                                             }
                                         });
                                     });
