@@ -17,6 +17,7 @@ class EmploieController extends Controller
 
     public function index($token)
     {
+        //dd($token);
         $salle = Salle::where('token', $token)->first();
         $id = $salle->id;
 

@@ -15,7 +15,7 @@ Admin Ecole | Emplois du temps
         <div class="card-body ">
             <div class="row d-flex justify-content-center p-1">
                 @foreach ($salles as $salle)
-                <a href="{{ route('adminecole.index',$salle->id) }}" class="col-md-3 m-2">
+                <a href="{{ route('adminecole.index',$salle->token) }}" class="col-md-3 m-2">
                     <i class="fa fa-door-open"></i>
                     <p>{{ $salle->name }} | {{$salle->classe->name}}</p>
                 </a>
