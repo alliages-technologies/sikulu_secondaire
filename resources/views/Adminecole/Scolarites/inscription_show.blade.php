@@ -14,7 +14,7 @@
         </div>
         @csrf
         <div class="card-body">
-            <div class="container">
+            <div class="container"> 
                 <table class="table table-bordered table-striped table-sm table-releve">
                     <thead class="" style="background-color: darkblue;color: white;">
                         <tr>
@@ -26,6 +26,7 @@
                     </thead>
                     <tbody>
                         @foreach($inscription->notes as $note)
+                        <input type="hidden" value="{{ $note->trimestre_id}}" name="trimestre_id">
                         <tr class="tr" data-trimestre_id={{ $note->trimestre_id }} data-ligne_ecole_programme_id={{ $note->ligne_ecole_programme_id }} data-note_id={{ $note->id }} data-note={{ $note->valeur }}>
                             <td> {{$note->pel->matiere->name}} </td>
                             @if ($note->valeur >= 10)
@@ -51,7 +52,7 @@
                         </tr>
                         <tr>
                             <td style="font-size: larger;">Rang :</td>
-                            <td> {{ $inscription->rang }} Sur {{ $inscriptions->count() }} </td>
+                            <td> {{ $rang }} Sur {{ $inscriptions->count() }} </td>
                             <td> </td>
                             <td style="font-size: larger;" >  </td>
                         </tr>
