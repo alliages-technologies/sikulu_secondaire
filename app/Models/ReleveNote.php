@@ -26,12 +26,14 @@ class ReleveNote extends Model
         //dd($releves);
     }
 
-    public function getRangAttribute(){
-
-        $releves = ReleveNote::orderBy('moyenne','DESC')->where('annee_id',$this->annee->id)->where('trimestre_id',$this->trimestre->id)->where('inscription_id',$this->inscription->id)->get();
-        //dd($releves);
-        $rang = $releves->shift();
-        dd($rang);
-        return $rang;
+   public function getAppreciationAttribute(){
+    
+    if ($this->moyenne >= 10) {
+        return "ADMIS(E)";
     }
+    else {
+        return "ECHOUE";
+    }
+
+   }
 }

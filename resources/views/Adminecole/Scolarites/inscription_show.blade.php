@@ -25,7 +25,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($inscription->notes as $note)
+                        @foreach($notes as $note)
                         <input type="hidden" value="{{ $note->trimestre_id}}" name="trimestre_id">
                         <tr class="tr" data-trimestre_id={{ $note->trimestre_id }} data-ligne_ecole_programme_id={{ $note->ligne_ecole_programme_id }} data-note_id={{ $note->id }} data-note={{ $note->valeur }}>
                             <td> {{$note->pel->matiere->name}} </td>
@@ -52,13 +52,17 @@
                         </tr>
                         <tr>
                             <td style="font-size: larger;">Rang :</td>
-                            <td> {{ $rang }} Sur {{ $inscriptions->count() }} </td>
+                            @if ($rang == 1)
+                                <td> {{ $rang }}er(e) Sur {{ $inscriptions->count() }} </td>
+                            @else
+                                <td> {{ $rang }}ème Sur {{ $inscriptions->count() }} </td>
+                            @endif
                             <td> </td>
-                            <td style="font-size: larger;" >  </td>
+                            <td style="font-size: ;"> {{$releve_note->appreciation}} </td>
                         </tr>
                     </tbody>
                 </table>
-                <a href="{{ route('adminecole.releve.pdf',$inscription->id) }}" style="background-color: darkblue; color:white"  class="btn btn-default float-right"> GENERATION DU RELEVE <i class="fa fa-print"></i> </a>
+                <a href="/adminecole/scolarite/releve-save/{{$inscription->id}}/{{ $salle->ecole->token }}/{{ $salle->id }}/{{ $releve_note->trimestre_id }}" style="background-color: darkblue; color:white"  class="btn btn-default float-right"> GENERATION DU RELEVE <i class="fa fa-print"></i> </a>
             </div>
         </div>
     </div>

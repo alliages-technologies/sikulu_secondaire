@@ -22,8 +22,4 @@ Admin Ecole | Emplois du temps
                 <input type="hidden" name="id" value="{{ $salle->id}}">
                 @endforeach
             </div>
-        </div>
-    </div>
-</div>
-
-@endsection
+        </div> 

@@ -48,9 +48,10 @@ class ScolariteController extends Controller
         $salle = Salle::where('id',$salle)->where('ecole_id',Auth::user()->ecole_id)->first();
         $inscriptions = Inscription::where('classe_id',$salle->classe_id)->where('salle_id',$salle->id)->get();
         $inscription = Inscription::find($inscription);
-        $releve_note = ReleveNote::where('inscription_id',$inscription->id)->first();
+        
+        $notes = Note::where('inscription_id',$inscription->id)->where('trimestre_id',$trimestre_ecole)->get();
+        $releve_note = ReleveNote::where('inscription_id',$inscription->id)->where('trimestre_id',$trimestre_ecole)->first();
         $mavar = ReleveNote::where('annee_id',$annee_acad->id)->where('salle_id',$salle->id)->where('trimestre_id',$trimestre_ecole)->orderBy('moyenne','DESC')->get();
-        //dd($mavar);
         $rang = 0;
         for ($i=0; $i <$mavar->count() ; $i++) { 
             if ($inscription->id == $mavar[$i]->inscription_id) {
@@ -58,13 +59,25 @@ class ScolariteController extends Controller
             }
         }
 
-        return view('Adminecole.Scolarites.inscription_show')->with(compact('inscription','inscriptions','releve_note','rang'));
+        return view('Adminecole.Scolarites.inscription_show')->with(compact('inscription','inscriptions','releve_note','rang','notes','salle'));
     }
 
-    public function save($inscription){
+    public function save($inscription,$ecole,$salle,$trimestre_ecole){
         $inscription = Inscription::find($inscription);
+        $releve_note = ReleveNote::where('inscription_id',$inscription->id)->where('trimestre_id',$trimestre_ecole)->first();
+        $salle = Salle::where('id',$salle)->where('ecole_id',Auth::user()->ecole_id)->first();
+        $inscriptions = Inscription::where('classe_id',$salle->classe_id)->where('salle_id',$salle->id)->get();
+        $annee_acad = AnneeAcad::where('actif', 1)->first();
+        $notes = Note::where('inscription_id',$inscription->id)->where('trimestre_id',$trimestre_ecole)->get();
+        $mavar = ReleveNote::where('annee_id',$annee_acad->id)->where('salle_id',$salle->id)->where('trimestre_id',$trimestre_ecole)->orderBy('moyenne','DESC')->get();
+        $rang = 0;
+        for ($i=0; $i <$mavar->count() ; $i++) { 
+            if ($inscription->id == $mavar[$i]->inscription_id) {
+                $rang = $i+1;
+            }
+        }
         PDF::setOptions(['isRemoteEnabled' => TRUE, 'enable_javascript' => TRUE]);
-        $pdf=PDF::loadView('Adminecole.Scolarites.pdf', compact('inscription'))->setOptions(['defaultFont' => 'sans-serif']);
+        $pdf=PDF::loadView('Adminecole.Scolarites.pdf', compact('inscriptions','inscription','salle','notes','rang','releve_note'))->setOptions(['defaultFont' => 'sans-serif']);
         return $pdf->stream();
     }
 
