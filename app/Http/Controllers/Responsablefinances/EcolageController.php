@@ -63,9 +63,9 @@ class EcolageController extends Controller
         $suivi->paiement_id=$ecolage->id;
         $suivi->type="ECOLAGE";
         $suivi->ecole_id=$ecole;
-        $suivi->semaine = date('W');
-        $suivi->mois = date('n');
-        $suivi->annee = date('Y');
+        $suivi->semaine = $ecolage->semaine;
+        $suivi->mois = $ecolage->mois;
+        $suivi->annee = $ecolage->annee;
         $suivi->token = sha1((date('ymdhisW'))."A-suiviEcolage-x".(date('ymdhisW')));
         $suivi->save();
 

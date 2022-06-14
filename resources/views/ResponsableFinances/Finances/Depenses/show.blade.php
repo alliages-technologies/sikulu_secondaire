@@ -13,14 +13,13 @@ Responsable Finances | Détais sur la Dépense
             <h2>{{$depense->name}}</h2>
         </div>
         <div class="card-body">
-            <h4>INFORMATIONS SUR LA DEPENSE</h4>
-            <hr>
             <p>
-                Catégorie: <strong>{{$depense->categorie->name}}</strong> <br>
                 Montant: <strong>{{$depense->montant}} XAF</strong> <br>
                 Description: <strong>{{$depense->description}}</strong> <br>
+                Catégorie: <strong>{{$depense->categorie->name}}</strong> <br>
                 <hr>
                 Date: <strong>{{$depense->created_at->format('d/m/Y')}}</strong> <br>
+                <hr>
                 Semaine: <strong>{{$depense->semaine}}</strong> <br>
                 Mois: <strong>{{$depense->month->name}}</strong> <br>
                 Année: <strong>{{$depense->annee}}</strong>
