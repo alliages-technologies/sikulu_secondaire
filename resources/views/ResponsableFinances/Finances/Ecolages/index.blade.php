@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Ecolages
+Responsable Finances | Ecolages
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@ Admin Ecole | Ecolages
         <div class="card-header">
             <h2>
                 GESTION DES FRAIS D'ECOLAGE
-                <a href="/home" style="float: right;" class="btn btn-sm btn-info"><i class="fa fa-arrow-left"></i> RETOUR</a>
+                <a href="/home" style="float: right;" class="btn btn-sm btn-default">RETOUR</a>
             </h2>
         </div>
         <div class="card-body menu row d-flex justify-content-center p-4">

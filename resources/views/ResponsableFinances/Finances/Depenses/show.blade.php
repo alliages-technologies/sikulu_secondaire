@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Détais sur la Dépense
+Responsable Finances | Détais sur la Dépense
 @endsection
 
 @section('content')
@@ -24,11 +24,7 @@ Admin Ecole | Détais sur la Dépense
                 Semaine: <strong>{{$depense->semaine}}</strong> <br>
                 Mois: <strong>{{$depense->month->name}}</strong> <br>
                 Année: <strong>{{$depense->annee}}</strong>
-
             </p>
-        </div>
-        <div class="card-footer">
-            <a href="{{route('responsablefinances.depenses.gestion')}}" class="btn btn-sm btn-info"><i class="fa fa-arrow-left"></i></a>
         </div>
     </div>
 </div>

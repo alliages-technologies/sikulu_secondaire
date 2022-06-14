@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Détails sur l'entrée
+Responsable Finances | Détails sur l'entrée
 @endsection
 
 @section('content')
@@ -26,9 +26,6 @@ Admin Ecole | Détails sur l'entrée
                 Année: <strong>{{$entree->annee}}</strong>
 
             </p>
-        </div>
-        <div class="card-footer">
-            <a href="{{route('responsablefinances.entrees.gestion')}}" class="btn btn-sm btn-info"><i class="fa fa-arrow-left"></i></a>
         </div>
     </div>
 </div>

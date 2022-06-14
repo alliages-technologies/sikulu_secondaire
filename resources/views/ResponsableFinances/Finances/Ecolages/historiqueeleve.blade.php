@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Fiche de paiements
+Responsable Finances | Fiche de paiements
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@ Admin Ecole | Fiche de paiements
         <div class="card-header">
             <h2>
                 <i class="fa fa-user"></i> | {{$inscription->eleve->name}}
-                <a href="{{route('responsablefinances.historique.paiements')}}" style="float: right;" class="btn btn-sm btn-info"><i class="fa fa-arrow-left"></i> HISTORIQUE DES PAIMENTS</a>
+                <a href="{{route('responsablefinances.historique.paiements')}}" style="float: right;" class="btn btn-sm btn-default"> HISTORIQUE DES PAIMENTS</a>
             </h2>
         </div>
         <div class="card-body">

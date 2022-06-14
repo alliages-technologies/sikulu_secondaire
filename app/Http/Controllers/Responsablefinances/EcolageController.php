@@ -8,6 +8,7 @@ use App\Models\Salle;
 use App\Models\Inscription;
 use App\Models\Moi;
 use App\Models\Ecolage;
+use App\Models\SuiviPaiement;
 
 class EcolageController extends Controller
 {
@@ -44,13 +45,29 @@ class EcolageController extends Controller
             $ecolage->inscription_id=$id;
             $ecolage->montant=$montant;
             $ecolage->moi_id=$mois;
+            $ecolage->semaine=date('W');
+            $ecolage->mois=date('n');
+            $ecolage->annee=date('Y');
             $ecolage->save();
         }else{
             $ecolage->inscription_id=$id;
             $ecolage->montant=$montant;
             $ecolage->moi_id=$mois;
+            $ecolage->semaine=date('W');
+            $ecolage->mois=date('n');
+            $ecolage->annee=date('Y');
             $ecolage->update();
         }
+        $ecole=auth()->user()->ecole_id;
+        $suivi=new SuiviPaiement();
+        $suivi->paiement_id=$ecolage->id;
+        $suivi->type="ECOLAGE";
+        $suivi->ecole_id=$ecole;
+        $suivi->semaine = date('W');
+        $suivi->mois = date('n');
+        $suivi->annee = date('Y');
+        $suivi->token = sha1((date('ymdhisW'))."A-suiviEcolage-x".(date('ymdhisW')));
+        $suivi->save();
 
         return response()->json("PAIEMENT REUSSI");
     }

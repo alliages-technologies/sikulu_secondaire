@@ -6,13 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UtilisateurController extends Controller
 {
     public function index(){
-        $auth=auth()->user()->ecole_id;
-        $users=User::where('role_id', 4)->OrWhere('role_id', 5)->where('ecole_id', $auth)->get();
+        $ecole=Auth::user()->ecole_id;
+        //$users=User::where('ecole_id', 4)->OrWhere('role_id', 5)->OrWhere('role_id', $ecole)->get();
+        $users=User::where('ecole_id', $ecole)->get();
         $roles=Role::all();
         return view('Adminecole.Parametres.Utilisateurs.index')->with(compact('users', 'roles'));
     }

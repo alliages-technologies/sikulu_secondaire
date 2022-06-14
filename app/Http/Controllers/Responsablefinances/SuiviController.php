@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Controllers\Responsablefinances;
+
+use App\Http\Controllers\Controller;
+use App\Models\SuiviPaiement;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class SuiviController extends Controller
+{
+    public function index(){
+        $ecole=Auth::user()->ecole_id;
+        $paiements=SuiviPaiement::where('ecole_id', $ecole)->orderBy('created_at', 'DESC')->paginate(15);
+        return view('Responsablefinances.Suivis.index')->with(compact('paiements'));
+    }
+
+    public function search(Request $request){
+        $ecole=Auth::user()->ecole_id;
+        $dateDebut = trim($request->get('dateDebut'));
+        $dateFin = trim($request->get('dateFin'));
+
+        $paiements=SuiviPaiement::query()
+        ->where('created_at', '>=', $dateDebut)
+        ->where('created_at', '<=', $dateFin)
+        ->where('ecole_id', $ecole)
+        ->orderBy('created_at', 'DESC')->get();
+
+        return view('Responsablefinances.Suivis.search')->with(compact('paiements', 'dateDebut', 'dateFin'));
+    }
+}

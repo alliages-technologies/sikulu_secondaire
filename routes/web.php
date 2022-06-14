@@ -202,7 +202,7 @@ Route::prefix('responsablefinances')
     Route::get('/ecolages-eleve-infos-show/{id}', 'EcolageController@eleveShowById');
     Route::post('/ecolages-eleve-paiement-store', 'EcolageController@elevePaiementStore');
     Route::get('/ecolages-historique-paiements', 'EcolageController@historiquePaiements')->name('historique.paiements');
-    Route::get('/ecolages-historique-salle-show/{token}', 'EcolageController@historiqueSalle')->name('historique.salle');
+    Route::get('/ecolages-historique-salle/{token}', 'EcolageController@historiqueSalle')->name('historique.salle');
     Route::get('/ecolages-historique-paiements-eleve/{token}', 'EcolageController@historiquePaiementsEleve')->name('historique.piements.eleve');
     // Dépenses
     Route::get('/depenses-categories', 'FinanceController@depensesCategories')->name('depenses.index');
@@ -216,6 +216,9 @@ Route::prefix('responsablefinances')
     Route::get('/entrees-gestion', 'FinanceController@entreesGestion')->name('entrees.gestion');
     Route::post('/entrees-store', 'FinanceController@entreeStore')->name('entrees.store');
     Route::get('/entrees-show/{token}', 'FinanceController@entreeShow')->name('entrees.show');
+    // Suivi des paiements
+    Route::get('/suivi-paiements', 'SuiviController@index')->name('suivi.index');
+    Route::post('/suivi-paiements-search', 'SuiviController@search')->name('suivi.search');
 });
 
 
@@ -227,7 +230,6 @@ Route::prefix('responsablescolarite')
 ->group(function(){
     // Gestion des Profs
     Route::resource('/profs', 'ProfController');
-    Route::get('/profs-show/{token}', 'ProfController@show')->name('show');
     Route::get('/profs-verification-numero', 'ProfController@verificationNumero');
     Route::post('/profs-terminer-un', 'ProfController@terminerUn');
     Route::get('/profs-verification-info', 'ProfController@verificationInfo');
@@ -239,7 +241,7 @@ Route::prefix('responsablescolarite')
     Route::get('/reinscriptions', 'InscriptionController@reinscription')->name('reinscriptions');
     Route::get('/get-inscription-by-id/{id}', 'InscriptionController@getInscriptionById');
     Route::post('/reinscriptions-save', 'InscriptionController@save')->name('reinscriptions.save');
-    // Emploies du temps
+    // Emplois du temps
     Route::resource('/emploistemps', 'EmploiController');
     Route::get('/emplois-du-temps/{token}', 'EmploiController@index')->name('emploistemps.index');
     Route::get('/emplois-du-temps-salles-menu', 'EmploiController@menu')->name('emploistemps.salles.menu');
