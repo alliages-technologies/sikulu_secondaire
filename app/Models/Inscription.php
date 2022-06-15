@@ -69,8 +69,9 @@ class Inscription extends Model
         }
     }
 
-    public function getRangAttribute(){
-        return 0;
+    public function releve(){
+        return $this->belongsTo('App\Models\ReleveNote');
     }
+
 
 }

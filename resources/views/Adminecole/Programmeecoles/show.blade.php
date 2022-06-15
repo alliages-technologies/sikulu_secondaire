@@ -12,6 +12,7 @@ Admin Ecole | Programme
         <div class="card-header">
             <input type="hidden" name="classe_id" value="{{ $salle->token}}">
             <h2> Programme de la {{ $salle->name }} <strong>|</strong> {{ $salle->classe->name }} </h2>
+            <input type="hidden" name="classe_id" value="{{ $salle->id}}">
         </div>
         <div class="card-body">
             <table class="table table-sm table-bordered table-hover table-striped">
@@ -26,9 +27,9 @@ Admin Ecole | Programme
                 <tbody>
                     @foreach ($programme_ecole->lpes as $lpe)
                     <tr>
-                        <td> {{ $lpe->matiere->name }} </td>>
-                        <td> {{ $lpe->coefficient }} </td>>
-                        <td> {{ $lpe->enseignant?$lpe->enseignant->name:"Aucun" }} </td>>
+                        <td> {{ $lpe->matiere->name }} </td>
+                        <td> {{ $lpe->coefficient }} </td>
+                        <td> {{ $lpe->enseignant?$lpe->enseignant->name:"Aucun" }} </td>
                         <td> <button data-lpe="{{ $lpe->id }}" data-toggle="modal" data-target="#panier" class="btn btn-default btn-xs btn-edit"><i class="fa fa-edit"></i></button> </td>
                     </tr>
                     @endforeach

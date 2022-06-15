@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : ven. 03 juin 2022 à 15:00
--- Version du serveur : 5.7.36
--- Version de PHP : 7.4.26
+-- Hôte : 127.0.0.1
+-- Généré le : ven. 10 juin 2022 à 15:47
+-- Version du serveur :  10.4.13-MariaDB
+-- Version de PHP : 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,16 +27,14 @@ SET time_zone = "+00:00";
 -- Structure de la table `annee_acads`
 --
 
-DROP TABLE IF EXISTS `annee_acads`;
-CREATE TABLE IF NOT EXISTS `annee_acads` (
+CREATE TABLE `annee_acads` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `annee1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `annee2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `dtrentree` date NOT NULL,
-  `actif` tinyint(1) NOT NULL DEFAULT '1',
+  `actif` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -52,15 +50,13 @@ INSERT INTO `annee_acads` (`id`, `annee1`, `annee2`, `dtrentree`, `actif`, `crea
 -- Structure de la table `classes`
 --
 
-DROP TABLE IF EXISTS `classes`;
-CREATE TABLE IF NOT EXISTS `classes` (
+CREATE TABLE `classes` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `serie_id` bigint(20) NOT NULL,
   `niveau_id` bigint(20) NOT NULL,
   `enseignement_id` bigint(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -80,15 +76,13 @@ INSERT INTO `classes` (`id`, `serie_id`, `niveau_id`, `enseignement_id`, `create
 -- Structure de la table `cours`
 --
 
-DROP TABLE IF EXISTS `cours`;
-CREATE TABLE IF NOT EXISTS `cours` (
+CREATE TABLE `cours` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `classe_id` bigint(20) NOT NULL,
   `matiere_id` bigint(20) NOT NULL,
   `coefficient` bigint(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -105,13 +99,11 @@ INSERT INTO `cours` (`id`, `classe_id`, `matiere_id`, `coefficient`, `created_at
 -- Structure de la table `diplomes`
 --
 
-DROP TABLE IF EXISTS `diplomes`;
-CREATE TABLE IF NOT EXISTS `diplomes` (
+CREATE TABLE `diplomes` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -130,15 +122,13 @@ INSERT INTO `diplomes` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- Structure de la table `ecolages`
 --
 
-DROP TABLE IF EXISTS `ecolages`;
-CREATE TABLE IF NOT EXISTS `ecolages` (
+CREATE TABLE `ecolages` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `inscription_id` bigint(20) NOT NULL,
   `moi_id` bigint(20) NOT NULL,
   `montant` double NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -147,23 +137,21 @@ CREATE TABLE IF NOT EXISTS `ecolages` (
 -- Structure de la table `ecoles`
 --
 
-DROP TABLE IF EXISTS `ecoles`;
-CREATE TABLE IF NOT EXISTS `ecoles` (
+CREATE TABLE `ecoles` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `phone` varchar(30) DEFAULT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `active` tinyint(1) NOT NULL DEFAULT 1,
   `token` varchar(100) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `image_uri` varchar(100) DEFAULT NULL,
-  `is_private` tinyint(1) DEFAULT '1',
-  `pay_id` int(11) NOT NULL DEFAULT '1',
-  `enseignement_id` int(11) NOT NULL DEFAULT '1',
-  `coordonnees` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `is_private` tinyint(1) DEFAULT 1,
+  `pay_id` int(11) NOT NULL DEFAULT 1,
+  `enseignement_id` int(11) NOT NULL DEFAULT 1,
+  `coordonnees` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -181,8 +169,7 @@ INSERT INTO `ecoles` (`id`, `name`, `address`, `email`, `phone`, `active`, `toke
 -- Structure de la table `eleves`
 --
 
-DROP TABLE IF EXISTS `eleves`;
-CREATE TABLE IF NOT EXISTS `eleves` (
+CREATE TABLE `eleves` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nom` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `prenom` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -197,8 +184,7 @@ CREATE TABLE IF NOT EXISTS `eleves` (
   `tel_tuteur` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image_uri` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'aucune image',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -224,15 +210,13 @@ INSERT INTO `eleves` (`id`, `nom`, `prenom`, `date_naiss`, `lieu_naiss`, `adress
 -- Structure de la table `emploie_temps`
 --
 
-DROP TABLE IF EXISTS `emploie_temps`;
-CREATE TABLE IF NOT EXISTS `emploie_temps` (
+CREATE TABLE `emploie_temps` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `salle_id` int(20) NOT NULL DEFAULT '0',
+  `salle_id` int(20) NOT NULL DEFAULT 0,
   `token` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -248,15 +232,13 @@ INSERT INTO `emploie_temps` (`id`, `name`, `salle_id`, `token`, `created_at`, `u
 -- Structure de la table `failed_jobs`
 --
 
-DROP TABLE IF EXISTS `failed_jobs`;
-CREATE TABLE IF NOT EXISTS `failed_jobs` (
+CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -265,24 +247,22 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
 -- Structure de la table `inscriptions`
 --
 
-DROP TABLE IF EXISTS `inscriptions`;
-CREATE TABLE IF NOT EXISTS `inscriptions` (
+CREATE TABLE `inscriptions` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `eleve_id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `classe_id` bigint(20) NOT NULL,
-  `montant_inscri` double NOT NULL DEFAULT '0',
-  `montant_frais` double NOT NULL DEFAULT '0',
-  `annee_id` int(11) NOT NULL DEFAULT '0',
-  `salle_id` int(11) NOT NULL DEFAULT '0',
-  `parent_id` int(11) NOT NULL DEFAULT '0',
-  `programme_ecole_id` int(11) NOT NULL DEFAULT '0',
+  `montant_inscri` double NOT NULL DEFAULT 0,
+  `montant_frais` double NOT NULL DEFAULT 0,
+  `annee_id` int(11) NOT NULL DEFAULT 0,
+  `salle_id` int(11) NOT NULL DEFAULT 0,
+  `parent_id` int(11) NOT NULL DEFAULT 0,
+  `programme_ecole_id` int(11) NOT NULL DEFAULT 0,
   `token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `moi_id` bigint(20) NOT NULL,
   `semaine_id` bigint(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -309,15 +289,13 @@ INSERT INTO `inscriptions` (`id`, `eleve_id`, `user_id`, `classe_id`, `montant_i
 -- Structure de la table `ligne_emploi_temps`
 --
 
-DROP TABLE IF EXISTS `ligne_emploi_temps`;
-CREATE TABLE IF NOT EXISTS `ligne_emploi_temps` (
+CREATE TABLE `ligne_emploi_temps` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `ligne_programme_ecole_id` int(11) NOT NULL DEFAULT '0',
-  `tranche_id` int(11) NOT NULL DEFAULT '0',
-  `emploi_id` int(11) NOT NULL DEFAULT '0',
+  `ligne_programme_ecole_id` int(11) NOT NULL DEFAULT 0,
+  `tranche_id` int(11) NOT NULL DEFAULT 0,
+  `emploi_id` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -337,18 +315,36 @@ INSERT INTO `ligne_emploi_temps` (`id`, `ligne_programme_ecole_id`, `tranche_id`
 -- Structure de la table `ligne_releve_notes`
 --
 
-DROP TABLE IF EXISTS `ligne_releve_notes`;
-CREATE TABLE IF NOT EXISTS `ligne_releve_notes` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `releve_id` int(11) NOT NULL DEFAULT '0',
-  `programme_ligne_ecole_id` int(11) NOT NULL DEFAULT '0',
-  `note_id` int(11) NOT NULL DEFAULT '0',
-  `valeur` double(8,2) NOT NULL DEFAULT '0.00',
-  `coefficient` int(11) NOT NULL DEFAULT '0',
+CREATE TABLE `ligne_releve_notes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `releve_id` int(11) NOT NULL DEFAULT 0,
+  `programme_ligne_ecole_id` int(11) NOT NULL DEFAULT 0,
+  `note_id` int(11) NOT NULL DEFAULT 0,
+  `valeur` double(8,2) NOT NULL DEFAULT 0.00,
+  `coefficient` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `ligne_releve_notes`
+--
+
+INSERT INTO `ligne_releve_notes` (`id`, `releve_id`, `programme_ligne_ecole_id`, `note_id`, `valeur`, `coefficient`, `created_at`, `updated_at`) VALUES
+(1, 2, 2, 1, 15.00, 3, '2022-06-10 11:12:27', '2022-06-10 11:12:27'),
+(2, 2, 7, 3, 17.00, 2, '2022-06-10 11:12:27', '2022-06-10 11:12:27'),
+(3, 2, 5, 5, 14.00, 2, '2022-06-10 11:12:27', '2022-06-10 11:12:27'),
+(4, 2, 3, 7, 17.00, 2, '2022-06-10 11:12:27', '2022-06-10 11:12:27'),
+(5, 2, 8, 9, 15.00, 3, '2022-06-10 11:12:27', '2022-06-10 11:12:27'),
+(6, 2, 1, 11, 10.00, 2, '2022-06-10 11:12:27', '2022-06-10 11:12:27'),
+(7, 2, 4, 13, 18.00, 3, '2022-06-10 11:12:27', '2022-06-10 11:12:27'),
+(8, 5, 2, 2, 16.00, 3, '2022-06-10 11:12:29', '2022-06-10 11:12:29'),
+(9, 5, 7, 4, 15.00, 2, '2022-06-10 11:12:29', '2022-06-10 11:12:29'),
+(10, 5, 5, 6, 16.00, 2, '2022-06-10 11:12:29', '2022-06-10 11:12:29'),
+(11, 5, 3, 8, 18.00, 2, '2022-06-10 11:12:29', '2022-06-10 11:12:29'),
+(12, 5, 8, 10, 13.00, 3, '2022-06-10 11:12:29', '2022-06-10 11:12:29'),
+(13, 5, 1, 12, 15.00, 2, '2022-06-10 11:12:29', '2022-06-10 11:12:29'),
+(14, 5, 4, 14, 19.00, 3, '2022-06-10 11:12:29', '2022-06-10 11:12:29');
 
 -- --------------------------------------------------------
 
@@ -356,16 +352,14 @@ CREATE TABLE IF NOT EXISTS `ligne_releve_notes` (
 -- Structure de la table `matieres`
 --
 
-DROP TABLE IF EXISTS `matieres`;
-CREATE TABLE IF NOT EXISTS `matieres` (
+CREATE TABLE `matieres` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `abv` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ecole_id` int(11) NOT NULL DEFAULT '0',
-  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `ecole_id` int(11) NOT NULL DEFAULT 0,
+  `active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -394,12 +388,10 @@ INSERT INTO `matieres` (`id`, `name`, `abv`, `ecole_id`, `active`, `created_at`,
 -- Structure de la table `migrations`
 --
 
-DROP TABLE IF EXISTS `migrations`;
-CREATE TABLE IF NOT EXISTS `migrations` (
+CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -439,14 +431,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Structure de la table `mois`
 --
 
-DROP TABLE IF EXISTS `mois`;
-CREATE TABLE IF NOT EXISTS `mois` (
+CREATE TABLE `mois` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `visible` tinyint(1) NOT NULL DEFAULT '1',
+  `visible` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -473,12 +463,10 @@ INSERT INTO `mois` (`id`, `name`, `visible`, `created_at`, `updated_at`) VALUES
 -- Structure de la table `niveaux`
 --
 
-DROP TABLE IF EXISTS `niveaux`;
-CREATE TABLE IF NOT EXISTS `niveaux` (
+CREATE TABLE `niveaux` (
   `id` int(11) NOT NULL,
   `name` varchar(10) NOT NULL,
-  `abb` varchar(5) NOT NULL,
-  PRIMARY KEY (`id`)
+  `abb` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -500,22 +488,20 @@ INSERT INTO `niveaux` (`id`, `name`, `abb`) VALUES
 -- Structure de la table `notes`
 --
 
-DROP TABLE IF EXISTS `notes`;
-CREATE TABLE IF NOT EXISTS `notes` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT,
-  `inscription_id` int(11) NOT NULL DEFAULT '0',
-  `valeur` double NOT NULL DEFAULT '0',
-  `ligne_ecole_programme_id` int(11) NOT NULL DEFAULT '0',
-  `trimestre_id` int(11) NOT NULL DEFAULT '0',
-  `annee_id` int(11) NOT NULL DEFAULT '0',
-  `ecole_id` int(11) NOT NULL DEFAULT '0',
+CREATE TABLE `notes` (
+  `id` bigint(11) NOT NULL,
+  `inscription_id` int(11) NOT NULL DEFAULT 0,
+  `valeur` double NOT NULL DEFAULT 0,
+  `ligne_ecole_programme_id` int(11) NOT NULL DEFAULT 0,
+  `trimestre_id` int(11) NOT NULL DEFAULT 0,
+  `annee_id` int(11) NOT NULL DEFAULT 0,
+  `ecole_id` int(11) NOT NULL DEFAULT 0,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `token` varchar(100) DEFAULT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '1',
-  `created_by` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+  `active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_by` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `notes`
@@ -543,14 +529,12 @@ INSERT INTO `notes` (`id`, `inscription_id`, `valeur`, `ligne_ecole_programme_id
 -- Structure de la table `parent_ecole`
 --
 
-DROP TABLE IF EXISTS `parent_ecole`;
-CREATE TABLE IF NOT EXISTS `parent_ecole` (
+CREATE TABLE `parent_ecole` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `parent_id` bigint(20) NOT NULL,
   `ecole_id` bigint(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -567,8 +551,7 @@ INSERT INTO `parent_ecole` (`id`, `parent_id`, `ecole_id`, `created_at`, `update
 -- Structure de la table `password_resets`
 --
 
-DROP TABLE IF EXISTS `password_resets`;
-CREATE TABLE IF NOT EXISTS `password_resets` (
+CREATE TABLE `password_resets` (
   `email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
@@ -580,19 +563,17 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 -- Structure de la table `profs`
 --
 
-DROP TABLE IF EXISTS `profs`;
-CREATE TABLE IF NOT EXISTS `profs` (
+CREATE TABLE `profs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) NOT NULL DEFAULT '0',
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
   `nom` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `prenom` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `adresse` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `telephone` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `diplome_id` bigint(20) NOT NULL DEFAULT '0',
+  `diplome_id` bigint(20) NOT NULL DEFAULT 0,
   `token` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -612,11 +593,10 @@ INSERT INTO `profs` (`id`, `user_id`, `nom`, `prenom`, `adresse`, `telephone`, `
 -- Structure de la table `prof_ecole`
 --
 
-DROP TABLE IF EXISTS `prof_ecole`;
-CREATE TABLE IF NOT EXISTS `prof_ecole` (
+CREATE TABLE `prof_ecole` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `prof_id` bigint(20) NOT NULL DEFAULT '0',
-  `ecole_id` bigint(20) NOT NULL DEFAULT '0',
+  `prof_id` bigint(20) NOT NULL DEFAULT 0,
+  `ecole_id` bigint(20) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -638,17 +618,16 @@ INSERT INTO `prof_ecole` (`id`, `prof_id`, `ecole_id`, `created_at`, `updated_at
 -- Structure de la table `programmes_ecoles`
 --
 
-DROP TABLE IF EXISTS `programmes_ecoles`;
-CREATE TABLE IF NOT EXISTS `programmes_ecoles` (
+CREATE TABLE `programmes_ecoles` (
   `id` int(11) NOT NULL,
-  `annee_id` int(11) NOT NULL DEFAULT '0',
-  `programme_national_id` int(11) NOT NULL DEFAULT '0',
-  `salle_id` int(11) NOT NULL DEFAULT '0',
-  `ecole_id` int(11) NOT NULL DEFAULT '0',
+  `annee_id` int(11) NOT NULL DEFAULT 0,
+  `programme_national_id` int(11) NOT NULL DEFAULT 0,
+  `salle_id` int(11) NOT NULL DEFAULT 0,
+  `ecole_id` int(11) NOT NULL DEFAULT 0,
   `token` varchar(100) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '1'
+  `active` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -670,19 +649,18 @@ INSERT INTO `programmes_ecoles` (`id`, `annee_id`, `programme_national_id`, `sal
 -- Structure de la table `programmes_ecoles_lignes`
 --
 
-DROP TABLE IF EXISTS `programmes_ecoles_lignes`;
-CREATE TABLE IF NOT EXISTS `programmes_ecoles_lignes` (
+CREATE TABLE `programmes_ecoles_lignes` (
   `id` int(11) NOT NULL,
-  `programme_ecole_id` int(11) NOT NULL DEFAULT '0',
-  `programme_national_ligne_id` int(11) NOT NULL DEFAULT '0',
-  `enseignant_id` int(11) NOT NULL DEFAULT '0',
-  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `programme_ecole_id` int(11) NOT NULL DEFAULT 0,
+  `programme_national_ligne_id` int(11) NOT NULL DEFAULT 0,
+  `enseignant_id` int(11) NOT NULL DEFAULT 0,
+  `active` tinyint(1) NOT NULL DEFAULT 1,
   `token` varchar(100) DEFAULT NULL,
-  `annee_id` int(11) NOT NULL DEFAULT '0',
+  `annee_id` int(11) NOT NULL DEFAULT 0,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `matiere_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Pour les ecoles qui ont créé des matieres propres a elles ',
-  `coefficient` int(11) NOT NULL DEFAULT '0'
+  `matiere_id` int(11) NOT NULL DEFAULT 0 COMMENT 'Pour les ecoles qui ont créé des matieres propres a elles ',
+  `coefficient` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -741,13 +719,12 @@ INSERT INTO `programmes_ecoles_lignes` (`id`, `programme_ecole_id`, `programme_n
 -- Structure de la table `programmes_national`
 --
 
-DROP TABLE IF EXISTS `programmes_national`;
-CREATE TABLE IF NOT EXISTS `programmes_national` (
+CREATE TABLE `programmes_national` (
   `id` int(11) NOT NULL,
-  `classe_id` int(11) NOT NULL DEFAULT '0',
-  `active` tinyint(1) NOT NULL DEFAULT '1',
-  `enseignement_id` int(11) NOT NULL DEFAULT '0',
-  `annee_id` int(11) NOT NULL DEFAULT '0',
+  `classe_id` int(11) NOT NULL DEFAULT 0,
+  `active` tinyint(1) NOT NULL DEFAULT 1,
+  `enseignement_id` int(11) NOT NULL DEFAULT 0,
+  `annee_id` int(11) NOT NULL DEFAULT 0,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -768,13 +745,12 @@ INSERT INTO `programmes_national` (`id`, `classe_id`, `active`, `enseignement_id
 -- Structure de la table `programmes_national_lignes`
 --
 
-DROP TABLE IF EXISTS `programmes_national_lignes`;
-CREATE TABLE IF NOT EXISTS `programmes_national_lignes` (
+CREATE TABLE `programmes_national_lignes` (
   `id` int(11) NOT NULL,
-  `matiere_id` int(11) NOT NULL DEFAULT '0',
-  `national_programme_id` int(11) NOT NULL DEFAULT '0',
-  `coefficient` int(11) NOT NULL DEFAULT '0',
-  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `matiere_id` int(11) NOT NULL DEFAULT 0,
+  `national_programme_id` int(11) NOT NULL DEFAULT 0,
+  `coefficient` int(11) NOT NULL DEFAULT 0,
+  `active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -815,28 +791,31 @@ INSERT INTO `programmes_national_lignes` (`id`, `matiere_id`, `national_programm
 -- Structure de la table `releve_notes`
 --
 
-DROP TABLE IF EXISTS `releve_notes`;
-CREATE TABLE IF NOT EXISTS `releve_notes` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `inscription_id` int(11) NOT NULL DEFAULT '0',
-  `trimestre_id` int(11) NOT NULL DEFAULT '0',
+CREATE TABLE `releve_notes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `inscription_id` int(11) NOT NULL DEFAULT 0,
+  `salle_id` int(11) NOT NULL DEFAULT 0,
+  `trimestre_id` int(11) NOT NULL DEFAULT 0,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `moi_id` int(11) NOT NULL DEFAULT '0',
-  `semaine_id` int(11) NOT NULL DEFAULT '0',
-  `annee_id` int(11) NOT NULL DEFAULT '0',
-  `moyenne` float NOT NULL DEFAULT '0',
+  `moi_id` int(11) NOT NULL DEFAULT 0,
+  `semaine_id` int(11) NOT NULL DEFAULT 0,
+  `annee_id` int(11) NOT NULL DEFAULT 0,
+  `moyenne` float NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `releve_notes`
 --
 
-INSERT INTO `releve_notes` (`id`, `inscription_id`, `trimestre_id`, `token`, `moi_id`, `semaine_id`, `annee_id`, `moyenne`, `created_at`, `updated_at`) VALUES
-(1, 3, 1, 'b662c7a3ae33f48dbcca3d564c493ca8e85b355b', 6, 22, 1, 0, '2022-06-03 13:58:55', '2022-06-03 13:58:55'),
-(2, 4, 1, 'b662c7a3ae33f48dbcca3d564c493ca8e85b355b', 6, 22, 1, 0, '2022-06-03 13:58:55', '2022-06-03 13:58:55');
+INSERT INTO `releve_notes` (`id`, `inscription_id`, `salle_id`, `trimestre_id`, `token`, `moi_id`, `semaine_id`, `annee_id`, `moyenne`, `created_at`, `updated_at`) VALUES
+(1, 3, 2, 1, 'e85d1e7a63c776ca54aaa4591b7d56b3f45d2222', 6, 23, 1, 0, '2022-06-10 11:12:27', '2022-06-10 11:12:27'),
+(2, 4, 1, 1, 'e85d1e7a63c776ca54aaa4591b7d56b3f45d2222', 6, 23, 1, 15.29, '2022-06-10 11:12:27', '2022-06-10 11:12:27'),
+(3, 5, 3, 1, '8f9ea9a4bfd2c62e630dcc0aba526fd70bf7468e', 6, 23, 1, 0, '2022-06-10 11:12:28', '2022-06-10 11:12:28'),
+(4, 10, 2, 1, '8f9ea9a4bfd2c62e630dcc0aba526fd70bf7468e', 6, 23, 1, 0, '2022-06-10 11:12:28', '2022-06-10 11:12:28'),
+(5, 11, 1, 1, '8f9ea9a4bfd2c62e630dcc0aba526fd70bf7468e', 6, 23, 1, 16, '2022-06-10 11:12:28', '2022-06-10 11:12:29'),
+(6, 12, 6, 1, '8cb0441560dcfcd02bf27c4a160ebe1a1323a450', 6, 23, 1, 0, '2022-06-10 11:12:29', '2022-06-10 11:12:29');
 
 -- --------------------------------------------------------
 
@@ -844,17 +823,22 @@ INSERT INTO `releve_notes` (`id`, `inscription_id`, `trimestre_id`, `token`, `mo
 -- Structure de la table `releve_traites`
 --
 
-DROP TABLE IF EXISTS `releve_traites`;
-CREATE TABLE IF NOT EXISTS `releve_traites` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `annee_id` int(11) NOT NULL DEFAULT '0',
-  `trimestre_id` int(11) NOT NULL DEFAULT '0',
-  `active` int(11) NOT NULL DEFAULT '1',
+CREATE TABLE `releve_traites` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `annee_id` int(11) NOT NULL DEFAULT 0,
+  `trimestre_id` int(11) NOT NULL DEFAULT 0,
+  `active` int(11) NOT NULL DEFAULT 1,
   `token` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `releve_traites`
+--
+
+INSERT INTO `releve_traites` (`id`, `annee_id`, `trimestre_id`, `active`, `token`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1, 'e85d1e7a63c776ca54aaa4591b7d56b3f45d2222', '2022-06-10 11:12:27', '2022-06-10 11:12:27');
 
 -- --------------------------------------------------------
 
@@ -862,8 +846,7 @@ CREATE TABLE IF NOT EXISTS `releve_traites` (
 -- Structure de la table `roles`
 --
 
-DROP TABLE IF EXISTS `roles`;
-CREATE TABLE IF NOT EXISTS `roles` (
+CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -889,20 +872,19 @@ INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- Structure de la table `salles`
 --
 
-DROP TABLE IF EXISTS `salles`;
-CREATE TABLE IF NOT EXISTS `salles` (
+CREATE TABLE `salles` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `abb` varchar(10) DEFAULT NULL,
-  `ecole_id` int(11) NOT NULL DEFAULT '0',
-  `site_id` int(11) NOT NULL DEFAULT '0',
-  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `ecole_id` int(11) NOT NULL DEFAULT 0,
+  `site_id` int(11) NOT NULL DEFAULT 0,
+  `active` tinyint(1) NOT NULL DEFAULT 1,
   `token` varchar(100) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `image_uri` varchar(100) DEFAULT NULL,
-  `nombre_places` int(11) NOT NULL DEFAULT '0',
-  `classe_id` int(11) NOT NULL DEFAULT '0'
+  `nombre_places` int(11) NOT NULL DEFAULT 0,
+  `classe_id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -924,12 +906,11 @@ INSERT INTO `salles` (`id`, `name`, `abb`, `ecole_id`, `site_id`, `active`, `tok
 -- Structure de la table `series`
 --
 
-DROP TABLE IF EXISTS `series`;
-CREATE TABLE IF NOT EXISTS `series` (
+CREATE TABLE `series` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `abb` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `enseignement_id` int(11) NOT NULL DEFAULT '0',
+  `enseignement_id` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -953,16 +934,15 @@ INSERT INTO `series` (`id`, `name`, `abb`, `enseignement_id`, `created_at`, `upd
 -- Structure de la table `sites`
 --
 
-DROP TABLE IF EXISTS `sites`;
-CREATE TABLE IF NOT EXISTS `sites` (
+CREATE TABLE `sites` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
-  `ecole_id` int(11) NOT NULL DEFAULT '0',
+  `ecole_id` int(11) NOT NULL DEFAULT 0,
   `address` varchar(100) DEFAULT NULL,
   `phone` varchar(30) DEFAULT NULL,
   `token` varchar(100) NOT NULL,
-  `enseignement_id` int(11) NOT NULL DEFAULT '0',
-  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `enseignement_id` int(11) NOT NULL DEFAULT 0,
+  `active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `image_uri` varchar(100) DEFAULT NULL,
@@ -975,13 +955,12 @@ CREATE TABLE IF NOT EXISTS `sites` (
 -- Structure de la table `tranche_horaires`
 --
 
-DROP TABLE IF EXISTS `tranche_horaires`;
-CREATE TABLE IF NOT EXISTS `tranche_horaires` (
+CREATE TABLE `tranche_horaires` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `heure_debut` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `heure_fin` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ordre` bigint(20) NOT NULL DEFAULT '0',
-  `ecole_id` int(11) NOT NULL DEFAULT '0',
+  `ordre` bigint(20) NOT NULL DEFAULT 0,
+  `ecole_id` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1005,8 +984,7 @@ INSERT INTO `tranche_horaires` (`id`, `heure_debut`, `heure_fin`, `ordre`, `ecol
 -- Structure de la table `trimestres`
 --
 
-DROP TABLE IF EXISTS `trimestres`;
-CREATE TABLE IF NOT EXISTS `trimestres` (
+CREATE TABLE `trimestres` (
   `id` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
   `abb` varchar(6) DEFAULT NULL
@@ -1027,12 +1005,11 @@ INSERT INTO `trimestres` (`id`, `name`, `abb`) VALUES
 -- Structure de la table `trimestre_ecoles`
 --
 
-DROP TABLE IF EXISTS `trimestre_ecoles`;
-CREATE TABLE IF NOT EXISTS `trimestre_ecoles` (
+CREATE TABLE `trimestre_ecoles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `trimestre_id` int(11) NOT NULL DEFAULT '0',
-  `ecole_id` int(11) NOT NULL DEFAULT '0',
-  `active` tinyint(1) NOT NULL DEFAULT '0',
+  `trimestre_id` int(11) NOT NULL DEFAULT 0,
+  `ecole_id` int(11) NOT NULL DEFAULT 0,
+  `active` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1055,8 +1032,7 @@ INSERT INTO `trimestre_ecoles` (`id`, `trimestre_id`, `ecole_id`, `active`, `cre
 -- Structure de la table `types_enseignements`
 --
 
-DROP TABLE IF EXISTS `types_enseignements`;
-CREATE TABLE IF NOT EXISTS `types_enseignements` (
+CREATE TABLE `types_enseignements` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -1075,8 +1051,7 @@ INSERT INTO `types_enseignements` (`id`, `name`) VALUES
 -- Structure de la table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1086,8 +1061,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `role_id` bigint(20) NOT NULL DEFAULT '0',
-  `ecole_id` int(11) NOT NULL DEFAULT '0'
+  `role_id` bigint(20) NOT NULL DEFAULT 0,
+  `ecole_id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1115,15 +1090,14 @@ INSERT INTO `users` (`id`, `name`, `phone`, `email`, `email_verified_at`, `passw
 -- Structure de la table `__classes`
 --
 
-DROP TABLE IF EXISTS `__classes`;
-CREATE TABLE IF NOT EXISTS `__classes` (
+CREATE TABLE `__classes` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `serie_id` bigint(20) NOT NULL,
-  `examen` tinyint(1) NOT NULL DEFAULT '0',
+  `examen` tinyint(1) NOT NULL DEFAULT 0,
   `montant_inscri` double NOT NULL,
-  `montant_frais` double NOT NULL DEFAULT '0',
+  `montant_frais` double NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1135,6 +1109,164 @@ CREATE TABLE IF NOT EXISTS `__classes` (
 INSERT INTO `__classes` (`id`, `name`, `code`, `serie_id`, `examen`, `montant_inscri`, `montant_frais`, `created_at`, `updated_at`) VALUES
 (1, 'Seconde', 'SCD#A', 1, 0, 10000, 0, '2022-04-08 10:27:38', '2022-04-08 10:27:38'),
 (2, 'Seconde', 'SCD#C', 2, 0, 10000, 0, '2022-04-08 10:28:58', '2022-04-08 10:28:58');
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `annee_acads`
+--
+ALTER TABLE `annee_acads`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `classes`
+--
+ALTER TABLE `classes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `cours`
+--
+ALTER TABLE `cours`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `diplomes`
+--
+ALTER TABLE `diplomes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `ecolages`
+--
+ALTER TABLE `ecolages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `ecoles`
+--
+ALTER TABLE `ecoles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `eleves`
+--
+ALTER TABLE `eleves`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `emploie_temps`
+--
+ALTER TABLE `emploie_temps`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `inscriptions`
+--
+ALTER TABLE `inscriptions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `ligne_emploi_temps`
+--
+ALTER TABLE `ligne_emploi_temps`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `ligne_releve_notes`
+--
+ALTER TABLE `ligne_releve_notes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `matieres`
+--
+ALTER TABLE `matieres`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `mois`
+--
+ALTER TABLE `mois`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `niveaux`
+--
+ALTER TABLE `niveaux`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `notes`
+--
+ALTER TABLE `notes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `parent_ecole`
+--
+ALTER TABLE `parent_ecole`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `profs`
+--
+ALTER TABLE `profs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `releve_notes`
+--
+ALTER TABLE `releve_notes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `releve_traites`
+--
+ALTER TABLE `releve_traites`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `ligne_releve_notes`
+--
+ALTER TABLE `ligne_releve_notes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT pour la table `notes`
+--
+ALTER TABLE `notes`
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT pour la table `releve_notes`
+--
+ALTER TABLE `releve_notes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT pour la table `releve_traites`
+--
+ALTER TABLE `releve_traites`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

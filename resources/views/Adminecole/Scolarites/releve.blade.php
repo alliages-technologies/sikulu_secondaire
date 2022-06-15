@@ -1,6 +1,6 @@
 @extends('layouts.adminecole')
 @section('content')
-
+<input type="hidden" name="trimestre_ecole_id" value="{{$trimestre_ecole->id}}">
 <div class="container-fluid">
     <div class="card mt-5">
         <div class="card-header" style="background-color: darkblue; color:white">
@@ -19,7 +19,7 @@
                         <tr>
                             <td> {{$salle->name}} </td>
                             <td> {{$salle->classe->name}} </td>
-                            <td> <a href="/adminecole/scolarite-inscriptions/{{ $salle->id }}/{{ $salle->ecole->token }}" class="btn btn-warning btn-xs"><i class="fa fa-eye"></i></a> </td>
+                            <td> <a href="/adminecole/scolarite-inscriptions/{{ $salle->id }}/{{ $salle->ecole->token }}/{{$trimestre_ecole->id}}" class="btn btn-warning btn-xs"><i class="fa fa-eye"></i></a> </td>
                         </tr>
                         @endforeach
                     </tbody>

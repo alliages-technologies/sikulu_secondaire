@@ -17,6 +17,7 @@ class EmploiController extends Controller
 
     public function index($token)
     {
+        //dd($token);
         $salle = Salle::where('token', $token)->first();
         $id = $salle->id;
         $emploie_temps = EmploieTemp::where('salle_id', $id)->get();
