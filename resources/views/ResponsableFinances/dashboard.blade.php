@@ -32,7 +32,7 @@ Responsable Finances | Acceuil
                     <i class="fa fa-th"></i>
                     <p>Suivi des paiements</p>
                 </a>
-                <a href="/deconnexion" class="col-md-3 m-2">
+                <a style="color: red" href="/deconnexion" class="col-md-3 m-2">
                     <i class="fa fa-power-off"></i>
                     <p>Déconnexion</p>
                 </a>

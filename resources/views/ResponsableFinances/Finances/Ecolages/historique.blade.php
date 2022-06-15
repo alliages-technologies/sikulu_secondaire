@@ -20,7 +20,7 @@ Responsable Finances | Historique des paiements
                 <div class="row d-flex justify-content-center p-4">
                     @foreach ($salles as $salle)
                         <a href="{{route('responsablefinances.historique.salle', $salle->token)}}" class="col-md-3 m-2">
-                            <i class="fa fa-home"></i>
+                            <i class="fa fa-door-open"></i>
                             <p>{{$salle->name}} | {{$salle->classe->name}}</p>
                         </a>
                     @endforeach
