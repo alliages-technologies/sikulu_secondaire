@@ -1,8 +1,8 @@
-@extends('layouts.adminecole')
+@extends('layouts.responsablescolarite')
 
 
 @section('title')
-Admin Ecole | Horaires Salle
+Responsable Scolarité | Horaires Salle
 @endsection
 
 @section('content')
@@ -17,13 +17,13 @@ Admin Ecole | Horaires Salle
 </style>
 
 <div class="container mt-4">
-    <input type="hidden" name="salle_id" class="salle_id" value="{{ $salle }}">
+    <input type="hidden" name="salle_id" class="salle_id" value="{{ $salle->id }}">
     <div class="card">
         <div class="card-header">
-            <h2>
-                GESTION DES HORAIRES DE LA SALLE
-                <a href="" data-toggle="modal" data-target="#panier" class="btn btn-sm btn-default float-right"> <i class="fa fa-plus-square"></i> </a>
-            </h2>
+            <h4>
+                EMPLOIS DU TEMPS
+                <button data-toggle="modal" data-target="#nouveauProgr" class="btn btn-default float-right"> <i class="fa fa-plus-circle"></i> </button>
+            </h4>
         </div>
         <div class="card-body ">
             <div class="container-fluid">
@@ -36,8 +36,9 @@ Admin Ecole | Horaires Salle
                     <tbody>
                         @foreach($emploie_temps as $emploie_temp)
                         <tr>
-                            <td> {{$emploie_temp->created_at->format('d/m/Y')}}</td>
+                            <td> {{$emploie_temp->created_at->format('Y-m-d')}}</td>
                             <td> {{ $emploie_temp->name }} </td>
+                            <td> <a href="{{ route('responsablescolarite.emploistemps.show', $emploie_temp->token) }}"><i class="fa fa-eye"></i></a> </td>
                             <td> <a href="{{ route('adminecole.emploies.show', $emploie_temp->token) }}"><i class="fa fa-eye"></i></a> </td>
                         </tr>
                         @endforeach
@@ -46,12 +47,11 @@ Admin Ecole | Horaires Salle
             </div>
         </div>
     </div>
-
 </div>
 
 
 <!-- Modal -->
-<div class="modal fade" id="panier" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="nouveauProgr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header card-header">
@@ -61,13 +61,13 @@ Admin Ecole | Horaires Salle
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('adminecole.emploies.store')}}" method="post" class="mb-4">
+                <form action="{{route('responsablescolarite.emploistemps.store')}}" method="post" class="mb-4">
                     @csrf
                 <div class="form-row mt-2">
                     <div class="col">
                         <label for="">Horaire</label>
                         <select name="tranche_id" id="" class="form-control tranche_id">
-                            <option value="">Choix de la tranche horaire</option>
+                            <option value="">Tranche horaire</option>
                             @foreach ($tranches as $tranche)
                             <option data-tranche="{{ $tranche->name }}" value="{{ $tranche->id }}">{{ $tranche->name }}</option>
                             @endforeach
@@ -111,5 +111,5 @@ Admin Ecole | Horaires Salle
 </div>
 </div>
 
-<script src="{{ asset('js/emploie.js') }}"></script>
+<script src="{{ asset('js/emploisTemps.js') }}"></script>
 @endsection

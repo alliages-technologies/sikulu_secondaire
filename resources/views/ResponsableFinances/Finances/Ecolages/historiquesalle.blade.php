@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Historique des paiements de la salle
+Responsable Finances | Historique des paiements de la salle
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@ Admin Ecole | Historique des paiements de la salle
         <div class="card-header">
             <h2>
                 {{$salle->name}} | {{$salle->classe->name}}
-                <a href="{{route('responsablefinances.historique.paiements')}}" style="float: right;" class="btn btn-sm btn-info"><i class="fa fa-arrow-left"></i> RETOUR</a>
+                <a href="{{route('responsablefinances.historique.paiements')}}" style="float: right;" class="btn btn-sm btn-default"> RETOUR</a>
             </h2>
         </div>
         <div class="card-body">

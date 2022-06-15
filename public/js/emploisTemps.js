@@ -41,7 +41,7 @@ $("#btn-save").click(function (e) {
     });
     $.ajax({
         type: "post",
-        url: "/adminecole/emploies",
+        url: "/responsablescolarite/emploistemps",
         data: {
             'lignes': lignes,
             'salle_id': $(".salle_id").val(),
@@ -54,7 +54,6 @@ $("#btn-save").click(function (e) {
         },
         error: function() {
             alert('Une erreur est survenue sur le serveur !!!!')
-            //window.location.reload();
         }
     });
 });

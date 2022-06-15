@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Autres entrées
+Responsable Finances | Autres entrées
 @endsection
 
 @section('content')
@@ -12,8 +12,8 @@ Admin Ecole | Autres entrées
         <div class="card-header">
             <h2>
                 <a href="{{route('responsablefinances.entrees.gestion')}}"  class="btn btn-info"><i class="fa fa-th"></i> GESTION DES ENTREES</a>
-                <a href="/home" style="float: right;" class="btn btn-sm btn-info ml-2"><i class="fa fa-arrow-left"></i> RETOUR</a>
-                <a href="#" style="float: right;" class="btn btn-sm btn-success" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-plus"></i></a>
+                <a href="/home" style="float: right;" class="btn btn-sm btn-default ml-2"> RETOUR</a>
+                <a href="#" style="float: right;" class="btn btn-sm btn-default" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-plus-circle"></i></a>
             </h2>
         </div>
         <div class="card-body">

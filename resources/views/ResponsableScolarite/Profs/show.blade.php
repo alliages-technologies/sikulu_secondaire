@@ -16,8 +16,6 @@ Profil Professeur | {{$prof->nom.' '.$prof->prenom}}
             </h2>
         </div>
         <div class="card-body">
-            <h4>INFORMATIONS SUR LE PROFESSEUR</h4>
-            <hr>
             <p>
                 Nom: <strong>{{$prof->nom}}</strong> <br>
                 Prénom: <strong>{{$prof->prenom}}</strong> <br>

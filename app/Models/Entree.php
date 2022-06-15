@@ -16,4 +16,7 @@ class Entree extends Model
         return $this->belongsTo('App\Models\Moi', 'mois');
     }
 
+    public function suivis(){
+        return $this->hasMany('App\Models\SuiviPaiement', 'paiement_id');
+    }
 }

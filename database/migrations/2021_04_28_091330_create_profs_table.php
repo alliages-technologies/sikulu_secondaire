@@ -15,11 +15,15 @@ class CreateProfsTable extends Migration
     {
         Schema::create('profs', function (Blueprint $table) {
             $table->id();
-            $table->string('nom',100);
-            $table->string('prenom',150);
-            $table->string('adresse',150);
-            $table->string('telephone', 50);
-            $table->bigInteger('diplome_id');
+            $table->string('nom', 100)->nullable();
+            $table->string('prenom', 100)->nullable();
+            $table->date('date_naiss', 100)->nullable();
+            $table->string('lieu_naiss', 100)->nullable();
+            $table->string('adresse', 100)->nullable();
+            $table->string('telephone', 30)->nullable();
+            $table->bigInteger('diplome_id')->default(0);
+            $table->string('image', 100)->nullable();
+            $table->string('token', 100)->nullable();
             $table->timestamps();
         });
     }

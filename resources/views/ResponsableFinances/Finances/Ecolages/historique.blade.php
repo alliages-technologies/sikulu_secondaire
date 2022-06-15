@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Historique des paiements
+Responsable Finances | Historique des paiements
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@ Admin Ecole | Historique des paiements
         <div class="card-header">
             <h2>
                 HISTORIQUE DES PAIEMENTS
-                <a href="{{route('responsablefinances.ecolages.index')}}" style="float: right;" class="btn btn-sm btn-info"><i class="fa fa-arrow-left"></i> RETOUR</a>
+                <a href="{{route('responsablefinances.ecolages.index')}}" style="float: right;" class="btn btn-sm btn-default"> RETOUR</a>
             </h2>
         </div>
         <div class="card-body">
@@ -20,7 +20,7 @@ Admin Ecole | Historique des paiements
                 <div class="row d-flex justify-content-center p-4">
                     @foreach ($salles as $salle)
                         <a href="{{route('responsablefinances.historique.salle', $salle->token)}}" class="col-md-3 m-2">
-                            <i class="fa fa-home"></i>
+                            <i class="fa fa-door-open"></i>
                             <p>{{$salle->name}} | {{$salle->classe->name}}</p>
                         </a>
                     @endforeach

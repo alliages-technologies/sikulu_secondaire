@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Paiement Ecolage
+Responsable Finances | Paiement Ecolage
 @endsection
 
 @section('content')

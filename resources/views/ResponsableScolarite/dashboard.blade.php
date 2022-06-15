@@ -26,7 +26,11 @@ Responsable Scolarité | Acceuil
                     <i class="fa fa-user-circle"></i>
                     <p>Réinscriptions</p>
                 </a>
-                <a href="/deconnexion" class="col-md-3 m-2">
+                <a href="{{ route('responsablescolarite.emploistemps.salles.menu') }}" class="col-md-3 m-2">
+                    <i class="fa fa-calendar"></i>
+                    <p>Emplois du temps</p>
+                </a>
+                <a style="color: red" href="/deconnexion" class="col-md-3 m-2">
                     <i class="fa fa-power-off"></i>
                     <p>Déconnexion</p>
                 </a>

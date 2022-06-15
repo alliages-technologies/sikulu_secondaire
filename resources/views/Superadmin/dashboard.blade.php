@@ -2,7 +2,7 @@
 
 
 @section('title')
-Superadmin | Dashboard
+Superadmin | Acceuil
 @endsection
 
 @section('content')
@@ -69,7 +69,7 @@ Superadmin | Dashboard
             <i class="fa fa-cog"></i>
             <p>Paramètres</p>
         </a>
-        <a href="/deconnexion" class="col-md-3 m-2">
+        <a style="color: red" href="/deconnexion" class="col-md-3 m-2">
             <i class="fa fa-power-off"></i>
             <p>Déconnexion</p>
         </a>

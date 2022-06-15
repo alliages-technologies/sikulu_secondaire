@@ -15,7 +15,7 @@ class CreateMoisTable extends Migration
     {
         Schema::create('mois', function (Blueprint $table) {
             $table->id();
-            $table->string('name',200);
+            $table->string('name', 50)->nullable();
             $table->boolean('visible')->default(1);
             $table->timestamps();
         });

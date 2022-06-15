@@ -10,7 +10,7 @@ Admin Ecole | Programmes {{ $salle->name }}
 <div class="container mt-5">
     <div class="card mt-5 menu">
         <div class="card-header">
-            <h2>Gestion des Programmes <strong>|</strong> {{ $salle->name }}</h2>
+            <h2>PROGRAMME <strong>|</strong> {{ $salle->name }}</h2>
         </div>
         <div class="card-body ">
             <div class="container text-center">
@@ -19,6 +19,7 @@ Admin Ecole | Programmes {{ $salle->name }}
                         <i class="fa fa-folder"></i>
                         <p>Programme</p>
                     </a>
+                    <a href="{{ route('adminecole.programmes-ecole.index', $salle->id) }}" class="col-md-3 m-2">
                     <a href="{{ route('adminecole.index',$salle->token) }}" class="col-md-3 m-2">
                         <i class="fa fa-calendar"></i>
                         <p>Emploi du temps</p>

@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Depenses
+Responsable Finances | Depenses
 @endsection
 
 @section('content')
@@ -12,14 +12,14 @@ Admin Ecole | Depenses
         <div class="card-header">
             <h2>
                 <a href="{{route('responsablefinances.depenses.gestion')}}" class="btn btn-info"><i class="fa fa-th"></i> GESTION DES DEPENSES</a>
-                <a href="/home" style="float: right;" class="btn btn-sm btn-info ml-2"><i class="fa fa-arrow-left"></i> RETOUR</a>
-                <button style="float: right;" class="btn btn-sm btn-success" data-toggle="modal" data-target=".bd-example-modal-lg"> <i class="fa fa-plus"></i> </button>
+                <a href="/home" style="float: right;" class="btn btn-sm btn-default ml-2"> RETOUR</a>
+                <button style="float: right;" class="btn btn-sm btn-default" data-toggle="modal" data-target=".bd-example-modal-lg"> <i class="fa fa-plus-circle"></i> </button>
             </h2>
         </div>
         <div class="card-body">
             <table class="table table-sm table-bordered table-striped">
                 <thead>
-                    <th>CATEGORIES DE DEPENSES</th>
+                    <th>CATEGORIES DES DEPENSES</th>
                 </thead>
                 <tbody>
                     @foreach ($categories_depenses as $categorie)

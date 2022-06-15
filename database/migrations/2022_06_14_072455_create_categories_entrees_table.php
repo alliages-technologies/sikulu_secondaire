@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAnneeAcadsTable extends Migration
+class CreateCategoriesEntreesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateAnneeAcadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('annee_acads', function (Blueprint $table) {
+        Schema::create('categories_entrees', function (Blueprint $table) {
             $table->id();
-            $table->string('annee1')->nullable();
-            $table->string('annee2')->nullable();
-            $table->date('dtrentree')->nullable();
-            $table->boolean('actif')->default(1);
+            $table->string('name', 50)->nullable();
+            $table->bigInteger('ecole_id')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateAnneeAcadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('annee_acads');
+        Schema::dropIfExists('categories_entrees');
     }
 }

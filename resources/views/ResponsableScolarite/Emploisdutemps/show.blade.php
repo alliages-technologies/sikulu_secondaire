@@ -1,8 +1,8 @@
-@extends('layouts.adminecole')
+@extends('layouts.responsablescolarite')
 
 
 @section('title')
-Admin Ecole | Emploi du temps
+Responsable Scolarité | Emploi du temps
 @endsection
 
 @section('content')

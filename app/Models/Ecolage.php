@@ -20,4 +20,7 @@ class Ecolage extends Model
         return $this->moi->name;
     }
 
+    public function suivis(){
+        return $this->hasMany('App\Models\SuiviPaiement', 'paiement_id');
+    }
 }
