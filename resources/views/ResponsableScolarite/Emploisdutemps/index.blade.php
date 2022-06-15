@@ -20,10 +20,10 @@ Responsable Scolarité | Horaires Salle
     <input type="hidden" name="salle_id" class="salle_id" value="{{ $salle->id }}">
     <div class="card">
         <div class="card-header">
-            <h4>
+            <h2>
                 EMPLOIS DU TEMPS
-                <button data-toggle="modal" data-target="#nouveauProgr" class="btn btn-default float-right"> <i class="fa fa-plus-circle"></i> </button>
-            </h4>
+                <button data-toggle="modal" data-target="#nouveauProgr" class="btn btn-sm btn-default float-right"> <i class="fa fa-plus-circle"></i> </button>
+            </h2>
         </div>
         <div class="card-body ">
             <div class="container-fluid">
@@ -39,7 +39,6 @@ Responsable Scolarité | Horaires Salle
                             <td> {{$emploie_temp->created_at->format('Y-m-d')}}</td>
                             <td> {{ $emploie_temp->name }} </td>
                             <td> <a href="{{ route('responsablescolarite.emploistemps.show', $emploie_temp->token) }}"><i class="fa fa-eye"></i></a> </td>
-                            <td> <a href="{{ route('adminecole.emploies.show', $emploie_temp->token) }}"><i class="fa fa-eye"></i></a> </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -48,6 +47,7 @@ Responsable Scolarité | Horaires Salle
         </div>
     </div>
 </div>
+
 
 
 <!-- Modal -->
