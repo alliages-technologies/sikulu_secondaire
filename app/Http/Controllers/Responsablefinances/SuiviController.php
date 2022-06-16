@@ -25,7 +25,12 @@ class SuiviController extends Controller
         ->where('created_at', '<=', $dateFin)
         ->where('ecole_id', $ecole)
         ->orderBy('created_at', 'DESC')->get();
+        //dd($paiements);
+        if($paiements != null){
+            return view('Responsablefinances.Suivis.search')->with(compact('paiements', 'dateDebut', 'dateFin'));
+        }else{
+            return response()->json('VIDE');
+        }
 
-        return view('Responsablefinances.Suivis.search')->with(compact('paiements', 'dateDebut', 'dateFin'));
     }
 }
