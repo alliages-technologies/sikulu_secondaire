@@ -31,6 +31,7 @@ class ReleveNote extends Model
     if ($this->moyenne >= 10) {
         return "ADMIS(E)";
     }
+
     else {
         return "ECHOUE";
     }

@@ -6,6 +6,7 @@
     border: 1px solid #ffffff;
 }
 </style>
+@if ($releve_note)
 <div class="container-fluid">
     <div class="card mt-5">
         <div class="card-header" style="background-color: darkblue; color:white">
@@ -67,5 +68,16 @@
         </div>
     </div>
 </div>
+@else
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-4"></div>
+        <div class="col-4">
+                <img class="mx-auto d-block" style="width: 70%;" src="{{ asset('img/releve_empty.jpg') }}" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+@endif
+
 <script src="{{ asset('js/releve.js') }}"></script>
 @endsection
