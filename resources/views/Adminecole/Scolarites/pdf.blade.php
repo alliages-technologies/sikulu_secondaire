@@ -64,6 +64,7 @@
                         </tr>
                     </tbody>
                 </table>
+                QR CODE{{ QrCode::size(100)->generate($inscription->eleve->name.' est '.$releve_note->appreciation. 'avec '.$releve_note->moyenne.' de moyenne') }}
             </div>
         </div>
     </div>
