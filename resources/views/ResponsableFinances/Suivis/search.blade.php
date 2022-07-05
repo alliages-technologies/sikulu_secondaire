@@ -11,7 +11,7 @@ Responsable Finances | Suivi des paiements
     <div class="card">
         <div class="card-header">
             <h1>
-                Paiements allant du {{$dateDebut}} au {{$dateFin}}
+                <strong>{{$paiements->count()}}</strong> Paiements trouvés allant du {{$dateDebut}} au {{$dateFin}}
             </h1>
         </div>
         <div class="card-body">

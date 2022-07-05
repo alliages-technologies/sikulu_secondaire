@@ -38,7 +38,7 @@ Responsable Scolarité | Horaires Salle
                         <tr>
                             <td> {{$emploie_temp->created_at->format('Y-m-d')}}</td>
                             <td> {{ $emploie_temp->name }} </td>
-                            <td> <a href="{{ route('responsablescolarite.emploistemps.show', $emploie_temp->token) }}"><i class="fa fa-eye"></i></a> </td>
+                             <td> <a href="{{ route('responsablescolarite.emploistemps.show', $emploie_temp->token) }}"><i class="fa fa-eye"></i></a> </td>
                         </tr>
                         @endforeach
                     </tbody>

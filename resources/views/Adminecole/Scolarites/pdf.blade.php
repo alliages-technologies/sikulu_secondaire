@@ -64,7 +64,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <a href="/adminecole/scolarite/releve-save/{{$inscription->id}}/{{ $salle->ecole->token }}/{{ $salle->id }}/{{ $releve_note->trimestre_id }}" style="background-color: darkblue; color:white"  class="btn btn-default float-right"> GENERATION DU RELEVE <i class="fa fa-print"></i> </a>
+                QR CODE{{ QrCode::size(100)->generate($inscription->eleve->name.' est '.$releve_note->appreciation. 'avec '.$releve_note->moyenne.' de moyenne') }}
             </div>
         </div>
     </div>

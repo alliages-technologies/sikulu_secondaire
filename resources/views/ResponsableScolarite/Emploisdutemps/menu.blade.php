@@ -25,4 +25,5 @@ Responsable Scolarité | Emplois du temps
         </div>
     </div>
 </div>
+
 @endsection

@@ -6,6 +6,8 @@
     border: 1px solid #ffffff;
 }
 </style>
+@if ($releve_note)
+
 <div class="container-fluid">
     <div class="card mt-5">
         <div class="card-header" style="background-color: darkblue; color:white">
@@ -63,9 +65,21 @@
                     </tbody>
                 </table>
                 <a href="/adminecole/scolarite/releve-save/{{$inscription->id}}/{{ $salle->ecole->token }}/{{ $salle->id }}/{{ $releve_note->trimestre_id }}" style="background-color: darkblue; color:white"  class="btn btn-default float-right"> GENERATION DU RELEVE <i class="fa fa-print"></i> </a>
+                {{ QrCode::size(100)->generate($inscription->eleve->name.' est '.$releve_note->appreciation. 'avec '.$releve_note->moyenne.' de moyenne') }}
             </div>
         </div>
     </div>
 </div>
+@else
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-4"></div>
+        <div class="col-4">
+                <img class="mx-auto d-block" style="width: 70%;" src="{{ asset('img/releve_empty.jpg') }}" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+@endif
+
 <script src="{{ asset('js/releve.js') }}"></script>
 @endsection

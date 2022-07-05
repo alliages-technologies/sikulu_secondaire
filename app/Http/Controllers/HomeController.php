@@ -61,6 +61,6 @@ class HomeController extends Controller
             return redirect('/login');
         }
 
-        return view('Admin/dashboard');
+
     }
 }
