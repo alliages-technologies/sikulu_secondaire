@@ -114,31 +114,7 @@ $(".verifier1").click(function (e) {
                                     e.preventDefault();
                                     $(".etape2").hide(400);
                                     $(".etape3").show(400);
-                                    $(".terminer3").click(function (e) {
-                                        e.preventDefault();
-                                        $.ajax({
-                                            type: "post",
-                                            url: "/responsablescolarite/profs",
-                                            data: {
-                                                phone: $(".phone").val(),
-                                                nom: $(".nom").val(),
-                                                prenom: $(".prenom").val(),
-                                                date_naiss: $(".date_naiss").val(),
-                                                lieu_naiss: $(".lieu_naiss").val(),
-                                                adresse: $(".adresse").val(),
-                                                diplome: $(".diplome_id").val(),
-                                                password: $(".password").val(),
-                                                email: $(".email").val(),
-                                                image: $(".image").val(),
-                                                "_token": $('input[name="_token"]').val()
-                                            },
-                                            dataType: "json",
-                                            success: function (response) {
-                                                alert("PROF AJOUTE AVEC SUCCES");
-                                                window.location.replace("/responsablescolarite/profs");
-                                            }
-                                        });
-                                    });
+                                    
                                 });
                             }
                         }
