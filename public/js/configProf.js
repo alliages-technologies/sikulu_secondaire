@@ -63,8 +63,8 @@ $(".verifier1").click(function (e) {
                         data: {
                             nom: nom,
                             prenom: prenom,
-                            date_naiss:date_naiss,
-                            lieu_naiss:lieu_naiss,
+                            date_naiss: date_naiss,
+                            lieu_naiss: lieu_naiss,
                             adresse: adresse,
                             diplome_id: diplome,
                         },
@@ -73,11 +73,12 @@ $(".verifier1").click(function (e) {
                             var prof_id = prof.id;
                             var nom = prof.nom;
                             var prenom = prof.prenom;
-                            var adresse = prof.adresse;
                             var diplome = prof.dip;
+                            var date_naiss = prof.date_naiss;
+                            var lieu_naiss = prof.lieu_naiss;
                             if (prof_id) {
                                 $(".p2").html("");
-                                var p = '<span class="card pb-4" style="color: black"> <small style="color: green; margin: 10px;"> <strong>Cliquer sur "TERMINER" pour rajouter le prof dans votre établissement et sur "SUIVANT" s\'il ne s\'agit pas de la même personne</strong> </small> <hr> NOM: <strong>'+nom+'</strong><br> PRENOM: <strong>'+prenom+'</strong><br> ADRESSE: <strong>'+adresse+'</strong><br> DERNIER DIPLOME: <strong>'+diplome+'</strong><br> NE LE: <strong>date de naissance</strong><br> A: <strong>lieu de naissance</strong><br> NATIONALITE: <strong>Congolaise</strong><br> </span>';
+                                var p = '<span class="card pb-4" style="color: black"> <small style="color: green; margin: 10px;"> <strong>Cliquer sur "TERMINER" pour rajouter le prof dans votre établissement et sur "SUIVANT" s\'il ne s\'agit pas de la même personne</strong> </small> <hr> NOM: <strong>'+nom+'</strong><br> PRENOM: <strong>'+prenom+'</strong><br> </strong><br> NE LE: <strong>'+date_naiss+' à '+lieu_naiss+'</strong><br> DERNIER DIPLOME: <strong>'+diplome+' </span>';
                                 $(".p2").append(p);
                                 $(".terminer2").show(400);
                                 $(".suivant2").show(400);
@@ -114,7 +115,6 @@ $(".verifier1").click(function (e) {
                                     e.preventDefault();
                                     $(".etape2").hide(400);
                                     $(".etape3").show(400);
-                                    
                                 });
                             }
                         }

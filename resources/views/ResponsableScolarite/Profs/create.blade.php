@@ -1,8 +1,8 @@
-@extends('layouts.adminecole')
+@extends('layouts.responsablescolarite')
 
 
 @section('title')
-Admin Ecole | Configuration Professeur
+Responsable Scolarité | Configuration Professeur
 @endsection
 
 @section('content')

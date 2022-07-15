@@ -73,7 +73,7 @@ Responsable Finances | Gestion des entrées
                   </div>
                   <div class="form-group mt-2">
                       <label for="">Description</label>
-                      <textarea name="description" id="" cols="4" rows="4" placeholder="Description de la dépense à initier" class="form-control"></textarea>
+                      <textarea name="description" id="" cols="4" rows="4" placeholder="Description de la nouvelle entrée" class="form-control"></textarea>
                   </div>
               </div>
               <div class="card-footer">
