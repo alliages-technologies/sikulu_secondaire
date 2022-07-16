@@ -18,6 +18,10 @@ class EmploieTemp extends Model
         return $this->hasMany('App\Models\LigneEmploiTemp','emploi_id');
     }
 
+    public function days(){
+        return $this->hasMany('App\Models\Day');
+    }
+
     public function salle(){
         return $this->belongsTo('App\Models\Salle','salle_id');
     }

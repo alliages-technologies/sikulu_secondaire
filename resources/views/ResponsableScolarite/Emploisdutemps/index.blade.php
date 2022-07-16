@@ -20,10 +20,10 @@ Responsable Scolarité | Horaires Salle
     <input type="hidden" name="salle_id" class="salle_id" value="{{ $salle->id }}">
     <div class="card">
         <div class="card-header">
-            <h4>
+            <h2>
                 EMPLOIS DU TEMPS
-                <button data-toggle="modal" data-target="#nouveauProgr" class="btn btn-default float-right"> <i class="fa fa-plus-circle"></i> </button>
-            </h4>
+                <button data-toggle="modal" data-target="#nouveauProgr" class="btn btn-sm btn-default float-right"> <i class="fa fa-plus-circle"></i> </button>
+            </h2>
         </div>
         <div class="card-body ">
             <div class="container-fluid">
@@ -49,6 +49,7 @@ Responsable Scolarité | Horaires Salle
 </div>
 
 
+
 <!-- Modal -->
 <div class="modal fade" id="nouveauProgr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -62,53 +63,63 @@ Responsable Scolarité | Horaires Salle
             <div class="modal-body">
                 <form action="{{route('responsablescolarite.emploistemps.store')}}" method="post" class="mb-4">
                     @csrf
-                <div class="form-row mt-2">
-                    <div class="col">
-                        <label for="">Horaire</label>
-                        <select name="tranche_id" id="" class="form-control tranche_id">
-                            <option value="">Tranche horaire</option>
-                            @foreach ($tranches as $tranche)
-                            <option data-tranche="{{ $tranche->name }}" value="{{ $tranche->id }}">{{ $tranche->name }}</option>
-                            @endforeach
-                        </select>
+                    <div class="form-row mt-2">
+                        <div class="col">
+                            <label for="">Jour</label>
+                            <select name="day_id" id="" class="form-control day_id">
+                                <option value=""> CHOIX </option>
+                                @foreach ($days as $day)
+                                <option data-day="{{ $day->name }}" value="{{ $day->id }}">{{ $day->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="">Horaire</label>
+                            <select name="tranche_id" id="" class="form-control tranche_id">
+                                <option value=""> CHOIX </option>
+                                @foreach ($tranches as $tranche)
+                                <option data-tranche="{{ $tranche->name }}" value="{{ $tranche->id }}">{{ $tranche->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="">Matière</label>
+                            <select name="programme_ecole_ligne_id" id="" class="form-control programme_ecole_ligne_id">
+                                <option value=""> CHOIX </option>
+                                @foreach ($programme_ligne_ecoles as $lpe)
+                                <option data-matiere="{{ $lpe->matieren }}" data-prof="{{ $lpe->prof }}" value="{{ $lpe->id }}">{{ $lpe->matiere->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                    <div class="col">
-                        <label for="">Matière</label>
-                        <select name="programme_ecole_ligne_id" id="" class="form-control programme_ecole_ligne_id">
-                            <option value="">Choix de la matière</option>
-                            @foreach ($programme_ligne_ecoles as $lpe)
-                            <option data-matiere="{{ $lpe->matieren }}" data-prof="{{ $lpe->prof }}" value="{{ $lpe->id }}">{{ $lpe->matiere->name }}</option>
-                            @endforeach
-                        </select>
+                    <div class="form-group mt-2">
+                        <button class="btn btn-default btn-add"><i class="fa fa-plus-square"></i></button>
                     </div>
-                </div>
-                <div class="form-group mt-2">
-                    <button class="btn btn-default btn-add"><i class="fa fa-plus-square"></i></button>
-                </div>
-                <div class="mt-4">
-                    <div class="">
-                        <table class="table table-bordered table-striped table-sm table-emploi-temp">
-                            <thead>
-                                <tr>
-                                    <th>Horaires</th>
-                                    <th>Matières</th>
-                                    <th>Profs</th>
-                                    <th><i class="fa fa-cog"></i></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!---->
-                            </tbody>
-                        </table>
+                    <div class="mt-4">
+                        <div class="">
+                            <table class="table table-bordered table-striped table-sm table-emploi-temp">
+                                <thead>
+                                    <tr>
+                                        <th>Jours</th>
+                                        <th>Horaires</th>
+                                        <th>Matières</th>
+                                        <th>Profs</th>
+                                        <th><i class="fa fa-cog"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!---->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <button class="btn btn-default mt-2 btn-save" id="btn-save">ENREGISTRER</button>
+                    <button class="btn btn-default mt-2 btn-save" id="btn-save">ENREGISTRER</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-</div>
 
 <script src="{{ asset('js/emploisTemps.js') }}"></script>
+
 @endsection

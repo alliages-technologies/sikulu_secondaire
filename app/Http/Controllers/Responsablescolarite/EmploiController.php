@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Responsablescolarite;
 
 use App\Http\Controllers\Controller;
+use App\Models\Day;
 use App\Models\EmploieTemp;
 use App\Models\LigneEmploiTemp;
 use App\Models\ProgrammeEcole;
@@ -17,14 +18,19 @@ class EmploiController extends Controller
 
     public function index($token)
     {
-        //dd($token);
+        $days=Day::all();
         $salle = Salle::where('token', $token)->first();
         $id = $salle->id;
         $emploie_temps = EmploieTemp::where('salle_id', $id)->get();
         $tranches = TrancheHoraire::where('ecole_id', Auth::user()->ecole_id)->get();
         $programme_ecole = ProgrammeEcole::where('salle_id', $id)->first();
         $programme_ligne_ecoles = ProgrammeEcoleLigne::where('programme_ecole_id', $programme_ecole->id)->get();
-        return view('Responsablescolarite.Emploisdutemps.index')->with(compact('emploie_temps','tranches','salle','programme_ligne_ecoles'));
+        return view('Responsablescolarite.Emploisdutemps.index')->with(compact('emploie_temps','tranches','salle','programme_ligne_ecoles','days'));
+    }
+
+    public function menu(){
+        $salles = Salle::where('ecole_id', Auth::user()->ecole_id)->get();
+        return view('Responsablescolarite.Emploisdutemps.menu')->with(compact('salles'));
     }
 
     public function create()
@@ -43,21 +49,19 @@ class EmploiController extends Controller
         $emploi_temp->save();
         for ($i=0; $i < count($lignes) ; $i++) {
             $tranche_id = $lignes[$i]['tranche_id'];
+            $day_id = $lignes[$i]['day_id'];
             $programme_ecole_ligne_id = $lignes[$i]['programme_ecole_ligne_id'];
             $ligne_emploi_temp = new LigneEmploiTemp();
             $ligne_emploi_temp->ligne_programme_ecole_id = $programme_ecole_ligne_id;
             $ligne_emploi_temp->tranche_id = $tranche_id;
+            $ligne_emploi_temp->day_id = $day_id;
             $ligne_emploi_temp->emploi_id = $emploi_temp->id;
+            //dd($ligne_emploi_temp);
             $ligne_emploi_temp->save();
         }
         return response()->json("OK");
-
     }
 
-    public function menu(){
-        $salles = Salle::where('ecole_id', Auth::user()->ecole_id)->get();
-        return view('Responsablescolarite.Emploisdutemps.menu')->with(compact('salles'));
-    }
 
     public function show($token)
     {

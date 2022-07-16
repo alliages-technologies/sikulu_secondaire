@@ -12,10 +12,13 @@ Profil Professeur | {{$prof->nom.' '.$prof->prenom}}
         <div class="card-header">
             <h2>
                 {{$prof->nom.' '.$prof->prenom}}
-                <a href="#" style="float: right;"><i class="fa fa-edit btn btn-default"></i></a>
+                <!--a href="#" style="float: right;"><i class="fa fa-edit btn btn-default"></i></a-->
             </h2>
         </div>
         <div class="card-body">
+            <div class="mb-3">
+                <img style="height: 200px; width: 200px;" src="{{asset($prof->image)}}" alt="">
+            </div>
             <p>
                 Nom: <strong>{{$prof->nom}}</strong> <br>
                 Prénom: <strong>{{$prof->prenom}}</strong> <br>

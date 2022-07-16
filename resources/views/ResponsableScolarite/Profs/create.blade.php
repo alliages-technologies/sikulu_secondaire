@@ -1,8 +1,8 @@
-@extends('layouts.adminecole')
+@extends('layouts.responsablescolarite')
 
 
 @section('title')
-Admin Ecole | Configuration Professeur
+Responsable Scolarité | Configuration Professeur
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@ Admin Ecole | Configuration Professeur
     <div class="card-header text-center mb-4">
         <h2>CONFIGURATION PROFESSEUR</h2>
     </div>
-    <form action="" method="post">
+    <form action="/responsablescolarite/profs" method="post" enctype="multipart/form-data">
         @csrf
         <!--etape1-->
         <div class="card etape1">
@@ -119,7 +119,7 @@ Admin Ecole | Configuration Professeur
                     <input type="file" id="" name="image" class="form-control col-md image" required>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-md btn-success terminer3"> ENREGISTRER</button>
+                    <button type="submit" class="btn btn-md btn-success terminer3"> ENREGISTRER</button>
                 </div>
             </div>
         </div>

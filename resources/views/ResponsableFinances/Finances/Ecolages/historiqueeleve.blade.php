@@ -11,7 +11,7 @@ Responsable Finances | Fiche de paiements
     <div class="card">
         <div class="card-header">
             <h2>
-                <i class="fa fa-user"></i> | {{$inscription->eleve->name}}
+                {{$inscription->eleve->name}}
                 <a href="{{route('responsablefinances.historique.paiements')}}" style="float: right;" class="btn btn-sm btn-default"> HISTORIQUE DES PAIMENTS</a>
             </h2>
         </div>

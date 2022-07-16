@@ -76,35 +76,43 @@ class ProfController extends Controller
     Fin des vérifications
     */
 
-    public function store(){
-        $nom = request()->nom;
-        $prenom = request()->prenom;
-        $date_naiss = request()->date_naiss;
-        $lieu_naiss = request()->lieu_naiss;
-        $telephone = request()->phone;
-        $email = request()->email;
-        $password = Hash::make(request()->password);
-        $adresse = request()->adresse;
-        $diplome = request()->diplome;
-
+    public function store(Request $request){
         $user=New User();
-        $user->name= $nom.' '.$prenom;
-        $user->email= $email;
-        $user->phone= $telephone;
-        $user->password= $password;
+        $user->name= request()->nom.' '.request()->prenom;
+        $user->email= request()->email;
+        $user->phone= request()->phone;
+        $user->password= Hash::make(request()->password);
         $user->role_id=6;
         $user->ecole_id = 0;
         $user->save();
 
         $prof = new Prof();
         $prof->user_id = $user->id;
-        $prof->nom = $nom;
-        $prof->prenom = $prenom;
-        $prof->date_naiss = $date_naiss;
-        $prof->lieu_naiss = $lieu_naiss;
-        $prof->adresse = $adresse;
-        $prof->telephone = $telephone;
-        $prof->diplome_id = $diplome;
+        $prof->nom = request()->nom;
+        $prof->prenom = request()->prenom;
+        $prof->date_naiss = request()->date_naiss;
+        $prof->lieu_naiss = request()->lieu_naiss;
+        $prof->adresse = request()->adresse;
+        $prof->telephone = $user->phone;
+        $prof->diplome_id = request()->diplome_id;
+        if ($request->image) {
+            $fichier = $request->image;
+            $ext_array = ['PNG', 'JPG', 'JPEG', 'GIF', 'jpg', 'png', 'jpeg', 'gif'];
+            $ext = $fichier->getClientOriginalExtension();
+            if (in_array($ext, $ext_array)) {
+                if (!file_exists(public_path() . '/images')) {
+                    mkdir(public_path() . '/images');
+                }
+                if (!file_exists(public_path() . '/images/profs')) {
+                    mkdir(public_path() . '/images/profs');
+                }
+
+                $name = date('dmYhis') . '.' . $ext;
+                $path = 'images/profs/' . $name;
+                $fichier->move(public_path('images/profs'), $name);
+                $prof->image = $path;
+            }
+        }
         $prof->token = sha1(date('ymdhisW')."Ax".date('Wsihdmy'));
         $prof->save();
 
@@ -113,7 +121,7 @@ class ProfController extends Controller
         $profecole->ecole_id = auth()->user()->ecole_id;
         $profecole->save();
 
-        return response()->json("OK");
+        return redirect()->route('responsablescolarite.profs.index');
     }
 
     public function show($token){

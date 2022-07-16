@@ -10,19 +10,10 @@ Responsable Finances | Suivi des paiements
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h1>
-                SUIVI DES PAIEMENTS
-                <form action="{{route('responsablefinances.suivi.search')}}" method="post" class="form-row mt-2 col-md-4">
-                    @csrf
-                    <div class="col">
-                        <input type="date" name="dateDebut" id="dateDebut" class="form-control">
-                    </div>
-                    <div class="col">
-                        <input type="date" name="dateFin" id="dateFin" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
-                </form>
-            </h1>
+            <h2>
+                HISTORIQUE DE TOUS LES PAIEMENTS
+                <button style="float: right;" class="btn btn-default" data-toggle="modal" data-target=".bd-example-modal-lg"> <i class="fa fa-search"></i> </button>
+            </h2>
         </div>
         <div class="card-body">
             <table class="table table-sm table-striped table-bordered">
@@ -56,6 +47,35 @@ Responsable Finances | Suivi des paiements
     </div>
 </div>
 
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="card-header">
+            <h4>FILTRER PAR DATE</h4>
+        </div>
+        <form action="{{route('responsablefinances.suivi.search')}}" method="post" >
+            @csrf
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="col">
+                        <label>Date début</label>
+                        <input type="date" name="dateDebut" id="dateDebut" class="form-control">
+                    </div>
+                    <div class="col">
+                        <label>Date fin</label>
+                        <input type="date" name="dateFin" id="dateFin" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-sm btn-success">RECHERCHER</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
 <script src="{{asset('js/suiviPaiements.js')}}"></script>
 

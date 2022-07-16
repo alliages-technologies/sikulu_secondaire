@@ -7,17 +7,19 @@ Responsable Finances | Paiement Ecolage
 
 @section('content')
 
-<div class="container mt-4">
+<div class="container mt-4 card-header">
+    <h1>PAIEMENT DES FRAIS D'ECOLAGE</h1>
+</div>
+<div class="container mt-4 d-flex justify-content-center">
     <form action="">
         @csrf
         <!--Sélection de la salle-->
         <div id="etape1" class="card">
             <div class="card-header">
-                <h2>PAIEMENT DES FRAIS D'ECOLAGE</h2>
+                <h2>SELECTION DE LA SALLE</h2>
             </div>
             <div id="" class="card-body d-flex justify-content-center">
                 <div class="form-group">
-                    <label for=""><h4>SELECTION DE LA SALLE</h4></label>
                     <select name="selectSalle" id="selectSalle" class="form-control" required>
                         <option value="">SELECTIONNEZ LA SALLE DE CLASSE</option>
                         @foreach ($salles as $salle)
@@ -30,26 +32,26 @@ Responsable Finances | Paiement Ecolage
         <!--Affichage des élèves de la salle sélectionnée-->
         <div id="etape2" class="card">
             <div class="card-header">
-                <h3>INFORMATIONS SUR L'ELEVE</h3>
+                <h3>ELEVES DE LA SALLE SELECTIONNEE</h3>
             </div>
                 <div id="" class="card-body d-flex justify-content-center">
                 <div class="form-group">
-                    <label for=""><h4>ELEVES DE LA SALLE SELECTIONNEE</h4></label>
                     <select name="resultats" id="resultats" class="form-control" required>
+                        <!--Options-->
                     </select>
                 </div>
                 </div>
             <!--Historique des paiements-->
             <div id="historique" class="card-footer">
                 <div class="card">
-                    <table class="table table-sm table-bordered table-striped">
-                        <div class="card-header">
-                            <h4>
-                                HISTORIQUE DES PAIEMENTS
-                                <button style="float: right;" id="btn-payer" class="btn btn-sm btn-success">PAYER</button>
-                            </h4>
-                        </div>
-                       <div class="card-body">
+                    <div class="card-header">
+                        <h4>
+                            HISTORIQUE
+                            <button style="float: right;" id="btn-payer" class="btn btn-sm btn-success">PAYER</button>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-sm table-bordered table-striped">
                            <thead>
                                <tr>
                                    <th>MONTANT</th>
@@ -59,8 +61,8 @@ Responsable Finances | Paiement Ecolage
                             <tbody id="paiements">
                                 <!--Contenu de l'historique de paiements de l'élève selectionné(e)-->
                             </tbody>
-                       </div>
-                    </table>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

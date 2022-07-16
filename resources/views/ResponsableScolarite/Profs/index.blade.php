@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Gestion des professeurs
+Responsable Scolarité | Gestion des professeurs
 @endsection
 
 @section('content')
