@@ -5,6 +5,9 @@
     <div class="card-header">
         <h4 class="text-left mb-1"> Scolarité | {{ $trimestre_ecole->trimestre->name }} </h4>
         <input type="hidden" value="{{ $trimestre_ecole->trimestre->id }}" name="trimestre_ecole" class="trimestre_id">
+        @if ($trimestre)
+            <input type="hidden" value="{{ $trimestre->trimestre->id }}" class="trimestre_active">
+        @endif
     </div>
     <div class="card-body ">
         <div class="container-fluid">

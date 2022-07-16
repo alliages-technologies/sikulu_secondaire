@@ -37,14 +37,14 @@
                                 <td style="color: red"> {{ $note->valeur }} </td>
                             @endif
                             <td> {{$note->pel->coefficient }} </td>
-                            <td> {{$note->totalmatiere }} </td>
+                            <td> {{ $note->totalmatiere }} </td>
                         </tr>
                         @endforeach
                         <tr>
                             <td>Total (Pts)</td>
                             <td></td>
                             <td>{{ $inscription->totalcoefficient }}</td>
-                            <td>{{ $inscription->totaux }}</td>
+                            <td>{{ $totaux }}</td>
                         </tr>
                         <tr>
                             <td style="font-size: larger;">Moyenne Génerale :</td>
