@@ -13,4 +13,8 @@ class LigneEmploiTemp extends Model
     public function tranche(){
         return $this->belongsTo('App\Models\TrancheHoraire','tranche_id');
     }
+
+    public function day(){
+        return $this->belongsTo('App\Models\Day', 'day_id');
+    }
 }

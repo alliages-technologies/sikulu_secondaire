@@ -16,6 +16,7 @@ Responsable Scolarité | Emploi du temps
             <table class="table table-sm table-bordered table-hover">
                 <thead class="">
                     <tr>
+                        <th> JOUR </th>
                         <th> TRANCHE HORAIRE</th>
                         <th> MATIERE </th>
                         <th> ENSEIGNANT </th>
@@ -25,6 +26,7 @@ Responsable Scolarité | Emploi du temps
                 <tbody>
                 @foreach ($emploi_temp->lets as $let)
                     <tr>
+                        <td> {{ $let->day->name }} </td>
                         <td> {{ $let->tranche->name }} </td>
                         <td> {{ $let->ligneprogrammeecole->matiere->name }} </td>
                         <td> {{ $let->ligneprogrammeecole->prof}} </td>

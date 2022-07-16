@@ -7,17 +7,19 @@ Responsable Finances | Paiement Ecolage
 
 @section('content')
 
+<div class="container mt-4 card-header">
+    <h1>PAIEMENT DES FRAIS D'ECOLAGE</h1>
+</div>
 <div class="container mt-4 d-flex justify-content-center">
     <form action="">
         @csrf
         <!--Sélection de la salle-->
         <div id="etape1" class="card">
             <div class="card-header">
-                <h2>PAIEMENT DES FRAIS D'ECOLAGE</h2>
+                <h2>SELECTION DE LA SALLE</h2>
             </div>
             <div id="" class="card-body d-flex justify-content-center">
                 <div class="form-group">
-                    <label for=""><h4>SELECTION DE LA SALLE</h4></label>
                     <select name="selectSalle" id="selectSalle" class="form-control" required>
                         <option value="">SELECTIONNEZ LA SALLE DE CLASSE</option>
                         @foreach ($salles as $salle)
@@ -30,11 +32,10 @@ Responsable Finances | Paiement Ecolage
         <!--Affichage des élèves de la salle sélectionnée-->
         <div id="etape2" class="card">
             <div class="card-header">
-                <h3>INFORMATIONS SUR L'ELEVE</h3>
+                <h3>ELEVES DE LA SALLE SELECTIONNEE</h3>
             </div>
                 <div id="" class="card-body d-flex justify-content-center">
                 <div class="form-group">
-                    <label for=""><h4>ELEVES DE LA SALLE SELECTIONNEE</h4></label>
                     <select name="resultats" id="resultats" class="form-control" required>
                         <!--Options-->
                     </select>
