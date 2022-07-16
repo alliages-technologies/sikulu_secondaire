@@ -21,7 +21,6 @@ Admin Ecole | Matières
                     <tr>
                         <th>DESIGNATION</th>
                         <th>ABBREVIATION</th>
-                        <th><i class="fa fa-gear"></i></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,13 +28,6 @@ Admin Ecole | Matières
                     <tr>
                         <td>{{$matiere->name}}</td>
                         <td>{{$matiere->abv}}</td>
-                        <td>
-                        @if ($matiere->active)
-                            <a href="{{ route('adminecole.matieres.off', $matiere->id) }}" class="btn btn-success btn-xs"><i class="fa fa-check"></i></a>
-                        @else
-                            <a href="{{ route('adminecole.matieres.on', $matiere->id) }}" class="btn btn-danger btn-xs"><i class="fa fa-power-off"></i></a>
-                        @endif
-                        </td>
                     </tr>
                     @endforeach
                 </tbody>

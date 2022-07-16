@@ -19,11 +19,6 @@ Admin Ecole | Programmes {{ $salle->name }}
                         <i class="fa fa-folder"></i>
                         <p>Programme</p>
                     </a>
-                    <a href="{{ route('adminecole.programmes-ecole.index', $salle->id) }}" class="col-md-3 m-2">
-                    <a href="{{ route('adminecole.index',$salle->token) }}" class="col-md-3 m-2">
-                        <i class="fa fa-calendar"></i>
-                        <p>Emploi du temps</p>
-                    </a>
                 </div>
             </div>
         </div>

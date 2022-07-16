@@ -20,7 +20,7 @@ class InscriptionController extends Controller
     public function index()
     {
         $annee_acad = AnneeAcad::where('actif', 1)->first();
-        $inscriptions = Inscription::where('annee_id', $annee_acad->id)->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(15);
+        $inscriptions = Inscription::where('annee_id', $annee_acad->id)->where('ecole_id', Auth::user()->ecole_id)->orderBy('created_at', 'desc')->paginate(15);
         return view('Responsablescolarite.Inscriptions.index')->with(compact('inscriptions'));
     }
 
@@ -88,6 +88,7 @@ class InscriptionController extends Controller
             $inscription = new Inscription();
             $inscription->eleve_id = $eleve->id;
             $inscription->user_id = Auth::user()->id;
+            $inscription->ecole_id = Auth::user()->ecole_id;
             $inscription->montant_inscri = $request->montant_inscri;
             if (!$request->montant_frais) {
                 $inscription->montant_frais = 0;
@@ -155,6 +156,7 @@ class InscriptionController extends Controller
             $inscription = new Inscription();
             $inscription->eleve_id = $eleve->id;
             $inscription->user_id = Auth::user()->id;
+            $inscription->ecole_id = Auth::user()->ecole_id;
             $inscription->montant_inscri = $request->montant_inscri;
             if (!$request->montant_frais) {
                 $inscription->montant_frais = 0;
@@ -196,6 +198,7 @@ class InscriptionController extends Controller
         $inscription = new Inscription();
         $inscription->eleve_id = $inscription_recent->eleve_id;
         $inscription->user_id = Auth::user()->id;
+        $inscription->ecole_id = Auth::user()->ecole_id;
         $inscription->montant_inscri = $montant;
 
         $inscription->classe_id = $salle->classe_id;

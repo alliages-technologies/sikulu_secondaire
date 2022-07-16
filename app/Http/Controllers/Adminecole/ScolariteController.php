@@ -84,12 +84,12 @@ class ScolariteController extends Controller
     public function generationAutoReleve(){
 
         $annee_acad = AnneeAcad::where('actif', 1)->first();
-        $inscriptions = Inscription::where('annee_id', $annee_acad->id)->where('user_id',Auth::user()->id)->get();
+        $inscriptions = Inscription::where('annee_id', $annee_acad->id)->where('ecole_id',Auth::user()->ecole_id)->get();
         $notes = Note::where('annee_id', $annee_acad->id)->where('ecole_id', Auth::user()->ecole_id)->get();
 
         $releve_traite = ReleveTraite::where('annee_id', $annee_acad->id)->where('trimestre_id',request()->trimestre_id)->first();
 
-        if ($releve_traite == true) {
+        if ($releve_traite) {
             dd("Pas de création");
         }
 

@@ -39,8 +39,8 @@ class SalleController extends Controller
         $salle->nombre_places = $request->nombre_places;
         $salle->ecole_id = Auth::user()->ecole_id;
         $salle->classe_id = $request->classe_id;
-        $salle->token = "Token".date('Ymd').date('Ymdhis');
-        dd($salle);
+        $salle->token = sha1(date('His'));
+        //dd($salle);
         $salle->save();
 
         //programme ecole
@@ -50,7 +50,7 @@ class SalleController extends Controller
         $pe->programme_national_id = $pn->id;
         $pe->salle_id = $salle->id;
         $pe->ecole_id = $salle->ecole_id;
-        $pe->token = "Token".date('Ymd').date('Ymdhis');
+        $pe->token = sha1(date('His'));
         $pe->save();
 
         foreach ($pn->ligneprogrammenationals as $lpn) {
@@ -59,7 +59,7 @@ class SalleController extends Controller
             $lpe->programme_national_ligne_id = $lpn->national_programme_id;
             $lpe->matiere_id = $lpn->matiere_id;
             $lpe->coefficient = $lpn->coefficient;
-            $lpe->token = "Token".date('Ymd').date('Ymdhis');
+            $lpe->token = sha1(date('His'));
             $lpe->annee_id = $annee->id;
             $lpe->save();
         }

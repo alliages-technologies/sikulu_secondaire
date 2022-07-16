@@ -261,6 +261,8 @@ Route::prefix('adminecole')
     /*
     Fin de la gestion des relevés de notes
     */
+
+    
 });
 
 

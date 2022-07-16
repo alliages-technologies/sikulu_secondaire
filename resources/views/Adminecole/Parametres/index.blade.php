@@ -33,7 +33,7 @@ Admin Ecole | Paramétrage
                 <i class="fa fa-file"></i>
                 <p>Trimestres</p>
             </a>
-            <a href="#" class="col-md-3 m-2">
+            <a href="{{ route('adminecole.cours.index') }}" class="col-md-3 m-2">
                 <i class="fa fa-file-text"></i>
                 <p>Cours</p>
             </a>

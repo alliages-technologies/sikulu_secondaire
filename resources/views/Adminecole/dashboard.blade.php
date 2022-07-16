@@ -21,30 +21,12 @@ Admin Ecole | Acceuil
             <i class="fa fa-graduation-cap"></i>
             <p>Scolarité</p>
         </a>
-        <a href="" class="col-md-3 m-2">
-            <i class="fa fa-file"></i>
-            <p>Avancements</p>
-        </a>
-        <a href="" class="col-md-3 m-2">
-            <i class="fa fa-file-text"></i>
-            <p>QCM</p>
-        </a>
-        <a href="" class="col-md-3 m-2">
-            <i class="fa fa-truck"></i>
-            <p>Logistique</p>
-        </a>
+    
         <a href="" class="col-md-3 m-2">
             <i class="fa fa-book"></i>
             <p>E-Bibliothèque</p>
         </a>
-        <a href="" class="col-md-3 m-2">
-            <i class="fa fa-info"></i>
-            <p>Infos</p>
-        </a>
-        <a href="" class="col-md-3 m-2">
-            <i class="fa fa-list"></i>
-            <p>Réglement interieur</p>
-        </a>
+     
         <a href="{{ route('adminecole.parametres.index') }}" class="col-md-3 m-2">
             <i class="fa fa-cog"></i>
             <p>Paramètres</p>

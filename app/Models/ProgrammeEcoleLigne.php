@@ -39,4 +39,7 @@ class ProgrammeEcoleLigne extends Model
         return $this->hasMany('App\Models\Note','ligne_ecole_programme_id');
     }
     
+    public function lpn(){
+        return $this->belongsTo('App\Models\ProgrammeNationalLigne','programme_national_ligne_id    ');
+    }
 }
