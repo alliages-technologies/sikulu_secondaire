@@ -48,15 +48,14 @@ class EmploiController extends Controller
         $emploi_temp->token = sha1(date('YmdHisW')."Ax".date('WsiHdmY'));
         $emploi_temp->save();
         for ($i=0; $i < count($lignes) ; $i++) {
-            $tranche_id = $lignes[$i]['tranche_id'];
             $day_id = $lignes[$i]['day_id'];
+            $tranche_id = $lignes[$i]['tranche_id'];
             $programme_ecole_ligne_id = $lignes[$i]['programme_ecole_ligne_id'];
             $ligne_emploi_temp = new LigneEmploiTemp();
             $ligne_emploi_temp->ligne_programme_ecole_id = $programme_ecole_ligne_id;
             $ligne_emploi_temp->tranche_id = $tranche_id;
             $ligne_emploi_temp->day_id = $day_id;
             $ligne_emploi_temp->emploi_id = $emploi_temp->id;
-            //dd($ligne_emploi_temp);
             $ligne_emploi_temp->save();
         }
         return response()->json("OK");
@@ -66,7 +65,8 @@ class EmploiController extends Controller
     public function show($token)
     {
         $emploi_temp = EmploieTemp::where('token', $token)->first();
-        return view("Responsablescolarite.Emploisdutemps.show")->with(compact('emploi_temp'));
+        $lignesEmploiTemps = $emploi_temp->lets;
+        return view("Responsablescolarite.Emploisdutemps.show")->with(compact('emploi_temp', 'lignesEmploiTemps'));
     }
 
 

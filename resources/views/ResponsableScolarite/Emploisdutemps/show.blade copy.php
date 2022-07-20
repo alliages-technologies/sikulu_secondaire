@@ -24,14 +24,14 @@ Responsable Scolarité | Emploi du temps
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($emploi_temp->lets as $let)
+                @foreach ($emploi_temp->lets as $let)
                     <tr>
                         <td> {{ $let->day->name }} </td>
                         <td> {{ $let->tranche->name }} </td>
                         <td> {{ $let->ligneprogrammeecole->matiere->name }} </td>
                         <td> {{ $let->ligneprogrammeecole->prof}} </td>
                     </tr>
-                    @endforeach
+                @endforeach
                 </tbody>
             </table>
         </div>
