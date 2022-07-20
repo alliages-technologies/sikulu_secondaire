@@ -13,7 +13,7 @@ use App\Models\SuiviPaiement;
 class EcolageController extends Controller
 {
     public function index(){
-        return view('Responsablefinances.Finances.Ecolages.index');
+        return view('Responsablefinances/Finances/Ecolages/index');
     }
 
     public function create(){
