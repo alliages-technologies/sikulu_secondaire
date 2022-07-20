@@ -269,7 +269,7 @@ Route::prefix('adminecole')
 
 
 Route::prefix('responsablefinances')
-->namespace('ResponsableFinances')
+->namespace('Responsablefinances')
 ->name('responsablefinances.')
 ->group(function(){
     // Ecolages
