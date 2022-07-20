@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Responsablefinances;
+namespace App\Http\Controllers\ResponsableFinances;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -20,7 +20,7 @@ class EcolageController extends Controller
         $auth=auth()->user()->ecole_id;
         $salles=Salle::where('ecole_id', $auth)->get();
         $mois=Moi::all();
-        return view('Responsablefinances.Finances.Ecolages.create')->with(compact('salles', 'mois'));
+        return view('ResponsableFinances.Finances.Ecolages.create')->with(compact('salles', 'mois'));
     }
 
     public function salleSelect(){
@@ -79,18 +79,18 @@ class EcolageController extends Controller
     public function historiquePaiements(){
         $auth=auth()->user()->ecole_id;
         $salles = Salle::where('ecole_id', $auth)->paginate(12);
-        return view('Responsablefinances.Finances.Ecolages.historique')->with(compact('salles'));
+        return view('ResponsableFinances.Finances.Ecolages.historique')->with(compact('salles'));
     }
 
     public function historiqueSalle($token){
         $salle = Salle::where('token', $token)->first();
         $inscriptions = Inscription::where('salle_id', $salle->id)->paginate(15);
-        return view('Responsablefinances.Finances.Ecolages.historiquesalle')->with(compact('salle', 'inscriptions'));
+        return view('ResponsableFinances.Finances.Ecolages.historiquesalle')->with(compact('salle', 'inscriptions'));
     }
 
     public function historiquePaiementsEleve($token){
         $inscription = Inscription::where('token', $token)->first();
-        return view('Responsablefinances.Finances.Ecolages.historiqueeleve')->with(compact('inscription'));
+        return view('ResponsableFinances.Finances.Ecolages.historiqueeleve')->with(compact('inscription'));
     }
 
     /*

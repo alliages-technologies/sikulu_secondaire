@@ -269,12 +269,12 @@ Route::prefix('adminecole')
 
 
 Route::prefix('responsablefinances')
-->namespace('Responsablefinances')
+->namespace('ResponsableFinances')
 ->name('responsablefinances.')
 ->group(function(){
     // Ecolages
     Route::resource('/ecolages', 'EcolageController');
-    
+
     Route::get('/ecolages-salle-select', 'EcolageController@salleSelect');
     Route::get('/ecolages-eleve-infos-show/{id}', 'EcolageController@eleveShowById');
     Route::post('/ecolages-eleve-paiement-store', 'EcolageController@elevePaiementStore');
@@ -301,7 +301,7 @@ Route::prefix('responsablefinances')
 
 
 
-Route::prefix('responsablescolarite')
+Route::prefix('responsableScolarite')
 ->namespace('Responsablescolarite')
 ->name('responsablescolarite.')
 ->group(function(){

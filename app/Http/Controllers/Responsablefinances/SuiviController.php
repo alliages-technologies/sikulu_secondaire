@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Responsablefinances;
+namespace App\Http\Controllers\ResponsableFinances;
 
 use App\Http\Controllers\Controller;
 use App\Models\SuiviPaiement;
@@ -12,7 +12,7 @@ class SuiviController extends Controller
     public function index(){
         $ecole=Auth::user()->ecole_id;
         $paiements=SuiviPaiement::where('ecole_id', $ecole)->orderBy('created_at', 'DESC')->paginate(15);
-        return view('Responsablefinances.Suivis.index')->with(compact('paiements'));
+        return view('ResponsableFinances.Suivis.index')->with(compact('paiements'));
     }
 
     public function search(Request $request){
@@ -27,7 +27,7 @@ class SuiviController extends Controller
         ->orderBy('created_at', 'DESC')->get();
         //dd($paiements);
         if($paiements != null){
-            return view('Responsablefinances.Suivis.search')->with(compact('paiements', 'dateDebut', 'dateFin'));
+            return view('ResponsableFinances.Suivis.search')->with(compact('paiements', 'dateDebut', 'dateFin'));
         }else{
             return response()->json('VIDE');
         }

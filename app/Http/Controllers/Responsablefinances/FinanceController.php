@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Responsablefinances;
+namespace App\Http\Controllers\ResponsableFinances;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,7 +13,7 @@ use App\Models\SuiviPaiement;
 class FinanceController extends Controller
 {
     public function index(){
-        return  view('Responsablefinances.dashboard');
+        return  view('ResponsableFinances.dashboard');
     }
 
 
@@ -24,7 +24,7 @@ class FinanceController extends Controller
     public function depensesCategories(){
         $auth=auth()->user()->ecole_id;
         $categories_depenses=CategorieDepense::where('ecole_id', $auth)->paginate(15);
-        return view('Responsablefinances.Finances.Depenses.index')->with(compact('categories_depenses'));
+        return view('ResponsableFinances.Finances.Depenses.index')->with(compact('categories_depenses'));
     }
 
     public function depenseCategorieStore(){
@@ -40,7 +40,7 @@ class FinanceController extends Controller
         $auth=auth()->user()->ecole_id;
         $categories = CategorieDepense::where('ecole_id', $auth)->get();
         $depenses = Depense::where('ecole_id', $auth)->orderBy('created_at', 'desc')->paginate(15);
-        return view('Responsablefinances.Finances.Depenses.gestion')->with(compact('categories', 'depenses'));
+        return view('ResponsableFinances.Finances.Depenses.gestion')->with(compact('categories', 'depenses'));
     }
 
     public function depenseStore(){
@@ -76,7 +76,7 @@ class FinanceController extends Controller
 
     public function depenseShow($token){
         $depense=Depense::where('token', $token)->first();
-        return view('Responsablefinances.Finances.Depenses.show')->with(compact('depense'));
+        return view('ResponsableFinances.Finances.Depenses.show')->with(compact('depense'));
     }
 
 
@@ -87,7 +87,7 @@ class FinanceController extends Controller
     public function entrees(){
         $auth=auth()->user()->ecole_id;
         $categories_entrees=CategorieEntree::where('ecole_id', $auth)->paginate(15);
-        return view('Responsablefinances.Finances.Entrees.index')->with(compact('categories_entrees'));
+        return view('ResponsableFinances.Finances.Entrees.index')->with(compact('categories_entrees'));
     }
 
     public function entreeCategorieStore(){
@@ -103,7 +103,7 @@ class FinanceController extends Controller
         $auth=auth()->user()->ecole_id;
         $categories = CategorieEntree::where('ecole_id', $auth)->get();
         $entrees = Entree::where('ecole_id', $auth)->orderBy('created_at', 'desc')->paginate(15);
-        return view('Responsablefinances.Finances.Entrees.gestion')->with(compact('categories', 'entrees'));
+        return view('ResponsableFinances.Finances.Entrees.gestion')->with(compact('categories', 'entrees'));
     }
 
     public function entreeStore(){
@@ -138,6 +138,6 @@ class FinanceController extends Controller
 
     public function entreeShow($token){
         $entree=Entree::where('token', $token)->first();
-        return view('Responsablefinances.Finances.Entrees.show')->with(compact('entree'));
+        return view('ResponsableFinances.Finances.Entrees.show')->with(compact('entree'));
     }
 }

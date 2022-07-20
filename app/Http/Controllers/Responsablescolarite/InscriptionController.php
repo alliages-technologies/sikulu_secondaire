@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Responsablescolarite;
+namespace App\Http\Controllers\ResponsableScolarite;
 
 use App\Http\Controllers\Controller;
 use App\Models\AnneeAcad;
@@ -21,7 +21,7 @@ class InscriptionController extends Controller
     {
         $annee_acad = AnneeAcad::where('actif', 1)->first();
         $inscriptions = Inscription::where('annee_id', $annee_acad->id)->where('ecole_id', Auth::user()->ecole_id)->orderBy('created_at', 'desc')->paginate(15);
-        return view('Responsablescolarite.Inscriptions.index')->with(compact('inscriptions'));
+        return view('ResponsableScolarite.Inscriptions.index')->with(compact('inscriptions'));
     }
 
 
@@ -29,7 +29,7 @@ class InscriptionController extends Controller
     {
         $annee_acad = AnneeAcad::where('actif', 1)->first();
         $salles = Salle::where('ecole_id',Auth::user()->ecole_id)->get();
-        return view('Responsablescolarite.Inscriptions.create')->with(compact('annee_acad','salles'));
+        return view('ResponsableScolarite.Inscriptions.create')->with(compact('annee_acad','salles'));
     }
 
     public function verificationNumero(){
@@ -181,7 +181,7 @@ class InscriptionController extends Controller
     public function reinscription(){
         $salles = Salle::where('ecole_id',Auth::user()->ecole_id)->get();
         $annee_acad = AnneeAcad::where('actif', 1)->first();
-        return view('Responsablescolarite.Inscriptions.reinscription')->with(compact('salles','annee_acad'));
+        return view('ResponsableScolarite.Inscriptions.reinscription')->with(compact('salles','annee_acad'));
     }
 
     public function getInscriptionById($id){
@@ -216,7 +216,7 @@ class InscriptionController extends Controller
     public function show($token)
     {
         $inscription = Inscription::where('token', $token)->first();
-        return view('Responsablescolarite.Inscriptions.show')->with(compact('inscription'));
+        return view('ResponsableScolarite.Inscriptions.show')->with(compact('inscription'));
     }
 
 

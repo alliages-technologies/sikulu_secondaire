@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Responsablescolarite;
+namespace App\Http\Controllers\ResponsableScolarite;
 
 use App\Http\Controllers\Controller;
 use App\Models\Day;
@@ -25,12 +25,12 @@ class EmploiController extends Controller
         $tranches = TrancheHoraire::where('ecole_id', Auth::user()->ecole_id)->get();
         $programme_ecole = ProgrammeEcole::where('salle_id', $id)->first();
         $programme_ligne_ecoles = ProgrammeEcoleLigne::where('programme_ecole_id', $programme_ecole->id)->get();
-        return view('Responsablescolarite.Emploisdutemps.index')->with(compact('emploie_temps','tranches','salle','programme_ligne_ecoles','days'));
+        return view('ResponsableScolarite.Emploisdutemps.index')->with(compact('emploie_temps','tranches','salle','programme_ligne_ecoles','days'));
     }
 
     public function menu(){
         $salles = Salle::where('ecole_id', Auth::user()->ecole_id)->get();
-        return view('Responsablescolarite.Emploisdutemps.menu')->with(compact('salles'));
+        return view('ResponsableScolarite.Emploisdutemps.menu')->with(compact('salles'));
     }
 
     public function create()
@@ -66,7 +66,7 @@ class EmploiController extends Controller
     {
         $emploi_temp = EmploieTemp::where('token', $token)->first();
         $lignesEmploiTemps = $emploi_temp->lets;
-        return view("Responsablescolarite.Emploisdutemps.show")->with(compact('emploi_temp', 'lignesEmploiTemps'));
+        return view("ResponsableScolarite.Emploisdutemps.show")->with(compact('emploi_temp', 'lignesEmploiTemps'));
     }
 
 

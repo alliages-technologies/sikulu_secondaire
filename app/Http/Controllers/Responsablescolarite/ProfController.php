@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Responsablescolarite;
+namespace App\Http\Controllers\ResponsableScolarite;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,12 +14,12 @@ class ProfController extends Controller
 {
     public function index(){
         $prof_ecole=ProfEcole::where('ecole_id',auth()->user()->ecole_id)->orderBy('created_at', 'asc')->paginate(15);
-        return view('Responsablescolarite.Profs.index')->with(compact('prof_ecole'));
+        return view('ResponsableScolarite.Profs.index')->with(compact('prof_ecole'));
     }
 
     public function create(){
         $diplomes = Diplome::all();
-        return view('Responsablescolarite.Profs.create')->with(compact('diplomes'));
+        return view('ResponsableScolarite.Profs.create')->with(compact('diplomes'));
     }
 
     /*
@@ -126,6 +126,6 @@ class ProfController extends Controller
 
     public function show($token){
         $prof=Prof::where('token', $token)->first();
-        return view('Responsablescolarite.Profs.show')->with(compact('prof'));
+        return view('ResponsableScolarite.Profs.show')->with(compact('prof'));
     }
 }
