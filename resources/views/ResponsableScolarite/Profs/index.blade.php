@@ -35,7 +35,7 @@ Responsable Scolarité | Gestion des professeurs
                         <td>{{$profecole->prof->prenom}}</td>
                         <td>{{$profecole->prof->diplome->name}}</td>
                         <td>
-                            <a href="/responsablescolarite/profs/{{ $profecole->prof->token }}"><i class="fa fa-eye"></i></a>
+                            <a href="{{ route('responsablescolarite.profs.show', $profecole->prof->token) }}"><i class="fa fa-eye"></i></a>
                         </td>
                     </tr>
                     @endforeach
