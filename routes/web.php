@@ -262,7 +262,7 @@ Route::prefix('adminecole')
     Fin de la gestion des relevés de notes
     */
 
-    
+
 });
 
 
@@ -274,6 +274,7 @@ Route::prefix('responsablefinances')
 ->group(function(){
     // Ecolages
     Route::resource('/ecolages', 'EcolageController');
+    
     Route::get('/ecolages-salle-select', 'EcolageController@salleSelect');
     Route::get('/ecolages-eleve-infos-show/{id}', 'EcolageController@eleveShowById');
     Route::post('/ecolages-eleve-paiement-store', 'EcolageController@elevePaiementStore');
