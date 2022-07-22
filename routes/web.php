@@ -97,7 +97,7 @@ Route::prefix('superadmin')
 ->name('superadmin.')
 ->group(function(){
     /*
-    Paramètres
+        PARAMETRES
     */
     Route::resource('/parametres', 'ParametreController');
     // Ecoles
@@ -131,13 +131,13 @@ Route::prefix('adminecole')
     ->name('adminecole.')
     ->group(function(){
     /*
-    Parametres
+        PARAMETRES
     */
     Route::resource('/parametres', 'ParametreController');
-    // Programmes ecole
+    // Programmes école
     Route::resource('/programmes-ecole','ProgrammeecoleController');
     Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getProgrammeNationalById');
-    // Gestion des Salle
+    // Config des salles
     Route::resource('/salles','SalleController');
     Route::get('/get-profs','ProgrammeecoleController@getProfs');
     Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
@@ -149,21 +149,22 @@ Route::prefix('adminecole')
     Route::post('/utilisateurs-resposable-scolarite-store', 'UtilisateurController@responsableScolariteStore')->name('responsable.scolarite.store');
     // Config des tranches horaires
     Route::resource('/tranches', 'TrancheController');
-    /*
-    Fin Parametres
-    */
-
     // Config des trimestres
     Route::get('/trimestres', 'TrimestreController@index')->name('trimestre.index');
     Route::get('/trimestres-on/{id}', 'TrimestreController@trimestreOn')->name('trimestre.on');
     Route::get('/trimestres-off{id}', 'TrimestreController@trimestreOff')->name('trimestre.off');
+    // Config des matières
     Route::resource('/matieres', 'MatiereController');
     Route::get('/matieres/on/{id}', 'MatiereController@on')->name('matieres.on');
     Route::get('/matieres/off/{id}', 'MatiereController@off')->name('matieres.off');
+    // Config des cours
     Route::resource('/cours', 'CourController');
+    /*
+        FIN PARAMETRES
+    */
 
     /*
-    Debut de la gestion des relevés de notes
+        Debut de la gestion des relevés de notes
     */
     Route::get('/scolarite-menu', 'ScolariteController@menu')->name('scolarite.menu');
     Route::get('/scolarite-menu/{id}/{ecole}', 'ScolariteController@index');
@@ -173,7 +174,7 @@ Route::prefix('adminecole')
     Route::get('/scolarite/releve-save/{inscription}/{ecole}/{salle}/{trimestre_ecole}', 'ScolariteController@save')->name("releve.pdf");
     Route::post('/scolarite/generation-auto-releve', 'ScolariteController@generationAutoReleve')->name('generation.auto');
     /*
-    Fin de la gestion des relevés de notes
+        Fin de la gestion des relevés de notes
     */
 });
 
@@ -216,20 +217,20 @@ Route::prefix('responsablescolarite')
 ->namespace('Responsablescolarite')
 ->name('responsablescolarite.')
 ->group(function(){
-    // Gestion des Profs
+    // Config des Profs
     Route::resource('/profs', 'ProfController');
     Route::get('/profs-verification-numero', 'ProfController@verificationNumero');
     Route::post('/profs-terminer-un', 'ProfController@terminerUn');
     Route::get('/profs-verification-info', 'ProfController@verificationInfo');
     Route::post('/profs-terminer-deux', 'ProfController@terminerDeux');
-    // Gestion des Inscriptions
+    // Config des inscriptions
     Route::resource('/inscriptions', 'InscriptionController');
     Route::get('/tuteur-verification-numero', 'InscriptionController@verificationNumero');
-    // Gestion des réinscriptions
+    // Config des réinscriptions
     Route::get('/reinscriptions', 'InscriptionController@reinscription')->name('reinscriptions');
     Route::get('/get-inscription-by-id/{id}', 'InscriptionController@getInscriptionById');
     Route::post('/reinscriptions-save', 'InscriptionController@save')->name('reinscriptions.save');
-    // Emplois du temps
+    // Config des emplois du temps
     Route::resource('/emploistemps', 'EmploiController');
     Route::get('/emplois-du-temps/{token}', 'EmploiController@index')->name('emploistemps.index');
     Route::get('/emplois-du-temps-salles-menu', 'EmploiController@menu')->name('emploistemps.salles.menu');
