@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Hash;
 class ProfController extends Controller
 {
     public function index(){
-        $prof_ecole=ProfEcole::where('ecole_id',auth()->user()->ecole_id)->orderBy('created_at', 'asc')->paginate(15);
-        return view('ResponsableScolarite.Profs.index')->with(compact('prof_ecole'));
+        $profEcole=ProfEcole::where('ecole_id',auth()->user()->ecole_id)->orderBy('created_at', 'asc')->paginate(15);
+        return view('ResponsableScolarite.Profs.index')->with(compact('profEcole'));
     }
 
     public function create(){

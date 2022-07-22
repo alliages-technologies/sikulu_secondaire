@@ -29,19 +29,19 @@ Responsable Scolarité | Gestion des professeurs
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($prof_ecole as $profecole)
+                    @foreach ($profEcole as $prof_ecole)
                     <tr>
-                        <td>{{$profecole->prof->nom}}</td>
-                        <td>{{$profecole->prof->prenom}}</td>
-                        <td>{{$profecole->prof->diplome->name}}</td>
+                        <td>{{$prof_ecole->prof->nom}}</td>
+                        <td>{{$prof_ecole->prof->prenom}}</td>
+                        <td>{{$prof_ecole->prof->diplome->name}}</td>
                         <td>
-                            <a href="{{ route('responsablescolarite.profs.show', $profecole->prof->token) }}"><i class="fa fa-eye"></i></a>
+                            <a href="{{ route('responsablescolarite.profs.show', $prof_ecole->prof->token) }}"><i class="fa fa-eye"></i></a>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{$prof_ecole->links()}}
+            {{$profEcole->links()}}
         </div>
     </div>
 </div>
