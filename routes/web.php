@@ -301,7 +301,7 @@ Route::prefix('responsablefinances')
 
 
 
-Route::prefix('responsableScolarite')
+Route::prefix('responsablescolarite')
 ->namespace('Responsablescolarite')
 ->name('responsablescolarite.')
 ->group(function(){

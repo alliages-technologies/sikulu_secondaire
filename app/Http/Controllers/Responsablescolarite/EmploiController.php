@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\ResponsableScolarite;
+namespace App\Http\Controllers\Responsablescolarite;
 
 use App\Http\Controllers\Controller;
 use App\Models\Day;
