@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Inscriptions
+Responsable Scolarité | Inscriptions
 @endsection
 
 @section('content')

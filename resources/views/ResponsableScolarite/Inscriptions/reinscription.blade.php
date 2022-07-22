@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Réinscription
+Responsable Scolarité | Réinscription
 @endsection
 
 @section('content')

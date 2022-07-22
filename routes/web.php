@@ -59,43 +59,31 @@ Route::prefix('admin')
     Route::get('emploie-temps', 'EmploieTempController@index')->name('emploies.index');
     Route::get('/emploie-temps/{id}', 'EmploieTempController@getCourByClasse');
     Route::post('/emploie-temps/store', 'EmploieTempController@store')->name('emploies.store');
-
     // Route des inscriptions des éleves
     Route::resource('/inscriptions', 'InscriptionController');
     Route::get('/inscriptions/pdf/{eleve}/{inscripion}', 'InscriptionController@creationPdf')->name('inscriptions.creationPdf');
-
     // Route des années academiques
     Route::resource('/annee-acads', 'AnneeAcadController');
-
     // Route des série
     Route::resource('/series', 'SerieController');
-
     // Route des classes
     Route::resource('/classes', 'ClasseController');
-
     // Route des mois
     Route::resource('/mois', 'MoiController');
     Route::get('/mois/on/{id}', 'MoiController@on');
     Route::get('/mois/off/{id}', 'MoiController@off');
-
     // Route des écolages
     Route::resource('/ecolages', 'EcolageController');
-
     // Route des matières
     Route::resource('/matieres', 'MatiereController');
-
     // Route des cours
     Route::resource('/cours', 'CourController');
-
     // Route des Tranches Horaires
     Route::resource('/tranches', 'TrancheHoraireController');
-
     // Route des rôles
     Route::resource('/roles', 'RoleController');
-
     // Route des diplômes
     Route::resource('/diplomes', 'DiplomeController');
-
     // Route des profs
     //Route::resource('/profs', 'ProfController');
 
@@ -142,60 +130,14 @@ Route::prefix('adminecole')
     ->namespace('Adminecole')
     ->name('adminecole.')
     ->group(function(){
-        /*
-        Parametres
-        */
-        Route::resource('/parametres', 'ParametreController');
-        // Programmes ecole
-        Route::resource('/programmes-ecole','ProgrammeecoleController');
-        Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getProgrammeNationalById');
-        // Gestion des Salle
-        Route::resource('/salles','SalleController');
-        Route::get('/get-profs','ProgrammeecoleController@getProfs');
-        Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
-        Route::get('/save-prof','ProgrammeecoleController@saveProf');
-        Route::get('/menu/{id}','ProgrammeecoleController@menu')->name('menu');
-        // Configuration des utilisateurs
-        Route::get('/utilisateurs', 'UtilisateurController@index')->name('utilisateurs.index');
-        Route::post('/utilisateurs-resposable-finances-store', 'UtilisateurController@responsableFinancesStore')->name('responsable.finances.store');
-        Route::post('/utilisateurs-resposable-scolarite-store', 'UtilisateurController@responsableScolariteStore')->name('responsable.scolarite.store');
-        /*
-        Fin Parametres
-        */
-
-         Route::resource('/tranches', 'TrancheController');
-
-
-        Route::get('/trimestres', 'TrimestreController@index')->name('trimestre.index');
-        Route::get('/trimestres-on/{id}', 'TrimestreController@trimestreOn')->name('trimestre.on');
-        Route::get('/trimestres-off{id}', 'TrimestreController@trimestreOff')->name('trimestre.off');
-        Route::resource('/matieres', 'MatiereController');
-        Route::get('/matieres/on/{id}', 'MatiereController@on')->name('matieres.on');
-        Route::get('/matieres/off/{id}', 'MatiereController@off')->name('matieres.off');
-        Route::resource('/cours', 'CourController');
-
-        /*
-        Debut de la gestion des relevés de notes
-        */
-        Route::get('/scolarite-menu', 'ScolariteController@menu')->name('scolarite.menu');
-        Route::get('/scolarite-menu/{id}/{ecole}', 'ScolariteController@index');
-        Route::get('/scolarite-releve/{id}/{ecole}/{programme_ecole}', 'ScolariteController@releveNote');
-        Route::get('/scolarite-inscriptions/{salle}/{ecole}/{trimestre}', 'ScolariteController@inscription');
-        Route::get('/scolarite-inscription-show/{inscription}/{ecole}/{salle}/{trimestre_ecole}', 'ScolariteController@inscriptionShow');
-        Route::get('/scolarite/releve-save/{inscription}/{ecole}/{salle}/{trimestre_ecole}', 'ScolariteController@save')->name("releve.pdf");
-        Route::post('/scolarite/generation-auto-releve', 'ScolariteController@generationAutoReleve')->name('generation.auto');
-        /*
-        Fin de la gestion des relevés de notes
-        */
-
-        /*
-        Parametres
-        */
+    /*
+    Parametres
+    */
     Route::resource('/parametres', 'ParametreController');
     // Programmes ecole
     Route::resource('/programmes-ecole','ProgrammeecoleController');
     Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getProgrammeNationalById');
-    // Gestion des Salles
+    // Gestion des Salle
     Route::resource('/salles','SalleController');
     Route::get('/get-profs','ProgrammeecoleController@getProfs');
     Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
@@ -205,10 +147,13 @@ Route::prefix('adminecole')
     Route::get('/utilisateurs', 'UtilisateurController@index')->name('utilisateurs.index');
     Route::post('/utilisateurs-resposable-finances-store', 'UtilisateurController@responsableFinancesStore')->name('responsable.finances.store');
     Route::post('/utilisateurs-resposable-scolarite-store', 'UtilisateurController@responsableScolariteStore')->name('responsable.scolarite.store');
+    // Config des tranches horaires
+    Route::resource('/tranches', 'TrancheController');
     /*
     Fin Parametres
     */
 
+    // Config des trimestres
     Route::get('/trimestres', 'TrimestreController@index')->name('trimestre.index');
     Route::get('/trimestres-on/{id}', 'TrimestreController@trimestreOn')->name('trimestre.on');
     Route::get('/trimestres-off{id}', 'TrimestreController@trimestreOff')->name('trimestre.off');
@@ -223,14 +168,13 @@ Route::prefix('adminecole')
     Route::get('/scolarite-menu', 'ScolariteController@menu')->name('scolarite.menu');
     Route::get('/scolarite-menu/{id}/{ecole}', 'ScolariteController@index');
     Route::get('/scolarite-releve/{id}/{ecole}/{programme_ecole}', 'ScolariteController@releveNote');
-    Route::get('/scolarite-inscriptions/{salle}/{ecole}', 'ScolariteController@inscription');
-    Route::get('/scolarite-inscription-show/{inscription}/{ecole}/{salle}', 'ScolariteController@inscriptionShow');
-    Route::get('/scolarite/releve-save/{inscription}', 'ScolariteController@save')->name("releve.pdf");
+    Route::get('/scolarite-inscriptions/{salle}/{ecole}/{trimestre}', 'ScolariteController@inscription');
+    Route::get('/scolarite-inscription-show/{inscription}/{ecole}/{salle}/{trimestre_ecole}', 'ScolariteController@inscriptionShow');
+    Route::get('/scolarite/releve-save/{inscription}/{ecole}/{salle}/{trimestre_ecole}', 'ScolariteController@save')->name("releve.pdf");
     Route::post('/scolarite/generation-auto-releve', 'ScolariteController@generationAutoReleve')->name('generation.auto');
     /*
     Fin de la gestion des relevés de notes
     */
-
 });
 
 
@@ -242,7 +186,6 @@ Route::prefix('responsablefinances')
 ->group(function(){
     // Ecolages
     Route::resource('/ecolages', 'EcolageController');
-
     Route::get('/ecolages-salle-select', 'EcolageController@salleSelect');
     Route::get('/ecolages-eleve-infos-show/{id}', 'EcolageController@eleveShowById');
     Route::post('/ecolages-eleve-paiement-store', 'EcolageController@elevePaiementStore');

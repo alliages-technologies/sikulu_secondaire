@@ -1,7 +1,7 @@
 @extends('layouts.responsablescolarite')
 
 @section('title')
-Admin Ecole | Eleve
+Responsable Scolarité | Eleve
 @endsection
 
 @section('content')
