@@ -27,13 +27,9 @@ Responsable Scolarité | Inscriptions
                 <tbody>
                 @foreach($inscriptions as $inscription)
                     <tr>
-                        @if(setlocale(LC_TIME, "fr_FR","French") && $date = strftime("%A %d %B %G", strtotime($inscription->created_at)))
-                        <td> {{$date}} </td>
-                        @else
-                        <td> Date non pris en compte </td>
-                        @endif
-                        <td> {{$inscription->classe_id?$inscription->classe->name:""}} </td>
-                        <td> {{$inscription->eleve_id?$inscription->eleve->nom:""}} {{$inscription->eleve_id?$inscription->eleve->prenom:""}} </td>
+                        <td> {{$inscription->created_at->format('d/n/Y')}} </td>
+                        <td> {{$inscription->classe_id? $inscription->classe->name:"_"}} </td>
+                        <td> {{$inscription->eleve_id? $inscription->eleve->nom:"_"}} {{$inscription->eleve_id?$inscription->eleve->prenom:""}} </td>
                         <td> <a href="{{ route('responsablescolarite.inscriptions.show', $inscription->token) }}" class="btn btn-sm"> <i class="fa fa-eye"></i> </a> </td>
                     </tr>
                 @endforeach

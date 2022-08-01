@@ -83,7 +83,6 @@ class InscriptionController extends Controller
                     $eleve->image_uri = $path;
                 }
             }
-            //dd($eleve);
             $eleve->save();
 
             $inscription = new Inscription();
@@ -94,19 +93,17 @@ class InscriptionController extends Controller
             if (!$request->montant_frais) {
                 $inscription->montant_frais = 0;
             } else {
-
                 $inscription->montant_frais = $request->montant_frais;
             }
             $inscription->classe_id = $salle->classe_id;
             $inscription->annee_id = $request->annee_id;
             $inscription->salle_id = $salle->id;
-            $inscription->moi_id = date('m');
+            $inscription->moi_id = date('n');
             $inscription->semaine_id = date('W');
-            $inscription->token = sha1("Token".date('Ymdhis').date('Ymdhis'));
+            $inscription->token = sha1("Inscription".date('Ymdhis').date('Ymdhis'));
             $inscription->save();
-
-
         }
+
         // Cas où le parent n'existe pas
         else{
             $parent = new User();
@@ -117,6 +114,7 @@ class InscriptionController extends Controller
             $parent->role_id = 7;
             $parent->ecole_id = Auth::user()->ecole_id;
             $parent->save();
+
             $parent_ecole = new ParentEcole();
             $parent_ecole->ecole_id = Auth::user()->ecole_id;
             $parent_ecole->parent_id = $parent->id;
@@ -162,7 +160,6 @@ class InscriptionController extends Controller
             if (!$request->montant_frais) {
                 $inscription->montant_frais = 0;
             } else {
-
                 $inscription->montant_frais = $request->montant_frais;
             }
             $inscription->classe_id = $salle->classe_id;
@@ -170,7 +167,7 @@ class InscriptionController extends Controller
             $inscription->salle_id = $salle->id;
             $inscription->moi_id = date('m');
             $inscription->semaine_id = date('w');
-            $inscription->token = sha1("Token".date('Ymdhis').date('Ymdhis'));
+            $inscription->token = sha1("Inscription".date('Ymdhis').date('Ymdhis'));
             $inscription->save();
         }
 
@@ -207,9 +204,10 @@ class InscriptionController extends Controller
         $inscription->salle_id = $salle->id;
         $inscription->moi_id = date('m');
         $inscription->semaine_id = date('w');
-        $inscription->token = sha1("Token".date('Ymdhis').date('Ymdhis'));
+        $inscription->token = sha1("Inscription".date('Ymdhis').date('Ymdhis'));
         $inscription->parent_id = $inscription_recent->id;
         $inscription->save();
+
         return response()->json("OK");
     }
 
