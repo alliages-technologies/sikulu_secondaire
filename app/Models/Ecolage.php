@@ -13,7 +13,7 @@ class Ecolage extends Model
     }
 
     public function moi(){
-        return $this->belongsTo('App\Models\Moi','moi_id');
+        return $this->belongsTo('App\Models\Moi','mois');
     }
 
     public function getMonthAttribute(){
