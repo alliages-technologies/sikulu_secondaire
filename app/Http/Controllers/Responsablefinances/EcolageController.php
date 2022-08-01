@@ -39,7 +39,7 @@ class EcolageController extends Controller
         $montant=request()->montant;
         $mois=request()->mois;
 
-        $ecolage = Ecolage::where('inscription_id', $id)->where('moi_id', $mois)->first();
+        $ecolage = Ecolage::where('inscription_id', $id)->where('mois', $mois)->first();
         if($ecolage == null){
             $ecolage = new Ecolage();
             $ecolage->inscription_id=$id;

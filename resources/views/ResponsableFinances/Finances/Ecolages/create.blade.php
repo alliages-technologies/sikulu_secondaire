@@ -77,7 +77,7 @@ Responsable Finances | Paiement Ecolage
                         <input type="number" name="montant" id="montant" placeholder="Montant" class="form-control" required>
                     </div>
                     <div class="col">
-                        <select name="moi_id" id="mois" class="form-control" required>
+                        <select name="mois" id="mois" class="form-control" required>
                             <option value="">SELECTIONNEZ LE MOIS</option>
                             @foreach ($mois as $month)
                             <option value="{{$month->id}}">{{$month->name}}</option>
