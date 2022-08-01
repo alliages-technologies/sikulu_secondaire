@@ -44,17 +44,15 @@ class EcolageController extends Controller
             $ecolage = new Ecolage();
             $ecolage->inscription_id=$id;
             $ecolage->montant=$montant;
-            $ecolage->moi_id=$mois;
+            $ecolage->mois=$mois;
             $ecolage->semaine=date('W');
-            $ecolage->mois=date('n');
             $ecolage->annee=date('Y');
             $ecolage->save();
         }else{
             $ecolage->inscription_id=$id;
             $ecolage->montant=$montant;
-            $ecolage->moi_id=$mois;
+            $ecolage->mois=$mois;
             $ecolage->semaine=date('W');
-            $ecolage->mois=date('n');
             $ecolage->annee=date('Y');
             $ecolage->update();
         }

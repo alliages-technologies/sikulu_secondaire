@@ -83,7 +83,7 @@ class InscriptionController extends Controller
                     $eleve->image_uri = $path;
                 }
             }
-            dd($eleve);
+            //dd($eleve);
             $eleve->save();
 
             $inscription = new Inscription();
