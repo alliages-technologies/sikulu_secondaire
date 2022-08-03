@@ -5,40 +5,50 @@
 Admin Ecole | Programme
 @endsection
 
-@section('content')
-
-<div class="container mt-4">
-    <div class="card">
-        <div class="card-header">
-            <input type="hidden" name="classe_id" value="{{ $salle->token}}">
-            <h2> Programme de la {{ $salle->name }} <strong>|</strong> {{ $salle->classe->name }} </h2>
-            <input type="hidden" name="classe_id" value="{{ $salle->id}}">
-        </div>
-        <div class="card-body">
-            <table class="table table-sm table-bordered table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th> MATIERE </th>
-                        <th> COEFFICIENT </th>
-                        <th> ENSEIGNANT </th>
-                        <th> <i class="fa fa-cog"></i> </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($programme_ecole->lpes as $lpe)
-                    <tr>
-                        <td> {{ $lpe->matiere->name }} </td>
-                        <td> {{ $lpe->coefficient }} </td>
-                        <td> {{ $lpe->enseignant?$lpe->enseignant->name:"Aucun" }} </td>
-                        <td> <button data-lpe="{{ $lpe->id }}" data-toggle="modal" data-target="#panier" class="btn btn-default btn-xs btn-edit"><i class="fa fa-edit"></i></button> </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+@section('content-header')
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Programme {{ $salle->name }}</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="/home">Acceuil</a></li>
+                <li class="breadcrumb-item active">Programme Scolaire</li>
+                <li class="breadcrumb-item active">{{ $salle->classe->name }}</li>
+                </ol>
+            </div>
         </div>
     </div>
 </div>
+@endsection
 
+@section('content')
+<div class="container mt-4">
+    <div class="card p-4">
+        <table class="table table-sm table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th> MATIERE </th>
+                    <th> COEFFICIENT </th>
+                    <th> ENSEIGNANT </th>
+                    <th> <i class="fa fa-cog"></i> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($programme_ecole->lpes as $lpe)
+                <tr>
+                    <td> {{ $lpe->matiere->name }} </td>
+                    <td> {{ $lpe->coefficient }} </td>
+                    <td> {{ $lpe->enseignant?$lpe->enseignant->name:"Aucun" }} </td>
+                    <td> <button data-lpe="{{ $lpe->id }}" data-toggle="modal" data-target="#panier" class="btn btn-default btn-xs btn-edit"><i class="fa fa-edit"></i></button> </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="panier" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -87,5 +97,4 @@ Admin Ecole | Programme
 </div>
 
 <script src="{{ asset('js/programmeecole.js') }}"></script>
-
 @endsection
