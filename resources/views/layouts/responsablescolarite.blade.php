@@ -50,7 +50,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <p class="nav-link">RESPONSABLE DE LA SCOLARITE</p>
+        <p class="nav-link">{{Auth::user()->ecole->name}}</p>
       </li>
     </ul>
 
@@ -182,7 +182,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{asset('adminLTE/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">{{Auth::user()->ecole->name}}</span>
+      <span class="brand-text font-weight-light">Responsable Scolarité</span>
     </a>
 
     <!-- Sidebar -->
