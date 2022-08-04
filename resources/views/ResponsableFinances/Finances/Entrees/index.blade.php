@@ -6,13 +6,11 @@ Responsable Finances | Autres entrées
 @endsection
 
 @section('content')
-
-<div class="container mt-4 col-md-6">
+<div class="container mt-4">
     <div class="card">
         <div class="card-header">
             <h2>
-                <a href="{{route('responsablefinances.entrees.gestion')}}"  class="btn btn-info"><i class="fa fa-th"></i> GESTION DES ENTREES</a>
-                <a href="/home" style="float: right;" class="btn btn-sm btn-default ml-2"> RETOUR</a>
+                CATEGORIES DES ENTREES
                 <a href="#" style="float: right;" class="btn btn-sm btn-default" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-plus-circle"></i></a>
             </h2>
         </div>
@@ -20,7 +18,7 @@ Responsable Finances | Autres entrées
             <table class="table table-sm table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>CATEGORIES DES ENTREES</th>
+                        <th>AUTRES ENTREES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,5 +56,4 @@ Responsable Finances | Autres entrées
       </div>
     </div>
 </div>
-
 @endsection

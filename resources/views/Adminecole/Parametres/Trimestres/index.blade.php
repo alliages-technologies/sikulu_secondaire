@@ -6,7 +6,6 @@ Admin Ecole | Trimestres
 @endsection
 
 @section('content')
-
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
@@ -36,5 +35,4 @@ Admin Ecole | Trimestres
         </div>
     </div>
 </div>
-
 @endsection

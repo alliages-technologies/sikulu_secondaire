@@ -1,21 +1,21 @@
-@extends('layouts.responsablescolarite')
+@extends('layouts.form')
 
 @section('title')
 Responsable Scolarité | Eleve
 @endsection
 
 @section('content')
-
 <style>
     .card-primary.card-outline{
         border-top: 3px solid darkblue;
     }
 </style>
 
-<div class="container mt-5 col-md-10">
+<div class="container mt-4">
     <div class="card">
-        <h1 class="m-4"> INFORMATIONS SUR L'ELEVE</h1>
-        <hr>
+        <div class="card-header">
+            <h2>INFORMATIONS SUR L'ELEVE</h2>
+        </div>
         <section class="content">
             <div class="card-body">
                 <div class="row">
@@ -32,7 +32,6 @@ Responsable Scolarité | Eleve
                                 <ul class="list-group list-group-unbordered mb-3">
                                     <li class="list-group-item">
                                         <b>Classe:</b> <span class="float-right">{{ ($inscription->classe->name) }}</span> <br>
-                                        <b>Adresse:</b> <span class="float-right">{{ ($inscription->eleve->adresse) }}</span>
                                     </li>
                                 </ul>
                                 <a href="#" class="btn btn-default btn-block" id="btn-modifier"><b><i class="fa fa-info"></i></b></a>
@@ -42,7 +41,28 @@ Responsable Scolarité | Eleve
                     <!---->
                     <div class="col-md-9">
                         <div class="card-body" id="card-body">
-                            <h5 id="h5" style="letter-spacing: 1px;"> INFORMATIONS PERSONNELLES</h5>
+                            <h4 id="h5"> <strong>INFORMATIONS PERSONNELLES</strong> </h4>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md">
+                                    <label for="">Nom(s):</label>
+                                    {{ $inscription->eleve->nom }}
+                                </div>
+                                <div class="col-md">
+                                    <label for=""> Prénom(s): </label>
+                                    {{ $inscription->eleve->prenom }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md">
+                                    <label for=""> Date & lieu de naissance: </label>
+                                    {{ $inscription->eleve->date_naiss }} à {{ $inscription->eleve->lieu_naiss }}
+                                </div>
+                                <div class="col-md">
+                                    <label for=""> Adresse: </label>
+                                    {{ $inscription->eleve->adresse }}
+                                </div>
+                            </div>
                             <hr>
                         <div class="row">
                             <div class="col-md-6">
@@ -60,7 +80,7 @@ Responsable Scolarité | Eleve
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md">
-                                            <label for="contrat" class="">Mère</label>
+                                            <label for="contrat" class="">Mère:</label>
                                             {{ $inscription->eleve->nom_mere }}
                                         </div>
                                         <div class="col-md">
@@ -86,6 +106,7 @@ Responsable Scolarité | Eleve
                                 <div class="row mt-2">
                                     <div class="col-md">
                                         <label for="contrat" class="">Email:</label>
+                                        {{ $inscription->eleve->email_tuteur }}
                                     </div>
                                 </div>
                             </fieldset>

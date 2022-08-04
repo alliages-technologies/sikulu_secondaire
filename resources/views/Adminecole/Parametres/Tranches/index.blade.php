@@ -9,9 +9,9 @@ Admin Ecole | Tranches horaires
 
 <div class="container mt-4">
     <div class="card">
-        <div class="card-header" style="background-color: darkblue; color:white">
+        <div class="card-header">
             <h2>
-                <i class="fa fa-clock"></i> | GESTION DES TRANCHES HORAIRES
+                GESTION DES TRANCHES HORAIRES
                 <a href="" data-toggle="modal" data-target="#panier" class="btn btn-sm btn-default float-right"> <i class="fa fa-plus-square"></i></a>
             </h2>
         </div>
@@ -27,7 +27,7 @@ Admin Ecole | Tranches horaires
                     <tr>
                         <td> {{$tranche_horaire->heure_debut}} </td>
                         <td> {{$tranche_horaire->heure_fin}} </td>
-                        <td> <i class="fa fa-edit"></i> </td>
+                        <td> <a href="#" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a> </td>
                     </tr>
                 @endforeach
                 </tbody>

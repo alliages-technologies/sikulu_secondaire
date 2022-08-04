@@ -9,6 +9,7 @@ use App\Models\Eleve;
 use App\Models\Inscription;
 use App\Models\ParentEcole;
 use App\Models\Salle;
+use App\Models\SuiviPaiement;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,7 @@ class InscriptionController extends Controller
     public function create()
     {
         $annee_acad = AnneeAcad::where('actif', 1)->first();
-        $salles = Salle::where('ecole_id',Auth::user()->ecole_id)->get();
+        $salles = Salle::where('ecole_id', Auth::user()->ecole_id)->get();
         return view('ResponsableScolarite.Inscriptions.create')->with(compact('annee_acad','salles'));
     }
 
@@ -65,6 +66,7 @@ class InscriptionController extends Controller
             $eleve->tel_mere = $request->tel_mere;
             $eleve->nom_tuteur = $request->nom_tuteur;
             $eleve->tel_tuteur = $request->tel_tuteur;
+            $eleve->email_tuteur = $request->email;
             if ($request->image_uri) {
                 $fichier = $request->image_uri;
                 $ext_array = ['PNG', 'JPG', 'JPEG', 'GIF', 'jpg', 'png', 'jpeg', 'gif'];
@@ -76,7 +78,6 @@ class InscriptionController extends Controller
                     if (!file_exists(public_path() . '/images/membres')) {
                         mkdir(public_path() . '/images/membres');
                     }
-
                     $name = date('dmYhis') . '.' . $ext;
                     $path = 'images/membres/' . $name;
                     $fichier->move(public_path('images/membres'), $name);
@@ -132,6 +133,7 @@ class InscriptionController extends Controller
             $eleve->tel_mere = $request->tel_mere;
             $eleve->nom_tuteur = $request->nom_tuteur;
             $eleve->tel_tuteur = $request->tel_tuteur;
+            $eleve->email_tuteur = $request->email;
             if ($request->image_uri) {
                 $fichier = $request->image_uri;
                 $ext_array = ['PNG', 'JPG', 'JPEG', 'GIF', 'jpg', 'png', 'jpeg', 'gif'];
@@ -143,7 +145,6 @@ class InscriptionController extends Controller
                     if (!file_exists(public_path() . '/images/membres')) {
                         mkdir(public_path() . '/images/membres');
                     }
-
                     $name = date('dmYhis') . '.' . $ext;
                     $path = 'images/membres/' . $name;
                     $fichier->move(public_path('images/membres'), $name);
@@ -156,6 +157,7 @@ class InscriptionController extends Controller
             $inscription->eleve_id = $eleve->id;
             $inscription->user_id = Auth::user()->id;
             $inscription->ecole_id = Auth::user()->ecole_id;
+            $inscription->parent_id = $parent->id;
             $inscription->montant_inscri = $request->montant_inscri;
             if (!$request->montant_frais) {
                 $inscription->montant_frais = 0;
@@ -166,10 +168,19 @@ class InscriptionController extends Controller
             $inscription->annee_id = $request->annee_id;
             $inscription->salle_id = $salle->id;
             $inscription->moi_id = date('m');
-            $inscription->semaine_id = date('w');
+            $inscription->semaine_id = date('W');
             $inscription->token = sha1("Inscription".date('Ymdhis').date('Ymdhis'));
             $inscription->save();
         }
+        $suivi=new SuiviPaiement();
+        $suivi->paiement_id=$inscription->id;
+        $suivi->type="INSCRIPTION";
+        $suivi->ecole_id=Auth::user()->ecole_id;
+        $suivi->semaine = date('W');
+        $suivi->mois = date('n');
+        $suivi->annee = date('Y');
+        $suivi->token = sha1((date('ymdhisW'))."A-suiviEcolage-x".(date('ymdhisW')));
+        $suivi->save();
 
         return redirect('/responsablescolarite/inscriptions');
     }

@@ -57,6 +57,7 @@ class EcolageController extends Controller
             $ecolage->update();
         }
         $ecole=auth()->user()->ecole_id;
+        
         $suivi=new SuiviPaiement();
         $suivi->paiement_id=$ecolage->id;
         $suivi->type="ECOLAGE";

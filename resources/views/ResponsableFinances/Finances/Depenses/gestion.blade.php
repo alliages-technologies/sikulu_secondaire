@@ -12,7 +12,7 @@ Responsable Finances | Gestion des dépenses
         <div class="card-header">
             <h2>
                 GESTION DES DEPENSES
-                <a href="{{route('responsablefinances.depenses.index')}}" style="float: right;" class="btn btn-sm btn-default ml-2"> RETOUR</a>
+                <a href="{{route('responsablefinances.depenses.index')}}" style="float: right;" class="btn btn-sm btn-default ml-2"> CATEGORIES DES DEPENSES</a>
                 <button style="float: right;" class="btn btn-sm btn-default" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-plus-circle"></i></button>
             </h2>
         </div>

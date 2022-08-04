@@ -6,20 +6,18 @@ Responsable Finances | Depenses
 @endsection
 
 @section('content')
-
-<div class="container col-md-6 mt-4">
+<div class="container mt-4">
     <div class="card">
         <div class="card-header">
             <h2>
-                <a href="{{route('responsablefinances.depenses.gestion')}}" class="btn btn-info"><i class="fa fa-th"></i> GESTION DES DEPENSES</a>
-                <a href="/home" style="float: right;" class="btn btn-sm btn-default ml-2"> RETOUR</a>
+                CATEGORIES DES DEPENSES
                 <button style="float: right;" class="btn btn-sm btn-default" data-toggle="modal" data-target=".bd-example-modal-lg"> <i class="fa fa-plus-circle"></i> </button>
             </h2>
         </div>
         <div class="card-body">
             <table class="table table-sm table-bordered table-striped">
                 <thead>
-                    <th>CATEGORIES DES DEPENSES</th>
+                    <th>DEPENSES</th>
                 </thead>
                 <tbody>
                     @foreach ($categories_depenses as $categorie)
@@ -33,7 +31,6 @@ Responsable Finances | Depenses
         </div>
     </div>
 </div>
-
 
 <!-- Modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -58,5 +55,4 @@ Responsable Finances | Depenses
     </div>
   </div>
 </div>
-
 @endsection

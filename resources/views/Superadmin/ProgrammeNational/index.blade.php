@@ -6,17 +6,16 @@ Superadmin | Programmes Nationals
 @endsection
 
 @section('content')
-
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
             <h2>
                 GESTION DES PROGRAMMES NATIONALS
-                <a href="" data-toggle="modal" data-target="#panier" class="btn btn-sm btn-default float-right"> <i class="fa fa-plus-square"></i> </a>
+                <a href="" data-toggle="modal" data-target="#panier" class="btn btn-sm btn-default float-right"> <i class="fa fa-plus-circle"></i> </a>
             </h2>
         </div>
         <div class="card-body ">
-            <table class="table table-sm table-bordered table-hover">
+            <table class="table table-sm table-bordered table-striped">
                 <thead class="">
                     <th> CLASSE </th>
                     <th> TYPE D'ENSEIGNEMENT </th>
@@ -110,6 +109,4 @@ Superadmin | Programmes Nationals
 
 
 <script src="{{ asset('js/programmenational.js') }}"></script>
-
-
 @endsection

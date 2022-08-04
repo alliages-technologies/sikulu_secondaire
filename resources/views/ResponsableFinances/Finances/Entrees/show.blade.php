@@ -2,15 +2,15 @@
 
 
 @section('title')
-Responsable Finances | Détails sur l'entrée
+Responsable Finances | Détails {{$entree->name}}
 @endsection
 
 @section('content')
 
-<div class="container col-md-6 mt-4">
+<div class="container mt-4 col-md-10">
     <div class="card">
         <div class="card-header">
-            <h2>{{$entree->name}}</h2>
+            <h2> <span class="badge badge-success">{{$entree->name}}</span> </h2>
         </div>
         <div class="card-body">
             <p>

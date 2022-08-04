@@ -7,12 +7,12 @@ Superadmin | Types d'enseignements
 
 @section('content')
 
-<div class="container mt-4 col-md-8">
+<div class="container mt-4 col-md-10">
     <div class="card">
         <div class="card-header">
             <h2>
                 CONFIGURATION DES TYPES D'ENSEIGNEMENTS
-                <button style="float: right;" class="btn btn-sm btn-default" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i></button>
+                <button style="float: right;" class="btn btn-sm btn-default" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-circle"></i></button>
             </h2>
         </div>
         <div class="card-body">

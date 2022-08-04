@@ -6,13 +6,12 @@ Admin Ecole | Matières
 @endsection
 
 @section('content')
-
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
             <h2>
                 GESTION DES MATIERES
-                <button class="btn btn-sm btn-success float-right" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i></button>
+                <button class="btn btn-sm btn-default float-right" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button>
             </h2>
         </div>
         <div class="card-body">
@@ -42,7 +41,7 @@ Admin Ecole | Matières
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header card-header">
-                <h5 class="modal-title" id="exampleModalLabel">CONFIGURATION DE LA MATIERE</h5>
+                <h4 class="modal-title" id="exampleModalLabel">CONFIGURATION DE LA MATIERE</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

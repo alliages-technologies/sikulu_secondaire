@@ -12,7 +12,7 @@ Superadmin | Configuration Ecoles
         <div class="card-header">
             <h2>
                 CONFIGURATION DES ECOLES
-                <button style="float: right;" class="btn btn-sm btn-default" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i></button>
+                <button style="float: right;" class="btn btn-sm btn-default" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-circle"></i></button>
             </h2>
         </div>
         <div class="card-body">

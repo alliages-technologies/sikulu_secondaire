@@ -1,4 +1,4 @@
-@extends('layouts.responsablescolarite')
+@extends('layouts.form')
 
 
 @section('title')
@@ -6,11 +6,10 @@ Responsable Scolarité | Inscription
 @endsection
 
 @section('content')
-
-<div class="container mt-5">
+<div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h1>NOUVELLE INSCRIPTION</h1>
+            <h2>NOUVELLE INSCRIPTION</h2>
         </div>
         <div class="card-body">
             <div class="">
@@ -164,5 +163,4 @@ Responsable Scolarité | Inscription
 </div>
 
 <script src="{{ asset('js/inscription.js') }}"></script>
-
 @endsection

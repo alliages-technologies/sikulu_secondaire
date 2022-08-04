@@ -6,13 +6,12 @@ Responsable Finances | Gestion des entrées
 @endsection
 
 @section('content')
-
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
             <h2>
-                GESTION DES ENTREES
-                <a href="{{route('responsablefinances.entrees.index')}}" style="float: right;" class="btn btn-sm btn-default ml-2"> RETOUR</a>
+                GESTION DES AUTRES ENTREES
+                <a href="{{route('responsablefinances.entrees.index')}}" style="float: right;" class="btn btn-sm btn-default ml-2"> CATEGORIES D'ENTREES</a>
                 <button style="float: right;" class="btn btn-sm btn-default" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-plus-circle"></i></button>
             </h2>
         </div>
@@ -22,7 +21,7 @@ Responsable Finances | Gestion des entrées
                     <tr>
                         <th>DATE</th>
                         <th>MONTANT</th>
-                        <th>#</th>
+                        <th>DESIGNATION</th>
                         <th>CATEGORIE</th>
                     </tr>
                 </thead>
@@ -83,5 +82,4 @@ Responsable Finances | Gestion des entrées
       </div>
     </div>
   </div>
-
 @endsection

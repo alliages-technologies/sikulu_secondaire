@@ -2,15 +2,15 @@
 
 
 @section('title')
-Responsable Finances | Détais sur la Dépense
+Responsable Finances | Détails {{$depense->name}}
 @endsection
 
 @section('content')
 
-<div class="container col-md-6 mt-4">
+<div class="container mt-4 col-md-10">
     <div class="card">
         <div class="card-header">
-            <h2>{{$depense->name}}</h2>
+            <h2> <span class="badge badge-info">{{$depense->name}}</span> </h2>
         </div>
         <div class="card-body">
             <p>

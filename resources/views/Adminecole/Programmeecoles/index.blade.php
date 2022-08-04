@@ -24,8 +24,8 @@ Admin Ecole | Programmes Scolaire
 @endsection
 
 @section('content')
-<div class="container mt-4">
-    <div class="menu">
+<div class="container">
+    <div class="card p-4 menu">
         <div class="text-center">
             <div class="row d-flex justify-content-center p-1">
                 @foreach ($salles as $salle)

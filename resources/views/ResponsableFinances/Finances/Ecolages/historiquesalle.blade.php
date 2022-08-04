@@ -10,10 +10,7 @@ Responsable Finances | Historique des paiements de la salle
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h2>
-                HISTORIQUE DES PAIEMENTS | {{$salle->name}} - {{$salle->classe->name}}
-                <a href="{{route('responsablefinances.historique.paiements')}}" style="float: right;" class="btn btn-sm btn-default"> RETOUR</a>
-            </h2>
+            <h2> <span class="badge badge-info">{{$salle->classe->name}}</span> </h2>
         </div>
         <div class="card-body">
             <table class="table table-sm table-bordered table-striped">

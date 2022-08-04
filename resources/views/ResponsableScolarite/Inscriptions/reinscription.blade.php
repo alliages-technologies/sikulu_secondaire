@@ -1,4 +1,4 @@
-@extends('layouts.responsablescolarite')
+@extends('layouts.form')
 
 
 @section('title')
@@ -6,13 +6,10 @@ Responsable Scolarité | Réinscription
 @endsection
 
 @section('content')
-<div class="container-fluid mt-5 col-md-10">
+<div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h2>
-                REINSCRIPTION
-                <a href="/home" style="float: right" class="btn btn-sm btn-default">RETOUR</a>
-            </h2>
+            <h2>REINSCRIPTION </h2>
         </div>
         <form action="{{ route('responsablescolarite.reinscriptions.save')}}" method="post" enctype="multipart/form-data">
             <div class="card-body">
@@ -66,5 +63,4 @@ Responsable Scolarité | Réinscription
 </div>
 
 <script src="{{ asset('js/reinscription.js') }}"></script>
-
 @endsection

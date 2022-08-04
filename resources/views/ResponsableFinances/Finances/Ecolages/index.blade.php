@@ -12,13 +12,12 @@ Responsable Finances | Ecolages
         <div class="card-header">
             <h2>
                 GESTION DES FRAIS D'ECOLAGE
-                <a href="/home" style="float: right;" class="btn btn-sm btn-default">RETOUR</a>
             </h2>
         </div>
         <div class="card-body menu row d-flex justify-content-center p-4">
             <a href="{{route('responsablefinances.ecolages.create')}}" class="col-md-3 m-2">
                 <i class="fa fa-plus-circle"></i>
-                <p>EFFECTUER UN PAIEMENT</p>
+                <p>EFFECTUER UN NOUVEAU PAIEMENT</p>
             </a>
             <a href="{{route('responsablefinances.historique.paiements')}}" class="col-md-3 m-2">
                 <i class="fa fa-list"></i>

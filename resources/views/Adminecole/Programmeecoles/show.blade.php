@@ -25,7 +25,7 @@ Admin Ecole | Programme
 @endsection
 
 @section('content')
-<div class="container mt-4">
+<div class="container">
     <div class="card p-4">
         <table class="table table-sm table-bordered table-striped">
             <thead>

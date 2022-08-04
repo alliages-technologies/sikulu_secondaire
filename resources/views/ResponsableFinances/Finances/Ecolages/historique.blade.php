@@ -2,7 +2,7 @@
 
 
 @section('title')
-Responsable Finances | Historique des paiements
+Responsable Finances | Historique
 @endsection
 
 @section('content')
@@ -10,10 +10,7 @@ Responsable Finances | Historique des paiements
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h2>
-                HISTORIQUE DES PAIEMENTS
-                <a href="{{route('responsablefinances.ecolages.index')}}" style="float: right;" class="btn btn-sm btn-default"> RETOUR</a>
-            </h2>
+            <h2> HISTORIQUE DES PAIEMENTS DES FRAIS D'ECOLAGE</h2>
         </div>
         <div class="card-body">
             <div class="container menu">
@@ -35,5 +32,4 @@ Responsable Finances | Historique des paiements
 
 
 <script src="{{asset('js/historiquePaiements.js')}}"></script>
-
 @endsection

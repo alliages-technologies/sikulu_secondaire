@@ -6,15 +6,14 @@ Superadmin | Programme {{$programmenational->classe->name}}
 @endsection
 
 @section('content')
-
-<div class="container mt-4 col-md-8">
+<div class="container mt-4 col-md-10">
     <div class="card">
         <div class="card-header">
-            <h2> PROGRAMME NATIONAL | {{ $programmenational->classe->name }} </h2>
+            <h2> <span class="badge badge-info">{{ $programmenational->classe->name }}</span> </h2>
         </div>
         <div class="card-body ">
             <div class="container-fluid">
-                <table class="table table-bordered table-striped table-sm">
+                <table class="table table-sm table-bordered table-striped table-sm">
                     <thead class="">
                         <th> MATIERE </th>
                         <th> COEFFICIENT </th>
@@ -32,5 +31,4 @@ Superadmin | Programme {{$programmenational->classe->name}}
         </div>
     </div>
 </div>
-
 @endsection

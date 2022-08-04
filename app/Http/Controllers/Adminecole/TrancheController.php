@@ -14,7 +14,7 @@ class TrancheController extends Controller
     {
 
         $tranche_horaires = TrancheHoraire::where('ecole_id',Auth::user()->ecole_id)->orderBy('id', 'desc')->paginate(10);
-        return view('Adminecole.Tranches.index')->with(compact('tranche_horaires'));
+        return view('Adminecole.Parametres.Tranches.index')->with(compact('tranche_horaires'));
     }
 
 

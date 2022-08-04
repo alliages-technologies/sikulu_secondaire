@@ -1,4 +1,4 @@
-@extends('layouts.responsablescolarite')
+@extends('layouts.form')
 
 
 @section('title')

@@ -1,4 +1,4 @@
-@extends('layouts.responsablefinances')
+@extends('layouts.form')
 
 
 @section('title')
@@ -6,9 +6,8 @@ Responsable Finances | Paiement Ecolage
 @endsection
 
 @section('content')
-
-<div class="container mt-4 card-header">
-    <h1>PAIEMENT DES FRAIS D'ECOLAGE</h1>
+<div class="container mt-4">
+    <h1 class="card-header text-center">PAIEMENT DES FRAIS D'ECOLAGE<h1>
 </div>
 <div class="container mt-4 d-flex justify-content-center">
     <form action="">
@@ -45,10 +44,10 @@ Responsable Finances | Paiement Ecolage
             <div id="historique" class="card-footer">
                 <div class="card">
                     <div class="card-header">
-                        <h4>
-                            HISTORIQUE
+                        <h5>
+                            HISTORIQUE DES PAIEMENTS
                             <button style="float: right;" id="btn-payer" class="btn btn-sm btn-success">PAYER</button>
-                        </h4>
+                        </h5>
                     </div>
                     <div class="card-body">
                         <table class="table table-sm table-bordered table-striped">
@@ -69,7 +68,7 @@ Responsable Finances | Paiement Ecolage
         <!--Le Paiement-->
         <div id="etape3" class="card">
             <div class="card-header">
-                <h4>EFFECTUER LE PAIEMENT</h4>
+                <h3>EFFECTUER LE PAIEMENT</h3>
             </div>
             <div class="card-body d-flex justify-content-center">
                 <div class="form-row">
@@ -78,7 +77,7 @@ Responsable Finances | Paiement Ecolage
                     </div>
                     <div class="col">
                         <select name="mois" id="mois" class="form-control" required>
-                            <option value="">SELECTIONNEZ LE MOIS</option>
+                            <option>MOIS</option>
                             @foreach ($mois as $month)
                             <option value="{{$month->id}}">{{$month->name}}</option>
                             @endforeach
@@ -93,7 +92,5 @@ Responsable Finances | Paiement Ecolage
     </form>
 </div>
 
-
 <script src="{{asset('js/ecolagePaiement.js')}}"></script>
-
 @endsection

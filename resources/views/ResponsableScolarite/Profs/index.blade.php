@@ -12,8 +12,7 @@ Responsable Scolarité | Gestion des professeurs
         <div class="card-header">
             <h2>
                 GESTION DES PROFESSEURS
-                <a href="/home" style="float: right" class="btn btn-sm btn-default ml-2">RETOUR</a>
-                <a href="{{route('responsablescolarite.profs.create')}}" style="float: right" class="btn btn-sm btn-default"><i class="fa fa-plus-circle"></i></a>
+                <a href="{{route('responsablescolarite.profs.create')}}" style="float: right" class="btn btn-sm btn-default"><i class="fa fa-user-plus"></i></a>
             </h2>
         </div>
         <div class="card-body">

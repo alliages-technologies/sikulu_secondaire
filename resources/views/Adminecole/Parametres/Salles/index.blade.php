@@ -6,12 +6,11 @@ Admin Ecole | Salles
 @endsection
 
 @section('content')
-
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
             <h2>
-                <i class="fa fa-door-open"></i> | GESTION DES SALLES
+                GESTION DES SALLES
                 <a href="" data-toggle="modal" data-target="#panier" class="btn btn-sm btn-default float-right"> <i class="fa fa-plus-square"></i> </a>
             </h2>
         </div>
@@ -43,7 +42,7 @@ Admin Ecole | Salles
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header card-header">
-                <h4 class="modal-title" id="exampleModalLabel">AJOUT D'UNE SALLE</h4>
+                <h4 class="modal-title" id="exampleModalLabel">CONFIGURATION D'UNE SALLE</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

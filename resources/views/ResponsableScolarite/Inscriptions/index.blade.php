@@ -6,13 +6,11 @@ Responsable Scolarité | Inscriptions
 @endsection
 
 @section('content')
-
-<div class="container mt-5">
+<div class="container mt-4">
     <div class="card">
         <div class="card-header">
             <h2>
-                LISTE DES INSCRIPTIONS
-                <a href="/home" style="float: right" class="btn btn-sm btn-default ml-2">RETOUR</a>
+                GESTION DES INSCRIPTIONS
                 <a href="{{ route('responsablescolarite.inscriptions.create') }}" class="btn btn-sm btn-default float-right"><i class="fa fa-user-plus"></i> </a>
             </h2>
         </div>
@@ -39,5 +37,4 @@ Responsable Scolarité | Inscriptions
         </div>
     </div>
 </div>
-
 @endsection

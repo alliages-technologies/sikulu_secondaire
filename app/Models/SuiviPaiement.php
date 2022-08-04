@@ -20,4 +20,12 @@ class SuiviPaiement extends Model
     public function entree(){
         return $this->belongsTo('App\Models\Entree', 'paiement_id');
     }
+
+    public function inscription(){
+        return $this->belongsTo('App\Models\Inscription', 'paiement_id');
+    }
+
+    public function getFraisinsciptionAttribute(){
+        return $this->inscription->montant_inscri + $this->inscription->montant_frais;
+    }
 }

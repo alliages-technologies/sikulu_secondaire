@@ -5,14 +5,31 @@
 Admin Ecole | Programme
 @endsection
 
-@section('content')
+@section('content-header')
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1 class="m-0">Gestion des cours de la {{$programmeecole->salle->name}}</h1>
+        </div>
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Paramètres</a></li>
+            <li class="breadcrumb-item active">Cours</li>
+            <li class="breadcrumb-item active">{{ $programmeecole->salle->classe->name }}</li>
+            </ol>
+        </div>
+        </div>
+    </div>
+</div>
+@endsection
 
-<div class="container mt-4">
+@section('content')
+<div class="container">
     <div class="card">
         <div class="card-header">
             <input type="hidden" name="classe_id" value="">
-            <h2> COURS | {{ $programmeecole->salle->classe->name }} | {{ $programmeecole->salle->abb }} </h2>
-            <button class="btn btn-xs btn-default float-right mr-1" data-toggle="modal" data-target="#responsableFinances">COURS <i class="fa fa-file"></i></button>
+            <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#responsableFinances"> <i class="fa fa-plus"></i> NOUVEAU COURS </button>
         </div>
         <div class="card-body">
             <table class="table table-sm table-bordered table-hover table-striped">
@@ -38,8 +55,6 @@ Admin Ecole | Programme
         </div>
     </div>
 </div>
-
-
 
 <!-- Modal ajout d'un cours -->
 <div class="modal fade" id="responsableFinances" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -86,7 +101,6 @@ Admin Ecole | Programme
         </div>
     </div>
 </div>
-
 
 
 <!-- Modal -->
@@ -136,5 +150,4 @@ Admin Ecole | Programme
 </div>
 
 <script src="{{ asset('js/programmeecole.js') }}"></script>
-
 @endsection

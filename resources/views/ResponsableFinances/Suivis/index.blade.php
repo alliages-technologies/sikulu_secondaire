@@ -11,7 +11,7 @@ Responsable Finances | Suivi des paiements
     <div class="card">
         <div class="card-header">
             <h2>
-                HISTORIQUE DE TOUS LES PAIEMENTS
+                SUIVI DE TOUS LES PAIEMENTS
                 <button style="float: right;" class="btn btn-default" data-toggle="modal" data-target=".bd-example-modal-lg"> <i class="fa fa-search"></i> </button>
             </h2>
         </div>
@@ -30,8 +30,10 @@ Responsable Finances | Suivi des paiements
                         <td>{{$paiement->created_at->format('d/m/Y')}}</td>
                         @if ($paiement->type=="ECOLAGE")
                         <td><a href="#"><strong>{{$paiement->ecolage->montant}}</strong> XAF</a></td>
+                        @elseif($paiement->type=="INSCRIPTION")
+                        <td><a style="color: gray" href="#"><strong>{{$paiement->Fraisinsciption}}</strong> XAF</a></td>
                         @elseif($paiement->type=="DEPENSE")
-                        <td><a style="color: gray" href="{{route('responsablefinances.depenses.show', $paiement->depense->token)}}"><strong>{{$paiement->depense->montant}}</strong> XAF</a></td>
+                        <td><a style="color: black" href="{{route('responsablefinances.depenses.show', $paiement->depense->token)}}"><strong>{{$paiement->depense->montant}}</strong> XAF</a></td>
                         @elseif($paiement->type=="AUTRE ENTREE")
                         <td><a style="color: green" href="{{route('responsablefinances.entrees.show', $paiement->entree->token)}}"><strong>{{$paiement->entree->montant}}</strong> XAF</a></td>
                         @endif
