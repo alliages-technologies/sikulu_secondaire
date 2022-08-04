@@ -2,16 +2,13 @@
 
 
 @section('title')
-{{auth()->user()->name}} | Acceuil
+{{Auth::user()->name}} | Acceuil
 @endsection
 
 @section('content')
 
 <div class="container menu mt-4">
     <div class="card">
-        <div class="card-header text-center">
-            <h2><i class="fa fa-th"></i> ACCEUIL</h2>
-        </div>
         <div class="card-body">
             <div class="row d-flex justify-content-center p-4">
                 @foreach ($ecoles as $ecole)
@@ -20,7 +17,7 @@
                         <p>{{ $ecole->ecole->name }}</p>
                     </a>
                 @endforeach
-                <a href="/deconnexion" class="col-md-3 m-2">
+                <a href="/deconnexion" class="col-md-3 m-2" style="color: red">
                     <i class="fa fa-power-off"></i>
                     <p>Déconnexion</p>
                 </a>

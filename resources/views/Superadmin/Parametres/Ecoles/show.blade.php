@@ -6,7 +6,6 @@ Superadmin | {{$ecole->name}}
 @endsection
 
 @section('content')
-
 <div class="container mt-4 col-md-10">
     <div class="card">
         <div class="card-header">
@@ -35,5 +34,4 @@ Superadmin | {{$ecole->name}}
         </div>
     </div>
 </div>
-
 @endsection
