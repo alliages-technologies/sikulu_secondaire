@@ -10,9 +10,7 @@ Responsable Finances | Acceuil
 <div class="container mt-4">
     <div class="card">
         <div class="card-header text-center">
-            <h1>
-                D A S H B O A R D
-            </h1>
+            <h2> D A S H B O A R D</h2>
         </div>
         <div class="card-body menu">
             <div class="row d-flex justify-content-center p-4">

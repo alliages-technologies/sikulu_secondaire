@@ -10,9 +10,9 @@ Responsable Scolarité | Emplois du temps
 <div class="container mt-4">
     <div class="card menu">
         <div class="card-header">
-            <h1>
+            <h2>
                 GESTION DES EMPLOIS DU TEMPS
-            </h1>
+            </h2>
         </div>
         <div class="card-body ">
             <div class="row d-flex justify-content-center p-1">

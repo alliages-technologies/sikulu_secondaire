@@ -1,4 +1,4 @@
-@extends('layouts.responsablescolarite')
+@extends('layouts.form')
 
 
 @section('title')
@@ -6,16 +6,6 @@ Responsable Scolarité | Horaires Salle
 @endsection
 
 @section('content')
-
-<style>
-    tr td {
-        letter-spacing: 0px;
-    }
-    tr th {
-        letter-spacing: 0px;
-    }
-</style>
-
 <div class="container mt-4">
     <input type="hidden" name="salle_id" class="salle_id" value="{{ $salle->id }}">
     <div class="card">
@@ -48,14 +38,12 @@ Responsable Scolarité | Horaires Salle
     </div>
 </div>
 
-
-
 <!-- Modal -->
 <div class="modal fade" id="nouveauProgr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header card-header">
-                <h4 class="modal-title" id="exampleModalLabel">NOUVEAU PROGRAMME</h4>
+                <h4 class="modal-title" id="exampleModalLabel">NOUVEL EMPLOI DU TEMPS</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -121,5 +109,4 @@ Responsable Scolarité | Horaires Salle
 </div>
 
 <script src="{{ asset('js/emploisTemps.js') }}"></script>
-
 @endsection

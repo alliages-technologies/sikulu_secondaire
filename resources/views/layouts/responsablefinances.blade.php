@@ -35,13 +35,31 @@
   <link rel="stylesheet" href="{{asset('adminLTE/plugins/summernote/summernote-bs4.min.css')}}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
 
+<style>
+    .card-header{
+        background-color: darkblue;
+        color: white;
+    }
+    .btn-default{
+        background-color: darkblue;
+        color: white;
+    }
+    .btn-default:hover{
+        background-color: rgb(13, 13, 95);
+        color: white;
+    }
+    h4{
+        font-weight: lighter;
+        letter-spacing: 1px;
+    }
+</style>
+
+<div class="wrapper">
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="{{asset('adminLTE/dist/img/AdminLTELogo.png')}}" alt="" height="60" width="60">
   </div>
-
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -178,7 +196,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: rgb(13, 13, 95)">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{asset('adminLTE/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">

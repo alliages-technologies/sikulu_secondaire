@@ -6,7 +6,6 @@ Responsable Scolarité | Emploi du temps
 @endsection
 
 @section('content')
-
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
@@ -37,5 +36,4 @@ Responsable Scolarité | Emploi du temps
         </div>
     </div>
 </div>
-
 @endsection
