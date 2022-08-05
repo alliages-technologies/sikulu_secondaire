@@ -9,7 +9,7 @@ Admin Ecole | Cours
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h2>GESTION DES COURS</h2>
+            <h2>GESTION DES COURS PAR SALLE</h2>
         </div>
         <div class="card-body">
             <table class="table table-sm table-striped table-bordered">
