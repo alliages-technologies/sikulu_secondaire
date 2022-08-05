@@ -19,28 +19,16 @@ class UtilisateurController extends Controller
         return view('Adminecole.Parametres.Utilisateurs.index')->with(compact('users', 'roles'));
     }
 
-    public function responsableFinancesStore(){
+    public function responsableStore(){
         $auth=auth()->user()->ecole_id;
         $user=new User();
         $user->name=request()->name;
         $user->phone=request()->phone;
         $user->email=request()->email;
         $user->password=Hash::make(request()->password);
-        $user->role_id=4;
+        $user->role_id=request()->role_id;
         $user->ecole_id=$auth;
-        $user->save();
-        return redirect()->back();
-    }
-
-    public function responsableScolariteStore(){
-        $auth=auth()->user()->ecole_id;
-        $user=new User();
-        $user->name=request()->name;
-        $user->phone=request()->phone;
-        $user->email=request()->email;
-        $user->password=Hash::make(request()->password);
-        $user->role_id=5;
-        $user->ecole_id=$auth;
+        //dd($user);
         $user->save();
         return redirect()->back();
     }

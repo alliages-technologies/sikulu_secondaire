@@ -145,8 +145,7 @@ Route::prefix('adminecole')
     Route::get('/menu/{id}','ProgrammeecoleController@menu')->name('menu');
     // Configuration des utilisateurs
     Route::get('/utilisateurs', 'UtilisateurController@index')->name('utilisateurs.index');
-    Route::post('/utilisateurs-resposable-finances-store', 'UtilisateurController@responsableFinancesStore')->name('responsable.finances.store');
-    Route::post('/utilisateurs-resposable-scolarite-store', 'UtilisateurController@responsableScolariteStore')->name('responsable.scolarite.store');
+    Route::post('/utilisateurs-resposable-store', 'UtilisateurController@responsableStore')->name('responsable.store');
     // Config des tranches horaires
     Route::resource('/tranches', 'TrancheController');
     // Config des trimestres

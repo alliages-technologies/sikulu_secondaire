@@ -1,11 +1,12 @@
 @extends('layouts.adminecole')
-@section('content')
 
-<div class="card mt-5 menu">
+
+@section('content')
+<div class="card mt-4 menu">
     <div class="card-header">
-        <h4 class="text-left mb-1"> Scolarité | {{ $trimestre_ecole->trimestre->name }} </h4>
+        <h2> {{ $trimestre_ecole->trimestre->name }} </h2>
         <input type="hidden" value="{{ $trimestre_ecole->trimestre->id }}" name="trimestre_ecole" class="trimestre_id">
-        @if ($trimestre)
+        @if($trimestre)
             <input type="hidden" value="{{ $trimestre->trimestre->id }}" class="trimestre_active">
         @endif
     </div>
@@ -27,6 +28,6 @@
         </div>
     </div>
 </div>
-</div>
+
 <script src="{{ asset('js/generation.js') }}"></script>
 @endsection

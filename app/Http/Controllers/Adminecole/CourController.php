@@ -48,7 +48,7 @@ class CourController extends Controller
         $matieres = Matiere::where('ecole_id',Auth::user()->ecole_id)->get();
         $prof_ecoles = ProfEcole::where('ecole_id',Auth::user()->ecole_id)->get();
         //dd($prof_ecoles);
-        return view('Adminecole.Parametres.cours.show')->with(compact('pels','programmeecole','matieres','prof_ecoles'));
+        return view('Adminecole.Parametres.Cours.show')->with(compact('pels','programmeecole','matieres','prof_ecoles'));
     }
 
 
@@ -57,7 +57,7 @@ class CourController extends Controller
         //
     }
 
-    
+
     public function update(Request $request, $id)
     {
         //

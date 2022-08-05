@@ -209,7 +209,7 @@
                                  <label class="mb-1">
                                     <h6 class="mb-0 text-sm">Adresse Email</h6>
                                  </label>
-                                 <input id="email" type="email" class="mb-4 @error('email') is-invalid @enderror" value="{{ old('email') }}" name="email" placeholder="Enter a valid email address" autofocus autocomplete="email" required>
+                                 <input id="email" type="email" class="mb-4 @error('email') is-invalid @enderror" value="{{ old('email') }}" name="email" placeholder="Saisissez votre mail" autofocus autocomplete="email" required>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -220,7 +220,7 @@
                                  <label class="mb-1">
                                     <h6 class="mb-0 text-sm">Mot de passe</h6>
                                  </label>
-                                 <input id="password" type="password" name="password" class="@error('password') is-invalid @enderror" placeholder="Enter password" required autocomplete="current-password">
+                                 <input id="password" type="password" name="password" class="@error('password') is-invalid @enderror" placeholder="Saisissez votre mot de passe" required autocomplete="current-password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

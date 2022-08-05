@@ -1,8 +1,10 @@
 @extends('layouts.adminecole')
+
+
 @section('content')
-<div class="card mt-5 menu">
+<div class="card mt-4 menu">
     <div class="card-header">
-        <h4 class="text-left mb-1"> .... </h4>
+        <h2>MENU SCOLARITE</h2>
     </div>
     <div class="card-body ">
         <div class="container-fluid">
@@ -19,7 +21,5 @@
             </div>
         </div>
     </div>
-</div>
-
 </div>
 @endsection
