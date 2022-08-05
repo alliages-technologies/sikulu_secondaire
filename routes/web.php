@@ -166,7 +166,7 @@ Route::prefix('adminecole')
         Debut de la gestion des relevés de notes
     */
     Route::get('/scolarite-menu', 'ScolariteController@menu')->name('scolarite.menu');
-    Route::get('/scolarite-dashboard/{id}/{ecole}', 'ScolariteController@index')->name('scolarite.dashboard');
+    Route::get('/scolarite-dashboard/{id}/{ecole}', 'ScolariteController@dashboard');
     Route::get('/scolarite-releve/{id}/{ecole}/{programme_ecole}', 'ScolariteController@releveNote');
     Route::get('/scolarite-inscriptions/{salle}/{ecole}/{trimestre}', 'ScolariteController@inscription');
     Route::get('/scolarite-inscription-show/{inscription}/{ecole}/{salle}/{trimestre_ecole}', 'ScolariteController@inscriptionShow');
