@@ -24,20 +24,20 @@ class ScolariteController extends Controller
         return view('Adminecole.Scolarites.menu')->with(compact('trimestre_ecoles'));
     }
 
-    public function index($id,$ecole){
+    public function dashboard($id, $ecole){
         $trimestre_ecole = TrimestreEcole::find($id);
         $trimestre = TrimestreEcole::where('ecole_id',Auth::user()->ecole_id)->where('active',1)->first();
         if ($trimestre) {
-            return view('Adminecole.Scolarites.index')->with(compact('trimestre_ecole','trimestre'));  
+            return view('Adminecole.Scolarites.dashboard')->with(compact('trimestre_ecole','trimestre'));
         }
         else{
             $trimestre = 0;
-            return view('Adminecole.Scolarites.index')->with(compact('trimestre_ecole','trimestre'));
+            return view('Adminecole.Scolarites.dashboard')->with(compact('trimestre_ecole','trimestre'));
         }
     }
 
     public function releveNote($id,$ecole,$trimestre_ecole){
-        
+
         $trimestre_ecole = TrimestreEcole::find($trimestre_ecole);
         $salles = Salle::where('ecole_id',Auth::user()->ecole_id)->get();
         return view('Adminecole.Scolarites.releve')->with(compact('salles','trimestre_ecole')); // Pause
@@ -49,13 +49,13 @@ class ScolariteController extends Controller
         $inscriptions = Inscription::where('classe_id',$salle->classe_id)->where('salle_id',$salle->id)->get();
         return view('Adminecole.Scolarites.inscription')->with(compact('inscriptions','salle','trimestre_ecole'));
     }
-    
+
     public function inscriptionShow($inscription,$ecole,$salle,$trimestre_ecole){
         $annee_acad = AnneeAcad::where('actif', 1)->first();
         $salle = Salle::where('id',$salle)->where('ecole_id',Auth::user()->ecole_id)->first();
         $inscriptions = Inscription::where('classe_id',$salle->classe_id)->where('salle_id',$salle->id)->get();
         $inscription = Inscription::find($inscription);
-        
+
         $notes = Note::where('inscription_id',$inscription->id)->where('trimestre_id',$trimestre_ecole)->get();
         $totaux = $notes->reduce(function ($carry, $item) {
             return $carry + $item->valeur;
@@ -70,7 +70,7 @@ class ScolariteController extends Controller
         $releve_note = ReleveNote::where('inscription_id',$inscription->id)->where('trimestre_id',$trimestre_ecole)->first();
         $mavar = ReleveNote::where('annee_id',$annee_acad->id)->where('salle_id',$salle->id)->where('trimestre_id',$trimestre_ecole)->orderBy('moyenne','DESC')->get();
         $rang = 0;
-        for ($i=0; $i <$mavar->count() ; $i++) { 
+        for ($i=0; $i <$mavar->count() ; $i++) {
             if ($inscription->id == $mavar[$i]->inscription_id) {
                 $rang = $i+1;
             }
@@ -88,7 +88,7 @@ class ScolariteController extends Controller
         $notes = Note::where('inscription_id',$inscription->id)->where('trimestre_id',$trimestre_ecole)->get();
         $mavar = ReleveNote::where('annee_id',$annee_acad->id)->where('salle_id',$salle->id)->where('trimestre_id',$trimestre_ecole)->orderBy('moyenne','DESC')->get();
         $rang = 0;
-        for ($i=0; $i <$mavar->count() ; $i++) { 
+        for ($i=0; $i <$mavar->count() ; $i++) {
             if ($inscription->id == $mavar[$i]->inscription_id) {
                 $rang = $i+1;
             }
@@ -151,9 +151,8 @@ class ScolariteController extends Controller
             }
 
         }
-        
-    }
 
+    }
         return response()->json("ok");
     }
 

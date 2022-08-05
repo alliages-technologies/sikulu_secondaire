@@ -1,6 +1,10 @@
 @extends('layouts.adminecole')
 
 
+@section('title')
+Admin Ecole | {{ $trimestre_ecole->trimestre->name }}
+@endsection
+
 @section('content')
 <div class="card mt-4 menu">
     <div class="card-header">
