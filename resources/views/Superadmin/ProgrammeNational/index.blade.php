@@ -1,4 +1,4 @@
-@extends('layouts.superadmin')
+@extends('layouts.form')
 
 
 @section('title')
@@ -10,7 +10,7 @@ Superadmin | Programmes Nationals
     <div class="card">
         <div class="card-header">
             <h2>
-                GESTION DES PROGRAMMES NATIONALS
+                GESTION DES PROGRAMMES NATIONAUX
                 <a href="" data-toggle="modal" data-target="#panier" class="btn btn-sm btn-default float-right"> <i class="fa fa-plus-circle"></i> </a>
             </h2>
         </div>
@@ -53,7 +53,7 @@ Superadmin | Programmes Nationals
                     <div class="form-row">
                         <div class="col-md-6">
                             <select name="classe_id" id="" class="form-control classe_id">
-                                <option value="">Choix de la classe</option>
+                                <option>Choix de la classe</option>
                                 @foreach ($classes as $classe)
                                 <option data-classe_id="{{ $classe->id }}" value="{{ $classe->id }}">{{ $classe->name }}</option>
                                 @endforeach
@@ -82,7 +82,7 @@ Superadmin | Programmes Nationals
                         </div>
                     </div>
                     <div class="form-group mt-2">
-                        <button class="btn btn-default btn-add"><i class="fa fa-plus-square"></i></button>
+                        <button id="btn-add" class="btn btn-default"><i class="fa fa-plus-circle"></i></button>
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-12">
@@ -100,7 +100,7 @@ Superadmin | Programmes Nationals
                             </table>
                         </div>
                     </div>
-                    <button class="btn btn-default mt-2 btn-save" id="btn-save">ENREGISTRER</button>
+                    <button type="submit" class="btn btn-default mt-2" id="btn-save">ENREGISTRER</button>
                 </form>
             </div>
         </div>
