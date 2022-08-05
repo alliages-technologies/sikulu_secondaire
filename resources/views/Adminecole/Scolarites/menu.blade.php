@@ -15,7 +15,7 @@ Admin Ecole | Menu Scolarité
             <div class="container text-center">
                 <div class="row d-flex justify-content-center p-1">
                     @foreach ($trimestre_ecoles as $trimestre_ecole)
-                    <a href="/adminecole/scolarite-menu/{{ $trimestre_ecole->trimestre->id }}/{{ $trimestre_ecole->ecole->token }}" class="col-md-3 m-2">
+                    <a href="/adminecole/scolarite-dashboard/{{ $trimestre_ecole->trimestre->id }}/{{ $trimestre_ecole->ecole->token }}" class="col-md-3 m-2">
                         <i class="fa fa-file mb-1"></i>
                         <p>{{ $trimestre_ecole->trimestre->name }}</p>
                     </a>
