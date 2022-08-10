@@ -10,7 +10,7 @@ Responsable Finances | Historique des paiements de la salle
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h2> {{$salle->classe->name}} </h2>
+            <h2>HISTORIQUE DES PAIEMENTS | {{$salle->classe->name}} </h2>
         </div>
         <div class="card-body">
             <table class="table table-sm table-bordered table-striped">

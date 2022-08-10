@@ -275,7 +275,13 @@
               <li class="nav-item">
                 <a href="{{route('responsablefinances.historique.paiements')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Historique</p>
+                  <p>Historique par Salle</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('responsablefinances.historique.ecolages.global')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Historique Globale</p>
                 </a>
               </li>
             </ul>

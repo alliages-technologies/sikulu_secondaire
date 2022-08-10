@@ -9,7 +9,7 @@ Responsable Finances | Historique {{$inscription->eleve->name}}
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h2> <span class="badge badge-info"><i class="fa fa-user"></i> {{$inscription->eleve->name}}</span> </h2>
+            <h2> <i class="fa fa-user-circle"></i> {{$inscription->eleve->name}} </h2>
         </div>
         <div class="card-body">
             <table class="table table-sm table-bordered table-striped">

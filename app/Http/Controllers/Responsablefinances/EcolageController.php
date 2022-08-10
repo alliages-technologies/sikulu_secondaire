@@ -93,6 +93,12 @@ class EcolageController extends Controller
         return view('ResponsableFinances.Finances.Ecolages.historiqueeleve')->with(compact('inscription'));
     }
 
+    public function historiqueEcolageGlobal(){
+        $ecole=auth()->user()->ecole_id;
+        $paiements=SuiviPaiement::where('ecole_id', $ecole)->where('type', "ECOLAGE")->orderBy('created_at', 'DESC')->paginate(15);
+        return view('ResponsableFinances.Finances.Ecolages.allhistorique')->with(compact('paiements'));
+    }
+
     /*
     Fin des historiques des paiements
     */

@@ -189,6 +189,7 @@ Route::prefix('responsablefinances')
     Route::get('/ecolages-salle-select', 'EcolageController@salleSelect');
     Route::get('/ecolages-eleve-infos-show/{id}', 'EcolageController@eleveShowById');
     Route::post('/ecolages-eleve-paiement-store', 'EcolageController@elevePaiementStore');
+    Route::get('/ecolages-historique-paiements-global', 'EcolageController@historiqueEcolageGlobal')->name('historique.ecolages.global');
     Route::get('/ecolages-historique-paiements', 'EcolageController@historiquePaiements')->name('historique.paiements');
     Route::get('/ecolages-historique-salle/{token}', 'EcolageController@historiqueSalle')->name('historique.salle');
     Route::get('/ecolages-historique-paiements-eleve/{token}', 'EcolageController@historiquePaiementsEleve')->name('historique.piements.eleve');
