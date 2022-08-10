@@ -187,13 +187,13 @@ class InscriptionController extends Controller
 
 
     public function reinscription(){
-        $salles = Salle::where('ecole_id',Auth::user()->ecole_id)->get();
+        $salles = Salle::where('ecole_id', Auth::user()->ecole_id)->get();
         $annee_acad = AnneeAcad::where('actif', 1)->first();
         return view('ResponsableScolarite.Inscriptions.reinscription')->with(compact('salles','annee_acad'));
     }
 
     public function getInscriptionById($id){
-        $inscriptions = Inscription::where('salle_id',$id)->get();
+        $inscriptions = Inscription::where('salle_id' ,$id)->get();
         return response()->json($inscriptions);
     }
 

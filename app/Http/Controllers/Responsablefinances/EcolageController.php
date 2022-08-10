@@ -39,7 +39,7 @@ class EcolageController extends Controller
         $montant=request()->montant;
         $mois=request()->mois;
 
-        $ecolage = Ecolage::where('inscription_id', $id)->where('mois', $mois)->first();
+        $ecolage = Ecolage::find(1)->where('inscription_id', $id)->where('mois', $mois)->first();
         if($ecolage == null){
             $ecolage = new Ecolage();
             $ecolage->inscription_id=$id;
@@ -56,8 +56,9 @@ class EcolageController extends Controller
             $ecolage->annee=date('Y');
             $ecolage->update();
         }
+
         $ecole=auth()->user()->ecole_id;
-        
+
         $suivi=new SuiviPaiement();
         $suivi->paiement_id=$ecolage->id;
         $suivi->type="ECOLAGE";

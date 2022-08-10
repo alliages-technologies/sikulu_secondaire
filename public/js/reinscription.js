@@ -15,13 +15,14 @@ $(".salle_id").change(function (e) {
             $('.inscription_id').html('');
             $('.inscription_id').prepend('<option>Selectionner un élève</option>');
             donnees.forEach(function([$k, $v]) {
-                var option = '<option value = ' + $v["id"] + '>' + $v["name"] + '</option>'
+                var option = '<option value ='+$v["id"] +'>' +$v["name"]+ '</option>'
                 $('.inscription_id').append(option);
             });
 
         }
     });
 });
+
 $(".btn-save").click(function (e) {
     e.preventDefault();
     var salle_id = $(".nsalle_id").val();
@@ -44,7 +45,6 @@ $(".btn-save").click(function (e) {
             alert("Réinscription effectuée avec succès !!!")
             window.location.replace("/adminecole/inscriptions");
         },
-
         error: function(){
             alert("Oups !!!! veuillez renseigner toutes les informations");
         }

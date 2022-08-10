@@ -1,4 +1,4 @@
-@extends('layouts.adminecole')
+@extends('layouts.form')
 
 
 @section('title')

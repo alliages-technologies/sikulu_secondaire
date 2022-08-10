@@ -1,10 +1,4 @@
 
-/*
-for (let index = 0; index < inscriptions.length; index++) {
-    $('#resultats').append(' <tr><td>'+inscriptions[index].eleve_id+'</td></tr> ');
-}
-*/
-
 $('#etape2').hide();
 $('#etape3').hide();
 $('#historique').hide();
@@ -24,7 +18,7 @@ $("#selectSalle").change(function (e) {
             var inscriptionsData = Object.entries(inscriptions);
             $('#etape2').show(400);
             $('#resultats').html("");
-            $('#resultats').prepend('<option>SELECTONNEZ L\'ELEVE CONCERNE</option>');
+            $('#resultats').prepend("<option>SELECTONNEZ L'ELEVE CONCERNE</option>");
             inscriptionsData.forEach(function([$key ,$value]){
                 var option = '<option value='+$value["id"]+'> '+$value["name"]+' </option>';
                 $('#resultats').append(option);
