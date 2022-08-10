@@ -1,4 +1,6 @@
 @extends('layouts.prof')
+
+
 @section('content')
 
 <h4 class="text-center mt-4" style="letter-spacing: 2px">Emploi du temps /> Salles</h4>
