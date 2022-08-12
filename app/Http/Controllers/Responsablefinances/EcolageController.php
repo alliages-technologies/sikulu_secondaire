@@ -96,7 +96,16 @@ class EcolageController extends Controller
     public function historiqueEcolageGlobal(){
         $ecole=auth()->user()->ecole_id;
         $paiements=SuiviPaiement::where('ecole_id', $ecole)->where('type', "ECOLAGE")->orderBy('created_at', 'DESC')->paginate(15);
-        return view('ResponsableFinances.Finances.Ecolages.allhistorique')->with(compact('paiements'));
+        $salles = Salle::where('ecole_id', $ecole)->get();
+        $mois = Moi::all();
+        return view('ResponsableFinances.Finances.Ecolages.allhistorique')->with(compact('paiements', 'salles', 'mois'));
+    }
+
+    public function findSalle(Request $request){
+        $salle=$request->salle;
+        $inscriptions=Inscription::where('salle_id', $salle)->get();
+        dd($salle);
+        return response()->json($inscriptions);
     }
 
     /*
