@@ -9,15 +9,13 @@ Responsable Finances | Historique global ecolage
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h2>
-                HISTORIQUE GLOBAL DES PAIEMENTS DES FRAIS D'ECOLAGE
-            </h2>
+            <h2> HISTORIQUE GLOBAL DES PAIEMENTS DES FRAIS D'ECOLAGE </h2>
         </div>
         <div class="card-body">
             <div class="form-row">
                 <div class="col">
                     <select name="salle_id" id="salle_id" class="form-control" required>
-                        <option value="0">SELECTIONNEZ LA SALLE DE CLASSE</option>
+                        <option>SELECTIONNEZ LA SALLE DE CLASSE</option>
                         @foreach ($salles as $salle)
                         <option value="{{$salle->id}}">{{$salle->name}}</option>
                         @endforeach
@@ -30,7 +28,7 @@ Responsable Finances | Historique global ecolage
                 </div>
                 <div class="col">
                     <select name="month" id="month" class="form-control">
-                        <option>MOIS</option>
+                        <option>SELECTINNEZ LE MOIS</option>
                         @foreach ($mois as $month)
                         <option value="{{$month->id}}">{{$month->name}}</option>
                         @endforeach
@@ -51,6 +49,7 @@ Responsable Finances | Historique global ecolage
                     </tbody>
                 </table>
             </div>
+
         </div>
     </div>
 </div>

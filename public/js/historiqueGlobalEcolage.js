@@ -14,6 +14,7 @@ $("#salle_id").change(function (e) {
             var inscriptionsSalle = Object.entries(inscriptions);
             $('#selectionEleve').show();
             $("#eleveSelected").hide();
+            $("#resultats").hide();
             $('#inscriptions').html("");
             $('#inscriptions').prepend("<option>SELECTONNEZ L'ELEVE CONCERNE</option>");
             inscriptionsSalle.forEach(function([$key ,$value]){

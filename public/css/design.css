@@ -10,7 +10,7 @@
     text-align: center;
     color: darkblue;
     border-radius: 10px;
-    box-shadow: 0px 0px 4px 0px black;
+    box-shadow: 0px 0px 4px -1px black;
 }
 .menu a:hover{
     text-decoration: none;

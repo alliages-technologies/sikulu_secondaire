@@ -102,19 +102,18 @@ class EcolageController extends Controller
     }
 
     public function findEcolagesInscriptionsBySalle($id){
-        $inscriptions=Inscription::where('salle_id', $id)->get();
+        $inscriptions=Inscription::where('salle_id', $id)->where('ecole_id', auth()->user()->ecole_id)->get();
         return response()->json($inscriptions);
     }
 
     public function historiqueEleve($id){
         $ecolages=Ecolage::where('inscription_id', $id)->get();
-        //dd($ecolages);
         return response()->json($ecolages);
     }
 
     public function findEcolagesByMonth($id){
         $inscriptions=Inscription::where('ecole_id', auth()->user()->id)->get();
-        dd($inscriptions);
+        //dd($inscriptions);
         $ecolages=Ecolage::where('mois', $id)->get();
         return response()->json($ecolages);
     }
