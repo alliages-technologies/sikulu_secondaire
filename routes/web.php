@@ -184,7 +184,9 @@ Route::prefix('responsablefinances')
 ->namespace('Responsablefinances')
 ->name('responsablefinances.')
 ->group(function(){
-    // Ecolages
+    /*
+        Gestion des frais d'écolage
+    */
     Route::resource('/ecolages', 'EcolageController');
     Route::get('/ecolages-salle-select', 'EcolageController@salleSelect');
     Route::get('/ecolages-eleve-infos-show/{id}', 'EcolageController@eleveShowById');
@@ -192,9 +194,15 @@ Route::prefix('responsablefinances')
     Route::get('/ecolages-historique-paiements', 'EcolageController@historiquePaiements')->name('historique.paiements');
     Route::get('/ecolages-historique-salle/{token}', 'EcolageController@historiqueSalle')->name('historique.salle');
     Route::get('/ecolages-historique-paiements-eleve/{token}', 'EcolageController@historiquePaiementsEleve')->name('historique.piements.eleve');
-        //historique global
+    //Historique global
     Route::get('/ecolages-historique-paiements-global', 'EcolageController@historiqueEcolageGlobal')->name('historique.ecolages.global');
-    Route::get('/ecolages-historique-find-salle', 'EcolageController@findSalle');
+    Route::get('/ecolages-historique-find-salle/{id}', 'EcolageController@findEcolagesInscriptionsBySalle');
+    Route::get('/ecolages-historique-eleve/{id}', 'EcolageController@historiqueEleve');
+    Route::get('/ecolages-historique-find-month/{id}', 'EcolageController@findEcolagesByMonth');
+    /*
+        Fin de la gestion des frais d'écolage
+    */
+
     // Dépenses
     Route::get('/depenses-categories', 'FinanceController@depensesCategories')->name('depenses.index');
     Route::post('/depenses-categorie-store', 'FinanceController@depenseCategorieStore')->name('depenses.categorie.store');

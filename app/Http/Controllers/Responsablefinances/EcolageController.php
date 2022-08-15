@@ -101,13 +101,23 @@ class EcolageController extends Controller
         return view('ResponsableFinances.Finances.Ecolages.allhistorique')->with(compact('paiements', 'salles', 'mois'));
     }
 
-    public function findSalle(Request $request){
-        $salle=$request->salle;
-        $inscriptions=Inscription::where('salle_id', $salle)->get();
-        dd($salle);
+    public function findEcolagesInscriptionsBySalle($id){
+        $inscriptions=Inscription::where('salle_id', $id)->get();
         return response()->json($inscriptions);
     }
 
+    public function historiqueEleve($id){
+        $ecolages=Ecolage::where('inscription_id', $id)->get();
+        //dd($ecolages);
+        return response()->json($ecolages);
+    }
+
+    public function findEcolagesByMonth($id){
+        $inscriptions=Inscription::where('ecole_id', auth()->user()->id)->get();
+        dd($inscriptions);
+        $ecolages=Ecolage::where('mois', $id)->get();
+        return response()->json($ecolages);
+    }
     /*
     Fin des historiques des paiements
     */
