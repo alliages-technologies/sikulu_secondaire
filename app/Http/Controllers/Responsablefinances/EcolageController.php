@@ -43,6 +43,7 @@ class EcolageController extends Controller
         if($ecolage == null){
             $ecolage = new Ecolage();
             $ecolage->inscription_id=$id;
+            $ecolage->ecole_id=auth()->user()->ecole_id;
             $ecolage->montant=$montant;
             $ecolage->mois=$mois;
             $ecolage->semaine=date('W');
@@ -50,6 +51,7 @@ class EcolageController extends Controller
             $ecolage->save();
         }else{
             $ecolage->inscription_id=$id;
+            $ecolage->ecole_id=auth()->user()->ecole_id;
             $ecolage->montant=$montant;
             $ecolage->mois=$mois;
             $ecolage->semaine=date('W');
@@ -63,9 +65,9 @@ class EcolageController extends Controller
         $suivi->paiement_id=$ecolage->id;
         $suivi->type="ECOLAGE";
         $suivi->ecole_id=$ecole;
-        $suivi->semaine = $ecolage->semaine;
-        $suivi->mois = $ecolage->mois;
-        $suivi->annee = $ecolage->annee;
+        $suivi->semaine = date('W');
+        $suivi->mois = date('n');
+        $suivi->annee = date('Y');
         $suivi->token = sha1((date('ymdhisW'))."A-suiviEcolage-x".(date('ymdhisW')));
         $suivi->save();
 
@@ -95,10 +97,10 @@ class EcolageController extends Controller
 
     public function historiqueEcolageGlobal(){
         $ecole=auth()->user()->ecole_id;
-        $paiements=SuiviPaiement::where('ecole_id', $ecole)->where('type', "ECOLAGE")->orderBy('created_at', 'DESC')->paginate(15);
+        //$paiements=SuiviPaiement::where('ecole_id', $ecole)->where('type', "ECOLAGE")->orderBy('created_at', 'DESC')->paginate(15);
         $salles = Salle::where('ecole_id', $ecole)->get();
         $mois = Moi::all();
-        return view('ResponsableFinances.Finances.Ecolages.allhistorique')->with(compact('paiements', 'salles', 'mois'));
+        return view('ResponsableFinances.Finances.Ecolages.allhistorique')->with(compact('salles', 'mois'));
     }
 
     public function findEcolagesInscriptionsBySalle($id){
@@ -112,9 +114,7 @@ class EcolageController extends Controller
     }
 
     public function findEcolagesByMonth($id){
-        $inscriptions=Inscription::where('ecole_id', auth()->user()->id)->get();
-        //dd($inscriptions);
-        $ecolages=Ecolage::where('mois', $id)->get();
+        $ecolages=Ecolage::where('mois', $id)->where('ecole_id', auth()->user()->ecole_id)->get();
         return response()->json($ecolages);
     }
     /*

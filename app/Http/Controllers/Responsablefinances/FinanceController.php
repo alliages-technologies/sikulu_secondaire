@@ -65,9 +65,9 @@ class FinanceController extends Controller
         $suivi->paiement_id=$depense->id;
         $suivi->type="DEPENSE";
         $suivi->ecole_id=$ecole;
-        $suivi->semaine = $depense->semaine;
-        $suivi->mois = $depense->mois;
-        $suivi->annee = $depense->annee;
+        $suivi->semaine = date('W');
+        $suivi->mois = date('n');
+        $suivi->annee = date('Y');
         $suivi->token = sha1((date('ymdhisW'))."A-suiviDepense-x".(date('ymdhisW')));
         $suivi->save();
 
@@ -127,9 +127,9 @@ class FinanceController extends Controller
         $suivi->paiement_id=$entree->id;
         $suivi->type="AUTRE ENTREE";
         $suivi->ecole_id=$ecole;
-        $suivi->semaine = $entree->semaine;
-        $suivi->mois = $entree->mois;
-        $suivi->annee = $entree->annee;
+        $suivi->semaine = date('W');
+        $suivi->mois = date('n');
+        $suivi->annee = date('Y');
         $suivi->token = sha1((date('ymdhisW'))."A-suiviEntree-x".(date('ymdhisW')));
         $suivi->save();
 

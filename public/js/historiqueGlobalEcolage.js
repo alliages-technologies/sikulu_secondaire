@@ -45,7 +45,7 @@ $("#salle_id").change(function (e) {
     });
 });
 
-//note: récupérer les inscriptions d'une ecole en particulier
+//ajouter la colonne ecole_id dans la table ecolages
 $('#month').change(function (e) {
     e.preventDefault();
     var monthId = $(this).val();
