@@ -11,7 +11,7 @@ Profil Professeur | {{$prof->nom.' '.$prof->prenom}}
     <div class="card">
         <div class="card-header">
             <h2>
-                <span class="badge badge-info"> <i class="fa fa-user"></i> {{$prof->nom.' '.$prof->prenom}}</span>
+                <i class="fa fa-user-circle"></i>
                 <!--a href="#" style="float: right;"><i class="fa fa-edit btn btn-default"></i></a-->
             </h2>
         </div>
