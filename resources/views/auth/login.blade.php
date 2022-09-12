@@ -17,7 +17,7 @@
         color: #000;
         overflow-x: hidden;
         height: 100%;
-        background-color: #B0BEC5;
+        background-color: #eceff0;
         background-repeat: no-repeat
     }
 
@@ -48,7 +48,7 @@
     }
 
     .facebook {
-        background-color: #3b5998;
+        background-color: #007bff;
         color: #fff;
         font-size: 18px;
         padding-top: 5px;
@@ -59,7 +59,7 @@
     }
 
     .twitter {
-        background-color: #1DA1F2;
+        background-color: #007bff;
         color: #fff;
         font-size: 18px;
         padding-top: 5px;
@@ -70,7 +70,7 @@
     }
 
     .linkedin {
-        background-color: #2867B2;
+        background-color: #007bff;
         color: #fff;
         font-size: 18px;
         padding-top: 5px;
@@ -131,7 +131,7 @@
         -moz-box-shadow: none !important;
         -webkit-box-shadow: none !important;
         box-shadow: none !important;
-        border: 1px solid #304FFE;
+        border: 1px solid #007bff;
         outline-width: 0
     }
 
@@ -148,21 +148,21 @@
     }
 
     .btn-blue {
-        background-color: #1A237E;
+        background-color: #007bff;
         width: 150px;
         color: #fff;
         border-radius: 2px
     }
 
     .btn-blue:hover {
-        background-color: #000;
+        background-color: #1077e5;
         color: #fff;
         cursor: pointer
     }
 
     .bg-blue {
         color: #fff;
-        background-color: #1A237E
+        background-color: #0956a9;
     }
 
     @media screen and (max-width: 991px) {

@@ -1,4 +1,4 @@
-@extends('layouts.form')
+@extends('layouts.adminecole')
 
 
 @section('title')
@@ -81,6 +81,4 @@ Admin Ecole | Programme
         </div>
     </div>
 </div>
-
-<script src="{{ asset('js/programmeecole.js') }}"></script>
 @endsection
