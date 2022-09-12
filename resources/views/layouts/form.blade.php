@@ -21,15 +21,15 @@
 
 <style>
     .card-header{
-        background-color: darkblue;
+        background-color: #007bff;
         color: white;
     }
     .btn-default{
-        background-color: darkblue;
+        background-color: #007bff;
         color: white;
     }
     .btn-default:hover{
-        background-color: rgb(13, 13, 95);
+        background-color: #007bff;
         color: white;
     }
     h4{

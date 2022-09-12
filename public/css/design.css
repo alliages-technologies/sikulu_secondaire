@@ -8,20 +8,20 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: darkblue;
+    color: #007bff;
     border-radius: 10px;
     box-shadow: 0px 0px 4px -1px black;
 }
 .menu a:hover{
     text-decoration: none;
     color: white;
-    background-color: darkblue;
+    background-color: #007bff;
     transition: 0.9s;
 }
 .menu i{
     font-size: 24px;
 }
 .bgb{
-    background-color: darkblue;
+    background-color: #007bff;
 }
 
