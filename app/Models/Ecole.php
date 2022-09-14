@@ -16,4 +16,5 @@ class Ecole extends Model
     public function user(){
         return $this->hasOne('App\User', 'ecole_id');
     }
+
 }

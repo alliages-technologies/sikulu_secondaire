@@ -1,11 +1,11 @@
-@extends('layouts.form')
+@extends('layouts.prof')
 
 
 @section('content')
 @csrf
 <input type="hidden" class="ligne_ecole_programme_id" value="{{ $ligne_programme_ecole }}" name="ligne_ecole_programme_id">
 
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
     <div class="card">
         <div class="card-header">
             <h2>SAISIE DES NOTES DE LA <strong>{{$salle->classe->name}}</strong> </h2>
@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <select name="" id="" class="form-control trimestre_id">
                 <option value="">Sélectionner le trimestre pour enregistrer les notes saisies</option>
                 @foreach ($trimestre_ecoles as $trimestre_ecole)
@@ -40,9 +40,8 @@
                 @endforeach
             </select>
         </div>
-        <button class="btn btn-default btn-save float-right"><i class="fa fa-save"></i> ENREGISTRER</button>
     </div>
+    <button class="btn btn-default btn-save float-right mt-2"><i class="fa fa-save"></i> ENREGISTRER</button>
 </div>
 
-<script src="{{ asset('js/note.js') }}"></script>
 @endsection

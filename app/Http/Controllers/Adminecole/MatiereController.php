@@ -19,12 +19,21 @@ class MatiereController extends Controller
 
     public function store(Request $request)
     {
+        $matiere = Matiere::where('name','like',request()->name)->where('abv','like',request()->abv)->first();
+    //dd($matiere);
+    if ($matiere) {
+        request()->session()->flash('info',' Existant dans la liste !!!');
+        return redirect()->back();
+    }
+    else {
         $matiere = new Matiere();
         $matiere->name = $request->name;
         $matiere->abv = $request->abv;
         $matiere->ecole_id = Auth::user()->ecole_id;
         $matiere->save();
         return redirect()->back();
+    }
+
     }
 
     public function on($id){

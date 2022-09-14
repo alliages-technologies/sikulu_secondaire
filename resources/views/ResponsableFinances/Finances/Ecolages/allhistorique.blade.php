@@ -1,4 +1,4 @@
-@extends('layouts.form')
+@extends('layouts.responsablefinances')
 
 
 @section('title')
@@ -17,7 +17,7 @@ Responsable Finances | Historique global ecolage
                     <select name="salle_id" id="salle_id" class="form-control" required>
                         <option>SELECTIONNEZ LA SALLE DE CLASSE</option>
                         @foreach ($salles as $salle)
-                        <option value="{{$salle->id}}">{{$salle->name}}</option>
+                        <option value="{{$salle->id}}">{{$salle->name}} ({{$salle->classe->name}}) </option>
                         @endforeach
                     </select>
                 </div>

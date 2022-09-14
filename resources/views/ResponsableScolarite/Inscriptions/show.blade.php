@@ -1,4 +1,4 @@
-@extends('layouts.form')
+@extends('layouts.responsablescolarite')
 
 @section('title')
 Responsable Scolarité | Eleve
@@ -117,21 +117,6 @@ Responsable Scolarité | Eleve
         </section>
     </div>
 </div>
-
-
-<script>
-    $(document).ready(function () {
-
-        //$('#card-body').hide();
-        $('#btn-modifier').click(function (e) {
-            e.preventDefault();
-            var h5 = '';
-            //$('#h5').html("");
-            //$('#h5').append(h5);
-            $('#card-body').toggle(900);
-        });
-    });
-</script>
 
 
 @endsection

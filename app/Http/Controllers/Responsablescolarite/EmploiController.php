@@ -18,8 +18,8 @@ class EmploiController extends Controller
 
     public function index($token)
     {
-        $days=Day::all();
-        $salle = Salle::where('token', $token)->first();
+        $days = Day::all();
+        $salle = Salle::where('ecole_id',Auth::user()->ecole_id)->where('token', $token)->first();
         $id = $salle->id;
         $emploie_temps = EmploieTemp::where('salle_id', $id)->get();
         $tranches = TrancheHoraire::where('ecole_id', Auth::user()->ecole_id)->get();
@@ -45,7 +45,9 @@ class EmploiController extends Controller
         $emploi_temp = new EmploieTemp();
         $emploi_temp->name = 'EMP-TEMP'.date('YmdHmis').date('is');
         $emploi_temp->salle_id = $request->salle_id;
+        $emploi_temp->ecole_id = Auth::user()->ecole_id;
         $emploi_temp->token = sha1(date('YmdHisW')."Ax".date('WsiHdmY'));
+        //dd($emploi_temp);
         $emploi_temp->save();
         for ($i=0; $i < count($lignes) ; $i++) {
             $day_id = $lignes[$i]['day_id'];

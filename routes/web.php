@@ -3,16 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 Route::get('/', function () {
     return redirect('/login');
@@ -218,6 +209,7 @@ Route::prefix('responsablefinances')
     // Suivi des paiements
     Route::get('/suivi-paiements', 'SuiviController@index')->name('suivi.index');
     Route::post('/suivi-paiements-search', 'SuiviController@search')->name('suivi.search');
+    Route::get('/ecolages/facture/paiement','EcolageController@facture')->name('ecolages.facture');
 });
 
 
@@ -244,6 +236,8 @@ Route::prefix('responsablescolarite')
     Route::resource('/emploistemps', 'EmploiController');
     Route::get('/emplois-du-temps/{token}', 'EmploiController@index')->name('emploistemps.index');
     Route::get('/emplois-du-temps-salles-menu', 'EmploiController@menu')->name('emploistemps.salles.menu');
+    Route::resource('/diplomes', 'DiplomeController');
+    Route::get('/inscription-auto', 'InscriptionController@inscriptionAuto')->name('inscription.auto');
 });
 
 

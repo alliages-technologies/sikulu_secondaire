@@ -19,7 +19,7 @@ Profil Professeur | {{$prof->nom.' '.$prof->prenom}}
             <div class="mb-3">
                 <img style="height: 200px; width: 200px;" src="{{asset($prof->image)}}" alt="">
             </div>
-            <p>
+            <p class="">
                 Nom(s): <strong>{{$prof->nom}}</strong> <br>
                 Prénom(s): <strong>{{$prof->prenom}}</strong> <br>
                 Date & lieu de naissance: <strong>{{$prof->date_naiss}} à {{$prof->lieu_naiss}}</strong> <br>

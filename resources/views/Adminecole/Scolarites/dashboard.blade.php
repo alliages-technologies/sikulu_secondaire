@@ -23,7 +23,7 @@ Admin Ecole | {{ $trimestre_ecole->trimestre->name }}
                         <p>Relevés de notes</p>
                     </a>
                     @csrf
-                    <a href="" class="col-md-3 m-2 btn-save">
+                    <a href="" data-toggle="modal" data-target="#exampleModal" class="col-md-3 m-2">
                         <i class="fa fa-power-off"></i>
                         <p>Géneration des Relevés de notes</p>
                     </a>
@@ -32,6 +32,27 @@ Admin Ecole | {{ $trimestre_ecole->trimestre->name }}
         </div>
     </div>
 </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="font-size: 20px;text-align: center;font-family: system-ui;">
+            Voulez vous vraiment génerer les releves de notes ??? Car cette action est irréversible <i style="color: #b5b528" class="fa fa-exclamation-triangle"></i> !!!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">NON</button>
+          <button type="button" class="btn btn-success btn-save">OUI <i class="fa fa-save"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <script src="{{ asset('js/generation.js') }}"></script>
 @endsection

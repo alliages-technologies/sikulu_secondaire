@@ -22,6 +22,7 @@ class NoteController extends Controller
         $annee_acad = AnneeAcad::where('actif', 1)->first();
         $prof = Prof::where('user_id',Auth::user()->id)->first();
         $ligne_programme_ecoles = ProgrammeEcoleLigne::where('enseignant_id',$prof->id)->where('annee_id',$annee_acad->id)->get();
+        //dd($ligne_programme_ecoles);
         return view('Prof.Notes.index')->with(compact('ligne_programme_ecoles'));
     }
 
@@ -45,6 +46,10 @@ class NoteController extends Controller
         $ligne_ecole_programme_id = $request->ligne_ecole_programme_id;
         $token = $request->_token;
         $trimestre_id = $request->trimestre_id;
+        $note = Note::where('annee_id',$annee->id)->where('trimestre_id',$request->trimestre_id)->where('inscription_id',$lignes[0]["inscription_id"])->first();
+        if ($note) {
+            dd($note);
+        }
         for ($i=0; $i < count($lignes); $i++) {
             $note = new Note();
             $note->inscription_id = $lignes[$i]["inscription_id"];
@@ -68,35 +73,19 @@ class NoteController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //

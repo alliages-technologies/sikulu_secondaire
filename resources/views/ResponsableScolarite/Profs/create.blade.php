@@ -1,4 +1,4 @@
-@extends('layouts.form')
+@extends('layouts.responsablescolarite')
 
 
 @section('title')
@@ -69,7 +69,7 @@ Responsable Scolarité | Configuration Professeur
                         </div>
                         <div class="form-row mt-1">
                             <div class="col">
-                                <label for="">Adrese</label>
+                                <label for="">Adresse</label>
                                 <input type="text" id="" name="adresse" class="form-control col-md adresse" required>
                             </div>
                         </div>

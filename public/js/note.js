@@ -47,7 +47,7 @@ $(".trimestre_id").change(function (e) {
                     window.location.replace("/profs/notes");
                 },
                 error: function () {
-                    alert('Erreur au niveau du serveur !!!');
+                    alert('Désolé, vous ne pouvez plus noter cet élêve car il (elle) a déjà été noté pour cette composition !!!');
                 }
             });
         });

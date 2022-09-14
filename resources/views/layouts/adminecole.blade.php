@@ -127,14 +127,6 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('adminecole.programmes-ecole.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-building"></i>
-              <p>
-                Programme Scolaire
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-gear"></i>
               <p>
@@ -143,22 +135,22 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('adminecole.matieres.index') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Matières</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('adminecole.salles.index') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Salles</p>
+                  </a>
+                </li>
               <li class="nav-item">
                 <a href="{{ route('adminecole.cours.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cours</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('adminecole.matieres.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Matières</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('adminecole.salles.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Salles</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -180,6 +172,14 @@
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('adminecole.programmes-ecole.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-building"></i>
+              <p>
+                Programme Scolaire
+              </p>
+            </a>
           </li>
           <li class="nav-item">
             <a href="{{ route('adminecole.scolarite.menu') }}" class="nav-link">
@@ -245,6 +245,8 @@
 <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
 <script src="{{asset('js/bootstrap.js')}}"></script>
 <script src="{{ asset('js/programmeecole.js') }}"></script>
+<script src="{{ asset('js/generation.js') }}"></script>
+<script src="{{ asset('js/releve.js') }}"></script>
 
 <!-- jQuery -->
 <script src="{{asset('adminLTE/plugins/jquery/jquery.min.js')}}"></script>

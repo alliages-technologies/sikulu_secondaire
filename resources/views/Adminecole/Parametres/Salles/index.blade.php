@@ -20,6 +20,7 @@ Admin Ecole | Salles
                     <th>SALLE</th>
                     <th>CLASSE</th>
                     <th>PLACES</th>
+                    <th>MONTANT</th>
                 </thead>
                 <tbody>
                     @foreach($salles as $salle)
@@ -27,6 +28,7 @@ Admin Ecole | Salles
                         <td> {{$salle->name}} </td>
                         <td> {{$salle->classe->name}} </td>
                         <td> {{$salle->nombre_places}} </td>
+                        <td> {{$salle->montant}} XAF </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -61,21 +63,24 @@ Admin Ecole | Salles
                                 </div>
                             </div>
                             <div class="form-row mt-2">
-                                <div class="col">
+                                <div class="col-md-6">
                                     <input type="number" class="form-control" placeholder="Nombre de places..." name="nombre_places" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" class="form-control" placeholder="Montant..." name="montant" required>
                                 </div>
                             </div>
                             <div class="form-row mt-2">
                                 <div class="col">
                                     <select name="classe_id" id="" class="form-control">
                                         <option value="">Choix de la classe</option>
-                                        @foreach ($classes as $classe)
-                                        <option value="{{ $classe->id }}">{{ $classe->name }}</option>
+                                        @foreach ($pns as $pn)
+                                        <option value="{{ $pn->classe->id }}">{{ $pn->classe->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <button class="btn btn-default mt-3">ENREGISTRER </button>
+                            <button class="btn btn-default mt-3">ENREGISTRER <i class="fa fa-save"></i> </button>
                         </form>
                     </div>
                 </div>

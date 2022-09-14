@@ -17,6 +17,7 @@ class CourController extends Controller
     public function index()
     {
         $programmeecoles = ProgrammeEcole::where('ecole_id',Auth::user()->ecole_id)->get();
+        //dd($programmeecoles);
         return view('Adminecole.Parametres.Cours.index')->with(compact('programmeecoles'));
     }
 
@@ -63,12 +64,7 @@ class CourController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //

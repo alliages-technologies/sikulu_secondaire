@@ -54,7 +54,8 @@ $("#btn-save").click(function (e) {
             window.location.reload();
         },
         error: function() {
-            alert('Une erreur est survenue sur le serveur !!!!')
+            alert('Progamme existant !!!!');
+            window.location.reload();
         }
     });
 });

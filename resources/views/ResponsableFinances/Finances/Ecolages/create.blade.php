@@ -1,4 +1,4 @@
-@extends('layouts.form')
+@extends('layouts.responsablefinances')
 
 
 @section('title')
@@ -22,7 +22,7 @@ Responsable Finances | Paiement Ecolage
                     <select name="selectSalle" id="selectSalle" class="form-control" required>
                         <option value="">SELECTIONNEZ LA SALLE DE CLASSE</option>
                         @foreach ($salles as $salle)
-                        <option value="{{$salle->id}}">{{$salle->name}}</option>
+                        <option value="{{$salle->id}}">{{$salle->name}} ({{$salle->classe->name}})</option>
                         @endforeach
                     </select>
                 </div>

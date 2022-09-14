@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Responsablefinances;
 
 use App\Http\Controllers\Controller;
+use App\Models\AnneeAcad;
 use Illuminate\Http\Request;
 use App\Models\Salle;
 use App\Models\Inscription;
 use App\Models\Moi;
 use App\Models\Ecolage;
 use App\Models\SuiviPaiement;
+use Illuminate\Support\Facades\Auth;
 
 class EcolageController extends Controller
 {
@@ -35,28 +37,26 @@ class EcolageController extends Controller
     }
 
     public function elevePaiementStore(){
+        $annee = AnneeAcad::where('actif',1)->first();
         $id=request()->inscription_id;
         $montant=request()->montant;
         $mois=request()->mois;
+        $inscription = Inscription::find($id);
 
-        $ecolage = Ecolage::find(1)->where('inscription_id', $id)->where('mois', $mois)->first();
+        $ecolage = Ecolage::where('ecole_id', Auth::user()->ecole_id)->where('inscription_id', $id)->where('mois', $mois)->first();
         if($ecolage == null){
             $ecolage = new Ecolage();
             $ecolage->inscription_id=$id;
+            $ecolage->salle_id = $inscription->salle_id;
             $ecolage->ecole_id=auth()->user()->ecole_id;
             $ecolage->montant=$montant;
-            $ecolage->mois=$mois;
+            $ecolage->moi_id = date('m');
+            $ecolage->mois = $mois;
             $ecolage->semaine=date('W');
-            $ecolage->annee=date('Y');
+            $ecolage->annee = $annee->id;
             $ecolage->save();
         }else{
-            $ecolage->inscription_id=$id;
-            $ecolage->ecole_id=auth()->user()->ecole_id;
-            $ecolage->montant=$montant;
-            $ecolage->mois=$mois;
-            $ecolage->semaine=date('W');
-            $ecolage->annee=date('Y');
-            $ecolage->update();
+            dd("ok");
         }
 
         $ecole=auth()->user()->ecole_id;
@@ -66,12 +66,26 @@ class EcolageController extends Controller
         $suivi->type="ECOLAGE";
         $suivi->ecole_id=$ecole;
         $suivi->semaine = date('W');
-        $suivi->mois = date('n');
+        $suivi->mois = date('m');
         $suivi->annee = date('Y');
         $suivi->token = sha1((date('ymdhisW'))."A-suiviEcolage-x".(date('ymdhisW')));
         $suivi->save();
 
-        return response()->json("PAIEMENT REUSSI");
+        return response()->json($ecolage);
+    }
+
+    public function facture(){
+        $ecolage = Ecolage::where('ecole_id',Auth::user()->ecole_id)->orderBy('id','desc')->first();
+        $ecolages = Ecolage::where('ecole_id',Auth::user()->ecole_id)->where('inscription_id',$ecolage->inscription_id)->get();
+        $mois = Moi::where('id',$ecolage->mois)->first();
+        //dd($ecolage->inscription->eleve);
+        $totalverse = $ecolages->reduce(function ($carry, $item) {
+            return $carry + $item->montant;
+        });
+        $totalannuel = $ecolage->salle->montant * 9;
+        $reste_a_payer = $totalannuel-$totalverse;
+        //dd($totalverse);
+        return view('Responsablefinances.Finances.Ecolages.facture')->with(compact('ecolage','totalverse','totalannuel','reste_a_payer','mois'));
     }
 
     /*

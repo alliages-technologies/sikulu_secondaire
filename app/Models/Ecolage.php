@@ -31,4 +31,12 @@ class Ecolage extends Model
     public function suivis(){
         return $this->hasMany('App\Models\SuiviPaiement', 'paiement_id');
     }
+
+    public function salle(){
+        return $this->belongsTo('App\Models\Salle','salle_id');
+    }
+
+    public function ecole(){
+        return $this->belongsTo('App\Models\Ecole','ecole_id');
+    }
 }

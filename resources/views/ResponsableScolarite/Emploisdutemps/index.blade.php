@@ -1,5 +1,4 @@
-@extends('layouts.form')
-
+@extends('layouts.responsablescolarite')
 
 @section('title')
 Responsable Scolarité | Horaires Salle
@@ -101,7 +100,7 @@ Responsable Scolarité | Horaires Salle
                             </table>
                         </div>
                     </div>
-                    <button class="btn btn-default mt-2 btn-save" id="btn-save">ENREGISTRER</button>
+                    <button class="btn btn-success mt-2 btn-save" id="btn-save">ENREGISTRER</button>
                 </form>
             </div>
         </div>

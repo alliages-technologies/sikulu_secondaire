@@ -6,6 +6,7 @@ Responsable Scolarité | Inscriptions
 @endsection
 
 @section('content')
+{{-- <a href="/responsablescolarite/inscription-auto" class="btn btn-success"></a> --}}
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
@@ -15,7 +16,7 @@ Responsable Scolarité | Inscriptions
             </h2>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped table-hover table-sm">
+            <table class="table table-bordered table-striped table-hover table-sm mb-3">
                 <thead class="">
                     <th> DATE </th>
                     <th> CLASSE </th>

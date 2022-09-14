@@ -31,12 +31,18 @@ class ParametreController extends Controller
         return view('Superadmin.Parametres.Enseignements.index')->with(compact('enseignements'));
     }
 
-    public function enseignementStore(){
-        $enseignement=new TypeEnseignement();
-        $enseignement->name=request()->name;
-        dd($enseignement);
-        $enseignement->save();
-        return redirect()->back();
+    public function enseignementStore(Request $request){
+        $enseignement = TypeEnseignement::where('name','like',request()->name)->first();
+        if ($enseignement) {
+            $request->session()->flash('info',' Existant dans la liste !!!');
+            return redirect()->back();
+        }
+        else {
+            $enseignement=new TypeEnseignement();
+            $enseignement->name=request()->name;
+            $enseignement->save();
+            return redirect()->back();
+        }
     }
 
     /*
@@ -48,12 +54,18 @@ class ParametreController extends Controller
         return view('Superadmin.Parametres.Series.index')->with(compact('series', 'enseignements'));
     }
     public function serieStore(){
-        $serie=new Serie();
-        $serie->name=request()->name;
-        //$serie->abb=request()->abb;
-        $serie->enseignement_id=request()->enseignement_id;
-        $serie->save();
-        return redirect()->back();
+        $serie = Serie::where('name','like',request()->name)->where('enseignement_id',request()->enseignement_id)->first();
+        if ($serie) {
+            request()->session()->flash('info',' Existant dans la liste !!!');
+            return redirect()->back();
+        }
+        else {
+            $serie=new Serie();
+            $serie->name = request()->name;
+            $serie->enseignement_id = request()->enseignement_id;
+            $serie->save();
+            return redirect()->back();
+        }
     }
 
     /*
@@ -65,12 +77,19 @@ class ParametreController extends Controller
     }
 
     public function niveauStore(){
-        $niveau=new Niveau();
-        $niveau->name=request()->name;
-        $niveau->abb=request()->abb;
-        dd($niveau);
-        $niveau->save();
-        return redirect()->back();
+        $niveau = Niveau::where('name','like',request()->name)->where('abb','like',request()->abb)->first();
+        if ($niveau) {
+            request()->session()->flash('info',' Existant dans la liste !!!');
+            return redirect()->back();
+        }
+        else {
+            $niveau=new Niveau();
+            $niveau->name=request()->name;
+            $niveau->abb=request()->abb;
+            //dd($niveau);
+            $niveau->save();
+            return redirect()->back();
+        }
     }
 
      /*
@@ -85,12 +104,19 @@ class ParametreController extends Controller
     }
 
     public function classeStore(){
-        $classe=new Classe();
-        $classe->serie_id=request()->serie_id;
-        $classe->niveau_id=request()->niveau_id;
-        $classe->enseignement_id=request()->enseignement_id;
-        $classe->save();
-        return redirect()->back();
+        $classe = Classe::where('serie_id',request()->serie_id)->where('enseignement_id',request()->enseignement_id)->where('niveau_id',request()->niveau_id)->first();
+        if ($classe) {
+            request()->session()->flash('info',' Existant dans la liste !!!');
+            return redirect()->back();
+        }
+        else{
+            $classe=new Classe();
+            $classe->serie_id=request()->serie_id;
+            $classe->niveau_id=request()->niveau_id;
+            $classe->enseignement_id=request()->enseignement_id;
+            $classe->save();
+            return redirect()->back();
+        }
     }
 
     /*
@@ -102,12 +128,21 @@ class ParametreController extends Controller
    }
 
    public function matiereStore(){
-       $matiere=new Matiere();
-       $matiere->name=request()->name;
-       $matiere->abv=request()->abv;
-       //$matiere->ecole_id=request()->ecole_id;
-       $matiere->save();
-       return redirect()->back();
+    $matiere = Matiere::where('name',request()->name)->where('abv',request()->abv)->first();
+    //dd($matiere);
+    if ($matiere) {
+        request()->session()->flash('info',' Existant dans la liste !!!');
+        return redirect()->back();
+    }
+    else {
+        $matiere=new Matiere();
+        $matiere->name=request()->name;
+        $matiere->abv=request()->abv;
+        //$matiere->ecole_id=request()->ecole_id;
+        $matiere->save();
+        return redirect()->back();
+    }
+
    }
 
     /*

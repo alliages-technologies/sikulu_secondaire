@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Responsablescolarite;
+namespace App\Http\Controllers\ResponsableScolarite;
 
 use App\Http\Controllers\Controller;
 use App\Models\AnneeAcad;
@@ -14,6 +14,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Faker\Generator as Faker;
 
 class InscriptionController extends Controller
 {
@@ -21,7 +22,7 @@ class InscriptionController extends Controller
     public function index()
     {
         $annee_acad = AnneeAcad::where('actif', 1)->first();
-        $inscriptions = Inscription::where('annee_id', $annee_acad->id)->where('ecole_id', Auth::user()->ecole_id)->orderBy('created_at', 'desc')->paginate(15);
+        $inscriptions = Inscription::where('annee_id', $annee_acad->id)->where('ecole_id', Auth::user()->ecole_id)->orderBy('created_at', 'desc')->paginate(10);
         return view('ResponsableScolarite.Inscriptions.index')->with(compact('inscriptions'));
     }
 
@@ -234,26 +235,56 @@ class InscriptionController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //
     }
+
+    public function inscriptionAuto(Faker $fake){
+        for ($i=0; $i < 10; $i++) {
+        $parent = new User();
+        $parent->name = $fake->lastName;
+        $parent->phone = $fake->phoneNumber;
+        $parent->email = $fake->email;
+        $parent->password = Hash::make('parent');
+        $parent->role_id = 7;
+        $parent->save();
+        $eleve = new Eleve();
+        $eleve->nom = $parent->name;
+        $eleve->prenom = $fake->firstName;
+        $eleve->date_naiss = $fake->date;
+        $eleve->lieu_naiss = $fake->country;
+        $eleve->adresse = $fake->city;
+        $eleve->nom_pere = $fake->lastName;
+        $eleve->tel_pere = $fake->phoneNumber;
+        $eleve->nom_mere = $fake->lastName;
+        $eleve->tel_mere = $fake->phoneNumber;
+        $eleve->nom_tuteur = $parent->name;
+        $eleve->tel_tuteur = $parent->phone;
+        $eleve->save();
+        $inscription = new Inscription();
+        $inscription->eleve_id = $eleve->id;
+        $inscription->user_id = Auth::user()->id;
+        $inscription->montant_inscri = 15000;
+        $inscription->montant_frais = 0;
+        $inscription->annee_id = 1;
+        $inscription->moi_id = date('m');
+        $inscription->semaine_id = date('w');
+        $inscription->token = sha1("Token".date('Ymdhis').date('Ymdhis'));
+        $inscription->classe_id = 6;
+        $inscription->salle_id = 3;
+        $inscription->ecole_id = Auth::user()->ecole_id;
+        //dd($inscription);
+        $inscription->save();
+    }
+        return redirect()->back();
+    }
+
 }

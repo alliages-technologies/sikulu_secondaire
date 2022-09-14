@@ -25,7 +25,7 @@ Responsable Finances | Historique des paiements de la salle
                     @foreach ($inscriptions as $inscription)
                     <tr>
                         <td> <a href="{{route('responsablefinances.historique.piements.eleve', $inscription->token)}}">{{$inscription->eleve->name}}</a> </td>
-                        <td>{{$inscription->montant_frais}} XAF</td>
+                        <td>{{$inscription->montant_inscri}} XAF</td>
                         <td>{{$inscription->ecolages->count()}}</td>
                     </tr>
                     @endforeach

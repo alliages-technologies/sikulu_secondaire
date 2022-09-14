@@ -73,5 +73,8 @@ class Inscription extends Model
         return $this->belongsTo('App\Models\ReleveNote');
     }
 
+    public function ecole(){
+        return $this->belongsTo('App\Models\Ecole','ecole_id');
+    }
 
 }

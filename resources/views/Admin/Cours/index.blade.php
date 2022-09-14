@@ -15,7 +15,7 @@
                 <tbody>
                 @foreach($cours as $cour)
                     <tr>
-                        <td> {{$cour->matiere->name}} </td>
+                        <td> {{$cour->matiere_id?$cour->matiere->name:""}} </td>
                         <td> {{$cour->classe_id?$cour->classe->name:""}} {{$cour->classe->serie->name}} </td>
                         <td> {{$cour->coefficient}} </td>
                     </tr>

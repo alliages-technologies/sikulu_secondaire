@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Superadmin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AnneeAcad;
 use App\Models\Classe;
 use App\Models\Matiere;
 use App\Models\ProgrammeNational;
@@ -30,26 +31,35 @@ class ProgrammenationalController extends Controller
 
     public function store(Request $request)
     {
-        $lignes = $request->lignes;
-        $classe = $request->classe_id;
-        $enseignement = $request->enseignement_id;
-
-        $programmenational = new ProgrammeNational();
-        $programmenational->classe_id = $classe;
-        $programmenational->enseignement_id = $enseignement;
-        $programmenational->annee_id = date('Y');
-        $programmenational->save();
-
-        for ($i=0; $i < count($lignes) ; $i++) {
-            $matiere = $lignes[$i]['matiere_id'];
-            $coef = $lignes[$i]['coef'];
-            $ligne_programmenational = new ProgrammeNationalLigne();
-            $ligne_programmenational->matiere_id = $matiere;
-            $ligne_programmenational->coefficient = $coef;
-            $ligne_programmenational->national_programme_id = $programmenational->id;
-            $ligne_programmenational->save();
+        $annee = AnneeAcad::where('actif',1)->first();
+        $programmenational = ProgrammeNational::where('classe_id',$request->classe_id)->where('enseignement_id',$request->enseignement_id)->first();
+        //dd($programmenational);
+        if ($programmenational) {
+            request()->session()->flash('info',' Existant dans la liste !!!');
+            return redirect()->back();
         }
-        return response()->json('OK');
+        else {
+            $lignes = $request->lignes;
+            $classe = $request->classe_id;
+            $enseignement = $request->enseignement_id;
+
+            $programmenational = new ProgrammeNational();
+            $programmenational->classe_id = $classe;
+            $programmenational->enseignement_id = $enseignement;
+            $programmenational->annee_id = $annee->id;
+            $programmenational->save();
+
+            for ($i=0; $i < count($lignes) ; $i++) {
+                $matiere = $lignes[$i]['matiere_id'];
+                $coef = $lignes[$i]['coef'];
+                $ligne_programmenational = new ProgrammeNationalLigne();
+                $ligne_programmenational->matiere_id = $matiere;
+                $ligne_programmenational->coefficient = $coef;
+                $ligne_programmenational->national_programme_id = $programmenational->id;
+                $ligne_programmenational->save();
+            }
+            return response()->json('OK');
+        }
     }
 
 

@@ -65,7 +65,7 @@ $("#selectSalle").change(function (e) {
                                     dataType: "json",
                                     success: function (response) {
                                         alert("PAIEMENT EFFECTUE AVEC SUCCES");
-                                        window.location.replace("/responsablefinances/ecolages");
+                                        window.location.replace("/responsablefinances/ecolages/facture/paiement");
                                     }
                                 });
                             });

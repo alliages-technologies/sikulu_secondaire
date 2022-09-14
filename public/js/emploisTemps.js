@@ -3,6 +3,7 @@
 
 $(".btn-add").click(function (e) {
     e.preventDefault();
+    $('#btn-save').show();
     //Selection du jour
     $(".day_id :selected").each(function (){
         $day = $(this).data('day');
