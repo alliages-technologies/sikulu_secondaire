@@ -46,7 +46,9 @@ class NoteController extends Controller
         $ligne_ecole_programme_id = $request->ligne_ecole_programme_id;
         $token = $request->_token;
         $trimestre_id = $request->trimestre_id;
-        $note = Note::where('annee_id',$annee->id)->where('trimestre_id',$request->trimestre_id)->where('inscription_id',$lignes[0]["inscription_id"])->first();
+        $ligne_ecole_programme = ProgrammeEcoleLigne::find($ligne_ecole_programme_id);
+        $note = Note::where('annee_id',$annee->id)->where('trimestre_id',$request->trimestre_id)->where('inscription_id',$lignes[0]["inscription_id"])->where('ligne_ecole_programme_id',$ligne_ecole_programme->id)->first();
+        //dd($note);
         if ($note) {
             dd($note);
         }
@@ -90,4 +92,16 @@ class NoteController extends Controller
     {
         //
     }
+
+    public function addSalle(){
+        $notes = Note::all();
+        foreach ($notes as $note) {
+            $salle = Note::find($note->id)->inscription->salle_id;
+            $note = Note::find($note->id);
+            $note->salle_id = $salle;
+            $note->save();
+            //dd($note);
+        }
+    }
+
 }

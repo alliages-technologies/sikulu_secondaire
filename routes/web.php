@@ -254,6 +254,7 @@ Route::prefix('profs')
         Route::resource('/emploi_temps', 'EmploiTempController');
         Route::get('/emploi-by-salle/{token}/{ecole}','EmploiTempController@getEmploieBySalle');
         Route::get('/show-emploi-by-salle/{token}/{id}','EmploiTempController@getShowEmploie');
+        Route::get('/add-salle', 'NoteController@addSalle');
 });
 
 // releve : inscription_id, trimestre_id, token, moi, semaine, annee

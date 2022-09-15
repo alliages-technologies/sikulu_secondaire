@@ -168,6 +168,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/deconnexion" class="nav-link">
+              <i class="nav-icon fas fa-power-off" style="color: "></i>
+              <p>
+                Déconnexion
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -206,7 +214,6 @@
 <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
 <script src="{{asset('js/bootstrap.js')}}"></script>
 <script src="{{asset('js/ecolagePaiement.js')}}"></script>
-<script src="{{asset('js/historiqueGlobalEcolage.js')}}"></script>
 
 <!-- jQuery -->
 <script src="{{asset('adminLTE/plugins/jquery/jquery.min.js')}}"></script>

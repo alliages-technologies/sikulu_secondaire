@@ -20,14 +20,9 @@ class ReleveNote extends Model
         return $this->belongsTo('App\Models\Trimestre');
     }
 
-    public function getPositionAttribute(){
-        $releves = ReleveNote::orderBy('moyenne','DESC')->where('annee_id',$this->annee->id)->where('trimestre_id',$this->trimestre->id)->get();
-        $releve = ReleveNote::orderBy('moyenne','DESC')->where('annee_id',$this->annee->id)->where('trimestre_id',$this->trimestre->id)->where('inscription_id',$this->inscription->id)->first();
-        //dd($releves);
-    }
 
    public function getAppreciationAttribute(){
-    
+
     if ($this->moyenne >= 10) {
         return "ADMIS(E)";
     }
@@ -36,5 +31,9 @@ class ReleveNote extends Model
         return "ECHOUE";
     }
 
+   }
+
+   public function ligne_releves(){
+    return $this->hasMany('App\Models\LigneReleveNote','releve_id');
    }
 }

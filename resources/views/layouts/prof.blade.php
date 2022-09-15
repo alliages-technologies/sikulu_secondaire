@@ -133,6 +133,14 @@
               </li>
             @endforeach --}}
             </ul>
+            <li class="nav-item">
+                <a href="/deconnexion" class="nav-link">
+                  <i class="nav-icon fas fa-power-off" style="color: "></i>
+                  <p>
+                    Déconnexion
+                  </p>
+                </a>
+              </li>
           </li>
         </ul>
       </nav>

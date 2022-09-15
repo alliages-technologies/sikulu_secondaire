@@ -75,10 +75,62 @@ Admin Ecole | Programme
                          </select>
                     </div>
                 </div>
-                <button class="btn btn-success mt-2 btn-save" id="btn-save"> <i class="fa fa-save"></i> </button>
+                <button class="btn btn-success mt-2 btn-savep" id="btn-savep"> <i class="fa fa-save"></i> </button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- SCRIPT -->
+<script src="{{asset('js/jquery-3.5.1.js')}}"></script>
+<script src="{{asset('js/bootstrap.js')}}"></script>
+
+<script>
+
+
+$(".btn-edit").click(function (e) {
+    e.preventDefault();
+    var lpe = $(this).data("lpe");
+    //console.log(lpe);
+
+    $.ajax({
+        type: "get",
+        url: "/adminecole/get-lignes-programme-national-by-id/"+lpe,
+        data: {
+            lpe: lpe
+        },
+        dataType: "json",
+        success: function (response) {
+            //console.log(response);
+            $('.table-programme').find('tbody .add-tr').html("");
+            var tr = '<tr class="add-tr"> <td>' +response.matieren + '</td></tr>';
+            $('.table-programme').find('tbody').append(tr);
+
+                $(".profs").change(function (e) {
+                    e.preventDefault();
+                    var prof_id = $(this).val();
+                    $(".btn-savep").click(function (e) {
+                        e.preventDefault();
+                        console.log(prof_id);
+                        $.ajax({
+                            type: "get",
+                            url: "/adminecole/save-prof",
+                            data: {
+                                lpe: lpe,
+                                prof_id: prof_id
+                            },
+                            dataType: "json",
+                            success: function (response) {
+                            window.location.reload();
+
+                            }
+                        });
+                    });
+                });
+        }
+    });
+});
+
+</script>
 @endsection

@@ -53,6 +53,37 @@ Admin Ecole | {{ $trimestre_ecole->trimestre->name }}
       </div>
     </div>
   </div>
+  
+  <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
+  <script src="{{asset('js/bootstrap.js')}}"></script>
+<script>
+    var composition_active = $('.trimestre_active').val();
+    var composition_id = $('.trimestre_id').val();
 
-<script src="{{ asset('js/generation.js') }}"></script>
+    $(".btn-save").click(function (e) {
+        if (composition_active == composition_id) {
+            e.preventDefault();
+                $.ajax({
+                    type: "post",
+                    url: "/adminecole/scolarite/generation-auto-releve",
+                data: {
+                    trimestre_id: $(".trimestre_id").val(),
+                    '_token': $('input[name="_token"]').val()
+                },
+                dataType: "json",
+                success: function (response) {
+                    alert("Géneration éffectuée avec succès !!!");
+                    window.location.reload();
+                },
+                error: function () {
+                    alert('Vous ne pouvez plus génerer les relevés de ce trimestre !!!!');
+                }
+            });
+        }
+        else {
+            alert('Désolé vous ne pouvez pas genérer les relevés de cette composition, car elle n\'est pas active');
+        }
+});
+</script>
+
 @endsection

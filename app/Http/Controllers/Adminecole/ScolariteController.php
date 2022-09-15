@@ -53,10 +53,10 @@ class ScolariteController extends Controller
     public function inscriptionShow($inscription,$ecole,$salle,$trimestre_ecole){
         $annee_acad = AnneeAcad::where('actif', 1)->first();
         $salle = Salle::where('id',$salle)->where('ecole_id',Auth::user()->ecole_id)->first();
-        $inscriptions = Inscription::where('classe_id',$salle->classe_id)->where('salle_id',$salle->id)->get();
+        $inscriptions = Inscription::where('ecole_id',Auth::user()->ecole_id)->where('classe_id',$salle->classe_id)->where('salle_id',$salle->id)->get();
         $inscription = Inscription::find($inscription);
-
-        $notes = Note::where('inscription_id',$inscription->id)->where('trimestre_id',$trimestre_ecole)->get();
+        //dd($inscriptions);
+        /* $notes = Note::where('inscription_id',$inscription->id)->where('trimestre_id',$trimestre_ecole)->get();
         $totaux = $notes->reduce(function ($carry, $item) {
             return $carry + $item->valeur;
         });
@@ -65,18 +65,24 @@ class ScolariteController extends Controller
         }
         else{
             $moyenne = 0;
-        }
-
-        $releve_note = ReleveNote::where('inscription_id',$inscription->id)->where('trimestre_id',$trimestre_ecole)->first();
-        $mavar = ReleveNote::where('annee_id',$annee_acad->id)->where('salle_id',$salle->id)->where('trimestre_id',$trimestre_ecole)->orderBy('moyenne','DESC')->get();
+        } */
+        $tri_ecole = TrimestreEcole::find($trimestre_ecole)->trimestre_id;
+        $releve_note = ReleveNote::where('ecole_id', Auth::user()->ecole_id)->where('inscription_id',$inscription->id)->where('trimestre_id',$tri_ecole)->first();
+        $mavar = ReleveNote::where('ecole_id', Auth::user()->ecole_id)->where('annee_id',$annee_acad->id)->where('salle_id',$salle->id)->where('trimestre_id',$tri_ecole)->orderBy('moyenne','DESC')->get();
         $rang = 0;
-        for ($i=0; $i <$mavar->count() ; $i++) {
+        for ($i = 0; $i < $mavar->count() ; $i++) {
             if ($inscription->id == $mavar[$i]->inscription_id) {
                 $rang = $i+1;
+                //dd($mavar->count());
+            }
+            else {
+                //$rang = 0;
             }
         }
 
-        return view('Adminecole.Scolarites.inscription_show')->with(compact('totaux','moyenne','inscription','inscriptions','releve_note','rang','notes','salle'));
+        $tri = TrimestreEcole::find($trimestre_ecole)->trimestre;
+        //dd($releve_note);
+        return view('Adminecole.Scolarites.inscription_show')->with(compact('tri','annee_acad','inscription','inscriptions','releve_note','rang','salle'));
     }
 
     public function save($inscription,$ecole,$salle,$trimestre_ecole){
@@ -103,8 +109,9 @@ class ScolariteController extends Controller
         $inscriptions = Inscription::where('annee_id', $annee_acad->id)->where('ecole_id',Auth::user()->ecole_id)->get();
         $trimestre_ecole = TrimestreEcole::where('ecole_id',Auth::user()->ecole_id)->where('active',1)->first();
         $notes = Note::where('annee_id', $annee_acad->id)->where('ecole_id', Auth::user()->ecole_id)->where('trimestre_id',request()->trimestre_id)->get();
-        //dd(request()->trimestre_id);
         $releve_traite = ReleveTraite::where('annee_id', $annee_acad->id)->where('trimestre_id',request()->trimestre_id)->first();
+
+        //dd($notes);
 
         if ($releve_traite) {
             dd("Pas de création");
@@ -116,17 +123,19 @@ class ScolariteController extends Controller
             $releve_traite->trimestre_id = request()->trimestre_id;
             $releve_traite->token =  sha1(date('His'));
             $releve_traite->annee_id = $annee_acad->id;
+            $releve_traite->ecole_id = Auth::user()->ecole_id;
             $releve_traite->save();
 
             foreach ($inscriptions as $inscription) {
                 $releve_note = new ReleveNote();
                 $releve_note->inscription_id = $inscription->id;
                 $releve_note->trimestre_id = request()->trimestre_id;
-                $releve_note->salle_id = $inscription->salle->id;
+                $releve_note->salle_id = $inscription->salle_id;
                 $releve_note->token = sha1(date('His'));
                 $releve_note->annee_id = $annee_acad->id;
                 $releve_note->moi_id = date('m');
                 $releve_note->semaine_id = date('W');
+                $releve_note->ecole_id = Auth::user()->ecole_id;
                 $releve_note->save();
 
             $inscription = Inscription::find($releve_note->inscription_id);
@@ -137,6 +146,7 @@ class ScolariteController extends Controller
                 $ligne_releve_note->note_id = $note->id;
                 $ligne_releve_note->valeur = $note->valeur;
                 $ligne_releve_note->coefficient = $note->pel->coefficient;
+                $ligne_releve_note->ecole_id = Auth::user()->ecole_id;
                 //dd($ligne_releve_note);
                 $ligne_releve_note->save();
 
