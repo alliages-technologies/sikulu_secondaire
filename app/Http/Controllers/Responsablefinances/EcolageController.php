@@ -85,7 +85,7 @@ class EcolageController extends Controller
         $totalannuel = $ecolage->salle->montant * 9;
         $reste_a_payer = $totalannuel-$totalverse;
         //dd($totalverse);
-        return view('Responsablefinances.Finances.Ecolages.facture')->with(compact('ecolage','totalverse','totalannuel','reste_a_payer','mois'));
+        return view('ResponsableFinances.Finances.Ecolages.facture')->with(compact('ecolage','totalverse','totalannuel','reste_a_payer','mois'));
     }
 
     /*
