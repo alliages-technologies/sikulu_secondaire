@@ -111,7 +111,8 @@ class ScolariteController extends Controller
         $notes = Note::where('annee_id', $annee_acad->id)->where('ecole_id', Auth::user()->ecole_id)->where('trimestre_id',request()->trimestre_id)->get();
         $releve_traite = ReleveTraite::where('annee_id', $annee_acad->id)->where('trimestre_id',request()->trimestre_id)->first();
 
-        //dd($notes);
+        $inscription = Inscription::find(10);
+        dd($inscription->$notes);
 
         if ($releve_traite) {
             dd("Pas de création");
