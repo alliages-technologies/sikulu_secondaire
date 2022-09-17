@@ -171,7 +171,12 @@ Route::prefix('adminecole')
         Debut de la gestion des notes (Modification)
      */
     Route::resource('/notes','NoteController');
-
+    Route::get('/notes/salles/{token}/{trimestre}','NoteController@inscriptions')->name("salle.token");
+    Route::get('/notes/trimestres/{token}/{id}','NoteController@trimestre');
+    Route::get('/notes/inscription/{token}/{inscription}/{trimestre}','NoteController@inscription');
+    Route::get('/notes/save/{id}','NoteController@noteSave');
+    Route::get('/notes/note-by-id/{id}','NoteController@noteById');
+    Route::post('/notes/save','NoteController@noteSave');
 });
 
 
