@@ -166,6 +166,12 @@ Route::prefix('adminecole')
     /*
         Fin de la gestion des relevés de notes
     */
+
+    /*
+        Debut de la gestion des notes (Modification)
+     */
+    Route::resource('/notes','NoteController');
+
 });
 
 
@@ -255,6 +261,7 @@ Route::prefix('profs')
         Route::get('/emploi-by-salle/{token}/{ecole}','EmploiTempController@getEmploieBySalle');
         Route::get('/show-emploi-by-salle/{token}/{id}','EmploiTempController@getShowEmploie');
         Route::get('/add-salle', 'NoteController@addSalle');
+        Route::get('/noteGenerate', 'NoteController@noteGenerateAuto');
 });
 
 // releve : inscription_id, trimestre_id, token, moi, semaine, annee

@@ -11,7 +11,7 @@ class Note extends Model
     public function inscription(){
         return $this->belongsTo('App\Models\Inscription','inscription_id');
     }
-
+    
     public function trimestre(){
         return $this->belongsTo('App\Models\Trimestre','trimestre_id');
     }

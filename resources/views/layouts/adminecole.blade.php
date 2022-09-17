@@ -190,6 +190,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('adminecole.notes.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-pen"></i>
+              <p>
+                Notes
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>

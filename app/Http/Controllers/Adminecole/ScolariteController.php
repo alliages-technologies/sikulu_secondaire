@@ -99,9 +99,7 @@ class ScolariteController extends Controller
                 $rang = $i+1;
             }
         }
-        PDF::setOptions(['isRemoteEnabled' => TRUE, 'enable_javascript' => TRUE]);
-        $pdf=PDF::loadView('Adminecole.Scolarites.pdf', compact('inscriptions','inscription','salle','notes','rang','releve_note'))->setOptions(['defaultFont' => 'sans-serif']);
-        return $pdf->stream();
+        
     }
 
     public function generationAutoReleve(){
@@ -111,56 +109,70 @@ class ScolariteController extends Controller
         $notes = Note::where('annee_id', $annee_acad->id)->where('ecole_id', Auth::user()->ecole_id)->where('trimestre_id',request()->trimestre_id)->get();
         $releve_traite = ReleveTraite::where('annee_id', $annee_acad->id)->where('trimestre_id',request()->trimestre_id)->first();
 
-        $inscription = Inscription::find(10);
-        dd($inscription->$notes);
+        $note_trimestre_en_cours = Note::where('trimestre_id',request()->trimestre_id)->first();
+
+        //$notes = $notes->where('inscription_id',33);
+        //dd($notes->count());
+        //dd($note_trimestre_en_cours);
+
+        // Verification des si les releves ont etes genere
 
         if ($releve_traite) {
             dd("Pas de création");
         }
 
         else {
-            //dd("création");
-            $releve_traite = new ReleveTraite();
-            $releve_traite->trimestre_id = request()->trimestre_id;
-            $releve_traite->token =  sha1(date('His'));
-            $releve_traite->annee_id = $annee_acad->id;
-            $releve_traite->ecole_id = Auth::user()->ecole_id;
-            $releve_traite->save();
+            // Verification si les notes du trimestre en cours existent
+            if ($note_trimestre_en_cours) {
+                //dd("creation");
+                $releve_traite = new ReleveTraite();
+                $releve_traite->trimestre_id = request()->trimestre_id;
+                $releve_traite->token =  sha1(date('His'));
+                $releve_traite->annee_id = $annee_acad->id;
+                $releve_traite->ecole_id = Auth::user()->ecole_id;
+                $releve_traite->save();
 
-            foreach ($inscriptions as $inscription) {
-                $releve_note = new ReleveNote();
-                $releve_note->inscription_id = $inscription->id;
-                $releve_note->trimestre_id = request()->trimestre_id;
-                $releve_note->salle_id = $inscription->salle_id;
-                $releve_note->token = sha1(date('His'));
-                $releve_note->annee_id = $annee_acad->id;
-                $releve_note->moi_id = date('m');
-                $releve_note->semaine_id = date('W');
-                $releve_note->ecole_id = Auth::user()->ecole_id;
-                $releve_note->save();
+                foreach ($inscriptions as $inscription) {
+                    $releve_note = new ReleveNote();
+                    $releve_note->inscription_id = $inscription->id;
+                    $releve_note->trimestre_id = request()->trimestre_id;
+                    $releve_note->salle_id = $inscription->salle_id;
+                    $releve_note->token = sha1(date('His'));
+                    $releve_note->annee_id = $annee_acad->id;
+                    $releve_note->moi_id = date('m');
+                    $releve_note->semaine_id = date('W');
+                    $releve_note->ecole_id = Auth::user()->ecole_id;
+                    $releve_note->save();
 
-            $inscription = Inscription::find($releve_note->inscription_id);
-            foreach ($inscription->notes as $note){
-                $ligne_releve_note = new LigneReleveNote();
-                $ligne_releve_note->programme_ligne_ecole_id = $note->ligne_ecole_programme_id;
-                $ligne_releve_note->releve_id = $releve_note->id;
-                $ligne_releve_note->note_id = $note->id;
-                $ligne_releve_note->valeur = $note->valeur;
-                $ligne_releve_note->coefficient = $note->pel->coefficient;
-                $ligne_releve_note->ecole_id = Auth::user()->ecole_id;
-                //dd($ligne_releve_note);
-                $ligne_releve_note->save();
+                $inscription = Inscription::find($releve_note->inscription_id);
+                $notes = $notes->where('inscription_id',$inscription->id);
 
-                $valeur = LigneReleveNote::where('id',$ligne_releve_note->id)->sum("valeur");
-                $moyenne_generale = DB::table('ligne_releve_notes')
-                ->select(DB::raw('round(sum(ligne_releve_notes.valeur * ligne_releve_notes.coefficient)/sum(ligne_releve_notes.coefficient),2) as moyenne'))
-                ->where('releve_id', '=', $ligne_releve_note->releve_id)
-                ->value("moyenne");
-                $releve_note = ReleveNote::find($ligne_releve_note->releve_id);
-                $releve_note->moyenne = $moyenne_generale;
-                $releve_note->save();
+                //dd($inscription->notes->where('trimestre_id',1));
+                foreach ($inscription->notes->where('trimestre_id',request()->trimestre_id) as $note){
+                    $ligne_releve_note = new LigneReleveNote();
+                    $ligne_releve_note->programme_ligne_ecole_id = $note->ligne_ecole_programme_id;
+                    $ligne_releve_note->releve_id = $releve_note->id;
+                    $ligne_releve_note->note_id = $note->id;
+                    $ligne_releve_note->valeur = $note->valeur;
+                    $ligne_releve_note->coefficient = $note->pel->coefficient;
+                    $ligne_releve_note->ecole_id = Auth::user()->ecole_id;
+                    //dd($ligne_releve_note);
+                    $ligne_releve_note->save();
+
+                    $valeur = LigneReleveNote::where('id',$ligne_releve_note->id)->sum("valeur");
+                    $moyenne_generale = DB::table('ligne_releve_notes')
+                    ->select(DB::raw('round(sum(ligne_releve_notes.valeur * ligne_releve_notes.coefficient)/sum(ligne_releve_notes.coefficient),2) as moyenne'))
+                    ->where('releve_id', '=', $ligne_releve_note->releve_id)
+                    ->value("moyenne");
+                    $releve_note = ReleveNote::find($ligne_releve_note->releve_id);
+                    $releve_note->moyenne = $moyenne_generale;
+                    $releve_note->save();
+
+                }
             }
-
+        }
+        else {
+            dd("Non");
         }
 
     }

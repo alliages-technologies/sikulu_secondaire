@@ -8,6 +8,7 @@ use App\Models\Inscription;
 use App\Models\Note;
 use App\Models\Prof;
 use App\Models\ProgrammeEcoleLigne;
+use App\Models\ProgrammeNational;
 use App\Models\Salle;
 use App\Models\TrimestreEcole;
 use Illuminate\Http\Request;
@@ -103,5 +104,30 @@ class NoteController extends Controller
             //dd($note);
         }
     }
+
+    public function noteGenerateAuto()
+    {
+        $inscriptions = Inscription::where('salle_id',3)->get();
+        //dd($inscriptions);
+        foreach ($inscriptions as $inscription) {
+            $inscription = Inscription::find($inscription->id);
+            for ($i=15; $i < 22 ; $i++) {
+                $lep = ProgrammeEcoleLigne::find($i);
+                //dd($lep);
+                $note = new Note();
+                $note->salle_id = $inscription->salle_id;
+                $note->valeur = random_int(5,20);
+                $note->trimestre_id = 3;
+                //$note->created_by = $lep->enseignant_id;
+                $note->inscription_id = $inscription->id;
+                $note->ecole_id = $inscription->ecole_id;
+                $note->ligne_ecole_programme_id = $lep->id;
+                $note->annee_id = 1;
+                dd($note);
+                $note->save();
+            }
+        }
+    }
+
 
 }

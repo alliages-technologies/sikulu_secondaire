@@ -54,7 +54,8 @@ class HomeController extends Controller
         elseif(Auth::user()->role_id==7){
             $parent = User::where('id',Auth::user()->id)->first();
             $ecoles = ParentEcole::where('parent_id',$parent->id)->get();
-            return view('Parent/dashboard')->with(compact('ecoles'));
+            //dd($ecoles);
+            return view('Parent.dashboard')->with(compact('ecoles'));
         }
 
         else{

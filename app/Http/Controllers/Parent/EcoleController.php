@@ -17,7 +17,7 @@ class EcoleController extends Controller
 
     public function create()
     {
-        
+
     }
 
 
@@ -39,13 +39,7 @@ class EcoleController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
