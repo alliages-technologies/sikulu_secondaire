@@ -248,7 +248,7 @@ class InscriptionController extends Controller
     }
 
     public function inscriptionAuto(Faker $fake){
-        for ($i=0; $i < 10; $i++) {
+        /* for ($i=0; $i < 10; $i++) {
         $parent = new User();
         $parent->name = $fake->lastName;
         $parent->phone = $fake->phoneNumber;
@@ -284,6 +284,13 @@ class InscriptionController extends Controller
         //dd($inscription);
         $inscription->save();
     }
+    */
+
+        $inscriptions = Inscription::all();
+        foreach ($inscriptions as $inscription) {
+            $user = User::where('name',$inscription->eleve->nom_tuteur)->get();
+            dd($user);
+        }
         return redirect()->back();
     }
 

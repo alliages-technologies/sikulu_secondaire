@@ -77,7 +77,7 @@
                             </td>
                             <td>
                             <p>
-                                <strong><i class="fa fa-inr"></i> {{number_format($ecolage->salle->montant, 0,"",".")}} XAF </strong>
+                                <strong><i class="fa fa-inr"></i> {{number_format($ecolage->inscription->montant_inscri, 0,"",".")}} XAF </strong>
                             </p>
                             <p>
                                 <strong><i class="fa fa-inr"></i> {{number_format($totalannuel, 0,"",".")}} XAF</strong>

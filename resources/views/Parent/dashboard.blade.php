@@ -1,6 +1,7 @@
 @extends('layouts.parent')
 @section('content')
 <div class="container mt-4">
+    <h2>Liste des écoles <i class="fa fa-building"></i></h2>
     <div class="card">
         <div class="card-body menu">
             <div class="row d-flex justify-content-center p-4">
@@ -10,10 +11,6 @@
                     <p>{{ $ecole->ecole->name }}</p>
                 </a>
                 @endforeach
-                <a href="/deconnexion" class="col-md-3 m-2" style="color: red">
-                    <i class="fa fa-power-off"></i>
-                    <p>Déconnexion</p>
-                </a>
             </div>
         </div>
     </div>

@@ -82,7 +82,7 @@ class EcolageController extends Controller
         $totalverse = $ecolages->reduce(function ($carry, $item) {
             return $carry + $item->montant;
         });
-        $totalannuel = $ecolage->salle->montant * 9;
+        $totalannuel = $ecolage->inscription->montant_inscri * 9;
         $reste_a_payer = $totalannuel-$totalverse;
         //dd($totalverse);
         return view('ResponsableFinances.Finances.Ecolages.facture')->with(compact('ecolage','totalverse','totalannuel','reste_a_payer','mois'));
@@ -106,6 +106,7 @@ class EcolageController extends Controller
 
     public function historiquePaiementsEleve($token){
         $inscription = Inscription::where('token', $token)->first();
+        //dd($inscription->eleve);
         return view('ResponsableFinances.Finances.Ecolages.historiqueeleve')->with(compact('inscription'));
     }
 

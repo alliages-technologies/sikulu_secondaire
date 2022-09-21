@@ -63,4 +63,32 @@ class LigneReleveNote extends Model
             }
         }
     }
+
+    public function getAppreciationAttribute(){
+        if ($this->valeur < 6) {
+            return "Médiocre";
+        }
+        elseif ($this->valeur >= 6 and $this->valeur <= 7) {
+            return "Faible";
+        }
+        elseif ($this->valeur >= 8 and $this->valeur <= 9) {
+            return "Insuffisant";
+        }
+        elseif ($this->valeur >= 10 and $this->valeur <= 11) {
+            return "Passable";
+        }
+        elseif ($this->valeur >= 12 and $this->valeur <= 13) {
+            return "Assez Bien";
+        }
+        elseif ($this->valeur >= 14 and $this->valeur <= 15) {
+            return "Bien";
+        }
+        elseif ($this->valeur == 16) {
+            return "Très Bien";
+        }
+        elseif ($this->valeur >= 17) {
+            return "Excellent";
+        };
+        //dd($appreciation);
+    }
 }

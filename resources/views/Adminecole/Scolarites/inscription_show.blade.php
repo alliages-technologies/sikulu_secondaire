@@ -79,7 +79,7 @@
                                     <td> {{ $ligne->maxi }} </td>
                                     <td> {{ $ligne->mini }} </td>
                                     <td> {{ $ligne->class }} </td>
-                                    <td>  </td>
+                                    <td> {{ $ligne->appreciation }} </td>
                                 </tr>
                             @endforeach
 

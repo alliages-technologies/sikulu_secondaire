@@ -82,6 +82,7 @@ class ScolariteController extends Controller
 
         $tri = TrimestreEcole::find($trimestre_ecole)->trimestre;
         //dd($releve_note);
+
         return view('Adminecole.Scolarites.inscription_show')->with(compact('tri','annee_acad','inscription','inscriptions','releve_note','rang','salle'));
     }
 
@@ -99,7 +100,7 @@ class ScolariteController extends Controller
                 $rang = $i+1;
             }
         }
-        
+
     }
 
     public function generationAutoReleve(){
