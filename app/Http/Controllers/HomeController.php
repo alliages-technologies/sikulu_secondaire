@@ -58,6 +58,11 @@ class HomeController extends Controller
             return view('Parent.dashboard')->with(compact('ecoles'));
         }
 
+        elseif(Auth::user()->role_id==8) {
+            //dd(Auth::user()->id);
+            return view('Surveillant.dashboard');
+        }
+
         else{
             return redirect('/login');
         }

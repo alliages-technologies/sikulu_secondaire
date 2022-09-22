@@ -280,3 +280,14 @@ Route::prefix('parent')
         Route::resource('/ecoles', 'EcoleController');
         Route::resource('/inscriptions', 'EleveController');
 });
+
+
+Route::prefix('surveillant')
+    ->namespace('Surveillant')
+    ->name('surveillants.')
+    ->group(function(){
+        Route::resource('/abscence', 'AbscenceController');
+        Route::post('abscences/recherche','AbscenceController@recherche')->name('recherche');
+        Route::get('abscences/get-inscriptions-by-salle/{salle}','AbscenceController@getInscriptionBySalle');
+        Route::post('abscences/recherche','AbscenceController@recherche')->name('recherche');
+});

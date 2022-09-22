@@ -59,6 +59,7 @@ Admin Ecole | Configuration des utilisateurs
                             <option>...</option>
                             <option value="4">Responsable Finances</option>
                             <option value="5">Responsable Scolarité</option>
+                            <option value="8">Surveillant</option>
                         </select>
                     </div>
                     <div class="form-group">
