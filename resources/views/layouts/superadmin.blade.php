@@ -61,7 +61,7 @@
     }
 </style>
 
-<div class="wrapper">
+<div class="wrapper" style="background-color: #f4f6f9;">
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="{{asset('images/anso.jpeg')}}" alt="" height="300" width="300">
