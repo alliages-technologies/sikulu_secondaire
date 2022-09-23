@@ -57,9 +57,11 @@
     ul li a p {
         color: white;
     }
-    ul li a i {
+
+    ul li a {
         color: white;
     }
+
 </style>
 
 <div class="wrapper" style="background-color: #f4f6f9;">
@@ -194,6 +196,14 @@
               <i class="nav-icon fas fa-pen"></i>
               <p>
                 Notes
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('adminecole.pointage.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-pen"></i>
+              <p>
+                Pointages-Profs
               </p>
             </a>
           </li>

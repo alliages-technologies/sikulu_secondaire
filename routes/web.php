@@ -177,6 +177,10 @@ Route::prefix('adminecole')
     Route::get('/notes/save/{id}','NoteController@noteSave');
     Route::get('/notes/note-by-id/{id}','NoteController@noteById');
     Route::post('/notes/save','NoteController@noteSave');
+
+    // Gestion des pointages
+    Route::resource('/pointage','PointageController');
+
 });
 
 
@@ -249,6 +253,8 @@ Route::prefix('responsablescolarite')
     Route::get('/emplois-du-temps-salles-menu', 'EmploiController@menu')->name('emploistemps.salles.menu');
     Route::resource('/diplomes', 'DiplomeController');
     Route::get('/inscription-auto', 'InscriptionController@inscriptionAuto')->name('inscription.auto');
+    // Gestion des pointages
+    Route::resource('/pointages','PointageController');
 });
 
 

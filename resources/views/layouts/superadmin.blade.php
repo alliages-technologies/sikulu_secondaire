@@ -133,48 +133,48 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('superadmin.enseignements.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-circle nav-icon"></i>
                   <p>Types d'enseignements</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('superadmin.series.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-circle nav-icon"></i>
                   <p>Séries</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('superadmin.niveaux.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-circle nav-icon"></i>
                   <p>Niveau d'étude</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('superadmin.classes.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-door-open nav-icon"></i>
                   <p>Classes</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('superadmin.matieres.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-book nav-icon"></i>
                   <p>Matières</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('superadmin.ecoles.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Etablissements</p>
-                </a>
+                <a href="{{ route('superadmin.programmes-national.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-globe"></i>
+                    <p>
+                      Programme National
+                    </p>
+                  </a>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <a href="{{ route('superadmin.programmes-national.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-globe"></i>
-              <p>
-                Programme National
-              </p>
+            <a href="{{route('superadmin.ecoles.index')}}" class="nav-link">
+                <i class="nav-icon far fa-building"></i>
+                <p>Etablissements</p>
             </a>
           </li>
           <li class="nav-item">
