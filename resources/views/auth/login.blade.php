@@ -93,7 +93,8 @@
     }
 
     .text-sm {
-        font-size: 14px !important
+        font-size: 20px !important;
+        padding-bottom: 10px;
     }
 
     ::placeholder {
@@ -199,10 +200,10 @@
                                 <p class="ml-5 mt-5" style="font-size: 23px;
                                 font-family: inherit;
                                 letter-spacing: 0px;
-                                font-weight: bold;">
-                                    <span>Entreprise : <span style="color: #007bff;"> Onso_congo </span> </span> <br>
-                                    <span>Contact : <span style="color: green;"> +242 05-014-09-33 </span>/ <span style="color: #df5239;"> +242 06-845-65-33 </span></span> <br>
-                                    <span>Adresse email : <span style="color: #0136b9;"> onsocongo@gmail.com </span></span>
+                                font-weight: ;">
+                                    <span>Entreprise : <span style="color: #007bff; font-weight: 500;"> Onso_congo </span> </span> <br>
+                                    <span>Contact : <span style="color: green; font-weight: 500;"> +242 05-014-09-33 </span>/ <span style="color: #df5239;font-weight: 500;"> +242 06-845-65-33 </span></span> <br>
+                                    <span>Adresse email : <span style="color: #0136b9;font-weight: 500;"> onsocongo@gmail.com </span></span>
                                 </p>
                             </div>
                             <div style="margin-bottom: -30px !important;" class="row px-3 justify-content-center mt-4 mb-5 border-line"> <img src="{{asset('images/gesschool.png')}}" class="image"> </div>
