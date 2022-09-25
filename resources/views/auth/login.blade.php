@@ -39,8 +39,8 @@
     }
 
     .image {
-        width: 360px;
-        height: 280px
+        width: 80%;
+        height: 280px;
     }
 
     .border-line {
@@ -167,12 +167,12 @@
 
     @media screen and (max-width: 991px) {
         .logo {
-            margin-left: 0px
+            margin-left: 0px;
         }
 
         .image {
-            width: 300px;
-            height: 220px
+            width: 90%;
+            height: 350px;
         }
 
         .border-line {
@@ -194,13 +194,23 @@
                 <div class="row d-flex">
                     <div class="col-lg-6">
                         <div class="card1 pb-5">
-                            <div class="row"> <img src="img/logo-obac.png" class="logo"> </div>
-                            <div class="row px-3 justify-content-center mt-4 mb-5 border-line"> <img src="https://i.imgur.com/uNGdWHi.png" class="image"> </div>
+                            <div class="row"> <img src="{{asset('images/anso.jpeg')}}" class="logo"> </div>
+                            <div class="">
+                                <p class="ml-5 mt-5" style="font-size: 23px;
+                                font-family: inherit;
+                                letter-spacing: 0px;
+                                font-weight: bold;">
+                                    <span>Entreprise : <span style="color: #007bff;"> Onso_congo </span> </span> <br>
+                                    <span>Contact : <span style="color: green;"> +242 05-014-09-33 </span>/ <span style="color: #df5239;"> +242 06-845-65-33 </span></span> <br>
+                                    <span>Adresse email : <span style="color: #0136b9;"> onsocongo@gmail.com </span></span>
+                                </p>
+                            </div>
+                            <div style="margin-bottom: -30px !important;" class="row px-3 justify-content-center mt-4 mb-5 border-line"> <img src="{{asset('images/gesschool.png')}}" class="image"> </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="card2 card border-0 px-4 py-5">
-                            <h4 class="text-center">FORMULAIRE DE CONNEXION</h4>
+                            <div class="row justify-content-center"> <img style="width: 60%; height: 150px;" src="{{asset('images/ges.png')}}" class="logo"> </div>
                             <div class="row px-3 mb-4">
                                 <div class="line"></div> <small class="or text-center"> </small>
                                 <div class="line"></div>
