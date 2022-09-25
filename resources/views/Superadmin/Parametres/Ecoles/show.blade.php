@@ -6,6 +6,73 @@ Superadmin | {{$ecole->name}}
 @endsection
 
 @section('content')
+
+
+<div class="container-fluid">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3 class="counter-count">{{$inscriptions->count()}}</h3>
+                    <p>Nombre d'Inscrits</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a href="#" class="small-box-footer">Plus d'info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3 class="counter-count">{{$abscences->count()}}</h3>
+                    <p>Nombre d'Abscents</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="#" class="small-box-footer">Plus d'info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3 class="counter-count chiffre" data-chiffre="{{ $ecolages->sum('montant') }}">{{ $ecolages->sum('montant') }} </h3>
+
+                    <p>Chiffre d'Affaire (XAF)</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="#" class="small-box-footer">Plus d'info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3 class="counter-count">{{$pourcentage}} </h3>
+                    <p>Pourcentage d'Admission (<sup style="font-size:20px">%</sup>)</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                </div>
+                <a href="#" class="small-box-footer">Plus d'Info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
 <div class="container mt-4 col-md-10">
     <div class="card">
         <div class="card-header">

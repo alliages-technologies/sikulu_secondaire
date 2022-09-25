@@ -4,16 +4,22 @@ namespace App\Http\Controllers\Superadmin;
 
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use App\Models\Abscence;
+use App\Models\AnneeAcad;
 use Illuminate\Http\Request;
 use App\Models\TypeEnseignement;
 use App\Models\Serie;
 use App\Models\Niveau;
 use App\Models\Classe;
+use App\Models\Ecolage;
 use App\Models\Matiere;
 use App\Models\Ecole;
+use App\Models\Inscription;
+use App\Models\ReleveNote;
 use App\Models\Trimestre;
 use App\Models\TrimestreEcole;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\CssSelector\Parser\Token;
 use TheSeer\Tokenizer\Token as TokenizerToken;
 
@@ -187,7 +193,22 @@ class ParametreController extends Controller
    }
 
    public function ecoleShow($token){
-       $ecole=Ecole::where('token', $token)->first();
-       return view('Superadmin.Parametres.Ecoles.show')->with(compact('ecole'));
+    $ecole=Ecole::where('token', $token)->first();
+    $annee = AnneeAcad::where('actif', 1)->first();
+    $inscriptions = Inscription::where('ecole_id',$ecole->id)->where('annee_id',$annee->id)->get();
+    $abscences = Abscence::where('ecole_id',$ecole->id)->where('annee_id',$annee->id)->get();
+    $ecolages = Ecolage::where('ecole_id',$ecole->id)->where('annee',date('Y'))->get();
+    $admis = ReleveNote::where('ecole_id',$ecole->id)->where('annee_id',$annee->id)->where('moyenne','>=',10)->count();
+
+    if ($inscriptions->count() == 0) {
+        $pourcentage = (100 * $admis)/1;
+    }
+    else {
+        $pourcentage = (100 * $admis)/$inscriptions->count();
+    }
+    $pourcentage = round($pourcentage,2);
+    //dd($admis);
+
+       return view('Superadmin.Parametres.Ecoles.show')->with(compact('ecole','inscriptions','abscences','ecolages','pourcentage'));
    }
 }
