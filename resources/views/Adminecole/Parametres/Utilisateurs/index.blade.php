@@ -59,7 +59,7 @@ Admin Ecole | Configuration des utilisateurs
                             <option>...</option>
                             <option value="4">GESTIONNAIRE DES FINANCE</option>
                             <option value="5">DIRECTEUR DES ETUDES</option>
-                            <option value="8">SURVEILLANT</option>
+                            <option value="8">SURVEILLANT GENERAL</option>
                         </select>
                     </div>
                     <div class="form-group">
