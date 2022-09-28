@@ -31,11 +31,12 @@
     }
 
     .logo {
-        width: 100px;
-        height: 100px;
+        width: 500px !important;
+        height: 425px  !important;
         margin-top: 20px;
         margin-left: 40px !important;
         border-radius: 5pc;
+        margin-bottom: -23px;
     }
 
     .image {
@@ -196,22 +197,26 @@
                     <div class="col-lg-6">
                         <div class="card1 pb-5">
                             <div class="row"> <img src="{{asset('images/anso.jpeg')}}" class="logo"> </div>
-                            <div class="">
-                                <p class="ml-5 mt-5" style="font-size: 23px;
+                            <div class="" style="margin-left: 65px;margin-top: -16px;">
+                                <p class="ml-5" style="font-size: 23px;
                                 font-family: inherit;
                                 letter-spacing: 0px;
-                                font-weight: ;">
+                                font-weight: ;
+                                ">
                                     <span>Entreprise : <span style="color: #007bff; font-weight: 500;"> Onso_congo </span> </span> <br>
-                                    <span>Contact : <span style="color: green; font-weight: 500;"> +242 05-014-09-33 </span>/ <span style="color: #df5239;font-weight: 500;"> +242 06-845-65-33 </span></span> <br>
+                                    <span>Contact 1 : <span style="color: green; font-weight: 500;"> +242 05-014-09-33 </span></span> <br>
+                                    <span>Contact 2 : <span style="color: #df5239;font-weight: 500;"> +242 06-845-65-33 </span></span> <br>
                                     <span>Adresse email : <span style="color: #0136b9;font-weight: 500;"> onsocongo@gmail.com </span></span>
                                 </p>
                             </div>
-                            <div style="margin-bottom: -30px !important;" class="row px-3 justify-content-center mt-4 mb-5 border-line"> <img src="{{asset('images/gesschool.png')}}" class="image"> </div>
+                        </div>
+                        <div class="container">
+                            <marquee behavior="" direction=""><h2 style="font-size:40px;box-shadow: 2px 2px 3px 3px gainsboro;" class="text-center">POUR UNE GESTION SANS STRESS DE VOTRE ECOLE</h2></marquee>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="card2 card border-0 px-4 py-5">
-                            <div class="row justify-content-center"> <img style="width: 60%; height: 150px;" src="{{asset('images/ges.png')}}" class="logo"> </div>
+                            <div class="row justify-content-center"> <img style="width: 100%; height: 342px;margin-left: 4%;" src="{{asset('images/gesschool.png')}}" class=""> </div>
                             <div class="row px-3 mb-4">
                                 <div class="line"></div> <small class="or text-center"> </small>
                                 <div class="line"></div>
