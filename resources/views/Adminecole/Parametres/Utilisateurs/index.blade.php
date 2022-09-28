@@ -57,8 +57,8 @@ Admin Ecole | Configuration des utilisateurs
                         <label>Rôle</label>
                         <select name="role_id" id="" class="form-control">
                             <option>...</option>
-                            <option value="4">Responsable Finances</option>
-                            <option value="5">Responsable Scolarité</option>
+                            <option value="4">GESTIONNAIRE DES FINANCE</option>
+                            <option value="5">DIRECTEUR DES ETUDES</option>
                             <option value="8">Surveillant</option>
                         </select>
                     </div>
