@@ -2,7 +2,7 @@
 
 
 @section('title')
-Admin Ecole | Configuration des utilisateurs
+DIRECTEUR | Configuration des utilisateurs
 @endsection
 
 @section('content')
