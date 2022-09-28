@@ -88,8 +88,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #007bff">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="{{asset('adminLTE/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">ADMIN ECOLE</span>
+      <img src="{{asset(Auth::user()->ecole->image)}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">DIRECTEUR</span>
     </a>
 
     <!-- Sidebar -->
