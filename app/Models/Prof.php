@@ -24,4 +24,8 @@ class Prof extends Model
     public function getDipAttribute(){
         return $this->diplome->name;
     }
+
+    public function pointages(){
+        return $this->hasMany('App\Models\Pointage');
+    }
 }

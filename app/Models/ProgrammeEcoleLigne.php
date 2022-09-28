@@ -9,10 +9,22 @@ class ProgrammeEcoleLigne extends Model
 {
     protected $guarded = [];
     protected $table = 'programmes_ecoles_lignes';
-    protected $appends = ['matieren','prof'];
+    protected $appends = ['matieren','prof','sallen','abb'];
 
     public function programme_ecole(){
         return $this->belongsTo('App\Models\ProgrammeEcole','programme_national_id');
+    }
+
+    public function pe(){
+        return $this->belongsTo('App\Models\ProgrammeEcole','programme_ecole_id');
+    }
+
+    public function getSallenAttribute(){
+        return $this->pe->salle->classe->name;
+    }
+
+    public function getAbbAttribute(){
+        return $this->pe->salle->abb;
     }
 
     public function programmeecole(){
@@ -38,7 +50,7 @@ class ProgrammeEcoleLigne extends Model
     public function notes(){
         return $this->hasMany('App\Models\Note','ligne_ecole_programme_id');
     }
-    
+
     public function lpn(){
         return $this->belongsTo('App\Models\ProgrammeNationalLigne','programme_national_ligne_id    ');
     }

@@ -61,7 +61,7 @@
     }
 </style>
 
-<div class="wrapper">
+<div class="wrapper" style="background-color: #f4f6f9">
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="{{asset('adminLTE/dist/img/AdminLTELogo.png')}}" alt="" height="60" width="60">
@@ -111,7 +111,7 @@
             <a href="/home" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Acceuil
+                ACCEUIL
               </p>
             </a>
           </li>
@@ -119,7 +119,7 @@
             <a href="{{route('responsablefinances.entrees.gestion')}}" class="nav-link">
               <i class="nav-icon fas fa-arrow-down"></i>
               <p>
-                Autres Entrées
+                AUTRES ENTREES
               </p>
             </a>
           </li>
@@ -127,7 +127,7 @@
             <a href="{{route('responsablefinances.depenses.gestion')}}" class="nav-link">
               <i class="nav-icon fas fa-coins"></i>
               <p>
-                Dépenses
+                DEPENSES
               </p>
             </a>
           </li>
@@ -135,7 +135,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
-                Ecolage
+                ECOLAGE
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -143,19 +143,19 @@
               <li class="nav-item">
                 <a href="{{route('responsablefinances.ecolages.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Effectuer un paiement</p>
+                  <p>EFFECTUER UN PAIEMENT</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('responsablefinances.historique.paiements')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Historique par Salle</p>
+                  <p>HISTORIQUE PAR SALLE</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('responsablefinances.historique.ecolages.global')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Historique Globale</p>
+                  <p>HISTORIQUE GLOBALE</p>
                 </a>
               </li>
             </ul>
@@ -164,7 +164,15 @@
             <a href="{{route('responsablefinances.suivi.index')}}" class="nav-link">
               <i class="nav-icon fas fa-coins"></i>
               <p>
-                Suivi des paiements
+                SUIVI DES PAIEMENT
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('responsablefinances.pointages.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-coins"></i>
+              <p>
+                PAIEMENTS PROFS
               </p>
             </a>
           </li>

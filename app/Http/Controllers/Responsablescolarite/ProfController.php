@@ -125,7 +125,9 @@ class ProfController extends Controller
     }
 
     public function show($token){
-        $prof=Prof::where('token', $token)->first();
-        return view('ResponsableScolarite.Profs.show')->with(compact('prof'));
+        $prof = Prof::where('token', $token)->first();
+        $prof_ecole = ProfEcole::where('prof_id',$prof->id)->first();
+        //dd($prof_ecole);
+        return view('ResponsableScolarite.Profs.show')->with(compact('prof','prof_ecole'));
     }
 }

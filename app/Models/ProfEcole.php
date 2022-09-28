@@ -17,4 +17,8 @@ class ProfEcole extends Model
         return $this->belongsTo("App\Models\Ecole", "ecole_id");
     }
 
+    public function pointages(){
+        return $this->hasMany('App\Models\Pointage');
+    }
+
 }

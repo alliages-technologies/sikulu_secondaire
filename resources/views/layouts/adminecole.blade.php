@@ -116,7 +116,7 @@
             <a href="/home" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Acceuil
+                ACCEUIL
               </p>
             </a>
           </li>
@@ -124,7 +124,7 @@
             <a href="/home" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Statistiques
+                STATISTIQUES
               </p>
             </a>
           </li>
@@ -132,7 +132,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-gear"></i>
               <p>
-                Paramètres
+                PARAMETRES
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -140,37 +140,37 @@
                 <li class="nav-item">
                   <a href="{{ route('adminecole.matieres.index') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Matières</p>
+                    <p>MATIERES</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('adminecole.salles.index') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Salles</p>
+                    <p>SALLES</p>
                   </a>
                 </li>
               <li class="nav-item">
                 <a href="{{ route('adminecole.cours.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Cours</p>
+                  <p>COURS</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('adminecole.tranches.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Tranches Horaires</p>
+                  <p>TRANCHES HORAIRES</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('adminecole.trimestre.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Trimestres</p>
+                  <p>TRIMESTRES</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('adminecole.utilisateurs.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Utilisateurs</p>
+                  <p>UTILISATEURS</p>
                 </a>
               </li>
             </ul>
@@ -179,7 +179,7 @@
             <a href="{{ route('adminecole.programmes-ecole.index') }}" class="nav-link">
               <i class="nav-icon fas fa-building"></i>
               <p>
-                Programme Scolaire
+                PROGRAMME SCOLAIRE
               </p>
             </a>
           </li>
@@ -187,7 +187,7 @@
             <a href="{{ route('adminecole.scolarite.menu') }}" class="nav-link">
               <i class="nav-icon fas fa-graduation-cap"></i>
               <p>
-                Scolarité
+                SCOLARITE
               </p>
             </a>
           </li>
@@ -195,15 +195,15 @@
             <a href="{{ route('adminecole.notes.index') }}" class="nav-link">
               <i class="nav-icon fas fa-pen"></i>
               <p>
-                Notes
+                NOTES
               </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{route('adminecole.pointage.index')}}" class="nav-link">
-              <i class="nav-icon fas fa-pen"></i>
+              <i class="nav-icon fas fa-circle"></i>
               <p>
-                Pointages-Profs
+                POINTAGES
               </p>
             </a>
           </li>

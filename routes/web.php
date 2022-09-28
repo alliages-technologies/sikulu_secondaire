@@ -225,6 +225,7 @@ Route::prefix('responsablefinances')
     Route::get('/suivi-paiements', 'SuiviController@index')->name('suivi.index');
     Route::post('/suivi-paiements-search', 'SuiviController@search')->name('suivi.search');
     Route::get('/ecolages/facture/paiement','EcolageController@facture')->name('ecolages.facture');
+    Route::resource('/pointages','PointageController');
 });
 
 
@@ -255,6 +256,7 @@ Route::prefix('responsablescolarite')
     Route::get('/inscription-auto', 'InscriptionController@inscriptionAuto')->name('inscription.auto');
     // Gestion des pointages
     Route::resource('/pointages','PointageController');
+    Route::post('/pointages/pointer','PointageController@pointer');
 });
 
 
@@ -296,4 +298,7 @@ Route::prefix('surveillant')
         Route::post('abscences/recherche','AbscenceController@recherche')->name('recherche');
         Route::get('abscences/get-inscriptions-by-salle/{salle}','AbscenceController@getInscriptionBySalle');
         Route::post('abscences/recherche','AbscenceController@recherche')->name('recherche');
+        Route::resource('/pointages', 'PointageController');
+        Route::get('/pointages/get-matiere-by-prof/{id}', 'PointageController@getMatieresByProf');
+
 });

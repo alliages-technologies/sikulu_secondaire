@@ -17,6 +17,11 @@ class CreatePointagesTable extends Migration
             $table->id();
             $table->integer('ecole_id')->default(0);
             $table->integer('prof_id')->default(0);
+            $table->integer('mois_id')->default(0);
+            $table->integer('annee_id')->default(0);
+            $table->date('jour')->nullable();
+            $table->integer('nbr_heure')->default(1);
+            $table->integer('ligne_programme_ecole_id')->default(0);
             $table->timestamps();
         });
     }
