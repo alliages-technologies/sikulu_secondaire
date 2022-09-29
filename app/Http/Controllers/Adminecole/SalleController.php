@@ -22,7 +22,7 @@ class SalleController extends Controller
         $salles = Salle::where('ecole_id',Auth::user()->ecole_id)->orderBy('id','desc')->paginate(10);
         $ecole = Ecole::find(Auth::user()->ecole_id);
         $pns = ProgrammeNational::where('enseignement_id',$ecole->enseignement_id)->get();
-        dd($pns);
+        //dd($pns);
         return view('Adminecole.Parametres.Salles.index')->with(compact('salles','pns'));
     }
 
