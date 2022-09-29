@@ -27,7 +27,7 @@ class NoteController extends Controller
         $prof = Prof::where('user_id',Auth::user()->id)->first();
         $pes = ProgrammeEcole::where('ecole_id',$ecole->id)->get();
         //dd($ligne_programme_ecoles);
-        return view('Prof.Notes.index')->with(compact('ligne_programme_ecoles','pes','prof'));
+        return view('Prof.Notes.index')->with(compact('pes','prof'));
     }
 
     public function getInscriptionByToken($token,$ligne_programme_ecole){
