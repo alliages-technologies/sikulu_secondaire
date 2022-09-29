@@ -279,9 +279,10 @@ Route::prefix('profs')
         Route::get('/noteGenerate', 'NoteController@noteGenerateAuto');
         Route::post('abscences/recherche','AbscenceController@recherche')->name('recherche');
         Route::resource('/abscences', 'AbscenceController');
+        Route::get('/abscences/ecole/{ecole}', 'AbscenceController@indexEcole')->name('abscences.ecole.index');
         Route::get('abscences/get-inscriptions-by-salle/{salle}','AbscenceController@getInscriptionBySalle');
         Route::post('/bar', 'MailController@bar');
-        Route::get('/cours', 'MailController@cour')->name('cours');
+        Route::get('/cours/{ecole}', 'MailController@cour')->name('cours');
         Route::get('/build', 'MailController@build')->name('build');
         Route::resource('/appuiecours', 'MailController');
 });

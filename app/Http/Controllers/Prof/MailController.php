@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Prof;
 use App\Http\Controllers\Controller;
 use App\Mail\Mail\ParentMail;
 use App\Models\AppuieCour;
+use App\Models\Ecole;
 use App\Models\Inscription;
+use App\Models\Prof;
 use App\Models\ProfEcole;
+use App\Models\ProgrammeEcole;
 use App\Models\ProgrammeEcoleLigne;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -16,14 +19,16 @@ use Illuminate\Support\Facades\Mail;
 class MailController extends Controller
 {
 
-    public function cour(){
+    public function cour($ecole){
         $user = User::find(Auth::user()->id);
-        $ecole = ProfEcole::where('prof_id',$user->prof->id)->first();
-        $appuie_cours = AppuieCour::where('user_id',$user->id)->where('ecole_id',$ecole->ecole_id)->orderBy('id','desc')->paginate(10);
+        $ecole = Ecole::where('token',$ecole)->first();
+        $appuie_cours = AppuieCour::where('user_id',$user->id)->where('ecole_id',$ecole->id)->orderBy('id','desc')->paginate(10);
         //$pel = ProgrammeEcoleLigne::find($appuie_cour->programme_ecole_ligne_id)->programmeecole->salle->id;
-        $prof_ecole = ProfEcole::where('prof_id',Auth::user()->prof->id)->first();
-        $pels = ProgrammeEcoleLigne::where('enseignant_id',$prof_ecole->prof_id)->get();
-        return view('Prof.Appuies.cours')->with(compact('pels','appuie_cours'));
+        //$prof_ecole = ProfEcole::where('prof_id',Auth::user()->prof->id)->first();
+        $pes = ProgrammeEcole::where('ecole_id',$ecole->id)->get();
+        $prof = Prof::where('user_id',Auth::user()->id)->first();
+        //dd($prof);
+        return view('Prof.Appuies.cours')->with(compact('pes','appuie_cours','prof'));
     }
 
     public function bar(){

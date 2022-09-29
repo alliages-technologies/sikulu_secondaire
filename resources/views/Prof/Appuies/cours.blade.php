@@ -58,8 +58,10 @@
                                 <label for="card-holder">Salle et Cours</label>
                                 <select name="programme_ecole_ligne_id" id="" class="form-control">
                                     <option value="">S & C</option>
-                                    @foreach ($pels as $pel)
+                                    @foreach ($pes as $pe)
+                                    @foreach ($pe->lpes->where('enseignant_id',$prof->id) as $pel)
                                     <option value="{{$pel->id}}">{{$pel->programmeecole->salle->classe->name}} ({{$pel->programmeecole->salle->abb}}) | {{$pel->matiere->name}}</option>
+                                    @endforeach
                                     @endforeach
                                 </select>
                             </div>

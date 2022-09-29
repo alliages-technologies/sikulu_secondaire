@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Prof;
 use App\Http\Controllers\Controller;
 use App\Models\Abscence;
 use App\Models\AnneeAcad;
+use App\Models\Ecole;
 use App\Models\Inscription;
+use App\Models\Prof;
 use App\Models\ProfEcole;
+use App\Models\ProgrammeEcole;
 use App\Models\ProgrammeEcoleLigne;
 use App\Models\Salle;
 use Illuminate\Http\Request;
@@ -14,15 +17,18 @@ use Illuminate\Support\Facades\Auth;
 
 class AbscenceController extends Controller
 {
-    public function index(){
-        $prof_ecole = ProfEcole::where('prof_id',Auth::user()->prof->id)->first();
-        $abscences = Abscence::where('user_id',Auth::user()->prof->id)->where('ecole_id',$prof_ecole->ecole_id)->orderBy('id','desc')->paginate(10);
-        $pels = ProgrammeEcoleLigne::where('enseignant_id',$prof_ecole->prof_id)->get();
+    public function indexEcole($token){
+        $ecole = Ecole::where('token',$token)->first();
+        //$prof_ecole = ProfEcole::where('prof_id',Auth::user()->prof->id)->first();
+        $prof = Prof::where('user_id',Auth::user()->id)->first();
+        $abscences = Abscence::where('user_id',Auth::user()->prof->id)->where('ecole_id',$ecole->id)->orderBy('id','desc')->paginate(10);
+        //$pels = ProgrammeEcoleLigne::where('enseignant_id',$prof->id)->get();
+        $pes = ProgrammeEcole::where('ecole_id',$ecole->id)->get();
         //dd($ples);
         $prof_ecole = ProfEcole::where('prof_id',Auth::user()->prof->id)->first();
         $salles = Salle::where('ecole_id',$prof_ecole->ecole_id)->get();
         //dd($salles);
-        return view('Prof.Abscences.index')->with(compact('abscences','salles','pels'));
+        return view('Prof.Abscences.index')->with(compact('abscences','salles','pes','prof'));
     }
 
     public function getInscriptionBySalle($salle){

@@ -67,8 +67,10 @@ PROF | Salles
                                 <div class="col-md-12">
                                     <select name="salle_id" id="" class="form-control salle">
                                         <option value="">Choix de la salle et du cours</option>
-                                        @foreach ($pels as $pel)
+                                        @foreach ($pes as $pe)
+                                        @foreach ($pe->lpes->where('enseignant_id',$prof->id) as $pel)
                                         <option data-programme_ecole_ligne_id="{{$pel->id}}" value="{{$pel->programmeecole->salle->id}}"> {{$pel->programmeecole->salle->name}} ({{$pel->programmeecole->salle->classe->niveau->abb}} {{$pel->programmeecole->salle->classe->name}}) / {{$pel->matieren}} </option>
+                                        @endforeach
                                         @endforeach
                                     </select>
                                 </div>
