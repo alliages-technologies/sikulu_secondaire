@@ -211,7 +211,7 @@
                             </div>
                         </div>
                         <div class="container">
-                            <marquee behavior="" direction=""><h2 style="font-size:40px;box-shadow: 2px 2px 3px 3px gainsboro;" class="text-center">POUR UNE GESTION SANS STRESS DE VOTRE ECOLE</h2></marquee>
+                            <marquee behavior="" direction=""><h2 style="font-size:40px;background-color: #50a850;color: #fff;letter-spacing: 2px;border-radius: 5px;" class="text-center">POUR UNE GESTION SANS STRESS DE VOTRE ECOLE</h2></marquee>
                         </div>
                     </div>
                     <div class="col-lg-6">

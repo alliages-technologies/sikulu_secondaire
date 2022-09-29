@@ -14,7 +14,7 @@
         <div class="card-body">
             <div class="row d-flex justify-content-center p-4">
                 @foreach ($ecoles as $ecole)
-                    <a href="/profs/ecoles/{{ $ecole->ecole->token }}" class="col-md-3 m-2">
+                    <a href="/profs/ecoles/{{ $ecole->ecole->token }}/{{ $ecole->ecole->id }}" class="col-md-3 m-2">
                         <i class="fa fa-building"></i>
                         <p>{{ $ecole->ecole->name }}</p>
                     </a>

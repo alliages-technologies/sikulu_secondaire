@@ -1,12 +1,15 @@
 $(document).ready(function () {
+    $('.btn-save').show();
+
     $(".salle").change(function (e) {
         e.preventDefault();
         $('.abscences tbody').html("");
         var salle_id = $(this).val();
-        //console.log(salle_id);
+        var pel_id = $('.salle :selected').data('programme_ecole_ligne_id');
+        //console.log(pel_id);
         $.ajax({
             type: "get",
-            url: "/surveillant/abscences/get-inscriptions-by-salle/"+salle_id,
+            url: "/profs/abscences/get-inscriptions-by-salle/"+salle_id,
             data: "",
             dataType: "json",
             success: function (inscriptions) {
@@ -20,11 +23,11 @@ $(document).ready(function () {
     });
 
 
-        $(".btn-save").click(function (e) {
-            e.preventDefault();
-            var lignes = [];
 
-            $('.abscences tbody tr td :checked').each(function () {
+    $(".btn-save").click(function (e) {
+        e.preventDefault();
+        var lignes = [];
+        $('.abscences tbody tr td :checked').each(function () {
                 var  val = {
                     inscription_id: $(this).data("inscription_id"),
                     salle_id: $(this).data("salle_id")
@@ -34,14 +37,16 @@ $(document).ready(function () {
 
             var jour = $('.jour').val();
 
+            var programme_ecole_ligne_id = $('.salle :selected').data('programme_ecole_ligne_id')
             if (jour) {
                 $.ajax({
                     type: "post",
-                    url: "/surveillant/abscence",
+                    url: "/profs/abscences",
                     dataType: "json",
                     data: {
                         lignes: lignes,
                         jour: jour,
+                        programme_ecole_ligne_id: programme_ecole_ligne_id,
                         '_token': $('input[name="_token"]').val()
                     },
                     success: function (response) {

@@ -30,8 +30,9 @@ class EcoleController extends Controller
     }
 
 
-    public function show($token)
+    public function show($token,$ecole)
     {
+        
         $ecole = Ecole::where('token', $token)->first();
         $prof = Prof::where('user_id', Auth::user()->id)->first();
         $ecoles = ProfEcole::where('prof_id', $prof->id)->get();

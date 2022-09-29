@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Prof;
 
 use App\Http\Controllers\Controller;
 use App\Models\AnneeAcad;
+use App\Models\Ecole;
 use App\Models\Inscription;
 use App\Models\Note;
 use App\Models\Prof;
+use App\Models\ProgrammeEcole;
 use App\Models\ProgrammeEcoleLigne;
 use App\Models\ProgrammeNational;
 use App\Models\Salle;
@@ -18,13 +20,14 @@ use Illuminate\Support\Facades\Hash;
 class NoteController extends Controller
 {
 
-    public function index()
+    public function indexEcole($token)
     {
+        $ecole = Ecole::where('token',$token)->first();
         $annee_acad = AnneeAcad::where('actif', 1)->first();
         $prof = Prof::where('user_id',Auth::user()->id)->first();
-        $ligne_programme_ecoles = ProgrammeEcoleLigne::where('enseignant_id',$prof->id)->where('annee_id',$annee_acad->id)->get();
+        $pes = ProgrammeEcole::where('ecole_id',$ecole->id)->get();
         //dd($ligne_programme_ecoles);
-        return view('Prof.Notes.index')->with(compact('ligne_programme_ecoles'));
+        return view('Prof.Notes.index')->with(compact('ligne_programme_ecoles','pes','prof'));
     }
 
     public function getInscriptionByToken($token,$ligne_programme_ecole){

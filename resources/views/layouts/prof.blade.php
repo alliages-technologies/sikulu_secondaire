@@ -61,7 +61,7 @@
     }
 </style>
 
-<div class="wrapper">
+<div class="wrapper" style="background-color: #f4f4f4">
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="{{asset('adminLTE/dist/img/AdminLTELogo.png')}}" alt="" height="60" width="60">
@@ -180,6 +180,7 @@
 <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
 <script src="{{asset('js/bootstrap.js')}}"></script>
 <script src="{{ asset('js/note.js') }}"></script>
+<script src="{{asset('js/abscence.js')}}"></script>
 
 <!-- jQuery -->
 <script src="{{asset('adminLTE/plugins/jquery/jquery.min.js')}}"></script>

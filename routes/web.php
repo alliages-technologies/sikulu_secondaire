@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Prof\ParentMail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -267,14 +268,22 @@ Route::prefix('profs')
     ->name('profs.')
     ->group(function(){
         Route::resource('/ecoles', 'EcoleController');
-        Route::get('/ecoles/{token}', 'EcoleController@show')->name('ecole.token');
+        Route::get('/ecoles/{token}/{ecole}', 'EcoleController@show')->name('ecole.token');
         Route::resource('/notes', 'NoteController');
+        Route::get('/notes/ecole/{ecole}', 'NoteController@indexEcole')->name('notes.ecole');
         Route::get('/notes-by-inscription/{token}/{ligne_programme_ecole}','NoteController@getInscriptionByToken')->name('note.show');
         Route::resource('/emploi_temps', 'EmploiTempController');
         Route::get('/emploi-by-salle/{token}/{ecole}','EmploiTempController@getEmploieBySalle');
         Route::get('/show-emploi-by-salle/{token}/{id}','EmploiTempController@getShowEmploie');
         Route::get('/add-salle', 'NoteController@addSalle');
         Route::get('/noteGenerate', 'NoteController@noteGenerateAuto');
+        Route::post('abscences/recherche','AbscenceController@recherche')->name('recherche');
+        Route::resource('/abscences', 'AbscenceController');
+        Route::get('abscences/get-inscriptions-by-salle/{salle}','AbscenceController@getInscriptionBySalle');
+        Route::post('/bar', 'MailController@bar');
+        Route::get('/cours', 'MailController@cour')->name('cours');
+        Route::get('/build', 'MailController@build')->name('build');
+        Route::resource('/appuiecours', 'MailController');
 });
 
 // releve : inscription_id, trimestre_id, token, moi, semaine, annee

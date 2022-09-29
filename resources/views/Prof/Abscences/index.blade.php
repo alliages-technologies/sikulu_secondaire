@@ -1,8 +1,8 @@
-@extends('layouts.surveillant')
+@extends('layouts.prof')
 
 
 @section('title')
-Admin Ecole | Salles
+PROF | Salles
 @endsection
 
 @section('content')
@@ -18,6 +18,7 @@ Admin Ecole | Salles
             <h2>
                 <i class="fa fa-door-open"></i> | GESTION DES ABSCENCES
                 <a href="" data-toggle="modal" data-target="#consulter" class="btn btn-sm btn-default float-right ml-2"> <i class="fa fa-eye"></i> </a>
+                <a href="" data-toggle="modal" data-target="#panier" class="btn btn-sm btn-default float-right"> <i class="fa fa-pen"></i> </a>
             </h2>
         </div>
         <div class="card-body">
@@ -26,6 +27,7 @@ Admin Ecole | Salles
                     <th>SALLE</th>
                     <th>CLASSE</th>
                     <th>ELEVES</th>
+                    <th>COURS</th>
                     <th>DATE</th>
                 </thead>
                 <tbody>
@@ -34,6 +36,7 @@ Admin Ecole | Salles
                         <td>{{ $abscence->salle->name }}</td>
                         <td>{{ $abscence->salle->classe->niveau->abb }}</td>
                         <td>{{ $abscence->inscription->eleve->name }}</td>
+                        <td>{{ $abscence->pel->matiere->name }}</td>
                         <td>{{ $abscence->jour }}</td>
                     </tr>
                     @endforeach
@@ -58,19 +61,20 @@ Admin Ecole | Salles
             <div class="modal-body">
                 <div class="flex-container">
                     <div class="form-group">
-                        <form action="{{route('surveillants.abscence.store')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{route('profs.abscences.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
-
                             <div class="form-row mt-2">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <select name="salle_id" id="" class="form-control salle">
-                                        <option value="">Choix de la salle</option>
-                                        @foreach ($salles as $salle)
-                                        <option value="{{$salle->id}}"> {{$salle->name}} ({{$salle->classe->niveau->abb}}) </option>
+                                        <option value="">Choix de la salle et du cours</option>
+                                        @foreach ($pels as $pel)
+                                        <option data-programme_ecole_ligne_id="{{$pel->id}}" value="{{$pel->programmeecole->salle->id}}"> {{$pel->programmeecole->salle->name}} ({{$pel->programmeecole->salle->classe->niveau->abb}} {{$pel->programmeecole->salle->classe->name}}) / {{$pel->matieren}} </option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+                            <div class="form-row mt-2">
+                                <div class="col-md-12">
                                     <input type="date" name="jour" id="jour" class="form-control jour">
                                 </div>
                             </div>
@@ -91,7 +95,7 @@ Admin Ecole | Salles
                                     </table>
                                 </div>
                             </div>
-                            <button class="btn btn-default mt-3 btn-save">ENREGISTRER </button>
+                            <button class="btn btn-success mt-3 btn-save">ENREGISTRER </button>
                         </form>
                     </div>
                 </div>

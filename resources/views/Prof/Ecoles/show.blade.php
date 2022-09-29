@@ -27,26 +27,27 @@
 <div class="container">
     <div class="card">
         <div class="card-body menu">
+            <input type="hidden" name="ecole_id" value="{{$ecole->id}}">
             <div class="row d-flex justify-content-center p-4">
                 <a href="{{ route('profs.emploi_temps.index') }}" class="col-md-3 m-2">
                     <i class="fa fa-calendar"></i>
-                    <p>Emploi du temps</p>
+                    <p>EMPLOI DU TEMPS</p>
                 </a>
-                <a href="{{ route('profs.notes.index') }}" class="col-md-3 m-2">
+                <a href="{{ route('profs.notes.ecole',$ecole->token) }}" class="col-md-3 m-2">
                     <i class="fa fa-edit"></i>
-                    <p>Notes</p>
+                    <p>NOTES</p>
                 </a>
-                <a href="#" class="col-md-3 m-2">
+                <a href="{{route('profs.cours')}}" class="col-md-3 m-2">
                     <i class="fa fa-file-text"></i>
-                    <p>QCM</p>
+                    <p>APPUIE DES COURS</p>
                 </a>
                 <a href="#" class="col-md-3 m-2">
                     <i class="fa fa-money"></i>
-                    <p>Mes paiements</p>
+                    <p>MES PAIEMENTS</p>
                 </a>
-                <a href="#" class="col-md-3 m-2">
-                    <i class="fa fa-book"></i>
-                    <p>E-Bibliothèque</p>
+                <a href="{{route('profs.abscences.index')}}" class="col-md-3 m-2">
+                    <i class="fa fa-edit"></i>
+                    <p>ABSCENCES</p>
                 </a>
             </div>
         </div>

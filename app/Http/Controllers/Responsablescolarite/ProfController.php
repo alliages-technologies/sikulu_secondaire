@@ -8,6 +8,7 @@ use App\User;
 use App\Models\Prof;
 use App\Models\ProfEcole;
 use App\Models\Diplome;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ProfController extends Controller
@@ -126,7 +127,7 @@ class ProfController extends Controller
 
     public function show($token){
         $prof = Prof::where('token', $token)->first();
-        $prof_ecole = ProfEcole::where('prof_id',$prof->id)->first();
+        $prof_ecole = ProfEcole::where('ecole_id',Auth::user()->ecole_id)->where('prof_id',$prof->id)->first();
         //dd($prof_ecole);
         return view('ResponsableScolarite.Profs.show')->with(compact('prof','prof_ecole'));
     }

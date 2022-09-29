@@ -18,13 +18,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($ligne_programme_ecoles as $ligne_programme_ecole)
+                    @foreach ($pes as $pe)
+                    @foreach ($pe->lpes->where('enseignant_id',$prof->id) as $ligne_programme_ecole)
                     <tr>
                         <td>{{ $ligne_programme_ecole->programmeecole->salle->name }}</td>
                         <td> {{ $ligne_programme_ecole->programmeecole->salle->classe->name }}</td>
                         <td>{{ $ligne_programme_ecole->matiere->name }}</td>
                         <td><a href="/profs/notes-by-inscription/{{ $ligne_programme_ecole->programmeecole->salle->token }}/{{ $ligne_programme_ecole->id }}" class="btn btn-default btn-xs"><i class="fa fa-eye"></i></a></td>
                     </tr>
+                    @endforeach
                     @endforeach
                 </tbody>
             </table>
