@@ -34,7 +34,7 @@ class SalleController extends Controller
 
     public function store(Request $request)
     {
-        $salle = Salle::where('name','like',request()->name)->where('abb','like',request()->abb)->first();
+        $salle = Salle::where('ecole_id',Auth::user()->ecole_id)->where('name','like',request()->name)->where('abb','like',request()->abb)->first();
         //dd($salle);
         if ($salle) {
             request()->session()->flash('info',' Existant dans la liste !!!');
