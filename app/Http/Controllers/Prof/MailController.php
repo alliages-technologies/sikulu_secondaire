@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Prof;
 
 use App\Http\Controllers\Controller;
 use App\Mail\Mail\ParentMail;
+use App\Models\AnneeAcad;
 use App\Models\AppuieCour;
 use App\Models\Ecole;
 use App\Models\Inscription;
@@ -20,12 +21,13 @@ class MailController extends Controller
 {
 
     public function cour($ecole){
+        $annee_acad = AnneeAcad::where('actif', 1)->first();
         $user = User::find(Auth::user()->id);
         $ecole = Ecole::where('token',$ecole)->first();
         $appuie_cours = AppuieCour::where('user_id',$user->id)->where('ecole_id',$ecole->id)->orderBy('id','desc')->paginate(10);
         //$pel = ProgrammeEcoleLigne::find($appuie_cour->programme_ecole_ligne_id)->programmeecole->salle->id;
         //$prof_ecole = ProfEcole::where('prof_id',Auth::user()->prof->id)->first();
-        $pes = ProgrammeEcole::where('ecole_id',$ecole->id)->get();
+        $pes = ProgrammeEcole::where('annee_id',$annee_acad->id)->where('ecole_id',$ecole->id)->get();
         $prof = Prof::where('user_id',Auth::user()->id)->first();
         //dd($prof);
         return view('Prof.Appuies.cours')->with(compact('pes','appuie_cours','prof'));

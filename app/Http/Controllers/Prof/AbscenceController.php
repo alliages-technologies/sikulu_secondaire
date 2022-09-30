@@ -18,10 +18,11 @@ use Illuminate\Support\Facades\Auth;
 class AbscenceController extends Controller
 {
     public function indexEcole($token){
+        $annee_acad = AnneeAcad::where('actif', 1)->first();
         $ecole = Ecole::where('token',$token)->first();
         //$prof_ecole = ProfEcole::where('prof_id',Auth::user()->prof->id)->first();
         $prof = Prof::where('user_id',Auth::user()->id)->first();
-        $abscences = Abscence::where('user_id',Auth::user()->prof->id)->where('ecole_id',$ecole->id)->orderBy('id','desc')->paginate(10);
+        $abscences = Abscence::where('annee_id',$annee_acad->id)->where('user_id',Auth::user()->prof->id)->where('ecole_id',$ecole->id)->orderBy('id','desc')->paginate(10);
         //$pels = ProgrammeEcoleLigne::where('enseignant_id',$prof->id)->get();
         $pes = ProgrammeEcole::where('ecole_id',$ecole->id)->get();
         //dd($ples);

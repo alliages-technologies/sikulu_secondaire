@@ -8,6 +8,7 @@ use App\Models\Ecole;
 use App\Models\EmploieTemp;
 use App\Models\Inscription;
 use App\Models\Prof;
+use App\Models\ProgrammeEcole;
 use App\Models\ProgrammeEcoleLigne;
 use App\Models\Salle;
 use App\Models\TrimestreEcole;
@@ -16,11 +17,12 @@ use Illuminate\Support\Facades\Auth;
 
 class EmploiTempController extends Controller
 {
-    public function index(){
+    public function indexEcole($ecole){
         $annee_acad = AnneeAcad::where('actif', 1)->first();
+        $ecole = Ecole::where('token',$ecole)->first();
         $prof = Prof::where('user_id', Auth::user()->id)->first();
-        $ligne_programme_ecoles = ProgrammeEcoleLigne::where('enseignant_id',$prof->id)->where('annee_id',$annee_acad->id)->get();
-        return view('Prof.Emplois.index')->with(compact('ligne_programme_ecoles'));
+        $pes = ProgrammeEcole::where('annee_id',$annee_acad->id)->where('ecole_id',$ecole->id)->get();
+        return view('Prof.Emplois.index')->with(compact('pes','prof'));
     }
 
     public function getEmploieBySalle($token, $ligne_programme_ecole){

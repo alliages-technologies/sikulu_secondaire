@@ -273,6 +273,7 @@ Route::prefix('profs')
         Route::get('/notes/ecole/{ecole}', 'NoteController@indexEcole')->name('notes.ecole');
         Route::get('/notes-by-inscription/{token}/{ligne_programme_ecole}','NoteController@getInscriptionByToken')->name('note.show');
         Route::resource('/emploi_temps', 'EmploiTempController');
+        Route::get('/emploi_temps/ecole/{ecole}', 'EmploiTempController@indexEcole')->name('emploi.ecole');
         Route::get('/emploi-by-salle/{token}/{ecole}','EmploiTempController@getEmploieBySalle');
         Route::get('/show-emploi-by-salle/{token}/{id}','EmploiTempController@getShowEmploie');
         Route::get('/add-salle', 'NoteController@addSalle');

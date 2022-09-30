@@ -11,18 +11,16 @@
         <div class="card-body">
             <table class="table table-bordered table-striped table-hover table-sm">
                 <thead class="">
-                    <th>CLASSE</th>
-                    <th>MATIERE</th>
-                    <th>NBR_HEURE</th>
-                    <th>JOURS</th>
+                    <tr>
+                        <th>CLASSE</th>
+                        <th>MATIERE</th>
+                    </tr>
                 </thead>
                 <tbody>
                     @foreach ($appuie_cours as $appuie_cour)
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td> {{$appuie_cour->pel->sallen}} </td>
+                        <td> {{$appuie_cour->pel->matieren}} </td>
                     </tr>
                     @endforeach
                 </tbody>

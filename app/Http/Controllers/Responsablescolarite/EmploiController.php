@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Responsablescolarite;
 
 use App\Http\Controllers\Controller;
+use App\Models\AnneeAcad;
 use App\Models\Day;
 use App\Models\EmploieTemp;
 use App\Models\LigneEmploiTemp;
@@ -41,12 +42,14 @@ class EmploiController extends Controller
 
     public function store(Request $request)
     {
+        $annee_acad = AnneeAcad::where('actif', 1)->first();
         $lignes = $request->lignes;
         $emploi_temp = new EmploieTemp();
         $emploi_temp->name = 'EMP-TEMP'.date('YmdHmis').date('is');
         $emploi_temp->salle_id = $request->salle_id;
         $emploi_temp->ecole_id = Auth::user()->ecole_id;
         $emploi_temp->token = sha1(date('YmdHisW')."Ax".date('WsiHdmY'));
+        $emploi_temp->annee_id = $annee_acad->id;
         //dd($emploi_temp);
         $emploi_temp->save();
         for ($i=0; $i < count($lignes) ; $i++) {

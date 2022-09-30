@@ -29,7 +29,7 @@
         <div class="card-body menu">
             <input type="hidden" name="ecole_id" value="{{$ecole->id}}">
             <div class="row d-flex justify-content-center p-4">
-                <a href="{{ route('profs.emploi_temps.index') }}" class="col-md-3 m-2">
+                <a href="{{ route('profs.emploi.ecole',$ecole->token)}}" class="col-md-3 m-2">
                     <i class="fa fa-calendar"></i>
                     <p>EMPLOI DU TEMPS</p>
                 </a>

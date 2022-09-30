@@ -25,14 +25,15 @@ class NoteController extends Controller
         $ecole = Ecole::where('token',$token)->first();
         $annee_acad = AnneeAcad::where('actif', 1)->first();
         $prof = Prof::where('user_id',Auth::user()->id)->first();
-        $pes = ProgrammeEcole::where('ecole_id',$ecole->id)->get();
+        $pes = ProgrammeEcole::where('annee_id',$annee_acad->id)->where('ecole_id',$ecole->id)->get();
         //dd($ligne_programme_ecoles);
         return view('Prof.Notes.index')->with(compact('pes','prof'));
     }
 
     public function getInscriptionByToken($token,$ligne_programme_ecole){
         $salle = Salle::where('token',$token)->first();
-        $inscriptions = Inscription::where('salle_id',$salle->id)->get();
+        $annee_acad = AnneeAcad::where('actif', 1)->first();
+        $inscriptions = Inscription::where('annee_id',$annee_acad->id)->where('salle_id',$salle->id)->get();
         $trimestre_ecoles = TrimestreEcole::where('ecole_id',$salle->ecole_id)->where('active',1)->get();
         return view('Prof.Notes.inscription')->with(compact('inscriptions','salle','trimestre_ecoles','ligne_programme_ecole'));
     }

@@ -19,6 +19,7 @@ class CreateAppuieCoursTable extends Migration
             $table->string('cours',200)->nullable();
             $table->integer('user_id')->default(0);
             $table->integer('ecole_id')->default(0);
+            $table->integer('annee_id')->default(0);
             $table->integer('programme_ecole_ligne_id')->default(0);
             $table->timestamps();
         });
