@@ -44,7 +44,7 @@ Route::get('/users','UserController@index')->middleware('auth','admin');
 
 Route::prefix('admin')
     ->namespace('Admin')
-    ->middleware('auth','admin')
+    ->middleware('auth')
     ->name('admin.')
     ->group(function () {
     // Route de la gestion des emploies du temps
@@ -86,6 +86,7 @@ Route::prefix('admin')
 
 Route::prefix('superadmin')
 ->namespace('Superadmin')
+->middleware(['auth'])
 ->name('superadmin.')
 ->group(function(){
     /*
@@ -120,6 +121,7 @@ Route::prefix('superadmin')
 
 Route::prefix('adminecole')
     ->namespace('Adminecole')
+	->middleware(['auth'])
     ->name('adminecole.')
     ->group(function(){
     /*
@@ -189,6 +191,7 @@ Route::prefix('adminecole')
 
 Route::prefix('responsablefinances')
 ->namespace('Responsablefinances')
+->middleware(['auth'])
 ->name('responsablefinances.')
 ->group(function(){
     /*
@@ -234,6 +237,7 @@ Route::prefix('responsablefinances')
 
 Route::prefix('responsablescolarite')
 ->namespace('Responsablescolarite')
+->middleware(['auth'])
 ->name('responsablescolarite.')
 ->group(function(){
     // Config des Profs
@@ -265,6 +269,7 @@ Route::prefix('responsablescolarite')
 
 Route::prefix('profs')
     ->namespace('Prof')
+	->middleware(['auth'])
     ->name('profs.')
     ->group(function(){
         Route::resource('/ecoles', 'EcoleController');
@@ -294,6 +299,7 @@ Route::prefix('profs')
 
 Route::prefix('parent')
     ->namespace('Parent')
+	->middleware(['auth'])
     ->name('parents.')
     ->group(function(){
         Route::resource('/ecoles', 'EcoleController');
@@ -303,6 +309,7 @@ Route::prefix('parent')
 
 Route::prefix('surveillant')
     ->namespace('Surveillant')
+	->middleware(['auth'])
     ->name('surveillants.')
     ->group(function(){
         Route::resource('/abscence', 'AbscenceController');
