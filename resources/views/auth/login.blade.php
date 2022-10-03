@@ -214,9 +214,9 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="card2 card border-0 px-4 py-5">
-                            <div class="row justify-content-center"> <img style="width: 100%; height: 342px;margin-left: 4%;" src="{{asset('images/gesschool.png')}}" class=""> </div>
+                            <div class="row justify-content-center"> <img style="width: 100%; height: 342px;margin-left: 4%;margin-top: -48px;" src="{{asset('images/gesschool.png')}}" class=""> </div>
                             <div class="row px-3 mb-4">
-                                <div class="container">
+                                <div class="container" style="margin-top: -40px;">
                                     <marquee behavior="" direction=""><h2 style="font-size:40px;background-color: #1577b0;color: #fff;letter-spacing: 2px;border-radius: 5px;" class="text-center">POUR UNE GESTION SANS STRESS DE VOTRE ECOLE</h2></marquee>
                                 </div>
                                 <div class="line"></div> <small class="or text-center"> </small>
