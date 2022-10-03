@@ -23,7 +23,8 @@
 
     .card0 {
         box-shadow: 0px 4px 8px 0px #757575;
-        border-radius: 0px
+        border-radius: 0px;
+        margin-bottom: -40px;
     }
 
     .card2 {
