@@ -32,7 +32,7 @@
 
     .logo {
         width: 500px !important;
-        height: 425px  !important;
+        height: 500px  !important;
         margin-top: 20px;
         margin-left: 40px !important;
         border-radius: 5pc;
@@ -189,7 +189,7 @@
 </style>
 
 <body>
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}" style="margin-top: -30px;">
         @csrf
         <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
             <div class="card card0 border-0">
@@ -205,19 +205,20 @@
                                 ">
                                     <span>Entreprise : <span style="color: #007bff; font-weight: 500;"> Onso_congo </span> </span> <br>
                                     <span>Contact 1 : <span style="color: green; font-weight: 500;"> +242 05-014-09-33 </span></span> <br>
-                                    <span>Contact 2 : <span style="color: #df5239;font-weight: 500;"> +242 06-845-65-33 </span></span> <br>
+                                    <span>Contact 2 : <span style="color: #5f1a0e;font-weight: 500;"> +242 06-845-65-33 </span></span> <br>
                                     <span>Adresse email : <span style="color: #0136b9;font-weight: 500;"> onsocongo@gmail.com </span></span>
                                 </p>
                             </div>
                         </div>
-                        <div class="container">
-                            <marquee behavior="" direction=""><h2 style="font-size:40px;background-color: #50a850;color: #fff;letter-spacing: 2px;border-radius: 5px;" class="text-center">POUR UNE GESTION SANS STRESS DE VOTRE ECOLE</h2></marquee>
-                        </div>
+
                     </div>
                     <div class="col-lg-6">
                         <div class="card2 card border-0 px-4 py-5">
                             <div class="row justify-content-center"> <img style="width: 100%; height: 342px;margin-left: 4%;" src="{{asset('images/gesschool.png')}}" class=""> </div>
                             <div class="row px-3 mb-4">
+                                <div class="container">
+                                    <marquee behavior="" direction=""><h2 style="font-size:40px;background-color: #1577b0;color: #fff;letter-spacing: 2px;border-radius: 5px;" class="text-center">POUR UNE GESTION SANS STRESS DE VOTRE ECOLE</h2></marquee>
+                                </div>
                                 <div class="line"></div> <small class="or text-center"> </small>
                                 <div class="line"></div>
                             </div>
