@@ -64,7 +64,7 @@
 <div class="wrapper" style="background-color: #f4f6f9;">
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{asset('images/anso.jpeg')}}" alt="" height="300" width="300">
+    <img class="animation__shake" src="" alt="" height="300" width="300">
   </div>
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -94,7 +94,7 @@
         </div>
         <div class="info">
 
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="#" class="d-block"> </a>
         </div>
       </div>
 

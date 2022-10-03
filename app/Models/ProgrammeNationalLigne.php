@@ -11,7 +11,7 @@ class ProgrammeNationalLigne extends Model
     protected $appends = ['matier'];
 
     public function programme_national(){
-        return $this->belongsTo('App\Models\ProgrammeNational','programme_national_id');
+        return $this->belongsTo('App\Models\ProgrammeNational','national_programme_id');
     }
 
     public function matiere(){

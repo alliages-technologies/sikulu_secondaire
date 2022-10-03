@@ -66,40 +66,49 @@ class ProgrammenationalController extends Controller
     public function show($id)
     {
         $programmenational = ProgrammeNational::find($id);
-        return view('Superadmin.ProgrammeNational.show')->with(compact('programmenational'));
+        $matieres = Matiere::all();
+        return view('Superadmin.ProgrammeNational.show')->with(compact('programmenational','matieres'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+        $programmenational_ligne = ProgrammeNationalLigne::find($id);
+        $matieres = Matiere::all();
+        return view('Superadmin.ProgrammeNational.edit')->with(compact('programmenational_ligne','matieres'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        $programmes_national_ligne = ProgrammeNationalLigne::find($id);
+        $programmenational = ProgrammeNational::find($programmes_national_ligne->programme_national->id);
+        $matieres = Matiere::all();
+        $programmes_national_ligne->matiere_id = request()->matiere_id;
+        $programmes_national_ligne->coefficient = request()->coefficient;
+        $programmes_national_ligne->save();
+        return redirect()->back();
+        //return view('Superadmin.ProgrammeNational.show')->with(compact('programmenational','matieres'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function delete($id)
     {
-        //
+        $programmes_national_ligne = ProgrammeNationalLigne::find($id);
+        //dd($programmes_national_ligne);
+        $programmes_national_ligne->delete();
+        return redirect()->back();
+    }
+
+    public function add($id)
+    {
+        $programmes_national = ProgrammeNational::find($id);
+        $programmes_national_ligne = new ProgrammeNationalLigne();
+        $programmes_national_ligne->national_programme_id = $programmes_national->id;
+        $programmes_national_ligne->matiere_id = request()->matiere_id;
+        $programmes_national_ligne->coefficient = request()->coefficient;
+        //dd($programmes_national_ligne);
+        $programmes_national_ligne->save();
+        return redirect()->back();
     }
 }

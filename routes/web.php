@@ -114,6 +114,9 @@ Route::prefix('superadmin')
     Route::post('/matiere/store', 'ParametreController@matiereStore')->name('matieres.store');
     // Programme national
     Route::resource('/programmes-national','ProgrammenationalController');
+    Route::post('/programmes-national/add/{id}','ProgrammenationalController@add')->name('programmes-national.add');
+    Route::get('/programme-nationnal-delete/{id}/delete','ProgrammenationalController@delete')->name('pn.delete');
+    Route::post('/programme-nationnal-update/{id}/update','ProgrammenationalController@update')->name('pn.update');
 });
 
 
