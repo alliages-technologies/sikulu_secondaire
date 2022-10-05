@@ -8,7 +8,9 @@ Admin Ecole | Acceuil
     $ecole = App\Models\Ecole::find(Auth::user()->ecole_id);
 @endphp
 @section('content')
-<img src="{{asset($ecole->image_uri)}}" alt="" srcset="">
+
+</div>
+<img src="" alt="" srcset="">
 <div class="container menu">
     <div class="row d-flex justify-content-center p-4">
         <a style="color: red" href="/deconnexion" class="col-md-3 m-2">
