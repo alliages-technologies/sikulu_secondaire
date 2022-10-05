@@ -177,9 +177,6 @@
 
 
 <!-- SCRIPT -->
-<script src="{{asset('js/jquery-3.5.1.js')}}"></script>
-<script src="{{asset('js/bootstrap.js')}}"></script>
-<script src="{{asset('js/abscence.js')}}"></script>
 
 <!-- jQuery -->
 <script src="{{asset('adminLTE/plugins/jquery/jquery.min.js')}}"></script>
