@@ -1,4 +1,4 @@
-@extends('layouts.Parent')
+@extends('layouts.parent')
 @section('content')
 <div class="container">
     <div class="card mt-5">
