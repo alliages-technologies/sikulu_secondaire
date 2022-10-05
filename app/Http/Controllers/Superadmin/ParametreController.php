@@ -228,4 +228,29 @@ class ParametreController extends Controller
 
        return view('Superadmin.Parametres.Ecoles.show')->with(compact('ecole','inscriptions','abscences','ecolages','pourcentage'));
    }
+
+   public function imageModify(){
+    $ecole = Ecole::find(request()->id);
+    if (request()->image_uri) {
+        $fichier = request()->image_uri;
+        $ext_array = ['PNG', 'JPG', 'JPEG', 'GIF', 'jpg', 'png', 'jpeg', 'gif'];
+        $ext = $fichier->getClientOriginalExtension();
+        if (in_array($ext, $ext_array)) {
+            if (!file_exists(public_path() . '/images')) {
+                mkdir(public_path() . '/images');
+            }
+            if (!file_exists(public_path() . '/images/ecoles')) {
+                mkdir(public_path() . '/images/ecoles');
+            }
+
+            $name = date('dmYhis') . '.' . $ext;
+            $path = 'images/ecoles/' . $name;
+            $fichier->move(public_path('images/ecoles'), $name);
+            $ecole->image_uri = $path;
+        }
+    }
+    //dd($ecole);
+    $ecole->save();
+    return redirect()->back();
+   }
 }

@@ -77,12 +77,25 @@ Superadmin | {{$ecole->name}}
     <div class="card">
         <div class="card-header">
             <h2>
-            <i class="fa fa-building"></i> DETAILS SUR L'ETABLISSEMENT
+            <i class="fa fa-building"></i> DETAILS SUR L'ETABLISSEMENT <a href="#" class="btn btn-primary float-right btn-modify"><i class="fa fa-edit"></i></a>
                 <!--button style="float: right;" class="btn btn-sm btn-default"><i class="fa fa-edit"></i></button-->
             </h2>
         </div>
         <div class="card-body">
-            <img src="{{asset($ecole->image_uri)}}" alt="" srcset="">
+            <form class="image-modify" action="{{route('superadmin.image.modify')}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="id" value="{{$ecole->id}}">
+                <div class="row mb-2">
+                    <label for="" class="ml-2">Modification de l'image</label>
+                    <div class="col-md-11">
+                        <input type="file" name="image_uri" class="form-control" required>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-success"><i class="fa fa-save"></i></button>
+                    </div>
+                </div>
+            </form>
+            <img src="{{asset($ecole->image_uri)}}" alt="" srcset="" style="width: 100%; height: 450px;">
             <hr>
             <span>
                 <h5>INFORMATIONS SUR L'ECOLE</h5>
@@ -101,4 +114,14 @@ Superadmin | {{$ecole->name}}
         </div>
     </div>
 </div>
+<script src="{{asset('js/jquery-3.5.1.js')}}"></script>
+<script src="{{asset('js/bootstrap.js')}}"></script>
+<script>
+    $('.image-modify').hide();
+    $('.btn-modify').click(function (e) {
+        e.preventDefault();
+        $('.image-modify').show(800);
+    });
+</script>
+
 @endsection

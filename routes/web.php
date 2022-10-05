@@ -117,6 +117,7 @@ Route::prefix('superadmin')
     Route::post('/programmes-national/add/{id}','ProgrammenationalController@add')->name('programmes-national.add');
     Route::get('/programme-nationnal-delete/{id}/delete','ProgrammenationalController@delete')->name('pn.delete');
     Route::post('/programme-nationnal-update/{id}/update','ProgrammenationalController@update')->name('pn.update');
+    Route::post('/image-modify','ParametreController@imageModify')->name('image.modify');
 });
 
 
