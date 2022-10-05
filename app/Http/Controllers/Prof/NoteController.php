@@ -68,7 +68,8 @@ class NoteController extends Controller
             $note->annee_id = $annee->id;
             $ligne_ecole_programme = ProgrammeEcoleLigne::find($ligne_ecole_programme_id);
             $note->ecole_id = $ligne_ecole_programme->programmeecole->ecole_id;
-            //dd($note);
+            $note->salle_id = $ligne_ecole_programme->programmeecole->salle_id;
+            dd($note);
             $note->save();
         }
         return response()->json("OK");
