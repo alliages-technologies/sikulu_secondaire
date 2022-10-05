@@ -1,12 +1,13 @@
-$(".btn-save").hide();
+$(".btn-saven").hide();
+alert(1);
 $(".trimestre_id").change(function (e) {
     e.preventDefault();
     var trimestre_id = $(this).val();
     //alert(trimestre_id);
     if (trimestre_id) {
-        $(".btn-save").show(400);
+        $(".btn-saven").show(400);
 
-        $(".btn-save").click(function (e) {
+        $(".btn-saven").click(function (e) {
             e.preventDefault();
             var data = $('.table-notes tbody tr').map(function () {
                 return [$(this).children().map(function(){
