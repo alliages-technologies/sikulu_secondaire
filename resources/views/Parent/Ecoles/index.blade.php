@@ -18,7 +18,7 @@
                     @foreach($eleves as $eleve)
                         <tr>
                             <td> {{$eleve->name}} </td>
-                            <td> {{$eleve->inscription->classe->name}} </td>
+                            <td> {{$eleve->id}} </td>
                             <td> <a href="" class="btn btn-default btn-sm"> <i class="fa fa-eye"></i> </a> </td>
                         </tr>
                     @endforeach
