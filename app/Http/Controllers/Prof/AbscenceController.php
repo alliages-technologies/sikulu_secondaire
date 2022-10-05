@@ -22,13 +22,11 @@ class AbscenceController extends Controller
         $ecole = Ecole::where('token',$token)->first();
         //$prof_ecole = ProfEcole::where('prof_id',Auth::user()->prof->id)->first();
         $prof = Prof::where('user_id',Auth::user()->id)->first();
-        $abscences = Abscence::where('annee_id',$annee_acad->id)->where('user_id',Auth::user()->prof->id)->where('ecole_id',$ecole->id)->orderBy('id','desc')->paginate(10);
-        //$pels = ProgrammeEcoleLigne::where('enseignant_id',$prof->id)->get();
+        $abscences = Abscence::where('annee_id',$annee_acad->id)->where('user_id',Auth::user()->id)->where('ecole_id',$ecole->id)->orderBy('id','desc')->paginate(10);
         $pes = ProgrammeEcole::where('ecole_id',$ecole->id)->get();
-        //dd($ples);
         $prof_ecole = ProfEcole::where('prof_id',Auth::user()->prof->id)->first();
+        //dd($prof_ecole);
         $salles = Salle::where('ecole_id',$prof_ecole->ecole_id)->get();
-        //dd($salles);
         return view('Prof.Abscences.index')->with(compact('abscences','salles','pes','prof'));
     }
 
@@ -53,7 +51,7 @@ class AbscenceController extends Controller
             $abscent->name = sha1(date('ymdhisW')."Ax".date('Wsihdmy'));
             $abscent->inscription_id =  $lignes[$i]['inscription_id'];
             $abscent->ecole_id =  $prof_ecole->ecole_id;
-            $abscent->user_id =  $prof_ecole->id;
+            $abscent->user_id =  Auth::user()->id;
             $abscent->jour = $jour;
             $abscent->salle_id =$lignes[$i]['salle_id'];
             $abscent->programme_ecole_ligne_id = $programme_ecole_ligne_id;
