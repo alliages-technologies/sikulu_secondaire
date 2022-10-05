@@ -107,7 +107,7 @@ use App\Models\Abscence;
             </h2>
         </div>
         <div class="card-body">
-            <form class="image-modify_" action="{{route('superadmin.image.modify')}}" method="post" enctype="multipart/form-data">
+            <form class="image-modify" action="{{route('superadmin.image.modify')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="id" value="{{$ecole->id}}">
                 <div class="row mb-2">
@@ -145,7 +145,7 @@ use App\Models\Abscence;
     $('.image-modify').hide();
     $('.btn-modify').click(function (e) {
         e.preventDefault();
-        $('.image-modify').show(800);
+        //$('.image-modify').show(800);
     });
 </script>
 
