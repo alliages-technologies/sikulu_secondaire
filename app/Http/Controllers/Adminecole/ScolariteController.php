@@ -108,10 +108,10 @@ class ScolariteController extends Controller
         $inscriptions = Inscription::where('annee_id', $annee_acad->id)->where('ecole_id',Auth::user()->ecole_id)->get();
         $trimestre_ecole = TrimestreEcole::where('ecole_id',Auth::user()->ecole_id)->where('active',1)->first();
         $notes = Note::where('annee_id', $annee_acad->id)->where('ecole_id', Auth::user()->ecole_id)->where('trimestre_id',request()->trimestre_id)->get();
-        $releve_traite = ReleveTraite::where('annee_id', $annee_acad->id)->where('trimestre_id',request()->trimestre_id)->first();
+        $releve_traite = ReleveTraite::where('annee_id', $annee_acad->id)->where('trimestre_id',request()->trimestre_id)->where('ecole_id',Auth::user()->ecole_id)->first();
 
         $note_trimestre_en_cours = Note::where('trimestre_id',request()->trimestre_id)->first();
-
+        
         //$notes = $notes->where('inscription_id',33);
         //dd($notes->count());
         //dd($note_trimestre_en_cours);
