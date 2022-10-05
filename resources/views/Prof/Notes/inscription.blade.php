@@ -93,7 +93,7 @@
                     dataType: "json",
                     success: function (response) {
                         alert('Notation éffectuée avec succès !!!');
-                        window.location.replace("/profs/notes");
+                        window.location.replace("/home");
                     },
                     error: function () {
                         alert('Désolé, vous ne pouvez plus noter cet élêve car il (elle) a déjà été noté pour cette composition !!!');
