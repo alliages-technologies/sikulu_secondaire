@@ -39,9 +39,9 @@ class NoteController extends Controller
 
     public function inscription($token,$inscription,$trimestre)
     {
-        dd($token);
         $annee = AnneeAcad::where('actif',1)->first();
         $salle = Salle::where('token',$token)->first();
+        dd($salle);
         $notes = Note::where('ecole_id',Auth::user()->ecole_id)->where('annee_id',$annee->id)->where('inscription_id',$inscription)->where('trimestre_id',$trimestre)->where('salle_id',$salle->id)->get();
         //dd($notes);
         $inscription = Inscription::find($inscription);
