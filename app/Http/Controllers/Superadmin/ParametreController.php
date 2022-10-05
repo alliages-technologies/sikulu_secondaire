@@ -168,9 +168,26 @@ class ParametreController extends Controller
        $ecole->phone=request()->phone;
        $ecole->coordonnees=request()->coordonnees;
        $ecole->enseignement_id=request()->enseignement_id;
-       $imagePath=request('image_uri')->store('images-ecoles', 'public');
-       $ecole->image_uri=$imagePath;
+       //$imagePath=request('image_uri')->store('images-ecoles', 'public');
        $ecole->token = "TokeNecOlE".date('Ymd').date('Ymdhms');
+       if (request()->image_uri) {
+        $fichier = request()->image_uri;
+        $ext_array = ['PNG', 'JPG', 'JPEG', 'GIF', 'jpg', 'png', 'jpeg', 'gif'];
+        $ext = $fichier->getClientOriginalExtension();
+        if (in_array($ext, $ext_array)) {
+            if (!file_exists(public_path() . '/images')) {
+                mkdir(public_path() . '/images');
+            }
+            if (!file_exists(public_path() . '/images/ecoles')) {
+                mkdir(public_path() . '/images/ecoles');
+            }
+
+            $name = date('dmYhis') . '.' . $ext;
+            $path = 'images/ecoles/' . $name;
+            $fichier->move(public_path('images/ecoles'), $name);
+            $ecole->image_uri = $path;
+        }
+    }
        $ecole->save();
        // Configuration de l'admin de l'école
        $admin=new User();
