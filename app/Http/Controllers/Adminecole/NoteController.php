@@ -41,8 +41,8 @@ class NoteController extends Controller
     {
         $annee = AnneeAcad::where('actif',1)->first();
         $salle = Salle::where('token',$token)->first();
-        $notes = Note::where('annee_id',$annee->id)->where('inscription_id',$inscription)->where('trimestre_id',$trimestre)->where('salle_id',$salle->id)->get();
-        dd($notes);
+        $notes = Note::where('ecole_id',Auth::user()->ecole_id)->where('annee_id',$annee->id)->where('inscription_id',$inscription)->where('trimestre_id',$trimestre)->where('salle_id',$salle->id)->get();
+        //dd($notes);
         $inscription = Inscription::find($inscription);
         return view('Adminecole.Notes.inscription_show')->with(compact('notes','inscription'));
     }
