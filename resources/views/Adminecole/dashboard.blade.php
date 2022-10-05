@@ -9,7 +9,6 @@ Admin Ecole | Acceuil
 @endphp
 @section('content')
 <img src="{{asset($ecole->image_uri)}}" alt="" srcset="">
-<img class="profile-user-img img-fluid img-circle"src="{{asset($ecole->image_uri)}}" alt="User profile picture">
 <div class="container menu">
     <div class="row d-flex justify-content-center p-4">
         <a style="color: red" href="/deconnexion" class="col-md-3 m-2">
