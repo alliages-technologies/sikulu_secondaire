@@ -7,6 +7,7 @@ use App\Models\AnneeAcad;
 use App\Models\Inscription;
 use App\Models\Note;
 use App\Models\Salle;
+use App\Models\Trimestre;
 use App\Models\TrimestreEcole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,8 +42,8 @@ class NoteController extends Controller
     {
         $annee = AnneeAcad::where('actif',1)->first();
         $salle = Salle::where('token',$token)->first();
-        $notes = Note::where('ecole_id',Auth::user()->ecole_id)->where('annee_id',$annee->id)->where('inscription_id',$inscription)->where('trimestre_id',$trimestre)->where('salle_id',$salle->id)->get();
-        dd($trimestre);
+        $trimestre_ecole = TrimestreEcole::find($trimestre);
+        $notes = Note::where('ecole_id',Auth::user()->ecole_id)->where('annee_id',$annee->id)->where('inscription_id',$inscription)->where('trimestre_id',$trimestre_ecole->trimestre_id)->where('salle_id',$salle->id)->get();
         //dd($notes);
         $inscription = Inscription::find($inscription);
         return view('Adminecole.Notes.inscription_show')->with(compact('notes','inscription'));
