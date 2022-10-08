@@ -100,7 +100,7 @@
                             </tr>
                             <tr>
                                 <td style="font-size: larger;">Moyenne Genérale :</td>
-                                <td style="font-size: larger;"> {{$releve_note->moyenne}} </td>
+                                <td style="font-size: larger;"> {{number_format($releve_note->moyenne,2,'.','')}} </td>
                             </tr>
                         </tbody>
                     </table>
