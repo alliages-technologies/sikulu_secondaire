@@ -65,14 +65,14 @@ Responsable Scolarité | Inscription
                                             </select>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="">Montant inscription</label>
+                                            <label for="">Frais Mensuel</label>
                                             <input type="number" class="form-control" name="montant_inscri" placeholder="" required>
                                         </div>
                                     </div>
 
                                     <div class="row mt-2">
                                         <div class="col-md-12">
-                                            <label for="">Montant des frais d'examen</label>
+                                            <label for="">Montant Inscription</label>
                                             <input type="number" class="form-control" name="montant_frais" placeholder="">
                                         </div>
                                     </div>
@@ -135,7 +135,7 @@ Responsable Scolarité | Inscription
                                     <div class="row mt-2 pass-email-tuteur">
                                         <div class="col-md-6">
                                             <label for="">Mot de Passe</label>
-                                            <input type="password" class="form-control" id="" name="password" >
+                                            <input type="password" class="form-control" id="" name="password" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="ttuteur">Email</label>

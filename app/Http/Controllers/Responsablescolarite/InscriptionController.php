@@ -92,11 +92,7 @@ class InscriptionController extends Controller
             $inscription->user_id = Auth::user()->id;
             $inscription->ecole_id = Auth::user()->ecole_id;
             $inscription->montant_inscri = $request->montant_inscri;
-            if (!$request->montant_frais) {
-                $inscription->montant_frais = 0;
-            } else {
-                $inscription->montant_frais = $request->montant_frais;
-            }
+            $inscription->montant_frais = $request->montant_frais;
             $inscription->classe_id = $salle->classe_id;
             $inscription->annee_id = $request->annee_id;
             $inscription->salle_id = $salle->id;
@@ -160,11 +156,7 @@ class InscriptionController extends Controller
             $inscription->ecole_id = Auth::user()->ecole_id;
             $inscription->parent_id = $parent->id;
             $inscription->montant_inscri = $request->montant_inscri;
-            if (!$request->montant_frais) {
-                $inscription->montant_frais = 0;
-            } else {
-                $inscription->montant_frais = $request->montant_frais;
-            }
+            $inscription->montant_frais = $request->montant_frais;
             $inscription->classe_id = $salle->classe_id;
             $inscription->annee_id = $request->annee_id;
             $inscription->salle_id = $salle->id;
