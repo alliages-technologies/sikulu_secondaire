@@ -29,7 +29,7 @@ Responsable Scolarité | Inscriptions
                         <td> {{$inscription->created_at->format('d/n/Y')}} </td>
                         <td> {{$inscription->classe_id? $inscription->classe->name:"_"}} </td>
                         <td> {{$inscription->eleve_id? $inscription->eleve->nom:"_"}} {{$inscription->eleve_id?$inscription->eleve->prenom:""}} </td>
-                        <td> <a href="{{ route('responsablescolarite.inscriptions.show', $inscription->token) }}" class="btn btn-sm"> <i class="fa fa-eye"></i> </a> </td>
+                        <td> <a href="{{ route('responsablescolarite.inscriptions.show', $inscription->token) }}" class="btn btn-primary btn-sm float-right"> <i class="fa fa-eye"></i> </a> <a class="btn btn-warning btn-sm float-right mr-2" href="{{ route('responsablescolarite.inscriptions.edit', $inscription->id) }}"> <i class="fa fa-edit"></i> </a> </td>
                     </tr>
                 @endforeach
                 </tbody>

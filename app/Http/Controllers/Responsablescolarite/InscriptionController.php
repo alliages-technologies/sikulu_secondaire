@@ -228,14 +228,45 @@ class InscriptionController extends Controller
 
     public function edit($id)
     {
-        //
+        $inscription = Inscription::find($id);
+        //dd($inscription->eleve);
+        $salles = Salle::where('ecole_id',Auth::user()->ecole_id)->get();
+        return view('ResponsableScolarite.Inscriptions.edit')->with(compact('inscription','salles'));
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+        $inscription = Inscription::find($id);
+        $eleve = Eleve::find($inscription->eleve_id);
+        $eleve->nom = $request->nom;
+        $eleve->prenom = $request->prenom;
+        $eleve->date_naiss = $request->date_naiss;
+        $eleve->lieu_naiss = $request->lieu_naiss;
+        $eleve->adresse = $request->adresse;
+        if ($request->image_uri) {
+            $fichier = $request->image_uri;
+            $ext_array = ['PNG', 'JPG', 'JPEG', 'GIF', 'jpg', 'png', 'jpeg', 'gif'];
+            $ext = $fichier->getClientOriginalExtension();
+            if (in_array($ext, $ext_array)) {
+                if (!file_exists(public_path() . '/images')) {
+                    mkdir(public_path() . '/images');
+                }
+                if (!file_exists(public_path() . '/images/membres')) {
+                    mkdir(public_path() . '/images/membres');
+                }
+
+                $name = date('dmYhis') . '.' . $ext;
+                $path = 'images/membres/' . $name;
+                $fichier->move(public_path('images/membres'), $name);
+                $eleve->image_uri = $path;
+            }
+        }
+        //dd($eleve);
+        $eleve->save();
+        return redirect(route('responsablescolarite.inscriptions.show', $inscription->token));
     }
+
 
 
     public function destroy($id)

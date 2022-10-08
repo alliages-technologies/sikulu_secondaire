@@ -253,6 +253,7 @@ Route::prefix('responsablescolarite')
     // Config des inscriptions
     Route::resource('/inscriptions', 'InscriptionController');
     Route::get('/tuteur-verification-numero', 'InscriptionController@verificationNumero');
+    Route::post('inscription-edit/{inscription}','InscriptionController@update')->name('inscriptions.update');
     // Config des réinscriptions
     Route::get('/reinscriptions', 'InscriptionController@reinscription')->name('reinscriptions');
     Route::get('/get-inscription-by-id/{id}', 'InscriptionController@getInscriptionById');
