@@ -34,6 +34,11 @@ Responsable Scolarité | Eleve
                                         <b>Classe:</b> <span class="float-right">{{ ($inscription->classe->name) }}</span> <br>
                                     </li>
                                 </ul>
+                                <ul class="list-group list-group-unbordered mb-3">
+                                    <li class="list-group-item">
+                                        <b>Sexe:</b> <span class="float-right">{{ ($inscription->eleve->sexe_id?$inscription->eleve->sexe->name:"Aucun") }}</span> <br>
+                                    </li>
+                                </ul>
                                 <a href="#" class="btn btn-default btn-block" id="btn-modifier"><b><i class="fa fa-info"></i></b></a>
                             </div>
                         </div>

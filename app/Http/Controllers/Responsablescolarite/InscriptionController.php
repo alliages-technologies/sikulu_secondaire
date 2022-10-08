@@ -9,6 +9,7 @@ use App\Models\Eleve;
 use App\Models\Inscription;
 use App\Models\ParentEcole;
 use App\Models\Salle;
+use App\Models\Sexe;
 use App\Models\SuiviPaiement;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -31,7 +32,8 @@ class InscriptionController extends Controller
     {
         $annee_acad = AnneeAcad::where('actif', 1)->first();
         $salles = Salle::where('ecole_id', Auth::user()->ecole_id)->get();
-        return view('ResponsableScolarite.Inscriptions.create')->with(compact('annee_acad','salles'));
+        $sexes = Sexe::all();
+        return view('ResponsableScolarite.Inscriptions.create')->with(compact('annee_acad','salles','sexes'));
     }
 
     public function verificationNumero(){
@@ -68,6 +70,7 @@ class InscriptionController extends Controller
             $eleve->nom_tuteur = $request->nom_tuteur;
             $eleve->tel_tuteur = $request->tel_tuteur;
             $eleve->email_tuteur = $request->email;
+            $eleve->sexe_id = $request->sexe_id;
             if ($request->image_uri) {
                 $fichier = $request->image_uri;
                 $ext_array = ['PNG', 'JPG', 'JPEG', 'GIF', 'jpg', 'png', 'jpeg', 'gif'];
@@ -131,6 +134,7 @@ class InscriptionController extends Controller
             $eleve->nom_tuteur = $request->nom_tuteur;
             $eleve->tel_tuteur = $request->tel_tuteur;
             $eleve->email_tuteur = $request->email;
+            $eleve->sexe_id = $request->sexe_id;
             if ($request->image_uri) {
                 $fichier = $request->image_uri;
                 $ext_array = ['PNG', 'JPG', 'JPEG', 'GIF', 'jpg', 'png', 'jpeg', 'gif'];

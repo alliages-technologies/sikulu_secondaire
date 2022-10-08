@@ -27,6 +27,7 @@ class CreateElevesTable extends Migration
             $table->string('nom_tuteur',200)->nullable();
             $table->string('tel_tuteur',50)->nullable();
             $table->string('image_uri')->default('aucune image');
+            $table->integer('sexe_id')->default(0);
             $table->timestamps();
         });
     }

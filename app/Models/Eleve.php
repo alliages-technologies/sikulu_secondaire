@@ -20,4 +20,9 @@ class Eleve extends Model
         return $age;
     }
 
+    public function sexe()
+    {
+        return $this->belongsTo('App\Models\Sexe','sexe_id');
+    }
+
 }

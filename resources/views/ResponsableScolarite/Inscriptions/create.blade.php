@@ -42,9 +42,18 @@ Responsable Scolarité | Inscription
                                         </div>
                                     </div>
                                     <div class="row mt-2">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <label for="adresse">Adresse</label>
                                             <input type="text" class="form-control" id="adresse" name="adresse" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="adresse">Sexe</label>
+                                            <select name="sexe_id" id="" class="form-control" required>
+                                                <option value="">CHOIX DU SEXE</option>
+                                                @foreach ($sexes as $sexe)
+                                                <option value="{{$sexe->id}}"> {{$sexe->name}} </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -57,7 +66,7 @@ Responsable Scolarité | Inscription
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="">Salle</label>
-                                            <select name="salle_id" id="" class="form-control">
+                                            <select name="salle_id" id="" class="form-control" required>
                                                 <option value="">CHOIX</option>
                                                 @foreach ($salles as $salle)
                                                 <option value="{{ $salle->id }}"> {{ $salle->abb }} / {{ $salle->classe->name }}</option>
@@ -102,7 +111,7 @@ Responsable Scolarité | Inscription
                                         </div>
                                         <div class="col-md-6">
                                             <label for="tpere">Tel du père</label>
-                                            <input type="text" class="form-control" id="tpere" name="tel_pere" required>
+                                            <input type="number" class="form-control" id="tpere" name="tel_pere" required>
                                         </div>
                                     </div>
                                     <div class="row mt-2">

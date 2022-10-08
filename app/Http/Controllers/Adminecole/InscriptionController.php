@@ -9,6 +9,7 @@ use App\Models\Eleve;
 use App\Models\Inscription;
 use App\Models\ParentEcole;
 use App\Models\Salle;
+use App\Models\Sexe;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,8 @@ class InscriptionController extends Controller
     {
         $annee_acad = AnneeAcad::where('actif', 1)->first();
         $salles = Salle::where('ecole_id',Auth::user()->ecole_id)->get();
-        return view('Adminecole.Inscriptions.create')->with(compact('annee_acad','salles'));
+        $sexes = Sexe::all();
+        return view('Adminecole.Inscriptions.create')->with(compact('annee_acad','salles','sexes'));
     }
 
     public function verificationNumero(){
@@ -217,7 +219,7 @@ class InscriptionController extends Controller
         $inscription->save();
         return response()->json("OK");
     }
-    
+
     public function show($token)
     {
         $inscription = Inscription::where('token', $token)->first();
