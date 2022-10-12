@@ -55,17 +55,7 @@ class ScolariteController extends Controller
         $salle = Salle::where('id',$salle)->where('ecole_id',Auth::user()->ecole_id)->first();
         $inscriptions = Inscription::where('ecole_id',Auth::user()->ecole_id)->where('classe_id',$salle->classe_id)->where('salle_id',$salle->id)->get();
         $inscription = Inscription::find($inscription);
-        //dd($inscriptions);
-        /* $notes = Note::where('inscription_id',$inscription->id)->where('trimestre_id',$trimestre_ecole)->get();
-        $totaux = $notes->reduce(function ($carry, $item) {
-            return $carry + $item->valeur;
-        });
-        if ($inscription->totalcoefficient) {
-            $moyenne = $totaux/$inscription->totalcoefficient;
-        }
-        else{
-            $moyenne = 0;
-        } */
+
         $tri_ecole = TrimestreEcole::find($trimestre_ecole)->trimestre_id;
         $releve_note = ReleveNote::where('ecole_id', Auth::user()->ecole_id)->where('inscription_id',$inscription->id)->where('trimestre_id',$tri_ecole)->first();
         $mavar = ReleveNote::where('ecole_id', Auth::user()->ecole_id)->where('annee_id',$annee_acad->id)->where('salle_id',$salle->id)->where('trimestre_id',$tri_ecole)->orderBy('moyenne','DESC')->get();
@@ -81,9 +71,25 @@ class ScolariteController extends Controller
         }
 
         $tri = TrimestreEcole::find($trimestre_ecole)->trimestre;
-        //dd($releve_note);
 
-        return view('Adminecole.Scolarites.inscription_show')->with(compact('tri','annee_acad','inscription','inscriptions','releve_note','rang','salle'));
+        $releve_annuel = ReleveNote::where('annee_id',$annee_acad->id)->where('inscription_id',$inscription->id)->sum("moyenne");
+        $moyenne_annuelle = $releve_annuel/3;
+        $premier_trimestre = ReleveNote::where('annee_id',$annee_acad->id)->where('inscription_id',$inscription->id)->where('trimestre_id',1)->first();
+        $deuxieme_trimestre = ReleveNote::where('annee_id',$annee_acad->id)->where('inscription_id',$inscription->id)->where('trimestre_id',2)->first();
+        $troisieme_trimestre = ReleveNote::where('annee_id',$annee_acad->id)->where('inscription_id',$inscription->id)->where('trimestre_id',3)->first();
+        //dd($releve_annuel);
+
+
+        $releve_note = ReleveNote::where('ecole_id', Auth::user()->ecole_id)->where('inscription_id',$inscription->id)->where('trimestre_id',$tri_ecole)->first();
+        $rang_annuel = ReleveNote::where('ecole_id', Auth::user()->ecole_id)->where('annee_id',$annee_acad->id)->where('salle_id',$salle->id)->where('trimestre_id',$tri_ecole)->orderBy('moyenne_annuelle','DESC')->get();
+        //dd($rang_annuel);
+        $rang_a = 0;
+        for ($i = 0; $i < $rang_annuel->count() ; $i++) {
+            if ($inscription->id == $rang_annuel[$i]->inscription_id) {
+                $rang_a = $i+1;
+            }
+        }
+        return view('Adminecole.Scolarites.inscription_show')->with(compact('rang_a','troisieme_trimestre','deuxieme_trimestre','premier_trimestre','moyenne_annuelle','tri','annee_acad','inscription','inscriptions','releve_note','rang','salle'));
     }
 
     public function save($inscription,$ecole,$salle,$trimestre_ecole){
@@ -111,7 +117,7 @@ class ScolariteController extends Controller
         $releve_traite = ReleveTraite::where('annee_id', $annee_acad->id)->where('trimestre_id',request()->trimestre_id)->where('ecole_id',Auth::user()->ecole_id)->first();
 
         $note_trimestre_en_cours = Note::where('trimestre_id',request()->trimestre_id)->first();
-        
+
         //$notes = $notes->where('inscription_id',33);
         //dd($notes->count());
         //dd($note_trimestre_en_cours);
@@ -169,8 +175,18 @@ class ScolariteController extends Controller
                     $releve_note->moyenne = $moyenne_generale;
                     $releve_note->save();
 
+                    if (request()->trimestre_id == 3) {
+                        $releve_note_annuel = ReleveNote::where('inscription_id',$inscription->id)->sum('moyenne');
+                        $moyenne_annuelle = $releve_note_annuel/3;
+                        $releve_note = ReleveNote::find($releve_note->id);
+                        $releve_note->moyenne_annuelle = round(($moyenne_annuelle),2);
+                        $releve_note->save();
+                    }
+
+
                 }
             }
+
         }
         else {
             dd("Non");
@@ -180,4 +196,18 @@ class ScolariteController extends Controller
         return response()->json("ok");
     }
 
+    public function deleteReleves(){
+        $annee_acad = AnneeAcad::where('actif', 1)->first();
+        $trimestre_ecole = TrimestreEcole::where('ecole_id',Auth::user()->ecole_id)->where('active',1)->first();
+        $releve_notes = ReleveNote::where('trimestre_id',$trimestre_ecole->trimestre->id)->get();
+
+        $releve_traite = ReleveTraite::where('annee_id', $annee_acad->id)->where('trimestre_id',request()->trimestre_id)->where('ecole_id',Auth::user()->ecole_id)->first();
+        $releve_traite->delete();
+        foreach ($releve_notes as $releve_note) {
+            $releve_note = ReleveNote::find($releve_note->id);
+            $ligne_releves = LigneReleveNote::where('releve_id',$releve_note->id)->delete();
+        }
+        ReleveNote::where('trimestre_id',$trimestre_ecole->trimestre->id)->delete();
+        return response()->json("ok");
+    }
 }

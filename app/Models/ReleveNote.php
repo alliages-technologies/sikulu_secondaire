@@ -37,4 +37,8 @@ class ReleveNote extends Model
     return $this->hasMany('App\Models\LigneReleveNote','releve_id');
    }
 
+   public function lignereleves(){
+    return $this->hasMany('App\Models\LigneReleveNote','releve_id');
+   }
+   
 }

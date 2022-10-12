@@ -25,7 +25,7 @@ Admin Ecole | Relévés par salle
                     <tr>
                         <td> {{$salle->name}} </td>
                         <td> {{$salle->classe->name}} </td>
-                        <td> <a href="/adminecole/scolarite-inscriptions/{{ $salle->id }}/{{ $salle->ecole->token }}/{{$trimestre_ecole->id}}" class="btn btn-default btn-xs"><i class="fa fa-eye"></i></a> </td>
+                        <td> <a href="/adminecole/scolarite-inscriptions/{{ $salle->id }}/{{ $salle->ecole->token }}/{{$trimestre_ecole->id}}" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></a> </td>
                     </tr>
                     @endforeach
                 </tbody>

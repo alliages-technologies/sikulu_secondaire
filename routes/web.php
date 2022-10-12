@@ -170,6 +170,8 @@ Route::prefix('adminecole')
     Route::get('/scolarite-inscription-show/{inscription}/{ecole}/{salle}/{trimestre_ecole}', 'ScolariteController@inscriptionShow');
     Route::get('/scolarite/releve-save/{inscription}/{ecole}/{salle}/{trimestre_ecole}', 'ScolariteController@save')->name("releve.pdf");
     Route::post('/scolarite/generation-auto-releve', 'ScolariteController@generationAutoReleve')->name('generation.auto');
+    Route::post('/scolarite/delete-releves', 'ScolariteController@deleteReleves')->name('generation.auto');
+
     /*
         Fin de la gestion des relevés de notes
     */

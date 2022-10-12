@@ -4,6 +4,10 @@
 <style>
     .table-bordered td, .table-bordered th {
     border: 1px solid #ffffff;
+    font-size: 15px;
+}
+tr{
+    font-size: 15px;
 }
 </style>
 <div class="container">
@@ -19,6 +23,7 @@
                     @endif
                 @endif
                 </div>
+
                 <div class="container">
                     <div class="float-right" style="font-size: 17px; margin-top: 110px">
                         <span>A : Pointe-Noire</span><br>
@@ -44,6 +49,8 @@
                 <input type="hidden" value="{{ $inscription->id}}" class="inscription_id">
             </div>
         </div>
+        <img class="mx-auto d-block" src="{{asset($inscription->ecole->image_uri)}}" alt="" srcset="" style="width: 30%; height: 200px; border-radius: 2pc;">
+
         @csrf
         <div class="card-body">
             @if ($releve_note)
@@ -98,12 +105,47 @@
                                     <td style="font-size: ;"> Aucune </td>
                                 @endif
                             </tr>
+                            @if ($releve_note->trimestre_id < 3)
                             <tr>
                                 <td style="font-size: larger;">Moyenne Genérale :</td>
                                 <td style="font-size: larger;"> {{number_format($releve_note->moyenne,2,'.','')}} </td>
                             </tr>
+                            @endif
+
+                            @if ($releve_note->trimestre_id == 3)
+                            <tr class="">
+                                <td style="font-size: larger;">Moyenne Premier Trimestre :</td>
+                                <td style="font-size: larger;"> {{$premier_trimestre->moyenne}}</td>
+                                <td style="font-size: larger;"> {{$premier_trimestre->appreciation}}</td>
+                            </tr>
+                            <tr class="">
+                                <td style="font-size: larger;">Moyenne Deuxième Trimestre :</td>
+                                <td style="font-size: larger;"> {{$deuxieme_trimestre->moyenne}}</td>
+                                <td style="font-size: larger;"> {{$deuxieme_trimestre->appreciation}}</td>
+                            </tr>
+                            <tr class="">
+                                <td style="font-size: larger;">Moyenne Troisième Trimestre :</td>
+                                <td style="font-size: larger;"> {{$troisieme_trimestre->moyenne}}</td>
+                                <td style="font-size: larger;"> {{$troisieme_trimestre->appreciation}}</td>
+                            </tr>
+                            <tr class="">
+                                <td style="font-weight: bold;font-size: 25px;text-transform: uppercase;">Moyenne Annuelle :</td>
+                                <td style="font-weight: bold;font-size: 25px;text-transform: uppercase;"> {{number_format($moyenne_annuelle,2,'.','')}}</td>
+                                <td style="font-weight: bold;font-size: 25px;text-transform: uppercase;"> Rang :</td>
+                                @if ($rang == 1)
+                                    <td style="font-weight: bold;font-size: 25px;text-transform: uppercase;"> {{ $rang_a }} er(e) Sur {{ $inscriptions->count() }} </td>
+                                @else
+                                    <td style="font-weight: bold;font-size: 25px;text-transform: uppercase;"> {{ $rang_a }} ème Sur {{ $inscriptions->count() }} </td>
+                                @endif
+                            </tr>
+                            @endif
                         </tbody>
                     </table>
+                    @if ($releve_note->trimestre_id == 3 and $moyenne_annuelle >=10)
+                        <strong class="float-right" style="color: green;font-size: 30px;text-transform: uppercase;letter-spacing: 0px;font-weight: normal;"> Passe en classe supérieur <i class="fa fa-smile"></i> </strong>
+                    @elseif ($releve_note->trimestre_id == 3 and $moyenne_annuelle < 10)
+                    <strong class="float-right" style="color: rgb(212, 43, 43);font-size: 30px;text-transform: uppercase;letter-spacing: 0px;font-weight: normal;"> Ajourné(e) <i class="fa fa-frown-o"></i> </strong>
+                    @endif
                 @else
             <h1 class="text-center" style="color: rgb(247, 63, 63);letter-spacing:1px">Auncun relevé de note <i class="fa fa-file" style="color: rgb(125, 120, 148)"></i></h1>
             @endif

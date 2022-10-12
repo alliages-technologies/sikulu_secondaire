@@ -17,13 +17,13 @@ Admin Ecole | Relévés {{ $salle->classe->name }}
             <table class="table table-bordered table-striped table-hover table-sm">
                 <thead class="">
                     <th> NOM(S) & PRENOM(S) </th>
-                    <th>  <i class="fa fa-cog"></i> </th>
+                    <th><i class="fa fa-cog"></i></th>
                 </thead>
                 <tbody>
                     @foreach($inscriptions as $inscription)
                     <tr>
                         <td> {{$inscription->name}} </td>
-                        <td> <a href="/adminecole/scolarite-inscription-show/{{ $inscription->id }}/{{ $salle->ecole->token }}/{{ $salle->id }}/{{ $trimestre_ecole->id}}" class="btn btn-default btn-xs"><i class="fa fa-eye"></i></a> </td>
+                        <td> <a href="/adminecole/scolarite-inscription-show/{{ $inscription->id }}/{{ $salle->ecole->token }}/{{ $salle->id }}/{{ $trimestre_ecole->id}}" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></a> </td>
                     </tr>
                     @endforeach
                 </tbody>
