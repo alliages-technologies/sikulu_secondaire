@@ -36,13 +36,31 @@ class EcolageController extends Controller
         return response()->json($ecolages);
     }
 
-    public function elevePaiementStore(){
+    public function salle(){
+        $salles = Salle::where('ecole_id',Auth::user()->ecole_id)->get();
+        return view('ResponsableFinances.Finances.Ecolages.salle')->with(compact('salles'));
+    }
+
+    public function inscriptionsBySalle($salleToken){
+        $salle = Salle::where('token',$salleToken)->first();
+        $inscriptions = Inscription::where('salle_id',$salle->id)->get();
+        return view('ResponsableFinances.Finances.Ecolages.inscription')->with(compact('inscriptions','salle'));
+    }
+
+    public function inscription($inscriptionToken){
+        $inscription = Inscription::where('token',$inscriptionToken)->first();
+        $ecolages = Ecolage::where('inscription_id', $inscription->id)->get();
+        $mois = Moi::all();
+        return view('ResponsableFinances.Finances.Ecolages.inscription_show')->with(compact('mois','ecolages','inscription'));
+    }
+
+    public function elevePaiementStore(Request $request){
         $annee = AnneeAcad::where('actif',1)->first();
         $id=request()->inscription_id;
         $montant=request()->montant;
         $mois=request()->mois;
         $inscription = Inscription::find($id);
-
+        //dd($inscription);
         $ecolage = Ecolage::where('ecole_id', Auth::user()->ecole_id)->where('inscription_id', $id)->where('mois', $mois)->first();
         if($ecolage == null){
             $ecolage = new Ecolage();
@@ -56,7 +74,8 @@ class EcolageController extends Controller
             $ecolage->annee = $annee->id;
             $ecolage->save();
         }else{
-            dd("ok");
+            //return $request->session()->flash('info',' Sélectionnez un autre mois !!!');
+            return redirect()->back();
         }
 
         $ecole=auth()->user()->ecole_id;
@@ -71,7 +90,14 @@ class EcolageController extends Controller
         $suivi->token = sha1((date('ymdhisW'))."A-suiviEcolage-x".(date('ymdhisW')));
         $suivi->save();
 
-        return response()->json($ecolage);
+        return redirect('/responsablefinances/ecolages/facture/paiement');
+    }
+
+    public function inscriptionSearch(){
+        $inscription = Inscription::where('token',request()->token)->first();
+        $ecolages = Ecolage::where('inscription_id', $inscription->id)->get();
+        $mois = Moi::all();
+        return view('ResponsableFinances.Finances.Ecolages.inscription_show')->with(compact('mois','ecolages','inscription'));
     }
 
     public function facture(){

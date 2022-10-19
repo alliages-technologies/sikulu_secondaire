@@ -236,6 +236,13 @@ Route::prefix('responsablefinances')
     Route::post('/suivi-paiements-search', 'SuiviController@search')->name('suivi.search');
     Route::get('/ecolages/facture/paiement','EcolageController@facture')->name('ecolages.facture');
     Route::resource('/pointages','PointageController');
+    Route::get('/ecolages-salles','EcolageController@salle')->name('ecolages.salles');
+    Route::get('/ecolages-by-salles/{salle}','EcolageController@inscriptionsBysalle')->name('ecolages.inscriptions.salles');
+    Route::get('/ecolages-inscription/{inscription}','EcolageController@inscription')->name('ecolages.inscription');
+    Route::get('/ecolages-search','EcolageController@search');
+    Route::get('/ecolages-inscription','EcolageController@inscriptionSearch')->name('ecolages.inscription.search');
+
+
 });
 
 

@@ -9,7 +9,7 @@ Responsable Finances | Paiement Ecolage
 <div class="container mt-4">
     <h1 class="card-header text-center">PAIEMENT DES FRAIS D'ECOLAGE<h1>
 </div>
-<div class="container mt-4 d-flex justify-content-center">
+<div class="container mt-4 d- justify-content-center">
     <form action="">
         @csrf
         <!--Sélection de la salle-->

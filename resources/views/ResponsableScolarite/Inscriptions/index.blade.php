@@ -18,6 +18,7 @@ Responsable Scolarité | Inscriptions
         <div class="card-body">
             <table class="table table-bordered table-striped table-hover table-sm mb-3">
                 <thead class="">
+                    <th> STATUT </th>
                     <th> DATE </th>
                     <th> CLASSE </th>
                     <th> NOM(S) & PRENOM(S) </th>
@@ -26,6 +27,11 @@ Responsable Scolarité | Inscriptions
                 <tbody>
                 @foreach($inscriptions as $inscription)
                     <tr>
+                        @if ($inscription->reinscription_id == 1)
+                            <td><span class="badge badge-primary">Réinscription</span></td>
+                        @else
+                            <td><span class="badge badge-success">Inscription</span></td>
+                        @endif
                         <td> {{$inscription->created_at->format('d/n/Y')}} </td>
                         <td> {{$inscription->classe_id? $inscription->classe->name:"_"}} </td>
                         <td> {{$inscription->eleve_id? $inscription->eleve->nom:"_"}} {{$inscription->eleve_id?$inscription->eleve->prenom:""}} </td>

@@ -80,15 +80,19 @@ Responsable Scolarité | Inscription
                                     </div>
 
                                     <div class="row mt-2">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <label for="">Montant Inscription</label>
                                             <input type="number" class="form-control" name="montant_frais" placeholder="">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="image">Image</label>
+                                            <input class="form-control" type="file" class="" id="image" name="image_uri" |size:5000>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-12">
-                                            <label for="image">Image</label>
-                                            <input class="form-control" type="file" class="" id="image" name="image_uri" |size:5000>
+                                            <label for="">Est-ce une réinscription ??? (Si c'est le cas veuillez cocher la case ci-dessous) </label><br>
+                                            <input style="" type="checkbox" name="reinscription_id" id="" class="" value="1">
                                         </div>
                                     </div>
                                 </fieldset>

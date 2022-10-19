@@ -102,6 +102,12 @@ class InscriptionController extends Controller
             $inscription->moi_id = date('n');
             $inscription->semaine_id = date('W');
             $inscription->token = sha1("Inscription".date('Ymdhis').date('Ymdhis'));
+            if ($request->reinscription_id == null) {
+                $inscription->reinscription_id = 0;
+            }
+            else {
+                $inscription->reinscription_id = 1;
+            }
             $inscription->save();
         }
 
@@ -167,6 +173,12 @@ class InscriptionController extends Controller
             $inscription->moi_id = date('m');
             $inscription->semaine_id = date('W');
             $inscription->token = sha1("Inscription".date('Ymdhis').date('Ymdhis'));
+            if ($request->reinscription_id == null) {
+                $inscription->reinscription_id = 0;
+            }
+            else {
+                $inscription->reinscription_id = 1;
+            }
             $inscription->save();
         }
         $suivi=new SuiviPaiement();
@@ -214,6 +226,7 @@ class InscriptionController extends Controller
         $inscription->semaine_id = date('w');
         $inscription->token = sha1("Inscription".date('Ymdhis').date('Ymdhis'));
         $inscription->parent_id = $inscription_recent->id;
+
         $inscription->save();
 
         return response()->json("OK");

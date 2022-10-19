@@ -23,7 +23,7 @@
                     <tr>
                         <td>{{ $inscription->eleve->date_naiss }}</td>
                         <td>{{ $inscription->eleve->name }}</td>
-                        <td> <a href="/adminecole/notes/inscription/{{$salle->token}}/{{$inscription->id}}/{{$trimestre_ecole->id}}" class="btn btn-warning btn-xs"><i class="fa fa-eye"></i></a> </td>
+                        <td> <a href="/adminecole/notes/inscription/{{$salle->token}}/{{$inscription->id}}/{{$trimestre_ecole->id}}" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></a> </td>
                     </tr>
                     @endforeach
                 </tbody>

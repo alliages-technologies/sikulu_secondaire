@@ -28,10 +28,10 @@ Admin Ecole | {{ $trimestre_ecole->trimestre->name }}
                             <i class="fa fa-power-off"></i>
                             <p>Géneration des Relevés de notes</p>
                         </a>
-                        <a href="" data-toggle="modal" data-target="#exampleModalLabelDelete" class="col-md-3 m-2">
+{{--                         <a href="" data-toggle="modal" data-target="#exampleModalLabelDelete" class="col-md-3 m-2">
                             <i class="fa fa-trash"></i>
                             <p>Supprimer les Relevés de notes</p>
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>

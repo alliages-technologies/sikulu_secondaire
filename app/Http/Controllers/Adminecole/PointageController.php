@@ -20,8 +20,14 @@ class PointageController extends Controller
 
     public function show($prof){
         $pointages = Pointage::where('prof_id',$prof)->get();
-        $prof_ecole = Prof::find($prof);
+        $prof_ecole = ProfEcole::where('prof_id',$prof)->where('ecole_id',Auth::user()->ecole_id)->first();
+        $prof = Prof::find($prof_ecole->prof_id);
+        //dd($prof);
         return view('Adminecole.Pointages.show')->with(compact('pointages','prof'));
+    }
+
+    public function store(){
+        
     }
 
 }
