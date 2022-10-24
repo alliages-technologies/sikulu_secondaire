@@ -91,7 +91,7 @@ Responsable Scolarité | Inscription
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-12">
-                                            <label for="">Est-ce une réinscription ??? (Si c'est le cas veuillez cocher la case ci-dessous) </label><br>
+                                            <label for=""> Veuillez coche la case ci-dessous s'il s'agit d'une réinscription. </label><br>
                                             <input style="" type="checkbox" name="reinscription_id" id="" class="" value="1">
                                         </div>
                                     </div>
