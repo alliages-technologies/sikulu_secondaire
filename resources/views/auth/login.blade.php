@@ -204,9 +204,10 @@
                                 letter-spacing: 0px;
                                 font-weight: ;
                                 ">
-                                    <span>Entreprise : <span style="color: #007bff; font-weight: 500;"> Onso_congo </span> </span> <br>
+                                    <span> Services Administratif et Commercial <br>
                                     <span>Contact : <span style="color: green; font-weight: 500;"> +242 05-014-09-33 / +242 06-845-65-33</span></span> <br>
-                                    <span>Service Technique : <span style="color: #5f1a0e;font-weight: 500;"> +242 06-426-55-95 </span></span> <br>
+                                    <span>Service Technique <br>
+                                    <span>Contact : <span style="color: green; font-weight: 500;"> +242 06-426-55-95 </span> <br>
                                     <span>Adresse email : <span style="color: #0136b9;font-weight: 500;"> onsocongo@gmail.com </span></span>
                                 </p>
                             </div>
