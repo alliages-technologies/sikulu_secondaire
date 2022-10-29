@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Prof;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Mail\AbscenceMail;
 use App\Models\Abscence;
 use App\Models\AnneeAcad;
 use App\Models\Ecole;
@@ -12,8 +13,10 @@ use App\Models\ProfEcole;
 use App\Models\ProgrammeEcole;
 use App\Models\ProgrammeEcoleLigne;
 use App\Models\Salle;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AbscenceController extends Controller
 {
@@ -39,6 +42,7 @@ class AbscenceController extends Controller
     }
 
     public function store(){
+        $user = User::find(Auth::user()->id);
         $annee_acad = AnneeAcad::where('actif', 1)->first();
         $prof_ecole = ProfEcole::where('prof_id',Auth::user()->prof->id)->first();
         $lignes = request()->lignes;
@@ -57,8 +61,14 @@ class AbscenceController extends Controller
             $abscent->programme_ecole_ligne_id = $programme_ecole_ligne_id;
             //dd($abscent);
             $abscent->save();
+            $abscent = Abscence::find($abscent->id);
+            $parent = $abscent->inscription->eleve->email_tuteur;
+            if ($parent) {
+                Mail::to($parent)->send(new AbscenceMail($user));
+            }
         }
 
+        $abscences = Abscence::where('annee_id',$annee_acad->id)->where('ecole_id',$prof_ecole->ecole_id)->get();
         return response()->json('ok');
     }
 

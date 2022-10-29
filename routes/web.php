@@ -318,6 +318,11 @@ Route::prefix('parent')
     ->group(function(){
         Route::resource('/ecoles', 'EcoleController');
         Route::resource('/inscriptions', 'EleveController');
+        Route::get('/inscription-show/{token}', 'EleveController@inscriptionShow')->name('inscription.show');
+        Route::get('/inscription-releve-note/{token}', 'EleveController@inscriptionReleveNote')->name('inscription.note');
+        Route::get('/inscription-releve-note-show/{token}/{id}', 'EleveController@inscriptionReleveNoteShow')->name('releve.note.show');
+        Route::get('/inscription-note/{token}', 'EleveController@note')->name('notes');
+        Route::get('/inscription-note-show/{token}/{id}', 'EleveController@inscriptionNoteShow')->name('note.show');
 });
 
 

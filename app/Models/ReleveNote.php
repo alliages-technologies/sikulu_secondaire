@@ -12,6 +12,10 @@ class ReleveNote extends Model
         return $this->belongsTo('App\Models\Inscription');
     }
 
+    public function salle(){
+        return $this->belongsTo('App\Models\Salle');
+    }
+
     public function annee(){
         return $this->belongsTo('App\Models\AnneeAcad');
     }
@@ -40,5 +44,5 @@ class ReleveNote extends Model
    public function lignereleves(){
     return $this->hasMany('App\Models\LigneReleveNote','releve_id');
    }
-   
+
 }

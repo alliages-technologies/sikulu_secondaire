@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card mt-5">
         <div class="card-header">
-            <h4 class="text-left mb-1"> Liste de mes enfants <i class="fa fa-users"></i> </h4>
+            <h4 class="text-left mb-1"> LISTE DE MES ENFANTS <i class="fa fa-users"></i> </h4>
         </div>
         <div class="card-body">
             <div class="container-fluid">
@@ -16,11 +16,13 @@
                     </thead>
                     <tbody>
                     @foreach($eleves as $eleve)
+                        @foreach ($eleve->inscriptions->where('annee_id',$annee->id) as $inscription)
                         <tr>
-                            <td> {{$eleve->name}} </td>
-                            <td> {{$eleve->id}} </td>
-                            <td> <a href="" class="btn btn-default btn-sm"> <i class="fa fa-eye"></i> </a> </td>
+                            <td> {{$inscription->name}} </td>
+                            <td> {{$inscription->salle->classe->name}} </td>
+                            <td> <a href="{{route('parents.inscription.show',$inscription->token)}}" class="btn btn-default btn-sm"> <i class="fa fa-eye"></i> </a> </td>
                         </tr>
+                        @endforeach
                     @endforeach
                     </tbody>
                 </table>

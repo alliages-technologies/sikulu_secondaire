@@ -31,7 +31,7 @@ class ParentMail extends Mailable
 
         $appuie_cour = AppuieCour::where('user_id',$user->id)->where('ecole_id',$ecole->ecole_id)->orderBy('id','desc')->first();
         //dd(base_path($appuie_cour->cours));
-        return $this->
+        return $this->  
         from($user->email)->
         view('Prof.Appuies.email')->attach(public_path($appuie_cour->cours))->with(compact('appuie_cour'));//with(compact('appuie_cour'));
     }

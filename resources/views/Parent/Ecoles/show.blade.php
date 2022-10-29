@@ -10,22 +10,6 @@
                         <i class="fa fa-users"></i>
                         <p>Mes enfants</p>
                     </a>
-                    <a href="" class="col-md-3 m-2">
-                        <i class="fa fa-calendar"></i>
-                        <p>Emploi du temps</p>
-                    </a>
-                    <a href="" class="col-md-3 m-2">
-                        <i class="fa fa-edit"></i>
-                        <p>Notes</p>
-                    </a>
-                    <a href="" class="col-md-3 m-2">
-                        <i class="fa fa-file-text"></i>
-                        <p>Appuies de cours</p>
-                    </a>
-                    <a href="" class="col-md-3 m-2">
-                        <i class="fa fa-money"></i>
-                        <p>Mes paiements</p>
-                    </a>
                 </div>
             </div>
         </div>
