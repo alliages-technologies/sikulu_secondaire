@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Responsablefinances;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Mail\PaiementMail;
 use App\Models\AnneeAcad;
 use Illuminate\Http\Request;
 use App\Models\Salle;
@@ -10,7 +11,9 @@ use App\Models\Inscription;
 use App\Models\Moi;
 use App\Models\Ecolage;
 use App\Models\SuiviPaiement;
+use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class EcolageController extends Controller
 {
@@ -101,6 +104,7 @@ class EcolageController extends Controller
     }
 
     public function facture(){
+        $user = User::find(Auth::user()->id);
         $ecolage = Ecolage::where('ecole_id',Auth::user()->ecole_id)->orderBy('id','desc')->first();
         $ecolages = Ecolage::where('ecole_id',Auth::user()->ecole_id)->where('inscription_id',$ecolage->inscription_id)->get();
         $mois = Moi::where('id',$ecolage->mois)->first();
@@ -111,6 +115,11 @@ class EcolageController extends Controller
         $totalannuel = $ecolage->inscription->montant_inscri * 9;
         $reste_a_payer = $totalannuel-$totalverse;
         //dd($totalverse);
+
+        $inscription = Inscription::find($ecolage->inscription_id);
+        
+        Mail::to($inscription->eleve->email_tuteur)->send(new PaiementMail($user));
+
         return view('ResponsableFinances.Finances.Ecolages.facture')->with(compact('ecolage','totalverse','totalannuel','reste_a_payer','mois'));
     }
 
