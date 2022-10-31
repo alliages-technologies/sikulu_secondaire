@@ -32,12 +32,12 @@
     }
 
     .logo {
-        width: 500px !important;
-        height: 500px  !important;
+        width: 700px !important;
+        height: 240px  !important;
         margin-top: 20px;
         margin-left: 40px !important;
         border-radius: 5pc;
-        margin-bottom: -23px;
+        margin-bottom: 100px;
     }
 
     .image {
@@ -197,18 +197,24 @@
                 <div class="row d-flex">
                     <div class="col-lg-6">
                         <div class="card1 pb-5">
-                            <div class="row"> <img src="{{asset('images/anso.jpeg')}}" class="logo"> </div>
+                            <div class="row"> <img src="{{asset('images/onso.png')}}" class="logo"> </div>
                             <div class="" style="margin-left: 65px;margin-top: -16px;">
                                 <p class="ml-5" style="font-size: 23px;
                                 font-family: inherit;
                                 letter-spacing: 0px;
                                 font-weight: ;
                                 ">
-                                    <span> Services Administratif et Commercial <br>
-                                    <span>Contact : <span style="color: green; font-weight: 500;"> +242 05-014-09-33 / +242 06-845-65-33</span></span> <br>
-                                    <span>Service Technique <br>
-                                    <span>Contact : <span style="color: green; font-weight: 500;"> +242 06-426-55-95 </span> <br>
-                                    <span>Adresse email : <span style="color: #0136b9;font-weight: 500;"> onsocongo@gmail.com </span></span>
+                                    <span style="font-size: 30px;
+                                    font-weight: bold;"> Services Administratif et Commercial</span> <br>
+                                    <span>Contact 1: <span style="color: green; font-weight: 500;"> +242 05-014-09-33</span></span> <br>
+                                    <span>Contact 2: <span style="color: green; font-weight: 500;"> +242 06-845-65-33</span></span> <br>
+
+                                    <span>Adresse email : <span style="color: #0136b9;font-weight: 500;"> onsocongo@gmail.com </span></span> <br>
+                                    <div class="mt-5 ml-5">
+                                        <span style="font-size: 23px;font-weight: bold;" class="">Service Technique </span> <br>
+                                        <span style="font-size: 25px;font-weight: ;">Contact : <span style="color: green; font-weight: 500;font-size: 23px"> +242 06-426-55-95 </span> <br>
+                                    </div>
+
                                 </p>
                             </div>
                         </div>
