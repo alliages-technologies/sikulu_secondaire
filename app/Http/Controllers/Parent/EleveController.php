@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Parent;
 
 use App\Http\Controllers\Controller;
 use App\Models\AnneeAcad;
+use App\Models\Ecolage;
 use App\Models\Eleve;
 use App\Models\Inscription;
+use App\Models\Moi;
 use App\Models\Note;
 use App\Models\ReleveNote;
 use App\Models\Salle;
@@ -81,7 +83,25 @@ class EleveController extends Controller
                 $rang_a = $i+1;
             }
         }
-        return view('Parent.Ecoles.releve_note_show')->with(compact('rang_a','troisieme_trimestre','deuxieme_trimestre','premier_trimestre','moyenne_annuelle','annee_acad','inscription','inscriptions','releve_note','rang','salle'));
+
+
+
+
+        //$inscription = Inscription::where('token',$inscriptionToken)->first();
+        $ecolages = Ecolage::where('inscription_id', $inscription->id)->get();
+        $mois = Moi::all();
+
+        $mois_en_cours = date('m');
+
+        $premier_mois = Ecolage::where('inscription_id', $inscription->id)->where('mois',10)->first();
+        $montant_mensuel = $inscription->montant_inscri;
+        $moi_paye = Ecolage::where('inscription_id', $inscription->id)->count();
+        $sense_payer = $moi_paye * $montant_mensuel;
+        $montant_deja_paye = Ecolage::where('inscription_id', $inscription->id)->sum('montant');
+        $paye_mois_en_cours = Ecolage::where('inscription_id', $inscription->id)->where('mois',$mois_en_cours)->first();
+        $ecolage_mois_en_cours = Ecolage::where('inscription_id', $inscription->id)->where('mois',$mois_en_cours)->first();
+
+        return view('Parent.Ecoles.releve_note_show')->with(compact('paye_mois_en_cours','premier_mois','montant_deja_paye','sense_payer','rang_a','troisieme_trimestre','deuxieme_trimestre','premier_trimestre','moyenne_annuelle','annee_acad','inscription','inscriptions','releve_note','rang','salle'));
     }
 
 

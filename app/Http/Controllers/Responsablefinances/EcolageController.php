@@ -54,7 +54,41 @@ class EcolageController extends Controller
         $inscription = Inscription::where('token',$inscriptionToken)->first();
         $ecolages = Ecolage::where('inscription_id', $inscription->id)->get();
         $mois = Moi::all();
-        return view('ResponsableFinances.Finances.Ecolages.inscription_show')->with(compact('mois','ecolages','inscription'));
+
+        $mois_en_cours = date('m');
+
+        $premier_mois = Ecolage::where('inscription_id', $inscription->id)->where('mois',10)->first();
+        $montant_mensuel = $inscription->montant_inscri;
+        $moi_paye = Ecolage::where('inscription_id', $inscription->id)->count();
+        $sense_payer = $moi_paye * $montant_mensuel;
+        $montant_deja_paye = Ecolage::where('inscription_id', $inscription->id)->sum('montant');
+        $paye_mois_en_cours = Ecolage::where('inscription_id', $inscription->id)->where('mois',$mois_en_cours)->first();
+        //dd($inscription);
+
+        if ($premier_mois == null) {
+            $statut = "Pas payé";
+        }
+        else {
+            $statut = "Payé";
+
+            if ($paye_mois_en_cours == null) {
+                //dd("Mfouka");
+            }
+            else {
+                if ($montant_deja_paye < $sense_payer) {
+                    //dd("Mfouka");
+                }
+                else {
+                    //dd("Ata ni mfouka");
+                }
+            }
+        }
+
+        $ecolage_mois_en_cours = Ecolage::where('inscription_id', $inscription->id)->where('mois',$mois_en_cours)->first();
+
+        //dd($ecolage_mois_en_cours);
+
+        return view('ResponsableFinances.Finances.Ecolages.inscription_show')->with(compact('paye_mois_en_cours','premier_mois','montant_deja_paye','sense_payer','mois','ecolages','inscription'));
     }
 
     public function elevePaiementStore(Request $request){

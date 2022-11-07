@@ -211,8 +211,9 @@
 
                                     <span>Adresse email : <span style="color: #0136b9;font-weight: 500;"> onsocongo@gmail.com </span></span> <br>
                                     <div class="mt-5 ml-5">
-                                        <span style="font-size: 23px;font-weight: bold;" class="">Service Technique </span> <br>
+                                        <span style="font-size: 30px;font-weight: bold;" class="">Service Technique </span> <br>
                                         <span style="font-size: 25px;font-weight: ;">Contact : <span style="color: green; font-weight: 500;font-size: 23px"> +242 06-426-55-95 </span> <br>
+                                        <span>Adresse email : <span style="color: #0136b9;font-weight: 500;"> nsondecaleb@gmail.com </span></span> <br>
                                     </div>
 
                                 </p>

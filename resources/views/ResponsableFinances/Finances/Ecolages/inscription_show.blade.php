@@ -84,9 +84,26 @@ Responsable Finances | Paiement Ecolage
                             @endforeach
                         </tbody>
                     </table>
-
             </div>
     </div>
+
+    <div>
+        @if ($premier_mois == null)
+            <span style="color: rgb(181, 181, 44)"> Veuillez d'abord payer le mois d'Octobre SVP !!! </span>
+        @else
+        @if ($paye_mois_en_cours == null)
+            <span style="color: red"> Pas à jours !!! </span>
+        @else
+            @if ($montant_deja_paye < $sense_payer)
+                <span style="color: red"> Pas à jours !!! </span>
+                @else
+                <span style="color: green"> A jours !!! </span>
+                @endif
+            @endif
+        @endif
+
+    </div>
+
 </div>
 
 <script>

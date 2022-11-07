@@ -17,6 +17,7 @@ class CreateMoisTable extends Migration
             $table->id();
             $table->string('name', 50)->nullable();
             $table->boolean('visible')->default(1);
+            $table->integer('position')->default(0);
             $table->timestamps();
         });
     }
