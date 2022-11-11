@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 class ProfController extends Controller
 {
     public function index(){
-        $profEcole=ProfEcole::where('ecole_id',auth()->user()->ecole_id)->orderBy('created_at', 'desc')->paginate(15);
+        $profEcole=ProfEcole::where('ecole_id',auth()->user()->ecole_id)->orderBy('created_at', 'desc')->paginate(10);
         return view('ResponsableScolarite.Profs.index')->with(compact('profEcole'));
     }
 
