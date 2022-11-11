@@ -111,21 +111,21 @@ Responsable Scolarité | Inscription
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="npere">Nom du père</label>
-                                            <input type="text" class="form-control" id="npere" name="nom_pere" placeholder="" required>
+                                            <input type="text" class="form-control" id="npere" name="nom_pere" placeholder="" >
                                         </div>
                                         <div class="col-md-6">
                                             <label for="tpere">Tel du père</label>
-                                            <input type="number" class="form-control" id="tpere" name="tel_pere" required>
+                                            <input type="number" class="form-control" id="tpere" name="tel_pere" >
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-6">
                                             <label for="nmere">Nom de la mère</label>
-                                            <input type="text" class="form-control" id="nmere" name="nom_mere" required>
+                                            <input type="text" class="form-control" id="nmere" name="nom_mere" >
                                         </div>
                                         <div class="col-md-6">
                                             <label for="tmere">Tel de la mère</label>
-                                            <input type="number" class="form-control" id="tmere" name="tel_mere" required>
+                                            <input type="number" class="form-control" id="tmere" name="tel_mere" >
                                         </div>
                                     </div>
                                 </fieldset>
@@ -138,11 +138,11 @@ Responsable Scolarité | Inscription
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="ntuteur">Nom</label>
-                                            <input type="text" class="form-control nom_tuteur" id="ntuteur" name="nom_tuteur" required>
+                                            <input type="text" class="form-control nom_tuteur" id="ntuteur" name="nom_tuteur" >
                                         </div>
                                         <div class="col-md-6">
                                             <label for="ttuteur">Téléphone</label>
-                                            <input type="number" class="form-control tel_tuteur" id="ttuteur" name="tel_tuteur" required>
+                                            <input type="number" class="form-control tel_tuteur" id="ttuteur" name="tel_tuteur" >
                                         </div>
                                     </div>
                                     <div class="row mt-2 pass-email-tuteur">
