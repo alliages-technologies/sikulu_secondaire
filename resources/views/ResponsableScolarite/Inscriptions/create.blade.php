@@ -38,13 +38,13 @@ Responsable Scolarité | Inscription
                                         </div>
                                         <div class="col-md-6">
                                             <label for="ln">Lieu de Naissance</label>
-                                            <input type="text" class="form-control" id="ln" name="lieu_naiss" required>
+                                            <input type="text" class="form-control" id="ln" name="lieu_naiss" >
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-6">
                                             <label for="adresse">Adresse</label>
-                                            <input type="text" class="form-control" id="adresse" name="adresse" required>
+                                            <input type="text" class="form-control" id="adresse" name="adresse" >
                                         </div>
                                         <div class="col-md-6">
                                             <label for="adresse">Sexe</label>
