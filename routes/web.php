@@ -323,7 +323,10 @@ Route::prefix('parent')
         Route::get('/inscription-releve-note-show/{token}/{id}', 'EleveController@inscriptionReleveNoteShow')->name('releve.note.show');
         Route::get('/inscription-note/{token}', 'EleveController@note')->name('notes');
         Route::get('/inscription-note-show/{token}/{id}', 'EleveController@inscriptionNoteShow')->name('note.show');
-});
+        Route::get('/inscription-emploie-temps/{token}', 'EleveController@emploieTemps')->name('emploie.temps');
+        Route::get('/inscription-emploie-temps-show/{token}', 'EleveController@emploieTempsShow')->name('emploie.temps.show');
+        Route::get('/inscription-paiements/{token}', 'EleveController@paiements')->name('paiements');
+    });
 
 
 Route::prefix('surveillant')

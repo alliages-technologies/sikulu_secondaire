@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Parent;
 
 use App\Http\Controllers\Controller;
 use App\Models\AnneeAcad;
+use App\Models\Day;
 use App\Models\Ecolage;
 use App\Models\Eleve;
+use App\Models\EmploieTemp;
 use App\Models\Inscription;
 use App\Models\Moi;
 use App\Models\Note;
+use App\Models\ProgrammeEcoleLigne;
 use App\Models\ReleveNote;
 use App\Models\Salle;
+use App\Models\TrancheHoraire;
 use App\Models\Trimestre;
 use App\Models\TrimestreEcole;
 use Illuminate\Http\Request;
@@ -121,6 +125,42 @@ class EleveController extends Controller
         $notes = Note::where('annee_id',$annee->id)->where('trimestre_id',$trimestre->id)->where('inscription_id',$inscription->id)->get();
         return view('Parent.Ecoles.note_show')->with(compact('inscription','notes'));
 
+    }
+
+    public function emploieTemps($token)
+    {
+        $annee = AnneeAcad::where('actif',1)->first();
+        $inscription = Inscription::where('token',$token)->first();
+        $emploie_temps  = EmploieTemp::where('salle_id',$inscription->salle_id)->get();
+        $days = Day::all();
+        return view('Parent.Ecoles.emploie_temps')->with(compact('days','emploie_temps','inscription'));
+    }
+
+    public function emploieTempsShow($token)
+    {
+        $emploi_temp = EmploieTemp::where('token', $token)->first();
+        $lignesEmploiTemps = $emploi_temp->lets;
+        return view('Parent.Ecoles.emploie_temps_show')->with(compact('emploi_temp','lignesEmploiTemps'));
+    }
+
+    public function paiements($token)
+    {
+        $annee = AnneeAcad::where('actif',1)->first();
+        $inscription = Inscription::where('token',$token)->first();
+        $ecolages = Ecolage::where('annee',$annee->id)->where('inscription_id',$inscription->id)->get();
+
+
+        $ecolage = Ecolage::where('annee',$annee->id)->where('ecole_id',$inscription->ecole_id)->where('inscription_id',$inscription->id)->first();
+        $ecolages = Ecolage::where('annee',$annee->id)->where('ecole_id',$inscription->ecole_id)->where('inscription_id',$ecolage->inscription_id)->get();
+        //$mois = Moi::where('id',$ecolage->mois)->first();
+        //dd($ecolage->inscription->eleve);
+        $totalverse = $ecolages->reduce(function ($carry, $item) {
+            return $carry + $item->montant;
+        });
+        $totalannuel = $ecolage->inscription->montant_inscri * 9;
+        $reste_a_payer = $totalannuel-$totalverse;
+
+        return view('Parent.Ecoles.paiement')->with(compact('totalverse','reste_a_payer','totalannuel','inscription','ecolages'));
     }
 
     public function create()

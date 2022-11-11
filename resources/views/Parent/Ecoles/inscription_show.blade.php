@@ -10,7 +10,7 @@
                         <i class="fa fa-file-text"></i>
                         <p>Relevés de Notes</p>
                     </a>
-                    <a href="" class="col-md-3 m-2">
+                    <a href="{{ route('parents.emploie.temps',$inscription->token)}}" class="col-md-3 m-2">
                         <i class="fa fa-calendar"></i>
                         <p>Emploi du temps</p>
                     </a>
@@ -22,7 +22,7 @@
                         <i class="fa fa-file"></i>
                         <p>Appuies de cours</p>
                     </a>
-                    <a href="" class="col-md-3 m-2">
+                    <a href="{{ route('parents.paiements',$inscription->token)}}" class="col-md-3 m-2">
                         <i class="fa fa-money"></i>
                         <p>Mes paiements</p>
                     </a>
