@@ -79,7 +79,7 @@ class ProgrammeecoleController extends Controller
         $salle = Salle::where('token',$token)->first();
         $programme_ecole = $salle->programmeecoles->where('ecole_id', Auth::user()->ecole_id)->where('active',1)->where('annee_id',1)->first();
         $pes = ProfEcole::where('ecole_id',Auth::user()->ecole_id)->get();
-        //dd($programme_ecole);
+        dd($programme_ecole);
         return view('Adminecole.Programmeecoles.show')->with(compact('salle','programme_ecole','pes'));
     }
 
