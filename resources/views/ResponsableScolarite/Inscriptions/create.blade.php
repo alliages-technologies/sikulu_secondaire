@@ -82,7 +82,7 @@ Responsable Scolarité | Inscription
                                     <div class="row mt-2">
                                         <div class="col-md-6">
                                             <label for="">Montant Inscription</label>
-                                            <input type="number" class="form-control" name="montant_frais" placeholder="">
+                                            <input type="number" class="form-control" name="montant_frais" placeholder="" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="image">Image</label>
