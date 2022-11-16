@@ -26,6 +26,12 @@
                         <i class="fa fa-money"></i>
                         <p>Mes paiements</p>
                     </a>
+                    <a href="{{ route('parents.rapports.index',$inscription->token) }}" class="col-md-3 m-2">
+                        <i class="nav-icon fas fa-user-check"></i>
+                        <p>
+                        Rapport Cours
+                        </p>
+                    </a>
                 </div>
             </div>
         </div>

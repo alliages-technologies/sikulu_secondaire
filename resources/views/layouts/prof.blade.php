@@ -124,6 +124,7 @@
             </a>
             <ul class="nav nav-treeview">
 
+                
             {{-- @foreach ($ecoles as $ecole)
               <li class="nav-item">
                 <a href="/profs/ecoles/{{ $ecole->ecole->token }}" class="nav-link">

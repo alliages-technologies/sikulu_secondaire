@@ -29,13 +29,15 @@ class EcolageController extends Controller
     }
 
     public function salleSelect(){
+        $annee = AnneeAcad::where('actif',1)->first();
         $salle=request()->selectSalle;
-        $inscriptions=Inscription::where('salle_id', $salle)->get();
+        $inscriptions=Inscription::where('annee_id',$annee->id)->where('salle_id', $salle)->get();
         return response()->json($inscriptions);
     }
 
     public function eleveShowById($id){
-        $ecolages = Ecolage::where('inscription_id', $id)->get();
+        $annee = AnneeAcad::where('actif',1)->first();
+        $ecolages = Ecolage::where('annee',$annee->id)->where('inscription_id', $id)->get();
         return response()->json($ecolages);
     }
 
@@ -45,24 +47,26 @@ class EcolageController extends Controller
     }
 
     public function inscriptionsBySalle($salleToken){
+        $annee = AnneeAcad::where('actif',1)->first();
         $salle = Salle::where('token',$salleToken)->first();
-        $inscriptions = Inscription::where('salle_id',$salle->id)->get();
+        $inscriptions = Inscription::where('annee_id',$annee->id)->where('salle_id',$salle->id)->get();
         return view('ResponsableFinances.Finances.Ecolages.inscription')->with(compact('inscriptions','salle'));
     }
 
     public function inscription($inscriptionToken){
-        $inscription = Inscription::where('token',$inscriptionToken)->first();
-        $ecolages = Ecolage::where('inscription_id', $inscription->id)->get();
+        $annee = AnneeAcad::where('actif',1)->first();
+        $inscription = Inscription::where('annee_id',$annee->id)->where('token',$inscriptionToken)->first();
+        $ecolages = Ecolage::where('annee',$annee->id)->where('inscription_id', $inscription->id)->get();
         $mois = Moi::all();
 
         $mois_en_cours = date('m');
 
-        $premier_mois = Ecolage::where('inscription_id', $inscription->id)->where('mois',10)->first();
+        $premier_mois = Ecolage::where('annee',$annee->id)->where('inscription_id', $inscription->id)->where('mois',10)->first();
         $montant_mensuel = $inscription->montant_inscri;
-        $moi_paye = Ecolage::where('inscription_id', $inscription->id)->count();
+        $moi_paye = Ecolage::where('annee',$annee->id)->where('inscription_id', $inscription->id)->count();
         $sense_payer = $moi_paye * $montant_mensuel;
-        $montant_deja_paye = Ecolage::where('inscription_id', $inscription->id)->sum('montant');
-        $paye_mois_en_cours = Ecolage::where('inscription_id', $inscription->id)->where('mois',$mois_en_cours)->first();
+        $montant_deja_paye = Ecolage::where('annee',$annee->id)->where('inscription_id', $inscription->id)->sum('montant');
+        $paye_mois_en_cours = Ecolage::where('annee',$annee->id)->where('inscription_id', $inscription->id)->where('mois',$mois_en_cours)->first();
         //dd($inscription);
 
         if ($premier_mois == null) {
@@ -98,7 +102,7 @@ class EcolageController extends Controller
         $mois=request()->mois;
         $inscription = Inscription::find($id);
         //dd($inscription);
-        $ecolage = Ecolage::where('ecole_id', Auth::user()->ecole_id)->where('inscription_id', $id)->where('mois', $mois)->first();
+        $ecolage = Ecolage::where('annee',$annee->id)->where('ecole_id', Auth::user()->ecole_id)->where('inscription_id', $id)->where('mois', $mois)->first();
         if($ecolage == null){
             $ecolage = new Ecolage();
             $ecolage->inscription_id=$id;
@@ -131,16 +135,18 @@ class EcolageController extends Controller
     }
 
     public function inscriptionSearch(){
-        $inscription = Inscription::where('token',request()->token)->first();
+        $annee = AnneeAcad::where('actif',1)->first();
+        $inscription = Inscription::where('annee_id',$annee->id)->where('token',request()->token)->first();
         $ecolages = Ecolage::where('inscription_id', $inscription->id)->get();
         $mois = Moi::all();
         return view('ResponsableFinances.Finances.Ecolages.inscription_show')->with(compact('mois','ecolages','inscription'));
     }
 
     public function facture(){
+        $annee = AnneeAcad::where('actif',1)->first();
         $user = User::find(Auth::user()->id);
-        $ecolage = Ecolage::where('ecole_id',Auth::user()->ecole_id)->orderBy('id','desc')->first();
-        $ecolages = Ecolage::where('ecole_id',Auth::user()->ecole_id)->where('inscription_id',$ecolage->inscription_id)->get();
+        $ecolage = Ecolage::where('annee',$annee->id)->where('ecole_id',Auth::user()->ecole_id)->orderBy('id','desc')->first();
+        $ecolages = Ecolage::where('annee',$annee->id)->where('ecole_id',Auth::user()->ecole_id)->where('inscription_id',$ecolage->inscription_id)->get();
         $mois = Moi::where('id',$ecolage->mois)->first();
         //dd($ecolage->inscription->eleve);
         $totalverse = $ecolages->reduce(function ($carry, $item) {
@@ -170,13 +176,15 @@ class EcolageController extends Controller
     }
 
     public function historiqueSalle($token){
+        $annee = AnneeAcad::where('actif',1)->first();
         $salle = Salle::where('token', $token)->first();
-        $inscriptions = Inscription::where('salle_id', $salle->id)->paginate(15);
+        $inscriptions = Inscription::where('annee_id',$annee->id)->where('salle_id', $salle->id)->paginate(15);
         return view('ResponsableFinances.Finances.Ecolages.historiquesalle')->with(compact('salle', 'inscriptions'));
     }
 
     public function historiquePaiementsEleve($token){
-        $inscription = Inscription::where('token', $token)->first();
+        $annee = AnneeAcad::where('actif',1)->first();
+        $inscription = Inscription::where('annee_id',$annee->id)->where('token', $token)->first();
         //dd($inscription->eleve);
         return view('ResponsableFinances.Finances.Ecolages.historiqueeleve')->with(compact('inscription'));
     }
@@ -190,17 +198,20 @@ class EcolageController extends Controller
     }
 
     public function findEcolagesInscriptionsBySalle($id){
-        $inscriptions=Inscription::where('salle_id', $id)->where('ecole_id', auth()->user()->ecole_id)->get();
+        $annee = AnneeAcad::where('actif',1)->first();
+        $inscriptions=Inscription::where('annee_id',$annee->id)->where('salle_id', $id)->where('ecole_id', auth()->user()->ecole_id)->get();
         return response()->json($inscriptions);
     }
 
     public function historiqueEleve($id){
-        $ecolages=Ecolage::where('inscription_id', $id)->get();
+        $annee = AnneeAcad::where('actif',1)->first();
+        $ecolages=Ecolage::where('annee',$annee->id)->where('inscription_id', $id)->get();
         return response()->json($ecolages);
     }
 
     public function findEcolagesByMonth($id){
-        $ecolages=Ecolage::where('mois', $id)->where('ecole_id', auth()->user()->ecole_id)->get();
+        $annee = AnneeAcad::where('actif',1)->first();
+        $ecolages=Ecolage::where('annee',$annee->id)->where('mois', $id)->where('ecole_id', auth()->user()->ecole_id)->get();
         return response()->json($ecolages);
     }
     /*

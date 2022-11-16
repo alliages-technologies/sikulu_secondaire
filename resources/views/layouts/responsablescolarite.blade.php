@@ -157,10 +157,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('responsablescolarite.pointages.index') }}" class="nav-link">
+            <a href="{{ route('responsablescolarite.rapports.index') }}" class="nav-link">
               <i class="nav-icon fas fa-user-check"></i>
               <p>
-                Pointage Prof
+                Rapport Cours
               </p>
             </a>
           </li>

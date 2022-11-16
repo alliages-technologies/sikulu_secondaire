@@ -49,6 +49,10 @@
                     <i class="fa fa-edit"></i>
                     <p>ABSCENCES</p>
                 </a>
+                <a href="{{route('profs.rapport.ecole.index',$ecole->token)}}" class="col-md-3 m-2">
+                    <i class="fa fa-file-text"></i>
+                    <p>RAPPORTS COURS</p>
+                </a>
             </div>
         </div>
     </div>

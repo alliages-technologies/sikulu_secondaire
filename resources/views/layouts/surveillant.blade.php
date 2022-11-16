@@ -143,7 +143,12 @@
                   <p>POINTAGES</p>
                 </a>
               </li>
-
+              <li class="nav-item">
+                <a href="{{route('surveillants.rapports.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>RAPPORTS DE COURS</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">

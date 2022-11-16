@@ -9,7 +9,7 @@ class TrancheHoraire extends Model
     protected $guarded = [];
 
     public function getNameAttribute(){
-        return $this->heure_debut.'-'.$this->heure_fin;
+        return $this->heure_debut.' - '.$this->heure_fin;
     }
 
     public function programme_ligne_ecole(){

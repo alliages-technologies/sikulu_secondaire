@@ -276,6 +276,8 @@ Route::prefix('responsablescolarite')
     // Gestion des pointages
     Route::resource('/pointages','PointageController');
     Route::post('/pointages/pointer','PointageController@pointer');
+    Route::resource('/rapports','RapportController');
+    Route::get('/rapport-ecole-show/{token}/{id}','RapportController@show')->name('rapport.ecole.show');
 });
 
 
@@ -305,6 +307,10 @@ Route::prefix('profs')
         Route::get('/cours/{ecole}', 'MailController@cour')->name('cours');
         Route::get('/build', 'MailController@build')->name('build');
         Route::resource('/appuiecours', 'MailController');
+
+        Route::resource('/rapports', 'RapportController');
+        Route::get('/rapport-ecole-index/{token}','RapportController@index')->name('rapport.ecole.index');
+        Route::get('/rapport-ecole-show/{token}/{id}','RapportController@show')->name('rapport.ecole.show');
 });
 
 // releve : inscription_id, trimestre_id, token, moi, semaine, annee
@@ -326,6 +332,8 @@ Route::prefix('parent')
         Route::get('/inscription-emploie-temps/{token}', 'EleveController@emploieTemps')->name('emploie.temps');
         Route::get('/inscription-emploie-temps-show/{token}', 'EleveController@emploieTempsShow')->name('emploie.temps.show');
         Route::get('/inscription-paiements/{token}', 'EleveController@paiements')->name('paiements');
+        Route::get('/rapports-index/{inscription}', 'RapportController@indexEcole')->name('rapports.index');
+        Route::get('/rapport-ecole-show/{inscription}/{id}', 'RapportController@show');
     });
 
 
@@ -341,4 +349,7 @@ Route::prefix('surveillant')
         Route::resource('/pointages', 'PointageController');
         Route::get('/pointages/get-matiere-by-prof/{id}', 'PointageController@getMatieresByProf');
 
+        Route::resource('/rapports', 'RapportController');
+        Route::get('/rapport-ecole-index/{token}','RapportController@index')->name('rapport.ecole.index');
+        Route::get('/rapport-ecole-show/{token}/{id}','RapportController@show')->name('rapport.ecole.show');
 });

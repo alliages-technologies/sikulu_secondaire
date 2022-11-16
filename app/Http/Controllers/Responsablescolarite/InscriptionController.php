@@ -251,6 +251,9 @@ class InscriptionController extends Controller
     public function update(Request $request, $id)
     {
         $inscription = Inscription::find($id);
+        $inscription->montant_inscri = $request->montant_inscri;
+        $inscription->montant_frais = $request->montant_frais;
+        $inscription->save();
         $eleve = Eleve::find($inscription->eleve_id);
         $eleve->nom = $request->nom;
         $eleve->prenom = $request->prenom;
