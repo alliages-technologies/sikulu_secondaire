@@ -2,7 +2,7 @@
 
 
 @section('title')
-Responsable Scolarité | Acceuil
+Directeur des Etudes | Acceuil
 @endsection
 
 @section('content')

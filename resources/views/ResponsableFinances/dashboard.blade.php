@@ -2,7 +2,7 @@
 
 
 @section('title')
-Responsable Finances | Acceuil
+Gestionnaire | Acceuil
 @endsection
 
 @section('content')
