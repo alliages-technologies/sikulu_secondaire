@@ -2,7 +2,7 @@
 
 
 @section('title')
-Superadmin | {{Auth::user()->ecole->name}}
+{{Auth::user()->ecole->name}}
 @endsection
 
 @section('content')

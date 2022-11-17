@@ -27,4 +27,6 @@ class RapportController extends Controller
         return view('Surveillant.Rapports.show')->with(compact('rapport_cour','ligne_emploie_temp'));
     }
 
+    
+
 }
