@@ -149,6 +149,12 @@
                   <p>RAPPORTS DE COURS</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('surveillants.rapports.ecole.jour')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>RAPPORTS DU JOUR</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">

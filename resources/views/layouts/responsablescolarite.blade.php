@@ -165,6 +165,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('responsablescolarite.rapports.ecole.jour') }}" class="nav-link">
+              <i class="nav-icon fas fa-user-check"></i>
+              <p>
+                Rapport Jours
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="/deconnexion" class="nav-link">
               <i class="nav-icon fas fa-power-off" style="color: "></i>
               <p>

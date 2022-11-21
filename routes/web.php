@@ -278,6 +278,8 @@ Route::prefix('responsablescolarite')
     Route::post('/pointages/pointer','PointageController@pointer');
     Route::resource('/rapports','RapportController');
     Route::get('/rapport-ecole-show/{token}/{id}','RapportController@show')->name('rapport.ecole.show');
+    Route::get('/rapport-jours','RapportController@jour')->name('rapports.ecole.jour');
+    Route::get('/rapport-jours/{ecole}/{id}','RapportController@rapportShow');
 });
 
 
@@ -352,4 +354,6 @@ Route::prefix('surveillant')
         Route::resource('/rapports', 'RapportController');
         Route::get('/rapport-ecole-index/{token}','RapportController@index')->name('rapport.ecole.index');
         Route::get('/rapport-ecole-show/{token}/{id}','RapportController@show')->name('rapport.ecole.show');
+        Route::get('/rapport-jours','RapportController@jour')->name('rapports.ecole.jour');
+        Route::get('/rapport-jours/{ecole}/{id}','RapportController@rapportShow');
 });

@@ -5,7 +5,7 @@
         @csrf
         <div class="row">
             <div class="col-md-4 mb-2">
-                <select name="mois_id" id="" class="form-control">
+                <select name="mois_id" id="" class="form-control" required>
                     <option value="">SELECTION DU MOIS</option>
                     @foreach ($mois as $moi)
                     <option value="{{$moi->id}}"> {{$moi->name}} </option>
@@ -17,11 +17,11 @@
             </div>
         </div>
     </form>
-    <h4 class="mt-3 mb-2 ml-2" style="text-transform:uppercase">Apperçu Salaires Annuels des profs</h4>
     <div class="card">
         <div class="card-">
         </div>
         <div class="card-body">
+            <h4 class="mt-3 mb-2 ml-2" style="text-transform:uppercase">Apperçu Salaires Annuels des profs</h4>
             <table class="table">
                 <thead>
                     <tr>

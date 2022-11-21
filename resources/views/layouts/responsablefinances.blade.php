@@ -143,7 +143,7 @@
               <li class="nav-item">
                 <a href="{{route('responsablefinances.ecolages.salles')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>EFFECTUER UN PAIEMENT</p>
+                  <p>PAIEMENT</p>
                 </a>
               </li>
               <li class="nav-item">

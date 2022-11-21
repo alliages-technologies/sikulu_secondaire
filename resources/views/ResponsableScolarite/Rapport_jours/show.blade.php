@@ -1,4 +1,4 @@
-@extends('layouts.surveillant')
+@extends('layouts.responsablescolarite')
 @section('content')
 
 <div class="container mt-4">

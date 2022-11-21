@@ -13,4 +13,5 @@ class Pointage extends Model
     public function pel(){
         return $this->belongsTo('App\Models\ProgrammeEcoleLigne','ligne_programme_ecole_id');
     }
+    
 }
