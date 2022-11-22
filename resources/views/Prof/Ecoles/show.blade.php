@@ -41,7 +41,7 @@
                     <i class="fa fa-file-text"></i>
                     <p>APPUIE DES COURS</p>
                 </a>
-                <a href="#" class="col-md-3 m-2">
+                <a href="{{route('profs.pointages.ecole.index',$ecole->token)}}" class="col-md-3 m-2">
                     <i class="fa fa-money"></i>
                     <p>MES PAIEMENTS</p>
                 </a>

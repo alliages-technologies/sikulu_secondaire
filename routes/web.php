@@ -313,6 +313,11 @@ Route::prefix('profs')
         Route::resource('/rapports', 'RapportController');
         Route::get('/rapport-ecole-index/{token}','RapportController@index')->name('rapport.ecole.index');
         Route::get('/rapport-ecole-show/{token}/{id}','RapportController@show')->name('rapport.ecole.show');
+
+        Route::resource('/pointages', 'PointageController');
+        Route::get('/pointages-ecole-index/{token}','PointageController@index')->name('pointages.ecole.index');
+        Route::get('/pointages-ecole-search/{token}/{id}','PointageController@search')->name('pointages.ecole.search');
+
 });
 
 // releve : inscription_id, trimestre_id, token, moi, semaine, annee
