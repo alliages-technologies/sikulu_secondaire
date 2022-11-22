@@ -25,7 +25,7 @@ class EmploiTempController extends Controller
         return view('Prof.Emplois.index')->with(compact('pes','prof'));
     }
 
-    public function getEmploieBySalle($token, $ligne_programme_ecole){
+    public function getEmploieBySalle($token, $emploi){
         $salle = Salle::where('token',$token)->first();
         $emplois = EmploieTemp::where('salle_id',$salle->id)->get();
         return view('Prof.Emplois.emploi')->with(compact('emplois','salle'));

@@ -10,6 +10,8 @@
                     <tr>
                         <th>HEURE</th>
                         <th>JOURS</th>
+                        <th> MATIERE </th>
+                        <th> ENSEIGNANT </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -17,6 +19,8 @@
                     <tr>
                         <td>{{ $emploi->tranche->name }}</td>
                         <td>{{ $emploi->day->name }}</td>
+                        <td> {{ $emploi->ligneprogrammeecole->matiere->name }} </td>
+                        <td> {{ $emploi->ligneprogrammeecole->prof}} </td>
                     </tr>
                     @endforeach
                 </tbody>
