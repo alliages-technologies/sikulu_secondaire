@@ -4,14 +4,13 @@ namespace App\Http\Controllers\ResponsableScolarite;
 
 use App\Http\Controllers\Controller;
 use App\Models\AnneeAcad;
-use App\Models\Classe;
 use App\Models\Eleve;
 use App\Models\Inscription;
 use App\Models\ParentEcole;
 use App\Models\Salle;
 use App\Models\Sexe;
 use App\Models\SuiviPaiement;
-use App\Models\User;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -255,11 +254,29 @@ class InscriptionController extends Controller
         $inscription->montant_frais = $request->montant_frais;
         $inscription->save();
         $eleve = Eleve::find($inscription->eleve_id);
+        $tuteur = User::where('email',$eleve->email_tuteur)->first();
+        $tuteur->name = $request->nom_tuteur;
+        $tuteur->email = $request->email_tuteur;
+        $tuteur->phone = $request->tel_tuteur;
+        if ($request->password) {
+            $tuteur->password = Hash::make($request->password);
+        }
+        $tuteur->save();
+        //dd($eleve->email_tuteur);
+
         $eleve->nom = $request->nom;
         $eleve->prenom = $request->prenom;
         $eleve->date_naiss = $request->date_naiss;
         $eleve->lieu_naiss = $request->lieu_naiss;
         $eleve->adresse = $request->adresse;
+        $eleve->nom_pere = $request->nom_pere;
+        $eleve->tel_pere = $request->tel_pere;
+        $eleve->nom_mere = $request->nom_mere;
+        $eleve->tel_mere = $request->tel_mere;
+        $eleve->nom_tuteur = $request->nom_tuteur;
+        $eleve->tel_tuteur = $request->tel_tuteur;
+        $eleve->email_tuteur = $request->email_tuteur;
+
         if ($request->image_uri) {
             $fichier = $request->image_uri;
             $ext_array = ['PNG', 'JPG', 'JPEG', 'GIF', 'jpg', 'png', 'jpeg', 'gif'];
@@ -280,7 +297,8 @@ class InscriptionController extends Controller
         }
         //dd($eleve);
         $eleve->save();
-        return redirect(route('responsablescolarite.inscriptions.show', $inscription->token));
+        return redirect()->back();
+        //return redirect(route('responsablescolarite.inscriptions.show', $inscription->token));
     }
 
 

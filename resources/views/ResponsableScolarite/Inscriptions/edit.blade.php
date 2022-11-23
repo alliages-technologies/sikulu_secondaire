@@ -64,7 +64,7 @@
                                 <div class="row mt-2">
                                     <div class="col-md-12">
                                         <label for="">Montant inscription</label>
-                                        <input type="number" class="form-control" name="montant_frais" placeholder="" value="{{$inscription->montant_frais}}">
+                                        <input type="number" class="form-control" name="montant_frais" placeholder="" value="{{$inscription->montant_frais}}" required>
                                     </div>
                                 </div>
                                 <div class="row mt-2">
@@ -78,35 +78,35 @@
                     </div>
                 </div>
 
-{{--                     <div class="row info-parent">
-                        <div class="col-md-6">
-                        <div class="card-body">
-                            <fieldset>
-                                <legend><h6>INFORMATIONS SUR LES PARENTS</h6></legend>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="npere">Nom du père</label>
-                                        <input type="text" class="form-control" id="npere" name="nom_pere" placeholder="" value="{{$inscription->eleve->nom_pere}}" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="tpere">Tel du père</label>
-                                        <input type="text" class="form-control" id="tpere" name="tel_pere" value="{{$inscription->eleve->tel_pere}}" required>
-                                    </div>
+                <div class="row info-">
+                    <div class="col-md-6">
+                    <div class="card-body">
+                        <fieldset>
+                            <legend><h6>INFORMATIONS SUR LES PARENTS</h6></legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="npere">Nom du père</label>
+                                    <input type="text" class="form-control" id="npere" name="nom_pere" placeholder="" value="{{$inscription->eleve->nom_pere}}" required>
                                 </div>
-                                <div class="row mt-2">
-                                    <div class="col-md-6">
-                                        <label for="nmere">Nom de la mère</label>
-                                        <input type="text" class="form-control" id="nmere" name="nom_mere" value="{{$inscription->eleve->nom_mere}}" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="tmere">Tel de la mère</label>
-                                        <input type="text" class="form-control" id="tmere" name="tel_mere" value="{{$inscription->eleve->tel_mere}}" required>
-                                    </div>
+                                <div class="col-md-6">
+                                    <label for="tpere">Tel du père</label>
+                                    <input type="text" class="form-control" id="tpere" name="tel_pere" value="{{$inscription->eleve->tel_pere}}" required>
                                 </div>
-                            </fieldset>
-                        </div>
-                    </div> --}}
-{{--                     <div class="col-md-6">
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <label for="nmere">Nom de la mère</label>
+                                    <input type="text" class="form-control" id="nmere" name="nom_mere" value="{{$inscription->eleve->nom_mere}}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="tmere">Tel de la mère</label>
+                                    <input type="text" class="form-control" id="tmere" name="tel_mere" value="{{$inscription->eleve->tel_mere}}" required>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                    <div class="col-md-6">
                         <div class="card-body tuteur">
                             <fieldset>
                                 <legend><h6>INFORMATIONS SUR LE TUTEUR</h6></legend>
@@ -120,23 +120,23 @@
                                         <input type="number" class="form-control tel_tuteur" id="ttuteur" name="tel_tuteur" value="{{$inscription->eleve->tel_tuteur}}" required>
                                     </div>
                                 </div>
-                                <div class="row mt-2 pass-email-tuteur">
+                                <div class="row mt-2">
                                     <div class="col-md-6">
                                         <label for="">Mot de Passe</label>
                                         <input type="password" class="form-control" id="" name="password" >
                                     </div>
                                     <div class="col-md-6">
                                         <label for="ttuteur">Email</label>
-                                        <input type="email" class="form-control" id="ttuteur" name="email" >
+                                        <input type="email" class="form-control" id="ttuteur" name="email_tuteur" value="{{$inscription->eleve->email_tuteur}}" required>
                                     </div>
                                 </div>
                             </fieldset>
                         </div>
-                    </div> --}}
+                    </div>
 
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-sm btn-success">ENREGISTRER <i class="fa fa-save"></i></button>
-                                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-sm btn-success">ENREGISTRER <i class="fa fa-save"></i></button>
+                    </div>
                 </div>
             </form>
         </div>

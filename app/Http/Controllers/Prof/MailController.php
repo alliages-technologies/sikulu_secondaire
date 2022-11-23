@@ -34,6 +34,7 @@ class MailController extends Controller
     }
 
     public function bar(){
+        $annee = AnneeAcad::where('actif',1)->first();
         $objet = request()->objet;
         $cours = request()->cours;
         $programme_ecole_ligne_id = request()->programme_ecole_ligne_id;
@@ -44,7 +45,11 @@ class MailController extends Controller
         $appuie_cour->objet = $objet;
         $appuie_cour->user_id = $user->id;
         $appuie_cour->ecole_id = $ecole->ecole_id;
+        $appuie_cour->annee_id = $annee->id;
         $appuie_cour->programme_ecole_ligne_id = $programme_ecole_ligne_id;
+        $pel = ProgrammeEcoleLigne::find($programme_ecole_ligne_id);
+        $appuie_cour->salle_id = $pel->pe->salle_id;
+        //dd($appuie_cour);
          if ($cours) {
             $fichier = $cours;
             $ext_array = ['PNG', 'JPG', 'JPEG', 'GIF', 'jpg', 'png', 'jpeg', 'gif','PDF','pdf'];

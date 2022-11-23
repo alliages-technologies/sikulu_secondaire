@@ -341,6 +341,8 @@ Route::prefix('parent')
         Route::get('/inscription-paiements/{token}', 'EleveController@paiements')->name('paiements');
         Route::get('/rapports-index/{inscription}', 'RapportController@indexEcole')->name('rapports.index');
         Route::get('/rapport-ecole-show/{inscription}/{id}', 'RapportController@show');
+        Route::get('/appuie-cours-ecole/{token}', 'RapportController@appuieCours')->name('appuie.cours');
+        Route::get('/appuie-cours-ecole/{token}/{id}', 'RapportController@appuieCoursShow')->name('appuie.cours.show');
     });
 
 

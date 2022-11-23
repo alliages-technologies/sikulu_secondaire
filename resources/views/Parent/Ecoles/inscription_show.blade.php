@@ -18,7 +18,7 @@
                         <i class="fa fa-edit"></i>
                         <p>Notes</p>
                     </a>
-                    <a href="" class="col-md-3 m-2">
+                    <a href="{{route('parents.appuie.cours',$inscription->token)}}" class="col-md-3 m-2">
                         <i class="fa fa-file"></i>
                         <p>Appuies de cours</p>
                     </a>

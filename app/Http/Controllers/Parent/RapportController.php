@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Parent;
 
 use App\Http\Controllers\Controller;
+use App\Models\AnneeAcad;
+use App\Models\AppuieCour;
+use App\Models\Ecole;
 use App\Models\Inscription;
 use App\Models\LigneEmploiTemp;
 use App\Models\RapportCour;
@@ -27,4 +30,17 @@ class RapportController extends Controller
         return view('Parent.Rapports.show')->with(compact('rapport_cour','ligne_emploie_temp'));
     }
 
+    public function appuieCours($token)
+    {
+        $annee = AnneeAcad::where('actif',1)->first();
+        $inscription = Inscription::where('token',$token)->first();
+        $appuie_cours = AppuieCour::where('annee_id',$annee->id)->where('salle_id',$inscription->salle_id)->get();
+        return view('Parent.Rapports.appuie')->with(compact('appuie_cours'));
+    }
+
+    public function appuieCoursShow($token,$id)
+    {
+        $appuie_cour = AppuieCour::find($id);
+        return view('Parent.Rapports.appuie_show')->with(compact('appuie_cour'));
+    }
 }
