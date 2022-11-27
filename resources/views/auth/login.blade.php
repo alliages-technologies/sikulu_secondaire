@@ -18,26 +18,34 @@
         overflow-x: hidden;
         height: 100%;
         background-color: #eceff0;
-        background-repeat: no-repeat
+        background-repeat: no-repeat;
     }
 
     .card0 {
         box-shadow: 0px 4px 8px 0px #757575;
         border-radius: 0px;
         margin-bottom: -40px;
+        background-image: url('images/aside.jpg');
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     .card2 {
-        margin: 0px 40px
+        margin: 0px 40px;
+        border-bottom-right-radius: 8pc;
+        border-bottom-left-radius: 8pc;
+        border-top-left-radius: 8pc;
+        border-top-right-radius: 8pc;
     }
 
     .logo {
-        width: 700px !important;
-        height: 240px  !important;
+        width: 620px !important;
+        height: 506px  !important;
         margin-top: 20px;
         margin-left: 40px !important;
-        border-radius: 5pc;
         margin-bottom: 100px;
+        border-radius: 18pc;
     }
 
     .image {
@@ -152,7 +160,7 @@
 
     .btn-blue {
         background-color: #007bff;
-        width: 150px;
+        width: 474px;
         color: #fff;
         border-radius: 2px
     }
@@ -197,33 +205,13 @@
                 <div class="row d-flex">
                     <div class="col-lg-6">
                         <div class="card1 pb-5">
-                            <div class="row"> <img src="{{asset('images/onso.png')}}" class="logo"> </div>
-                            <div class="" style="margin-left: 65px;margin-top: -16px;">
-                                <p class="ml-5" style="font-size: 23px;
-                                font-family: inherit;
-                                letter-spacing: 0px;
-                                font-weight: ;
-                                ">
-                                    <span style="font-size: 30px;
-                                    font-weight: bold;"> Services Administratif et Commercial</span> <br>
-                                    <span>Contact 1: <span style="color: green; font-weight: 500;"> +242 05-014-09-33</span></span> <br>
-                                    <span>Contact 2: <span style="color: green; font-weight: 500;"> +242 06-845-65-33</span></span> <br>
+                            <div class="row"> <img src="{{asset('images/6101073.jpg')}}" class="logo"> </div>
 
-                                    <span>Adresse email : <span style="color: #0136b9;font-weight: 500;"> onsocongo@gmail.com </span></span> <br>
-                                    <div class="mt-5 ml-5">
-                                        <span style="font-size: 30px;font-weight: bold;" class="">Service Technique </span> <br>
-                                        <span style="font-size: 25px;font-weight: ;">Contact : <span style="color: green; font-weight: 500;font-size: 23px"> +242 06-426-55-95 </span> <br>
-                                        <span>Adresse email : <span style="color: #0136b9;font-weight: 500;"> nsondecaleb@gmail.com </span></span> <br>
-                                    </div>
-
-                                </p>
-                            </div>
                         </div>
-
                     </div>
-                    <div class="col-lg-6">
-                        <div class="card2 card border-0 px-4 py-5">
-                            <div class="row justify-content-center"> <img style="width: 100%; height: 342px;margin-left: 4%;margin-top: -48px;" src="{{asset('images/gesschool.png')}}" class=""> </div>
+                    <div class="col-lg-5">
+                        <div class="card2 card border-0 px-4 py-5 mt-3 mb-3">
+                            <div class="row justify-content-center"> <img style="width: 75%; height: 335px;margin-left: 4%;margin-top: -25px;" src="{{asset('images/logo.jpg')}}" class=""> </div>
                             <div class="row px-3 mb-4">
                                 <div class="container" style="margin-top: -40px;">
                                     <marquee behavior="" direction=""><h2 style="font-size:25px;background-color: #fff;color: #1577b0;letter-spacing: 2px;border-radius: 5px;" class="text-center">POUR UNE GESTION SANS STRESS DE VOTRE ECOLE</h2></marquee>
@@ -264,7 +252,9 @@
                                     </a>
                                 @endif
                             </div>
-                            <div class="row mb-3 px-3"> <button type="submit" class="btn btn-blue text-center">SE CONNECTER</button> </div>
+                            <div class="row">
+                                <div class="mb-3 px-3"> <button type="submit" class="btn btn-blue text-center">SE CONNECTER <i class=""></i> </button> </div>
+                            </div>
                         </div>
                     </div>
                 </div>
