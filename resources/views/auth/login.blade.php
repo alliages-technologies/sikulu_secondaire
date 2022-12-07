@@ -251,16 +251,14 @@
                                         {{ __('Mot de passe oublié?') }}
                                     </a>
                                 @endif
-                            </div>
-                            <div class="row">
-                                <div class="mb-3 px-3"> <button type="submit" class="btn btn-blue text-center">SE CONNECTER <i class=""></i> </button> </div>
+                                <button style="border-radius: 15px;" type="submit" class="btn btn-blue text-center mt-2">SE CONNECTER <i class=""></i> </button>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="bg-blue py-4">
-                    <div class="row px-3"> <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2022. Alliages Technologies.</small>
-                        <div class="social-contact ml-4 ml-sm-auto"> <span class="fa fa-facebook mr-4 text-sm"></span> <span class="fa fa-google-plus mr-4 text-sm"></span> <span class="fa fa-linkedin mr-4 text-sm"></span> <span class="fa fa-twitter mr-4 mr-sm-5 text-sm"></span> </div>
+                    <div class="bg-blue py-4">
+                        <div class="row px-3"> <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2022. Alliages Technologies.</small>
+                            <div class="social-contact ml-4 ml-sm-auto"> <span class="fa fa-facebook mr-4 text-sm"></span> <span class="fa fa-google-plus mr-4 text-sm"></span> <span class="fa fa-linkedin mr-4 text-sm"></span> <span class="fa fa-twitter mr-4 mr-sm-5 text-sm"></span> </div>
+                        </div>
                     </div>
                 </div>
             </div>
