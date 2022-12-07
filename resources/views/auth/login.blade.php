@@ -33,10 +33,10 @@
 
     .card2 {
         margin: 0px 40px;
-        border-bottom-right-radius: 8pc;
-        border-bottom-left-radius: 8pc;
-        border-top-left-radius: 8pc;
-        border-top-right-radius: 8pc;
+        border-bottom-right-radius: 1pc;
+        border-bottom-left-radius: 1pc;
+        border-top-left-radius: 1pc;
+        border-top-right-radius: 1pc;
     }
 
     .logo {
@@ -206,7 +206,6 @@
                     <div class="col-lg-6">
                         <div class="card1 pb-5">
                             <div class="row"> <img src="{{asset('images/6101073.jpg')}}" class="logo"> </div>
-
                         </div>
                     </div>
                     <div class="col-lg-5">
