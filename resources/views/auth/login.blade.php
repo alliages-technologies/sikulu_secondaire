@@ -220,10 +220,10 @@
                                 <div class="line"></div>
                             </div>
                             <div class="row px-3">
-                                 <label class="mb-1">
+                                 <label class="">
                                     <h6 class="mb-0 text-sm">Adresse Email</h6>
                                  </label>
-                                 <input id="email" type="email" class="mb-4 @error('email') is-invalid @enderror" value="{{ old('email') }}" name="email" placeholder="Saisissez votre mail" autofocus autocomplete="email" required>
+                                 <input style="border-radius: 15px;" id="email" type="email" class="mb-4 @error('email') is-invalid @enderror" value="{{ old('email') }}" name="email" placeholder="Saisissez votre mail" autofocus autocomplete="email" required>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -231,26 +231,17 @@
                                 @enderror
                             </div>
                             <div class="row px-3">
-                                 <label class="mb-1">
+                                 <label class="">
                                     <h6 class="mb-0 text-sm">Mot de passe</h6>
                                  </label>
-                                 <input id="password" type="password" name="password" class="@error('password') is-invalid @enderror" placeholder="Saisissez votre mot de passe" required autocomplete="current-password">
+                                 <input style="border-radius: 15px;" id="password" type="password" name="password" class="@error('password') is-invalid @enderror" placeholder="Saisissez votre mot de passe" required autocomplete="current-password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                            <div class="row px-3 mb-4">
-                                <div class="custom-control custom-checkbox custom-control-inline">
-                                     <input id="chk1" type="checkbox" name="chk" class="custom-control-input">
-                                     <label for="chk1" class="custom-control-label text-sm">Se souvenir de moi</label>
-                                </div>
-                                @if (Route::has('password.request'))
-                                    <a class="ml-auto mb-0 text-sm" href="{{ route('password.request') }}">
-                                        {{ __('Mot de passe oublié?') }}
-                                    </a>
-                                @endif
+                            <div class="row px-3 mb-4 mt-4">
                                 <button style="border-radius: 15px;" type="submit" class="btn btn-blue text-center mt-2">SE CONNECTER <i class=""></i> </button>
                             </div>
                         </div>
