@@ -118,9 +118,7 @@ class ScolariteController extends Controller
 
         $note_trimestre_en_cours = Note::where('trimestre_id',request()->trimestre_id)->first();
 
-        //$notes = $notes->where('inscription_id',33);
-        //dd($notes->count());
-        //dd($note_trimestre_en_cours);
+
 
         // Verification des si les releves ont etes genere
 
@@ -182,7 +180,6 @@ class ScolariteController extends Controller
                         $releve_note->moyenne_annuelle = round(($moyenne_annuelle),2);
                         $releve_note->save();
                     }
-
 
                 }
             }

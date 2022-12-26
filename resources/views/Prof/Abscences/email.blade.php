@@ -15,7 +15,8 @@
  /*# sourceMappingURL=bootstrap.min.css.map */
 </style>
 <body>
-    <h1> Bonjour cher parent !!! </h1>
-    <p> Nous vous annonçons que votre enfant n'a pas assisté à un cours. Merci pour votre compréhension, Mr (Mme) {{$user->name}} </p>
+    <h1 style="text-align: center;font-size: 60px;letter-spacing: 2px;"> Bonjour cher parent !!! </h1>
+    <p style="font-size: 32px;text-align: center;color: #bf4040;"> Nous vous annonçons que votre enfant n'a pas assisté à un cours. Merci pour votre compréhension, Mr (Mme) {{$user->name}}
+    </p>
 </body>
 </html>
