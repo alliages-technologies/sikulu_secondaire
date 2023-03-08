@@ -63,6 +63,11 @@ class HomeController extends Controller
             return view('Surveillant.dashboard');
         }
 
+        elseif(Auth::user()->role_id==9) {
+            //dd(Auth::user()->id);
+            return view('Revendeur.dashboard');
+        }
+
         else{
             return redirect('/login');
         }

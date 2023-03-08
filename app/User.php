@@ -53,4 +53,8 @@ class User extends Authenticatable
     public function prof(){
         return $this->hasOne('App\Models\Prof', 'user_id');
     }
+
+    public function ecoles(){
+        return $this->hasMany('App\Models\Ecole','revendeur_id');
+    }
 }

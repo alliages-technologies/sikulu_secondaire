@@ -118,6 +118,9 @@ Route::prefix('superadmin')
     Route::get('/programme-nationnal-delete/{id}/delete','ProgrammenationalController@delete')->name('pn.delete');
     Route::post('/programme-nationnal-update/{id}/update','ProgrammenationalController@update')->name('pn.update');
     Route::post('/image-modify','ParametreController@imageModify')->name('image.modify');
+
+    Route::resource('/revendeurs','RevendeurController');
+
 });
 
 
@@ -363,4 +366,14 @@ Route::prefix('surveillant')
         Route::get('/rapport-ecole-show/{token}/{id}','RapportController@show')->name('rapport.ecole.show');
         Route::get('/rapport-jours','RapportController@jour')->name('rapports.ecole.jour');
         Route::get('/rapport-jours/{ecole}/{id}','RapportController@rapportShow');
+});
+
+
+Route::prefix('revendeur')
+    ->namespace('Revendeur')
+    ->middleware('auth')
+    ->name('revendeur.')
+    ->group(function () {
+        Route::resource('/ecoles', 'EcoleController');
+
 });

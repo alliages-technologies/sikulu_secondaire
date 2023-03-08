@@ -82,7 +82,7 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       <img src="{{asset('adminLTE/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">SUPER ADMIN</span>
+      <span class="brand-text font-weight-light">REVENDEUR</span>
     </a>
 
     <!-- Sidebar -->
@@ -115,75 +115,14 @@
               </p>
             </a>
           </li>
+
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Statistiques
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-gear"></i>
-              <p>
-                Paramètres
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('superadmin.enseignements.index')}}" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
-                  <p>Types d'enseignements</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('superadmin.series.index')}}" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
-                  <p>Séries</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('superadmin.niveaux.index')}}" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
-                  <p>Niveau d'étude</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('superadmin.classes.index')}}" class="nav-link">
-                  <i class="fa fa-door-open nav-icon"></i>
-                  <p>Classes</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('superadmin.matieres.index')}}" class="nav-link">
-                  <i class="fa fa-book nav-icon"></i>
-                  <p>Matières</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('superadmin.programmes-national.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-globe"></i>
-                    <p>
-                      Programme National
-                    </p>
-                  </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="{{route('superadmin.ecoles.index')}}" class="nav-link">
+            <a href="{{route('revendeur.ecoles.index')}}" class="nav-link">
                 <i class="nav-icon far fa-building"></i>
                 <p>Etablissements</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{route('superadmin.revendeurs.index')}}" class="nav-link">
-                <i class="nav-icon far fa-user"></i>
-                <p>Revendeurs</p>
-            </a>
-          </li>
+          
           <li class="nav-item">
             <a href="/deconnexion" class="nav-link">
               <i class="nav-icon fas fa-power-off" style="color: "></i>
