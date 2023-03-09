@@ -29,7 +29,7 @@ Responsable Finances | Suivi des paiements
                     <tr>
                         <td>{{$paiement->created_at->format('d/m/Y')}}</td>
                         @if ($paiement->type=="ECOLAGE")
-                        <td><a href="#"><strong>{{$paiement->ecolage->montant}}</strong> XAF</a></td>
+                        <td><a href="#"><strong>{{$paiement->ecolage_id?$paiement->ecolage->montant:""}}</strong> XAF</a></td>
                         @elseif($paiement->type=="INSCRIPTION")
                         <td><a style="color: gray" href="#"><strong>{{$paiement->Fraisinsciption}}</strong> XAF</a></td>
                         @elseif($paiement->type=="DEPENSE")

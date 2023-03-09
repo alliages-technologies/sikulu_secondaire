@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Revendeur;
 
 use App\Http\Controllers\Controller;
+use App\Models\Abscence;
+use App\Models\AnneeAcad;
+use App\Models\Ecolage;
 use App\Models\Ecole;
+use App\Models\Inscription;
+use App\Models\ReleveNote;
 use App\Models\Trimestre;
 use App\Models\TrimestreEcole;
 use App\Models\TypeEnseignement;
@@ -73,5 +78,25 @@ class EcoleController extends Controller
         }
         return redirect()->back();
     }
+
+    public function show($token){
+        $ecole=Ecole::where('token', $token)->first();
+        $annee = AnneeAcad::where('actif', 1)->first();
+        $inscriptions = Inscription::where('ecole_id',$ecole->id)->where('annee_id',$annee->id)->get();
+        $abscences = Abscence::where('ecole_id',$ecole->id)->where('annee_id',$annee->id)->get();
+        $ecolages = Ecolage::where('ecole_id',$ecole->id)->where('annee',date('Y'))->get();
+        $admis = ReleveNote::where('ecole_id',$ecole->id)->where('annee_id',$annee->id)->where('moyenne','>=',10)->count();
+
+        if ($inscriptions->count() == 0) {
+            $pourcentage = (100 * $admis)/1;
+        }
+        else {
+            $pourcentage = (100 * $admis)/$inscriptions->count();
+        }
+        $pourcentage = round($pourcentage,2);
+        //dd($admis);
+
+           return view('Revendeur.Ecoles.show')->with(compact('ecole','inscriptions','abscences','ecolages','pourcentage'));
+       }
 
 }

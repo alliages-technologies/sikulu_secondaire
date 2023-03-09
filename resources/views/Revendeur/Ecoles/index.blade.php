@@ -27,7 +27,7 @@ Revendeur | Configuration Ecoles
                 <tbody>
                     @foreach ($ecoles as $ecole)
                     <tr>
-                        <td><a href="{{route('superadmin.ecoles.show', $ecole->token)}}"> <strong>{{$ecole->name}}</strong> </a></td>
+                        <td><a href="{{route('revendeur.ecoles.show', $ecole->token)}}"> <strong>{{$ecole->name}}</strong> </a></td>
                         <td>{{$ecole->type->name}}</td>
                         <td>{{$ecole->address}}</td>
                     </tr>
