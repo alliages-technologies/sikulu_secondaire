@@ -20,6 +20,7 @@ DIRECTEUR | Configuration des utilisateurs
                 <thead>
                     <th>NOM</th>
                     <th>ROLE</th>
+                    <th>E-MAIL</th>
                     <th><i class="fa fa-gear"></i></th>
                 </thead>
                 <tbody>
@@ -27,6 +28,7 @@ DIRECTEUR | Configuration des utilisateurs
                     <tr>
                         <td>{{$user->name}}</td>
                         <td>{{$user->role->name}}</td>
+                        <td>{{$user->email}}</td>
                         <td></td>
                     </tr>
                 @endforeach
