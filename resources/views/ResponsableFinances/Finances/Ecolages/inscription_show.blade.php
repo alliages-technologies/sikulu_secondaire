@@ -87,7 +87,7 @@ Responsable Finances | Paiement Ecolage
             </div>
     </div>
 
-    <div>
+    {{-- <div>
         @if ($premier_mois == null)
             <span style="color: rgb(181, 181, 44)"> Veuillez d'abord payer le mois d'Octobre SVP !!! </span>
         @else
@@ -102,7 +102,7 @@ Responsable Finances | Paiement Ecolage
             @endif
         @endif
 
-    </div>
+    </div> --}}
 
 </div>
 
