@@ -88,13 +88,28 @@ class SalleController extends Controller
 
     public function edit($id)
     {
-        //
+
+        $salles = Salle::where('ecole_id',Auth::user()->ecole_id)->orderBy('id','desc')->paginate(10);
+        $salle=Salle::find($id);
+        $ecole = Ecole::find(Auth::user()->ecole_id);
+        $pns = ProgrammeNational::where('enseignement_id',$ecole->enseignement_id)->get();
+        return view('Adminecole.Parametres.Salles.edit')->with(compact('salles','salle','ecole','pns'));
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+            $salle = Salle::find($id);
+            $salle->name = $request->name;
+            $salle->abb = $request->abb;
+            $salle->nombre_places = $request->nombre_places;
+            $salle->ecole_id = Auth::user()->ecole_id;
+            $salle->classe_id = $request->classe_id;
+            $salle->token = sha1(date('His'));
+            $salle->montant = $request->montant;
+            //dd($salle);
+            $salle->update();
+            return redirect()->route('adminecole.salles.index');
     }
 
 

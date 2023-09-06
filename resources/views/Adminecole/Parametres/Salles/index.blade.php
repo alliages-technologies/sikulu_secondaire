@@ -21,6 +21,7 @@ Admin Ecole | Salles
                     <th>CLASSE</th>
                     <th>PLACES</th>
                     <th>MONTANT</th>
+                    <th></th>
                 </thead>
                 <tbody>
                     @foreach($salles as $salle)
@@ -29,6 +30,7 @@ Admin Ecole | Salles
                         <td> {{$salle->classe->name}} </td>
                         <td> {{$salle->nombre_places}} </td>
                         <td> {{$salle->montant}} XAF </td>
+                        <td> <a href="{{route('adminecole.salles.edit', $salle->id)}}" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> </a> </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -73,7 +75,7 @@ Admin Ecole | Salles
                             <div class="form-row mt-2">
                                 <div class="col">
                                     <select name="classe_id" id="" class="form-control">
-                                        <option value="">Choix de la classe</option>
+                                        <option value="">SELECTIONNEZ LA CLASSE</option>
                                         @foreach ($pns as $pn)
                                         <option value="{{ $pn->classe->id }}">{{ $pn->classe->name }}</option>
                                         @endforeach
