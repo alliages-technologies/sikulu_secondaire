@@ -112,15 +112,15 @@
             <a href="/home" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Acceuil
+                ACCEUIL
               </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{ route('responsablescolarite.diplomes.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fas fa-file"></i>
               <p>
-                Diplômes
+                DIPLOMES
               </p>
             </a>
           </li>
@@ -128,7 +128,7 @@
             <a href="{{ route('responsablescolarite.profs.index') }}" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Enseignants
+                ENSEIGNANTS
               </p>
             </a>
           </li>
@@ -136,7 +136,15 @@
             <a href="{{ route('responsablescolarite.inscriptions.index') }}" class="nav-link">
               <i class="nav-icon fas fa-user-plus"></i>
               <p>
-                Inscriptions
+                INSCRIPTIONS
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('responsablescolarite.reinscriptions') }}" class="nav-link">
+              <i class="nav-icon fas fa-user-check"></i>
+              <p>
+                REINSCRIPTIONS
               </p>
             </a>
           </li>
@@ -144,31 +152,23 @@
             <a href="{{ route('responsablescolarite.emploistemps.salles.menu') }}" class="nav-link">
               <i class="nav-icon fas fa-calendar"></i>
               <p>
-                Emplois du temps
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('responsablescolarite.reinscriptions') }}" class="nav-link">
-              <i class="nav-icon fas fa-user-plus"></i>
-              <p>
-                Réinscriptions
+                EMPLOIS DU TEMPS
               </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{ route('responsablescolarite.rapports.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-user-check"></i>
+              <i class="nav-icon fas fa-book"></i>
               <p>
-                Rapport Cours
+                RAPPORTS COURS
               </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{ route('responsablescolarite.rapports.ecole.jour') }}" class="nav-link">
-              <i class="nav-icon fas fa-user-check"></i>
+              <i class="nav-icon fas fa-book"></i>
               <p>
-                Rapport Jours
+                RAPPORTS JOUR
               </p>
             </a>
           </li>
@@ -212,15 +212,6 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
-
-<!-- SCRIPT -->
-<script src="{{asset('js/jquery-3.5.1.js')}}"></script>
-<script src="{{asset('js/bootstrap.js')}}"></script>
-<script src="{{asset('js/configProf.js')}}"></script>
-<script src="{{ asset('js/inscription.js') }}"></script>
-<script src="{{ asset('js/emploisTemps.js') }}"></script>
-
 
 
 <script>
@@ -271,5 +262,8 @@
 <script src="{{asset('adminLTE/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('adminLTE/dist/js/pages/dashboard.js')}}"></script>
+<!-- SCRIPT -->
+<script src="{{asset('js/jquery-3.5.1.js')}}"></script>
+<script src="{{asset('js/bootstrap.js')}}"></script>
 </body>
 </html>

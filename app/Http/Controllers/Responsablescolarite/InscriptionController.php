@@ -56,6 +56,7 @@ class InscriptionController extends Controller
 
         // Cas où le parent existe
         if ($parent) {
+            //dd($parent);
             $eleve = new Eleve();
             $eleve->nom = $request->nom;
             $eleve->prenom = $request->prenom;

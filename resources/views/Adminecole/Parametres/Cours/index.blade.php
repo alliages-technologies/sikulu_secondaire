@@ -1,6 +1,5 @@
 @extends('layouts.adminecole')
 
-
 @section('title')
 Admin Ecole | Cours
 @endsection

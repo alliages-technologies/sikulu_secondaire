@@ -141,10 +141,12 @@ Route::prefix('adminecole')
     // Config des salles
     Route::resource('/salles','SalleController');
     Route::get('/salle-update/{salle}', 'SalleController@update')->name('salle.update');
-    Route::get('/get-profs','ProgrammeecoleController@getProfs');
-    Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
-    Route::get('/save-prof','ProgrammeecoleController@saveProf');
+    // Config des cours
+    Route::resource('/cours', 'CourController');
     Route::get('/menu/{id}','ProgrammeecoleController@menu')->name('menu');
+    Route::get('/get-lignes-programme-national-by-id/{id}','ProgrammeecoleController@getLignesProgrammeNationalById');
+    Route::get('/get-profs','ProgrammeecoleController@getProfs');
+    Route::get('/save-prof','ProgrammeecoleController@saveProf');
     // Configuration des utilisateurs
     Route::get('/utilisateurs', 'UtilisateurController@index')->name('utilisateurs.index');
     Route::post('/utilisateurs-resposable-store', 'UtilisateurController@responsableStore')->name('responsable.store');
@@ -158,8 +160,7 @@ Route::prefix('adminecole')
     Route::resource('/matieres', 'MatiereController');
     Route::get('/matieres/on/{id}', 'MatiereController@on')->name('matieres.on');
     Route::get('/matieres/off/{id}', 'MatiereController@off')->name('matieres.off');
-    // Config des cours
-    Route::resource('/cours', 'CourController');
+    
     /*
         FIN PARAMETRES
     */

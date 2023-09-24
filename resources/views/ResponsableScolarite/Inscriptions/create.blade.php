@@ -89,12 +89,12 @@ Responsable Scolarité | Inscription
                                             <input class="form-control" type="file" class="" id="image" name="image_uri" |size:5000>
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
+                                    <!--div class="row mt-2">
                                         <div class="col-md-12">
                                             <label for=""> Veuillez coche la case ci-dessous s'il s'agit d'une réinscription. </label><br>
                                             <input style="" type="checkbox" name="reinscription_id" id="" class="" value="1">
                                         </div>
-                                    </div>
+                                    </div-->
                                 </fieldset>
                             </div>
                         </div>
@@ -148,7 +148,7 @@ Responsable Scolarité | Inscription
                                     <div class="row mt-2 pass-email-tuteur">
                                         <div class="col-md-6">
                                             <label for="">Mot de Passe</label>
-                                            <input type="password" class="form-control" id="" name="password" required>
+                                            <input type="password" class="form-control" id="" name="password">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="ttuteur">Email</label>
@@ -167,13 +167,71 @@ Responsable Scolarité | Inscription
                             <button class="btn btn-default btn-lg precedent"><i class="fa fa-hand-point-up"></i></button>
                         </div>
                     </div>
-                    <!---->
-                    <button class="btn btn-success btn-save">ENREGISTRER</button>
+                    <div>
+                        <button class="btn btn-success btn-save">ENREGISTRER</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<script src="{{ asset('js/inscription.js') }}"></script>
+
+<script src="{{asset('js/jquery-3.5.1.js')}}"></script>
+
+<script>
+$(".info-parent").hide();
+
+$(".suivant").click(function (e) {
+    e.preventDefault();
+    $(".info-parent").show(1000);
+    $(".info-a").hide(1000);
+});
+
+$(".precedent").click(function (e) {
+    e.preventDefault();
+    $(".info-parent").hide(1000);
+    $(".info-a").show(1000);
+});
+
+$(".btn-save").hide();
+$(".pass-email-tuteur").hide();
+
+
+$(".btn-verifier").click(function (e) {
+    e.preventDefault();
+    var nom = $(".nom_tuteur").val();
+    var phone = $(".tel_tuteur").val();
+    console.log(nom);
+    console.log(phone);
+    if (nom && phone) {
+        $.ajax({
+            type: "get",
+            url: "/responsablescolarite/tuteur-verification-numero",
+            data: {
+                nom: nom,
+                phone: phone
+            },
+            dataType: "json",
+            success: function (response) {
+                if (phone == response.phone) {
+                    alert(response.name+" existe déjà!!!");
+                    $(".btn-save").show("1000");
+                    $(".tuteur").show("1000");
+                }
+                else{
+                    $(".pass-email-tuteur").show(1000);
+                    $(".row-btn-verifier").hide(1000);
+                    $(".btn-save").show("1000");
+                }
+            }
+        });
+    }
+    else{
+        alert("Veuillez remplir ces champs SVP !!!");
+    }
+});
+
+</script>
+
 @endsection

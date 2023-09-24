@@ -1,5 +1,4 @@
 
-
 $(".btn-edit").click(function (e) {
     e.preventDefault();
     var lpe = $(this).data("lpe");
@@ -21,7 +20,7 @@ $(".btn-edit").click(function (e) {
                 $(".profs").change(function (e) {
                     e.preventDefault();
                     var prof_id = $(this).val();
-                    $(".btn-save").click(function (e) {
+                    $("#btn-save").click(function (e) {
                         e.preventDefault();
                         console.log(prof_id);
                         $.ajax({

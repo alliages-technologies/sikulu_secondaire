@@ -159,7 +159,7 @@ class EcolageController extends Controller
         $inscription = Inscription::find($ecolage->inscription_id);
         $parent = $inscription->eleve->email_tuteur;
         if ($parent) {
-            Mail::to($parent)->send(new PaiementMail($user));
+            //Mail::to($parent)->send(new PaiementMail($user));
         }
 
         return view('ResponsableFinances.Finances.Ecolages.facture')->with(compact('ecolage','totalverse','totalannuel','reste_a_payer','mois'));
