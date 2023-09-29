@@ -127,6 +127,6 @@ Responsable Scolarité | Configuration Professeur
     </form>
 </div>
 
+<script src="{{asset('js/jquery-3.5.1.js')}}"></script>
 <script src="{{asset('js/configProf.js')}}"></script>
-
 @endsection
