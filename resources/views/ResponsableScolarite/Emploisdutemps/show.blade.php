@@ -30,6 +30,7 @@ Responsable Scolarité | Emploi du temps
                         <td> {{ $let->tranche->name }} </td>
                         <td> {{ $let->ligneprogrammeecole->matiere->name }} </td>
                         <td> {{ $let->ligneprogrammeecole->prof}} </td>
+                        <td> <a href="/responsablescolarite/emplois-du-temps-edit/{{Auth::user()->ecole->token}}/{{$let->id}}" class="btn btn-primary btn-xs"> <i class="fa fa-eye"></i> </a> </td>
                     </tr>
                     @endforeach
                 </tbody>

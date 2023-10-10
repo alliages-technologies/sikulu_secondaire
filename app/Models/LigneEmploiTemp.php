@@ -17,4 +17,8 @@ class LigneEmploiTemp extends Model
     public function day(){
         return $this->belongsTo('App\Models\Day', 'day_id');
     }
+
+    public function emploie(){
+        return $this->belongsTo('App\Models\EmploieTemp','emploi_id');
+    }
 }

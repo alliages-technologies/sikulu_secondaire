@@ -285,6 +285,10 @@ Route::prefix('responsablescolarite')
     Route::get('/rapport-ecole-show/{token}/{id}','RapportController@show')->name('rapport.ecole.show');
     Route::get('/rapport-jours','RapportController@jour')->name('rapports.ecole.jour');
     Route::get('/rapport-jours/{ecole}/{id}','RapportController@rapportShow');
+
+    Route::get('/emplois-du-temps-edit/{ecole}/{id}','EmploiController@edit');
+
+
 });
 
 

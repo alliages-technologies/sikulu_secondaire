@@ -75,9 +75,13 @@ class EmploiController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit($ecole,$id)
     {
-        //
+        $ligne_emploi_temp = LigneEmploiTemp::find($id);
+        $tranches = TrancheHoraire::where('ecole_id', Auth::user()->ecole_id)->get();
+        $programme_ecole = ProgrammeEcole::where('salle_id', $ligne_emploi_temp->emploie->salle->id)->first();
+        //dd($programme_ecole);
+        return view("ResponsableScolarite.Emploisdutemps.edit")->with(compact('programme_ecole','ligne_emploi_temp','tranches'));
     }
 
     public function update(Request $request, $id)
