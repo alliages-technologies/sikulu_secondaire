@@ -19,10 +19,11 @@ class EmploiController extends Controller
 
     public function index($token)
     {
+        $annee_acad = AnneeAcad::where('actif',1)->first();
         $days = Day::all();
         $salle = Salle::where('ecole_id',Auth::user()->ecole_id)->where('token', $token)->first();
         $id = $salle->id;
-        $emploie_temps = EmploieTemp::where('salle_id', $id)->get();
+        $emploie_temps = EmploieTemp::where('annee_id',$annee_acad->id)->where('salle_id', $id)->get();
         $tranches = TrancheHoraire::where('ecole_id', Auth::user()->ecole_id)->get();
         $programme_ecole = ProgrammeEcole::where('salle_id', $id)->first();
         $programme_ligne_ecoles = ProgrammeEcoleLigne::where('programme_ecole_id', $programme_ecole->id)->get();
@@ -82,6 +83,16 @@ class EmploiController extends Controller
         $programme_ecole = ProgrammeEcole::where('salle_id', $ligne_emploi_temp->emploie->salle->id)->first();
         //dd($programme_ecole);
         return view("ResponsableScolarite.Emploisdutemps.edit")->with(compact('programme_ecole','ligne_emploi_temp','tranches'));
+    }
+
+    public function save()
+    {
+        $ligne_emploi_temp = LigneEmploiTemp::find(request()->id);
+        $ligne_emploi_temp->tranche_id = request()->tranche_id;
+        $ligne_emploi_temp->matiere_id = request()->matiere_id;
+        $ligne_emploi_temp->prof_id = request()->prof_id;
+        $ligne_emploi_temp->save();
+        return redirect()->back();
     }
 
     public function update(Request $request, $id)

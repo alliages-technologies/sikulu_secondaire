@@ -15,13 +15,14 @@ Responsable Scolarité | Emploi du temps
         <div class="card-body">
             <div class="card">
                 <div class="card-body">
-                        <form action="" method="post">
+                        <form action="{{ route('responsablescolarite.emploi.edit') }}" method="post">
                             @csrf
+                            <input type="hidden" name="id" value="{{$ligne_emploi_temp->id}}">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12 mt-4">
                                     <label for="">TRANCHE HORAIRE</label>
                                     <input disabled type="text" value="{{$ligne_emploi_temp->tranche->name}}" class="form-control">
-                                    <select name="" id="" class="form-control mt-2">
+                                    <select name="tranche_id" id="" class="form-control mt-2">
                                         <option value="">Choix</option>
                                         @foreach ($tranches as $tranche)
                                             <option value="{{$tranche->id}}">{{$tranche->name}}</option>
@@ -30,11 +31,11 @@ Responsable Scolarité | Emploi du temps
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12 mt-4">
                                     <label for="">MATIERE</label>
                                     <input disabled type="text" value="{{$ligne_emploi_temp->ligneprogrammeecole->matiere->name}}" class="form-control">
                                     <select name="" id="" class="form-control mt-2">
-                                        <option value="">Choix</option>
+                                        <option value="matiere_id">Choix</option>
                                         @foreach ($programme_ecole->lpes as $lpe)
                                             <option value="{{$lpe->matiere->id}}">{{$lpe->matiere->name}}</option>
                                         @endforeach
@@ -42,10 +43,10 @@ Responsable Scolarité | Emploi du temps
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12 mt-4">
                                     <label for="">Profs</label>
                                     <input disabled type="text" value="{{$ligne_emploi_temp->ligneprogrammeecole->prof}}" class="form-control">
-                                    <select name="" id="" class="form-control mt-2">
+                                    <select name="prof_id" id="" class="form-control mt-2">
                                         <option value="">Choix</option>
                                         @foreach ($programme_ecole->lpes as $lpe)
                                             <option value="{{$lpe->enseignant->id}}">{{$lpe->enseignant->name}} / {{$lpe->matiere->name}} </option>
@@ -53,6 +54,7 @@ Responsable Scolarité | Emploi du temps
                                     </select>
                                 </div>
                             </div>
+                            <button class="btn btn-success mt-2">Modifier <i class="fa fa-save"></i></button>
                         </form>
                 </div>
             </div>

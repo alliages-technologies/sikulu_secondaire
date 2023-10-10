@@ -287,6 +287,7 @@ Route::prefix('responsablescolarite')
     Route::get('/rapport-jours/{ecole}/{id}','RapportController@rapportShow');
 
     Route::get('/emplois-du-temps-edit/{ecole}/{id}','EmploiController@edit');
+    Route::post('/emplois-du-temps-edit-save','EmploiController@save')->name('emploi.edit');
 
 
 });
