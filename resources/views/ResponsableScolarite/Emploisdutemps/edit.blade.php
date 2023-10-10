@@ -34,15 +34,15 @@ Responsable Scolarité | Emploi du temps
                                 <div class="col-md-12 mt-4">
                                     <label for="">MATIERE</label>
                                     <input disabled type="text" value="{{$ligne_emploi_temp->ligneprogrammeecole->matiere->name}}" class="form-control">
-                                    <select name="" id="" class="form-control mt-2">
-                                        <option value="matiere_id">Choix</option>
+                                    <select name="matiere_id" id="" class="form-control mt-2">
+                                        <option value="">Choix</option>
                                         @foreach ($programme_ecole->lpes as $lpe)
-                                            <option value="{{$lpe->matiere->id}}">{{$lpe->matiere->name}}</option>
+                                            <option value="{{$lpe->id}}">{{$lpe->matiere->name}} / {{$lpe->enseignant->name}} </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="row">
+                           {{--  <div class="row">
                                 <div class="col-md-12 mt-4">
                                     <label for="">Profs</label>
                                     <input disabled type="text" value="{{$ligne_emploi_temp->ligneprogrammeecole->prof}}" class="form-control">
@@ -53,7 +53,7 @@ Responsable Scolarité | Emploi du temps
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
                             <button class="btn btn-success mt-2">Modifier <i class="fa fa-save"></i></button>
                         </form>
                 </div>

@@ -89,8 +89,7 @@ class EmploiController extends Controller
     {
         $ligne_emploi_temp = LigneEmploiTemp::find(request()->id);
         $ligne_emploi_temp->tranche_id = request()->tranche_id;
-        $ligne_emploi_temp->matiere_id = request()->matiere_id;
-        $ligne_emploi_temp->prof_id = request()->prof_id;
+        $ligne_emploi_temp->ligne_programme_ecole_id = request()->matiere_id;
         $ligne_emploi_temp->save();
         return redirect()->back();
     }
