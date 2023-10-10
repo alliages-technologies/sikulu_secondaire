@@ -107,5 +107,8 @@ Responsable Scolarité | Horaires Salle
     </div>
 </div>
 
+<script src="{{asset('js/jquery-3.5.1.js')}}"></script>
+<script src="{{asset('js/bootstrap.js')}}"></script>
 <script src="{{ asset('js/emploisTemps.js') }}"></script>
+
 @endsection
