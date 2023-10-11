@@ -160,7 +160,7 @@ Route::prefix('adminecole')
     Route::resource('/matieres', 'MatiereController');
     Route::get('/matieres/on/{id}', 'MatiereController@on')->name('matieres.on');
     Route::get('/matieres/off/{id}', 'MatiereController@off')->name('matieres.off');
-    
+
     /*
         FIN PARAMETRES
     */
@@ -288,6 +288,8 @@ Route::prefix('responsablescolarite')
 
     Route::get('/emplois-du-temps-edit/{ecole}/{id}','EmploiController@edit');
     Route::post('/emplois-du-temps-edit-save','EmploiController@save')->name('emploi.edit');
+    Route::post('/emplois-du-temps-add-save','EmploiController@add')->name('emploi.add');
+    Route::get('/emplois-du-temps-del/{id}','EmploiController@del')->name('del');
 
 
 });

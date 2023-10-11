@@ -70,11 +70,34 @@ class EmploiController extends Controller
 
     public function show($token)
     {
+        $days = Day::all();
+        $tranches = TrancheHoraire::where('ecole_id', Auth::user()->ecole_id)->get();
         $emploi_temp = EmploieTemp::where('token', $token)->first();
+        $programme_ecole = ProgrammeEcole::where('salle_id', $emploi_temp->salle_id)->first();
+        $programme_ligne_ecoles = ProgrammeEcoleLigne::where('programme_ecole_id', $programme_ecole->id)->get();
         $lignesEmploiTemps = $emploi_temp->lets;
-        return view("ResponsableScolarite.Emploisdutemps.show")->with(compact('emploi_temp', 'lignesEmploiTemps'));
+        return view("ResponsableScolarite.Emploisdutemps.show")->with(compact('programme_ligne_ecoles','tranches','days','emploi_temp', 'lignesEmploiTemps'));
     }
 
+    public function add()
+    {
+        $emploi_temp = EmploieTemp::find(request()->id);
+        //dd($emploi_temp);
+        $lignesEmploiTemp = new LigneEmploiTemp();
+        $lignesEmploiTemp->day_id = request()->day_id;
+        $lignesEmploiTemp->tranche_id = request()->tranche_id;
+        $lignesEmploiTemp->ligne_programme_ecole_id = request()->programme_ecole_ligne_id;
+        $lignesEmploiTemp->emploi_id = request()->id;
+        //dd($lignesEmploiTemp);
+        $lignesEmploiTemp->save();
+        return redirect()->back();
+    }
+
+    public function del($id)
+    {
+        $lignesEmploiTemp = LigneEmploiTemp::destroy($id);
+        return redirect()->back();
+    }
 
     public function edit($ecole,$id)
     {
