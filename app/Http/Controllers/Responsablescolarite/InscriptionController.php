@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ResponsableScolarite;
 
 use App\Http\Controllers\Controller;
 use App\Models\AnneeAcad;
+use App\Models\Classe;
 use App\Models\Eleve;
 use App\Models\Inscription;
 use App\Models\ParentEcole;
@@ -267,6 +268,9 @@ class InscriptionController extends Controller
         $inscription->montant_inscri = $request->montant_inscri;
         $inscription->montant_frais = $request->montant_frais;
         $inscription->salle_id = $request->salle_id;
+        $classe = Classe::find($inscription->salle->classe->id);
+        $inscription->classe_id = $classe->id;
+        //dd($inscription);
         $inscription->save();
         $eleve = Eleve::find($inscription->eleve_id);
         $tuteur = User::where('email',$eleve->email_tuteur)->first();
