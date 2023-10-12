@@ -266,6 +266,7 @@ class InscriptionController extends Controller
         $inscription = Inscription::find($id);
         $inscription->montant_inscri = $request->montant_inscri;
         $inscription->montant_frais = $request->montant_frais;
+        $inscription->salle_id = $request->salle_id;
         $inscription->save();
         $eleve = Eleve::find($inscription->eleve_id);
         $tuteur = User::where('email',$eleve->email_tuteur)->first();

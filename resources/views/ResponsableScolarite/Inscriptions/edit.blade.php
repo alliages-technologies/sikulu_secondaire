@@ -131,6 +131,19 @@
                                     </div>
                                 </div>
                             </fieldset>
+                            <label for="" class="mt-2">Classe Actuelle</label>
+                            <input type="text" disabled class="form-control mb-2" name="" value="{{ $inscription->salle->name }} / {{ $inscription->salle->classe->name }}">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="">Classe</label>
+                                    <select name="salle_id" id="" class="form-control" required>
+                                        <option value="">CHOIX</option>
+                                        @foreach ($salles as $salle)
+                                        <option value="{{ $salle->id }}"> {{ $salle->abb }} / {{ $salle->classe->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
