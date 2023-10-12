@@ -16,7 +16,7 @@ Responsable Scolarité | Inscriptions
             </h2>
         </div>
         <div class="card-body ">
-            <div class="row d-flex justify-content-center p-1">
+            <div class="row d-flex justify-content-center p-1 menu">
                 @foreach ($salles as $salle)
                 <a href="{{ route('responsablescolarite.inscriptions.salles',$salle->token) }}" class="col-md-3 m-2">
                     <i class="fa fa-door-open"></i>
