@@ -26,6 +26,19 @@ class InscriptionController extends Controller
         return view('ResponsableScolarite.Inscriptions.index')->with(compact('inscriptions'));
     }
 
+    public function inscriptionSalle()
+    {
+        $salles = Salle::where('ecole_id',Auth::user()->ecole_id)->get();
+        return view('ResponsableScolarite.Inscriptions.salle')->with(compact('salles'));
+    }
+
+    public function inscriptionSalleId($salle)
+    {
+        $annee_acad = AnneeAcad::where('actif', 1)->first();
+        $salle = Salle::where('token',$salle)->first();
+        $inscriptions = Inscription::where('annee_id',$annee_acad->id)->where('salle_id',$salle->id)->orderBy('id','desc')->paginate(20);
+        return view('ResponsableScolarite.Inscriptions.salle_show')->with(compact('salle','inscriptions'));
+    }
 
     public function create()
     {

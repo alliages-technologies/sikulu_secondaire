@@ -141,6 +141,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('responsablescolarite.inscriptions.salle') }}" class="nav-link">
+              <i class="nav-icon fas fa-user-plus"></i>
+              <p>
+                INSCRIPTIONS/CLASSES
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('responsablescolarite.reinscriptions') }}" class="nav-link">
               <i class="nav-icon fas fa-user-check"></i>
               <p>

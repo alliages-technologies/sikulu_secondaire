@@ -291,6 +291,8 @@ Route::prefix('responsablescolarite')
     Route::post('/emplois-du-temps-add-save','EmploiController@add')->name('emploi.add');
     Route::get('/emplois-du-temps-del/{id}','EmploiController@del')->name('del');
 
+    Route::get('/inscriptions-salles', 'InscriptionController@inscriptionSalle')->name('inscriptions.salle');
+    Route::get('/inscriptions-salles/{salle}', 'InscriptionController@inscriptionSalleId')->name('inscriptions.salles');
 
 });
 
