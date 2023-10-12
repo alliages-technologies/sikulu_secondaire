@@ -12,7 +12,6 @@ Responsable Scolarité | Inscriptions
         <div class="card-header">
             <h2>
                 GESTION DES INSCRIPTIONS PAR SALLES
-                <a href="" class="btn btn-sm btn-default float-right"><i class="fa fa-user-plus"></i> </a>
             </h2>
         </div>
         <div class="card-body ">
