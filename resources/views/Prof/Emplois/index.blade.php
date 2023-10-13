@@ -13,20 +13,16 @@
                     <tr>
                         <th>Salle</th>
                         <th>Classe</th>
-                        <th>Matière</th>
                         <th>Option</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pes as $pe)
-                    @foreach ($pe->lpes->where('enseignant_id',$prof->id) as $pel)
+                    @foreach ($salles as $salle)
                     <tr>
-                        <td>{{ $pe->salle->name}}</td>
-                        <td> {{ $pe->salle->classe->name }}</td>
-                        <td>{{ $pel->matiere->name }}</td>
-                        <td><a href="/profs/emploi-by-salle/{{ $pe->salle->token}}/{{ $pel->id }}" class="btn btn-default btn-xs col-md-3 m-2"><i class="fa fa-eye"></i></a></td>
+                        <td>{{ $salle->name}}</td>
+                        <td> {{ $salle->classe->name }}</td>
+                        <td><a href="/profs/emploi-by-salle/{{ $salle->token}}/{{ $salle->id }}" class="btn btn-default btn-xs col-md-3 m-2"><i class="fa fa-eye"></i></a></td>
                     </tr>
-                    @endforeach
                     @endforeach
                 </tbody>
             </table>
