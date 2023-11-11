@@ -34,7 +34,6 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('adminLTE/plugins/summernote/summernote-bs4.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('DataTables/media/css/jquery.dataTables.min.css') }}">
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 
@@ -236,6 +235,8 @@
             $('#card-body').toggle(900);
         });
     });
+
+
 </script>
 
 <!-- jQuery -->
@@ -275,5 +276,8 @@
 <!-- SCRIPT -->
 <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
 <script src="{{asset('js/bootstrap.js')}}"></script>
+<script type="text/javascript" src="{{ asset('DataTables/media/js/jquery.dataTables.min.js') }}"></script>
+<script type="text/javascript" id="lang" src="{{ asset('DataTables/media/French.json') }}"></script>
+
 </body>
 </html>

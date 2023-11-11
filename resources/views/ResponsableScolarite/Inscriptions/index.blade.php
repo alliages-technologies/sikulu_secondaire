@@ -48,6 +48,7 @@ Responsable Scolarité | Inscriptions
 
 <script type="text/javascript" id="lang" src="{{ asset('DataTables/media/French.json') }}"></script>
 <script type="text/javascript" src="{{ asset('DataTables/media/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{asset('js/jquery-3.5.1.js')}}"></script>
 
 <script>
 $(document).ready(function () {
