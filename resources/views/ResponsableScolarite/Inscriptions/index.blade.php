@@ -16,7 +16,7 @@ Responsable Scolarité | Inscriptions
             </h2>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped table-hover table-sm mb-3">
+            <table class="table table-bordered table-striped table-hover table-sm mb-3 display" id="tab">
                 <thead class="">
                     <th> STATUT </th>
                     <th> DATE </th>
