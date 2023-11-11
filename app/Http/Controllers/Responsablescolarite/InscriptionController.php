@@ -23,7 +23,7 @@ class InscriptionController extends Controller
     public function index()
     {
         $annee_acad = AnneeAcad::where('actif', 1)->first();
-        $inscriptions = Inscription::where('annee_id', $annee_acad->id)->where('ecole_id', Auth::user()->ecole_id)->orderBy('created_at', 'desc')->paginate(10);
+        $inscriptions = Inscription::where('annee_id', $annee_acad->id)->where('ecole_id', Auth::user()->ecole_id)->orderBy('created_at', 'desc')->get();
         return view('ResponsableScolarite.Inscriptions.index')->with(compact('inscriptions'));
     }
 

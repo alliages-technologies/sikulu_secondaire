@@ -40,8 +40,25 @@ Responsable Scolarité | Inscriptions
                 @endforeach
                 </tbody>
             </table>
-            {{ $inscriptions->links() }}
+            {{-- {{ $inscriptions->links() }} --}}
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript" id="lang" src="{{ asset('DataTables/media/French.json') }}"></script>
+<script type="text/javascript" src="{{ asset('DataTables/media/js/jquery.dataTables.min.js') }}"></script>
+
+<script>
+$(document).ready(function () {
+    $('#tab').DataTable();
+});
+
+$('#tab').DataTable({
+    language: {
+        url: $("#lang").attr("src")
+    }
+});
+</script>
+
 @endsection
