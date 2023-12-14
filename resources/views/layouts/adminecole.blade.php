@@ -175,7 +175,7 @@
               </li>
             </ul>
           </li>
-            <a href=" route('adminecole.programmes-ecole.index') " class="nav-link">
+            <a href=" {{ route('adminecole.programmes-ecole.index') }} " class="nav-link">
               <i class="nav-icon fas fa-building"></i>
               <p>
                 PROGRAMME SCOLAIRE
