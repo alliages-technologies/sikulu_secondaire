@@ -175,12 +175,14 @@
               </li>
             </ul>
           </li>
-            <a href=" {{ route('adminecole.programmes-ecole.index') }} " class="nav-link">
-              <i class="nav-icon fas fa-building"></i>
-              <p>
-                PROGRAMME SCOLAIRE
-              </p>
-            </a>
+          <li class="nav-item">
+              <a href=" {{ route('adminecole.programmes-ecole.index') }} " class="nav-link">
+                <i class="nav-icon fas fa-building"></i>
+                <p>
+                  PROGRAMME SCOLAIRE
+                </p>
+              </a>
+          </li>
           <li class="nav-item">
             <a href="{{ route('adminecole.scolarite.menu') }}" class="nav-link">
               <i class="nav-icon fas fa-graduation-cap"></i>
