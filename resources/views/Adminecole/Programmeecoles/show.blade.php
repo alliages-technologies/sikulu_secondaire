@@ -26,7 +26,7 @@ Admin Ecole | Programme
                     <tr>
                         <td> {{ $lpe->matiere->name }} </td>
                         <td> {{ $lpe->coefficient }} </td>
-                        <td> {{ $lpe->enseignant?$lpe->enseignant->name:"Aucun" }} </td>
+                        <td> {{ $lpe->enseignant_id?$lpe->enseignant->name:"Aucun" }} </td>
                         <td> <button data-lpe="{{ $lpe->id }}" data-toggle="modal" data-target="#panier" class="btn btn-default btn-xs btn-edit"><i class="fa fa-edit"></i></button> </td>
                     </tr>
                     @endforeach
